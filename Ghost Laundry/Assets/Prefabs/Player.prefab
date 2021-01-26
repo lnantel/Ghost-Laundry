@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afce83522b35d3e4c99be1ce73f3bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 20
+  m_Speed: 5
   m_RotationSpeed: 0.025
   m_AccelerationCurve:
     serializedVersion: 2
@@ -158,9 +158,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_AccelerationTime: 0.2
-  m_DashDistance: 10
-  m_DashDuration: 0.3
+  m_AccelerationTime: 0.1
+  m_DashDistance: 3
+  m_DashDuration: 0.2
   m_DashCurve:
     serializedVersion: 2
     m_Curve:
@@ -202,14 +202,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7508882299674850930
 MonoBehaviour:
