@@ -15,8 +15,12 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve m_AccelerationCurve;
     public float m_AccelerationTime;
 
-    float accelerationFactor;
-    Vector2 moveDir;
+    private float accelerationFactor;
+    private Vector2 moveDir;
+    private bool facingRight;
+
+    //TODO: this will be handled in the animator or an animation script at a later point
+    private SpriteRenderer sprite;
 
     //Dash
     public float m_DashDistance;
@@ -24,12 +28,23 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve m_DashCurve;
     public float m_DashCooldown;
 
+    //Pick up / Drop
+    private CarryableDetector carryableDetector;
+    private GameObject carriedObject;
+    public Transform carriedPos;
+
     void Start()
     {
         input = PlayerInputManager.instance;
         state = PlayerStateManager.instance;
+
         rb = GetComponent<Rigidbody2D>();
+        carryableDetector = GetComponentInChildren<CarryableDetector>();
+
         moveDir = new Vector2(1.0f, 0.0f);
+
+        //TODO: this will be handled in the animator or an animation script at a later point
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -37,8 +52,23 @@ public class PlayerController : MonoBehaviour
         if (state.CanMove())
             Move();
 
+        //TODO: this will be handled in the animator or an animation script at a later point
+        sprite.flipX = facingRight;
+
         if (input.GetDashInput() && state.CanDash())
             StartCoroutine(Dash());
+
+        if (input.GetPickUpInput()) {
+            if (state.Carrying)
+                DropCarriedObject();
+            else
+                PickUp();
+        }
+
+        if (state.Carrying) {
+            if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
+            carriedObject.transform.position = carriedPos.position;
+        }
     }
 
     private void Move() {
@@ -56,11 +86,18 @@ public class PlayerController : MonoBehaviour
             //Decrease acceleration factor
             accelerationFactor = Mathf.Max(accelerationFactor - Time.deltaTime / m_AccelerationTime, 0.0f);
         }
+
+        //Facing
+        if (moveDir.x > 0.01f) facingRight = true;
+        else if (moveDir.x < -0.01f) facingRight = false;
+
         rb.velocity = moveDir * m_Speed * m_AccelerationCurve.Evaluate(accelerationFactor);
     }
 
     private IEnumerator Dash() {
         state.StartDash();
+        if(state.Carrying)
+            DropCarriedObject();
 
         Vector2 dashStartPos = rb.position;
         Vector2 dashEndPos = rb.position + moveDir.normalized * m_DashDistance;
@@ -79,5 +116,20 @@ public class PlayerController : MonoBehaviour
 
         rb.position = dashEndPos;
         rb.velocity = startVelocity;
+    }
+
+    private void PickUp() {
+        GameObject targetedCarryable = carryableDetector.GetNearestCarryable();
+        if (targetedCarryable != null) {
+            state.StartCarry();
+            carriedObject = targetedCarryable;
+            carriedObject.GetComponent<Collider2D>().enabled = false;
+        }
+    }
+
+    private void DropCarriedObject() {
+        state.EndCarry();
+        carriedObject.GetComponent<Collider2D>().enabled = true;
+        carriedObject = null;
     }
 }

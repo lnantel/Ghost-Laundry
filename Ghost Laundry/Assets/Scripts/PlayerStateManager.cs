@@ -12,6 +12,7 @@ public class PlayerStateManager : MonoBehaviour
 
     //States
     public bool Dashing { private set; get; }
+    public bool Carrying { private set; get; }
 
     private void Awake() {
         if (instance != null) Destroy(gameObject);
@@ -45,6 +46,14 @@ public class PlayerStateManager : MonoBehaviour
         Dashing = false;
         Unlock(ref moveLocks);
         Unlock(ref dashLocks);
+    }
+
+    public void StartCarry() {
+        Carrying = true;
+    }
+
+    public void EndCarry() {
+        Carrying = false;
     }
 
     private void Lock(ref int lockCounter) {
