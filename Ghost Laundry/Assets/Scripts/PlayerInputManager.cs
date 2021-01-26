@@ -9,7 +9,7 @@ public class PlayerInputManager : MonoBehaviour
     float xInput;
     float yInput;
     float accelerationFactor;
-    public Vector2 move;
+    public Vector2 Move { private set; get; }
 
     void Awake() {
         if (instance != null) Destroy(gameObject);
@@ -25,7 +25,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
-        move = new Vector2(xInput, yInput);
-        if (move.magnitude >= 1.0f) move = move.normalized; 
+        Move = new Vector2(xInput, yInput);
+        if (Move.magnitude >= 1.0f) Move = Move.normalized; 
     }
 }

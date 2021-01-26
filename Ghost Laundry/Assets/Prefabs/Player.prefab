@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  rotationSpeed: 10
+  rotationSpeed: 0.025
   accelerationCurve:
     serializedVersion: 2
     m_Curve:

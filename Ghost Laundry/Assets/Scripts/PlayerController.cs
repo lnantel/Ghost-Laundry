@@ -31,14 +31,14 @@ public class PlayerController : MonoBehaviour
 
     private void Move() {
 
-        if (input.move.magnitude != 0.0f) {
+        if (input.Move.magnitude != 0.0f) {
             //Increase acceleration factor
-            accelerationFactor = Mathf.Min(accelerationFactor + Time.deltaTime / accelerationTime, input.move.magnitude);
+            accelerationFactor = Mathf.Min(accelerationFactor + Time.deltaTime / accelerationTime, input.Move.magnitude);
 
-            Debug.DrawRay(transform.position, input.move, Color.green, Time.deltaTime);
+            Debug.DrawRay(transform.position, input.Move, Color.green, Time.deltaTime);
             Debug.DrawRay(transform.position, moveDir, Color.red, Time.deltaTime);
             Vector2 zero = Vector2.zero;
-            moveDir = Vector2.SmoothDamp(moveDir, input.move.normalized, ref zero, 0.025f * accelerationCurve.Evaluate(accelerationFactor));
+            moveDir = Vector2.SmoothDamp(moveDir, input.Move.normalized, ref zero, rotationSpeed * accelerationCurve.Evaluate(accelerationFactor));
         }
         else {
             //Decrease acceleration factor
