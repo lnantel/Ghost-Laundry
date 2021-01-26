@@ -35,6 +35,12 @@ public class PlayerStateManager : MonoBehaviour
         Lock(ref dashLocks);
     }
 
+    public IEnumerator DashCooldown(float duration) {
+        Lock(ref dashLocks);
+        yield return new WaitForSeconds(duration);
+        Unlock(ref dashLocks);
+    }
+
     public void EndDash() {
         Dashing = false;
         Unlock(ref moveLocks);

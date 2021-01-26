@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float m_DashDistance;
     public float m_DashDuration;
     public AnimationCurve m_DashCurve;
+    public float m_DashCooldown;
 
     void Start()
     {
@@ -46,8 +47,8 @@ public class PlayerController : MonoBehaviour
             //Increase acceleration factor
             accelerationFactor = Mathf.Min(accelerationFactor + Time.deltaTime / m_AccelerationTime, input.Move.magnitude);
 
-            Debug.DrawRay(transform.position, input.Move, Color.green, Time.deltaTime);
-            Debug.DrawRay(transform.position, moveDir, Color.red, Time.deltaTime);
+            //Debug.DrawRay(transform.position, input.Move, Color.green, Time.deltaTime);
+            //Debug.DrawRay(transform.position, moveDir, Color.red, Time.deltaTime);
             Vector2 zero = Vector2.zero;
             moveDir = Vector2.SmoothDamp(moveDir, input.Move.normalized, ref zero, m_RotationSpeed * m_AccelerationCurve.Evaluate(accelerationFactor));
         }
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
         }
 
         state.EndDash();
+        StartCoroutine(state.DashCooldown(m_DashCooldown));
 
         rb.position = dashEndPos;
         rb.velocity = startVelocity;

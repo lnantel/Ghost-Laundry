@@ -185,6 +185,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  m_DashCooldown: 0.5
 --- !u!61 &2777215643034459170
 BoxCollider2D:
   m_ObjectHideFlags: 0
