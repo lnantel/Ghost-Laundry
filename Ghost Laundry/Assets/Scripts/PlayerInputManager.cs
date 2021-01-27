@@ -17,6 +17,9 @@ public class PlayerInputManager : MonoBehaviour
     //PickUp or Drop
     private bool pickUp;
 
+    //Interact
+    private bool interact;
+
     void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
@@ -37,6 +40,8 @@ public class PlayerInputManager : MonoBehaviour
         if(!dash) dash = Input.GetButtonDown("Dash");
 
         if (!pickUp) pickUp = Input.GetButtonDown("PickUp");
+
+        if (!interact) interact = Input.GetButtonDown("Interact");
     }
 
     public bool GetDashInput() {
@@ -48,6 +53,12 @@ public class PlayerInputManager : MonoBehaviour
     public bool GetPickUpInput() {
         bool value = pickUp;
         pickUp = false;
+        return value;
+    }
+
+    public bool GetInteractInput() {
+        bool value = interact;
+        interact = false;
         return value;
     }
 }

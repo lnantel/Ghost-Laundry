@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     private GameObject carriedObject;
     public Transform carriedPos;
 
+    //Interact
+    private InteractableDetector interactableDetector;
+
     void Start()
     {
         input = PlayerInputManager.instance;
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         carryableDetector = GetComponentInChildren<CarryableDetector>();
+        interactableDetector = GetComponentInChildren<InteractableDetector>();
 
         moveDir = new Vector2(1.0f, 0.0f);
 
@@ -70,6 +74,10 @@ public class PlayerController : MonoBehaviour
         if (state.Carrying) {
             if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
             carriedObject.transform.position = carriedPos.position;
+        }
+
+        if (input.GetInteractInput()) {
+            Interact();
         }
     }
 
@@ -166,5 +174,12 @@ public class PlayerController : MonoBehaviour
         state.EndCarry();
         carriedObject.GetComponent<Collider2D>().enabled = true;
         carriedObject = null;
+    }
+
+    private void Interact() {
+        Interactable interactable = interactableDetector.GetNearestInteractable();
+        if(interactable != null) {
+            interactable.Interact();
+        }
     }
 }
