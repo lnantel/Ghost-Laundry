@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public float m_DashDuration;
     public AnimationCurve m_DashCurve;
     public float m_DashCooldown;
+    public float m_DashReboundDistance;
+    public float m_DashReboundDuration;
 
     //Pick up / Drop
     private CarryableDetector carryableDetector;
@@ -96,25 +98,58 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash() {
         state.StartDash();
-        if(state.Carrying)
+        gameObject.layer = LayerMask.NameToLayer("Dash");
+
+        if (state.Carrying)
             DropCarriedObject();
 
         Vector2 dashStartPos = rb.position;
-        Vector2 dashEndPos = rb.position + moveDir.normalized * m_DashDistance;
+        Vector2 dashDir = moveDir.normalized;
+        Vector2 dashEndPos = dashStartPos + dashDir * m_DashDistance;
+
+        bool collision = false;
+        Vector2 collisionPoint = Vector2.zero;
+
+        int layerMask = LayerMask.GetMask("Impassable");
+        RaycastHit2D hit = Physics2D.Raycast(dashStartPos, dashDir, m_DashDistance, layerMask);
+        if(hit.collider != null) {
+            collision = true;
+            collisionPoint = hit.point - dashDir * 0.5f;
+        }
+
         Vector2 startVelocity = rb.velocity;
         rb.velocity = Vector2.zero;
 
-        float timer = 0.0f;
-        while(timer < m_DashDuration) {
-            rb.position = Vector2.Lerp(dashStartPos, dashEndPos, m_DashCurve.Evaluate(timer / m_DashDuration));
-            timer += Time.deltaTime;
+        float dashTimer = 0.0f;
+        while(dashTimer < m_DashDuration) {
+            float fraction = m_DashCurve.Evaluate(dashTimer / m_DashDuration);
+            if(collision && fraction >= hit.fraction) { 
+                break;
+            }
+            else {
+                rb.MovePosition(Vector2.Lerp(dashStartPos, dashEndPos, fraction));
+            }
+            dashTimer += Time.deltaTime;
             yield return new WaitForSeconds(0.0f);
         }
 
+        if (collision) {
+            Vector2 reflected = Vector2.Reflect(dashDir, hit.normal);
+            dashEndPos = collisionPoint + reflected * m_DashReboundDistance;
+            float reboundTimer = 0.0f;
+            while(reboundTimer < m_DashReboundDuration) {
+                rb.MovePosition(Vector2.Lerp(collisionPoint, dashEndPos, m_DashCurve.Evaluate(reboundTimer / m_DashReboundDuration)));
+                reboundTimer += Time.deltaTime;
+                yield return new WaitForSeconds(0.0f);
+            }
+        }
+
         state.EndDash();
+        gameObject.layer = LayerMask.NameToLayer("Player");
+
         StartCoroutine(state.DashCooldown(m_DashCooldown));
 
-        rb.position = dashEndPos;
+        rb.MovePosition(dashEndPos);
         rb.velocity = startVelocity;
     }
 

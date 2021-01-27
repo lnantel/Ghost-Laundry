@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2384820663197199145}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CarriedObjectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 3294591892098698273}
   - component: {fileID: 2412395440796299541}
   - component: {fileID: 4366841648225285445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CarryableDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 7689694076823707844}
   - component: {fileID: 2777215643034459170}
   - component: {fileID: 7689694076823707845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_DashCooldown: 0.5
+  m_DashReboundDistance: 1
+  m_DashReboundDuration: 0.2
   carriedPos: {fileID: 2384820663197199145}
 --- !u!50 &7689694076823707844
 Rigidbody2D:
