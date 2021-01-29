@@ -87,8 +87,8 @@ public class PlayerController : MonoBehaviour
             //Increase acceleration factor
             accelerationFactor = Mathf.Min(accelerationFactor + Time.deltaTime / m_AccelerationTime, input.Move.magnitude);
 
-            Debug.DrawRay(transform.position, input.Move, Color.green, Time.deltaTime);
-            Debug.DrawRay(transform.position, moveDir, Color.red, Time.deltaTime);
+            //Debug.DrawRay(transform.position, input.Move, Color.green, Time.deltaTime);
+            //Debug.DrawRay(transform.position, moveDir, Color.red, Time.deltaTime);
             Vector2 zero = Vector2.zero;
             moveDir = Vector2.SmoothDamp(moveDir, input.Move.normalized, ref zero, m_RotationDampeningFactor * m_AccelerationCurve.Evaluate(accelerationFactor));
         }

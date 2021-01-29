@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2384820663197199145}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CarriedObjectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2412395440796299541}
   - component: {fileID: 4366841648225285445}
   - component: {fileID: 7790824063823191581}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ObjectDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7689694076823707845}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,6 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e1d518c0fd3ed42ab4f57c229ea5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rooms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CurrentRoomIndex: 0
 --- !u!114 &7689694076823707846
 MonoBehaviour:
   m_ObjectHideFlags: 0

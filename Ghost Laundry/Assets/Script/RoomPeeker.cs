@@ -6,24 +6,11 @@ public class RoomPeeker : MonoBehaviour
 {
 
     public CameraSwitch cameraSwitch;
-    public GameObject ghost;
     public Transform room;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D ghostColl){
 
-        if(ghostColl.gameObject.tag == "Player"){
+        if(ghostColl.gameObject.layer == LayerMask.NameToLayer("Player")){
 
             cameraSwitch.SetOffset(transform.position - room.position); 
         }

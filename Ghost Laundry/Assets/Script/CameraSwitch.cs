@@ -18,6 +18,7 @@ public class CameraSwitch : MonoBehaviour
 
     private Vector2 offset;
     private Vector2 lastOffset;
+    private Vector2 currentOffset;
     private float offsetTimer;
 
     // Start is called before the first frame update
@@ -38,12 +39,12 @@ public class CameraSwitch : MonoBehaviour
         Vector2 currentRoomPos = PlayerStateManager.instance.Rooms[PlayerStateManager.instance.CurrentRoomIndex].transform.position;
         if(currentRoomPos != destination) {
             lastDestination = transform.position;
-            destination = PlayerStateManager.instance.Rooms[PlayerStateManager.instance.CurrentRoomIndex].transform.position;
+            destination = currentRoomPos;
             timer = 0.0f;
         }
 
         offsetTimer = Mathf.Clamp(offsetTimer + Time.deltaTime, 0.0f, lerpTime);
-        Vector2 currentOffset = Vector2.Lerp(lastOffset, offset, offsetTimer / lerpTime);
+        currentOffset = Vector2.Lerp(lastOffset, offset, offsetTimer / lerpTime);
 
         Vector2 offsetDestination = destination + currentOffset;
 
@@ -58,15 +59,15 @@ public class CameraSwitch : MonoBehaviour
     }
 
     public void SetOffset(Vector2 vector) {
-        //lastOffset = offset;
-        //offset = vector;
-        //offsetTimer = 0.0f;
+        lastOffset = offset;
+        offset = vector;
+        offsetTimer = 0.0f;
     }
 
     public void ResetOffset() {
-        //lastOffset = offset;
-        //offset = Vector2.zero;
-        //offsetTimer = 0.0f;
+        lastOffset = currentOffset;
+        offset = Vector2.zero;
+        offsetTimer = 0.0f;
     }
 
     public IEnumerator Move (Vector2 destination){

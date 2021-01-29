@@ -14,11 +14,8 @@ public class PlayerStateManager : MonoBehaviour
     public bool Dashing { private set; get; }
     public bool Carrying { private set; get; }
 
-
     public Collider2D[] Rooms;
     public int CurrentRoomIndex;
-
-
 
     private void Awake() {
         if (instance != null) Destroy(gameObject);
@@ -38,7 +35,6 @@ public class PlayerStateManager : MonoBehaviour
                 CurrentRoomIndex = i;
             }
         }
-        Debug.Log("Room: " + CurrentRoomIndex);
     }
 
     public void StartDash() {
