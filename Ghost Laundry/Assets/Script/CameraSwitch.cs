@@ -33,10 +33,19 @@ public class CameraSwitch : MonoBehaviour
     }
 
 
-public void Move(Vector2 destination){
+public IEnumerator Move (Vector2 destination){
 
-    
-    transform.position = Vector2.Lerp(transform.position, destination,lerpTime);
+    float time = 0f; 
+
+    while (time < lerpTime) {
+
+     transform.position = Vector2.Lerp(transform.position, destination,time / lerpTime);
+     time += Time.deltaTime; 
+     yield return new WaitForSeconds(0); 
+
+    }
+
+
     
 
 }
@@ -47,6 +56,8 @@ public void Peek(Vector2 peekdestination){
     transform.position = Vector2.Lerp(transform.position, peekdestination,lerpTime);
 
 }
+
+
 
 
   

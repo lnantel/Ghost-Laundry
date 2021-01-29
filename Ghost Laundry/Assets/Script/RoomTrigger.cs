@@ -22,8 +22,9 @@ public class RoomTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D ghostColl){
 
         if(ghostColl.gameObject.tag == "Player"){
-
-            cameraSwitch.Move(transform.position); 
+        
+        StartCoroutine(cameraSwitch.Move(transform.position));
+        
         }
 }
 
