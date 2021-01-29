@@ -35,6 +35,13 @@ public class CameraSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector2 currentRoomPos = PlayerStateManager.instance.Rooms[PlayerStateManager.instance.CurrentRoomIndex].transform.position;
+        if(currentRoomPos != destination) {
+            lastDestination = transform.position;
+            destination = PlayerStateManager.instance.Rooms[PlayerStateManager.instance.CurrentRoomIndex].transform.position;
+            timer = 0.0f;
+        }
+
         offsetTimer = Mathf.Clamp(offsetTimer + Time.deltaTime, 0.0f, lerpTime);
         Vector2 currentOffset = Vector2.Lerp(lastOffset, offset, offsetTimer / lerpTime);
 
@@ -45,21 +52,21 @@ public class CameraSwitch : MonoBehaviour
     }
 
     public void SetDestination(Vector2 position) {
-        lastDestination = transform.position;
-        destination = position;
-        timer = 0.0f;
+        //lastDestination = transform.position;
+        //destination = position;
+        //timer = 0.0f;
     }
 
     public void SetOffset(Vector2 vector) {
-        lastOffset = offset;
-        offset = vector;
-        offsetTimer = 0.0f;
+        //lastOffset = offset;
+        //offset = vector;
+        //offsetTimer = 0.0f;
     }
 
     public void ResetOffset() {
-        lastOffset = offset;
-        offset = Vector2.zero;
-        offsetTimer = 0.0f;
+        //lastOffset = offset;
+        //offset = Vector2.zero;
+        //offsetTimer = 0.0f;
     }
 
     public IEnumerator Move (Vector2 destination){
