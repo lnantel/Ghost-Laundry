@@ -14,6 +14,9 @@ public class PlayerStateManager : MonoBehaviour
     public bool Dashing { private set; get; }
     public bool Carrying { private set; get; }
 
+    public Collider2D[] Rooms;
+    public int CurrentRoomIndex;
+
     private void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
@@ -27,7 +30,11 @@ public class PlayerStateManager : MonoBehaviour
 
     void Update()
     {
-        
+        for(int i = 0; i < Rooms.Length; i++) {
+            if (Rooms[i].OverlapPoint(transform.position)) {
+                CurrentRoomIndex = i;
+            }
+        }
     }
 
     public void StartDash() {
