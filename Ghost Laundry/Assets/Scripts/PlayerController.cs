@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     {
         if (state.CanMove())
             Move();
+        else
+            state.EndWalk();
 
         //TODO: this will be handled in the animator or an animation script at a later point
         sprite.flipX = facingRight;
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
         if (state.Carrying) {
             if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
             carriedObject.transform.position = carriedPos.position;
+            carriedObject.transform.rotation = carriedPos.rotation;
         }
 
         if (input.GetInteractInput()) {
@@ -82,17 +85,16 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Move() {
-
         if (input.Move.magnitude != 0.0f) {
+            state.StartWalk();
             //Increase acceleration factor
             accelerationFactor = Mathf.Min(accelerationFactor + Time.deltaTime / m_AccelerationTime, input.Move.magnitude);
 
-            //Debug.DrawRay(transform.position, input.Move, Color.green, Time.deltaTime);
-            //Debug.DrawRay(transform.position, moveDir, Color.red, Time.deltaTime);
             Vector2 zero = Vector2.zero;
             moveDir = Vector2.SmoothDamp(moveDir, input.Move.normalized, ref zero, m_RotationDampeningFactor * m_AccelerationCurve.Evaluate(accelerationFactor));
         }
         else {
+            state.EndWalk();
             //Decrease acceleration factor
             accelerationFactor = Mathf.Max(accelerationFactor - Time.deltaTime / m_AccelerationTime, 0.0f);
         }
