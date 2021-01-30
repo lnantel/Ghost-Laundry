@@ -12,6 +12,8 @@ public class CameraSwitch : MonoBehaviour
     public Transform shopRoom;
     public Transform waitingRoom;
 
+    public float zPos;
+
     private Vector2 destination;
     private Vector2 lastDestination;
     private float timer;
@@ -50,6 +52,7 @@ public class CameraSwitch : MonoBehaviour
 
         timer = Mathf.Clamp(timer + Time.deltaTime, 0.0f, lerpTime);
         transform.position = Vector2.Lerp(lastDestination, offsetDestination, timer / lerpTime);
+        transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
     }
 
     public void SetDestination(Vector2 position) {
