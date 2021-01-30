@@ -13,6 +13,7 @@ public class PlayerStateManager : MonoBehaviour
     //States
     public bool Dashing { private set; get; }
     public bool Carrying { private set; get; }
+    public bool Walking { private set; get; }
 
     public Collider2D[] Rooms;
     public int CurrentRoomIndex;
@@ -77,5 +78,13 @@ public class PlayerStateManager : MonoBehaviour
 
     public bool CanDash() {
         return dashLocks == 0;
+    }
+
+    public void StartWalk() {
+        Walking = true;
+    }
+
+    public void EndWalk() {
+        Walking = false;
     }
 }
