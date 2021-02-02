@@ -66,7 +66,7 @@ public class LaundryTaskController : MonoBehaviour
 
         //Drag grabbed object
         if (grabbedObject != null)
-            grabbedObject.transform.position = cursor.position;
+            grabbedObject.Drag(cursor.position);
 
         //Grab & Release
         if(grabbedObject != null && !interactInputHeld) {

@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class LaundryObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public virtual void OnInteract() {
-        Debug.Log(gameObject.name + " interaction");
+        Debug.LogWarning(gameObject.name + " interaction not implemented");
     }
 
     public virtual void OnGrab() {
-        Debug.Log(gameObject.name + " grabbed");
+        Debug.LogWarning(gameObject.name + " grab not implemented");
     }
 
     public virtual void OnRelease() {
-        Debug.Log(gameObject.name + " released");
+        Debug.LogWarning(gameObject.name + " release not implemented");
+    }
+
+    public virtual void Drag(Vector2 cursorPosition) {
+        transform.position = cursorPosition;
     }
 }
