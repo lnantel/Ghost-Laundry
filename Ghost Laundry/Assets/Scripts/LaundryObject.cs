@@ -19,4 +19,8 @@ public class LaundryObject : MonoBehaviour
     public virtual void Drag(Vector2 cursorPosition) {
         transform.position = cursorPosition;
     }
+
+    public virtual void OnInspect() {
+        Debug.LogWarning(gameObject.name + " inspect not implemented");
+    }
 }

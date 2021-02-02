@@ -26,7 +26,8 @@ public class LaundryTaskController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnEnable() {
@@ -64,6 +65,10 @@ public class LaundryTaskController : MonoBehaviour
             StartCoroutine(DelayGrabCoroutine);
         }
 
+        if (inspectInput) {
+            Inspect();
+        }
+
         //Drag grabbed object
         if (grabbedObject != null)
             grabbedObject.Drag(cursor.position);
@@ -99,6 +104,17 @@ public class LaundryTaskController : MonoBehaviour
             else Interact(target);
         }
         DelayGrabCoroutine = null;
+    }
+
+    private void Inspect() {
+        //Detects the targeted LaundryObject
+        LaundryObject target = null;
+        int layerMask = LayerMask.GetMask("LaundryObject");
+        Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+        if (col != null) {
+            target = col.GetComponent<LaundryObject>();
+        }
+        if (target != null) target.OnInspect();
     }
 
     private void Interact(LaundryObject obj) {

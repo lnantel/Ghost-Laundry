@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 1666069714}
   - component: {fileID: 1666069718}
   m_Layer: 11
-  m_Name: TestLaundryObject
+  m_Name: TestLaundryGarment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1666069713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bb12d06782302428df3581c2e8cc1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1201a9b100140624391614b446d7a2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1676240785
