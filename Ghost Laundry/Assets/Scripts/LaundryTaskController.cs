@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class LaundryTaskController : MonoBehaviour
 {
+    public static Action exitedTask;
+
     public float CursorSensitivity;
     public float CursorSpeed;
     public Transform cursor;
+    public Camera laundryCamera;
+
     private float snappiness = 50.0f;
     private Vector2 worldBottomLeft;
     private Vector2 worldTopRight;
@@ -21,7 +26,6 @@ public class LaundryTaskController : MonoBehaviour
     private LaundryObject grabbedObject;
 
     private IEnumerator DelayGrabCoroutine;
-    private float grabDelay = 0.15f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +35,14 @@ public class LaundryTaskController : MonoBehaviour
     }
 
     private void OnEnable() {
-        worldBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, -Camera.main.transform.position.z));
-        worldTopRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, -Camera.main.transform.position.z));
+        StartCoroutine(Initialize());
+    }
+
+    private IEnumerator Initialize() {
+        yield return new WaitForEndOfFrame();
+        worldBottomLeft = laundryCamera.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, -laundryCamera.transform.position.z));
+        worldTopRight = laundryCamera.ScreenToWorldPoint(new Vector3(laundryCamera.pixelWidth, laundryCamera.pixelHeight, -laundryCamera.transform.position.z));
+        cursor.position = laundryCamera.ScreenToWorldPoint(new Vector3(laundryCamera.pixelWidth / 2.0f, laundryCamera.pixelHeight / 2.0f, -laundryCamera.transform.position.z));
     }
 
     // Update is called once per frame
@@ -77,6 +87,11 @@ public class LaundryTaskController : MonoBehaviour
         if(grabbedObject != null && !interactInputHeld) {
             Release();
         }
+
+        //Back out
+        if (backInput) {
+            BackOut();
+        }
     }
 
     private IEnumerator DelayGrab() {
@@ -94,7 +109,7 @@ public class LaundryTaskController : MonoBehaviour
             float timer = 0.0f;
             Vector2 initialCursorPosition = cursor.position;
             float cursorDelta;
-            while (timer < grabDelay) {
+            while (true) {
                 yield return new WaitForSeconds(0.0f);
                 timer += Time.deltaTime;
                 cursorDelta = (initialCursorPosition - new Vector2(cursor.position.x, cursor.position.y)).magnitude;
@@ -132,5 +147,12 @@ public class LaundryTaskController : MonoBehaviour
         grabbedObject.OnRelease();
         grabbedObject = null;
         //Release a grabbed object
+    }
+
+    private void BackOut() {
+        if (grabbedObject != null) Release();
+        if (exitedTask != null)
+            exitedTask();
+        gameObject.SetActive(false);
     }
 }

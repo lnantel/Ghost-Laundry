@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Fabric
 {
-    public Fabric() {
+    public string name;
 
+    public Fabric(string name) {
+        this.name = name;
     }
 }

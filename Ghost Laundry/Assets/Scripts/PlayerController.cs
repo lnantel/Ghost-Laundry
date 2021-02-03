@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
+    private void Awake() {
+        if (instance != null) Destroy(gameObject);
+        else instance = this;
+    }
+
     PlayerInputManager input;
     PlayerStateManager state;
 
@@ -184,5 +191,10 @@ public class PlayerController : MonoBehaviour
         if(interactable != null) {
             interactable.Interact();
         }
+    }
+
+    private void OnDisable() {
+        rb.velocity = Vector3.zero;
+        state.EndWalk();
     }
 }
