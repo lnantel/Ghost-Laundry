@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: f10c45653dc3f9d4193234061a170586, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -2360,7 +2360,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &2067046932
 MeshCollider:
@@ -2485,15 +2485,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455859076272486484, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.802
       objectReference: {fileID: 0}
     - target: {fileID: 8455859076272486484, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: 8455859076272486484, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 8455859076272486484, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2527,9 +2527,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8455859076272486485, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
-      propertyPath: orthographic size
-      value: 5
+    - target: {fileID: 8455859076272486487, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
+      propertyPath: m_CameraType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8455859076272486491, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
       propertyPath: m_Name
