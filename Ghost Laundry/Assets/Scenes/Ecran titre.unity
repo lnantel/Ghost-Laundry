@@ -180,11 +180,11 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: OPTIONS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
   m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: 'QUITTER '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
   m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Play \n"
+  m_text: "JOUER \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
   m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
