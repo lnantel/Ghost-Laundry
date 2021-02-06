@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LaundryGarment : LaundryObject
 {
+    public static Action<LaundryGarment> Released;
+
     public Garment garment;
 
     private void Start() {
         if(garment == null) {
             garment = new Garment(new Fabric("Silk"), Color.white, false, true);
         }
+    }
+
+    public LaundryGarment(Garment garment) {
+        this.garment = garment;
     }
 
     public override void OnInteract() {
@@ -20,5 +27,11 @@ public class LaundryGarment : LaundryObject
     public override void OnInspect() {
         Debug.Log("Displaying tag: ");
         Debug.Log("Fabric: " + garment.fabric.name);
+    }
+
+    public override void OnRelease() {
+        //If release on basket, trigger action with basket id
+        if(Released != null)
+            Released(this);
     }
 }

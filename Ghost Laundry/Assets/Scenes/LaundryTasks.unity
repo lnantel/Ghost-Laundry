@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,7 +155,8 @@ MonoBehaviour:
   CursorSensitivity: 1
   CursorSpeed: 0.2
   cursor: {fileID: 2046020945}
-  laundryCamera: {fileID: 1749205789}
+  LaundryCamera: {fileID: 1749205789}
+  LaundryGarmentPrefab: {fileID: 8682779000148993894, guid: a36c48d3a60993d4984f259af333b383, type: 3}
 --- !u!4 &1149592017
 Transform:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 12087
+    m_Bits: 28471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 18f2e39e9be456449b24a78adc6464af, type: 2}
   m_TargetDisplay: 0
@@ -305,7 +306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749205785}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.57, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

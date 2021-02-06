@@ -11,6 +11,10 @@ public class TaskView : MonoBehaviour
     private float timer;
     private Vector3 targetPosition;
 
+    private void Start() {
+        timer = popUpTime;
+    }
+
     public void PopUp(Vector3 fromPosition) {
         timer = 0.0f;
         targetPosition = new Vector3(fromPosition.x, fromPosition.y, -5.0f); ;

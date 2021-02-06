@@ -10,7 +10,8 @@ public class LaundryTaskController : MonoBehaviour
     public float CursorSensitivity;
     public float CursorSpeed;
     public Transform cursor;
-    public Camera laundryCamera;
+    public Camera LaundryCamera;
+    public GameObject LaundryGarmentPrefab;
 
     private float snappiness = 50.0f;
     private Vector2 worldBottomLeft;
@@ -36,13 +37,18 @@ public class LaundryTaskController : MonoBehaviour
 
     private void OnEnable() {
         StartCoroutine(Initialize());
+        Basket.TakeOutGarment += GrabGarmentFromBasket;
+    }
+
+    private void OnDisable() {
+        Basket.TakeOutGarment -= GrabGarmentFromBasket;
     }
 
     private IEnumerator Initialize() {
         yield return new WaitForEndOfFrame();
-        worldBottomLeft = laundryCamera.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, -laundryCamera.transform.position.z));
-        worldTopRight = laundryCamera.ScreenToWorldPoint(new Vector3(laundryCamera.pixelWidth, laundryCamera.pixelHeight, -laundryCamera.transform.position.z));
-        cursor.position = laundryCamera.ScreenToWorldPoint(new Vector3(laundryCamera.pixelWidth / 2.0f, laundryCamera.pixelHeight / 2.0f, -laundryCamera.transform.position.z));
+        worldBottomLeft = LaundryCamera.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, -LaundryCamera.transform.position.z));
+        worldTopRight = LaundryCamera.ScreenToWorldPoint(new Vector3(LaundryCamera.pixelWidth, LaundryCamera.pixelHeight, -LaundryCamera.transform.position.z));
+        cursor.position = LaundryCamera.ScreenToWorldPoint(new Vector3(LaundryCamera.pixelWidth / 2.0f, LaundryCamera.pixelHeight / 2.0f, -LaundryCamera.transform.position.z));
     }
 
     // Update is called once per frame
@@ -97,7 +103,7 @@ public class LaundryTaskController : MonoBehaviour
     private IEnumerator DelayGrab() {
         //Detects the targeted LaundryObject
         LaundryObject target = null;
-        int layerMask = LayerMask.GetMask("LaundryObject");
+        int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
         Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
         if (col != null) {
             target = col.GetComponent<LaundryObject>();
@@ -124,7 +130,7 @@ public class LaundryTaskController : MonoBehaviour
     private void Inspect() {
         //Detects the targeted LaundryObject
         LaundryObject target = null;
-        int layerMask = LayerMask.GetMask("LaundryObject");
+        int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
         Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
         if (col != null) {
             target = col.GetComponent<LaundryObject>();
@@ -154,5 +160,12 @@ public class LaundryTaskController : MonoBehaviour
         if (exitedTask != null)
             exitedTask();
         gameObject.SetActive(false);
+    }
+
+    private void GrabGarmentFromBasket(Garment garment) {
+        GameObject obj = Instantiate(LaundryGarmentPrefab, transform.position, transform.rotation);
+        LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
+        laundryGarment.garment = garment;
+        grabbedObject = laundryGarment;
     }
 }

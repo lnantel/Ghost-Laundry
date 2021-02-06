@@ -6,6 +6,7 @@ public class Garment
 {
     public Fabric fabric;
     public Color color;
+    public int size;
 
     //States
     public bool clean;
@@ -28,6 +29,7 @@ public class Garment
 
         foldingSteps = 3;
         currentFoldingStep = 0;
+        size = 1; //TODO: Add to constructor
     }
 
     public void Fold() {
