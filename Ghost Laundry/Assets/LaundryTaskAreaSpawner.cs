@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class LaundryTaskAreaSpawner : MonoBehaviour
 {
     private WorkStation[] workStations;
 
-    // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.sceneCount < 2)
-            SceneManager.LoadScene("LaundryTasks", LoadSceneMode.Additive);
-
         workStations = FindObjectsOfType<WorkStation>();
 
         GameObject laundryTaskAreaPrefab = (GameObject) Resources.Load("LaundryTaskArea");
@@ -21,11 +17,5 @@ public class GameManager : MonoBehaviour
             GameObject laundryTaskArea = Instantiate(laundryTaskAreaPrefab, new Vector3(300.0f, 0.0f, 0.0f), Quaternion.identity);
             workStations[i].laundryTaskArea = laundryTaskArea;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
