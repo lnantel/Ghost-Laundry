@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
+    private void Awake() {
+        if (instance != null) Destroy(gameObject);
+        else instance = this;
+    }
+
     PlayerInputManager input;
     PlayerStateManager state;
 
@@ -55,32 +62,34 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (state.CanMove())
-            Move();
-        else
-            state.EndWalk();
-
-        //TODO: this will be handled in the animator or an animation script at a later point
-        sprite.flipX = facingRight;
-
-        if (input.GetDashInput() && state.CanDash())
-            StartCoroutine(Dash());
-
-        if (input.GetPickUpInput()) {
-            if (state.Carrying)
-                DropCarriedObject();
+        if (!GameManager.instance.paused) {
+            if (state.CanMove())
+                Move();
             else
-                PickUp();
-        }
+                state.EndWalk();
 
-        if (state.Carrying) {
-            if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
-            carriedObject.transform.position = carriedPos.position;
-            carriedObject.transform.rotation = carriedPos.rotation;
-        }
+            //TODO: this will be handled in the animator or an animation script at a later point
+            sprite.flipX = facingRight;
 
-        if (input.GetInteractInput()) {
-            Interact();
+            if (input.GetDashInput() && state.CanDash())
+                StartCoroutine(Dash());
+
+            if (input.GetPickUpInput()) {
+                if (state.Carrying)
+                    DropCarriedObject();
+                else
+                    PickUp();
+            }
+
+            if (state.Carrying) {
+                if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
+                carriedObject.transform.position = carriedPos.position;
+                carriedObject.transform.rotation = carriedPos.rotation;
+            }
+
+            if (input.GetInteractInput()) {
+                Interact();
+            }
         }
     }
 
@@ -184,5 +193,10 @@ public class PlayerController : MonoBehaviour
         if(interactable != null) {
             interactable.Interact();
         }
+    }
+
+    private void OnDisable() {
+        rb.velocity = Vector3.zero;
+        state.EndWalk();
     }
 }

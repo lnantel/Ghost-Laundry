@@ -37,11 +37,11 @@ public class PlayerInputManager : MonoBehaviour
         Move = new Vector2(xInput, yInput);
         if (Move.magnitude >= 1.0f) Move = Move.normalized;
 
-        if(!dash) dash = Input.GetButtonDown("Dash");
+        dash = Input.GetButtonDown("Dash");
 
-        if (!pickUp) pickUp = Input.GetButtonDown("PickUp");
+        pickUp = Input.GetButtonDown("PickUp");
 
-        if (!interact) interact = Input.GetButtonDown("Interact");
+        interact = Input.GetButtonDown("Interact");
     }
 
     public bool GetDashInput() {
