@@ -7,7 +7,6 @@ public class LaundryTaskController : MonoBehaviour
 {
     public static Action exitedTask;
 
-    public float CursorSensitivity;
     public float CursorSpeed;
     public Transform cursor;
     public Camera LaundryCamera;
@@ -31,8 +30,7 @@ public class LaundryTaskController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
     }
 
     private void OnEnable() {
@@ -54,50 +52,53 @@ public class LaundryTaskController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Inputs
-        interactInput = Input.GetButtonDown("TaskInteract");
-        interactInputHeld = Input.GetButton("TaskInteract");
-        inspectInput = Input.GetButtonDown("Inspect");
-        backInput = Input.GetButtonDown("Back");
+        if (!GameManager.instance.paused) {
+            //Inputs
+            interactInput = Input.GetButtonDown("TaskInteract");
+            interactInputHeld = Input.GetButton("TaskInteract");
+            inspectInput = Input.GetButtonDown("Inspect");
+            backInput = Input.GetButtonDown("Back");
 
-        moveXInput = Mathf.Lerp(moveXInput, Input.GetAxis("TaskHorizontal"), snappiness * Time.deltaTime);
-        moveYInput = Mathf.Lerp(moveYInput, Input.GetAxis("TaskVertical"), snappiness * Time.deltaTime);
-        Vector2 moveInput = new Vector2(moveXInput, moveYInput);
-        Vector2 displacement = moveInput * CursorSensitivity * CursorSpeed;
+            moveXInput = Mathf.Lerp(moveXInput, Input.GetAxis("TaskHorizontal"), snappiness * Time.deltaTime);
+            moveYInput = Mathf.Lerp(moveYInput, Input.GetAxis("TaskVertical"), snappiness * Time.deltaTime);
+            Vector2 moveInput = new Vector2(moveXInput, moveYInput);
+            Vector2 displacement = moveInput * SettingsManager.instance.MouseSensitivity * CursorSpeed;
 
-        //Cursor movement
-        if(displacement.magnitude > 0.0006f) //accounts for floating point uncertainty; prevents drift
-            cursor.position += new Vector3(displacement.x, displacement.y, 0.0f);
+            //Cursor movement
+            if (displacement.magnitude > 0.0006f) //accounts for floating point uncertainty; prevents drift
+                cursor.position += new Vector3(displacement.x, displacement.y, 0.0f);
 
-        //Cursor clamping
-        float clampedX = Mathf.Clamp(cursor.position.x, worldBottomLeft.x, worldTopRight.x);
-        float clampedY = Mathf.Clamp(cursor.position.y, worldBottomLeft.y, worldTopRight.y);
-        cursor.position = new Vector2(clampedX, clampedY);
+            //Cursor clamping
+            float clampedX = Mathf.Clamp(cursor.position.x, worldBottomLeft.x, worldTopRight.x);
+            float clampedY = Mathf.Clamp(cursor.position.y, worldBottomLeft.y, worldTopRight.y);
+            cursor.position = new Vector2(clampedX, clampedY);
 
-        //Interact vs Grab
-        if (interactInput) {
-            if (DelayGrabCoroutine != null) StopCoroutine(DelayGrabCoroutine);
-            DelayGrabCoroutine = DelayGrab();
-            StartCoroutine(DelayGrabCoroutine);
+            //Interact vs Grab
+            if (interactInput) {
+                if (DelayGrabCoroutine != null) StopCoroutine(DelayGrabCoroutine);
+                DelayGrabCoroutine = DelayGrab();
+                StartCoroutine(DelayGrabCoroutine);
+            }
+
+            if (inspectInput) {
+                Inspect();
+            }
+
+            //Drag grabbed object
+            if (grabbedObject != null)
+                grabbedObject.Drag(cursor.position);
+
+            //Grab & Release
+            if (grabbedObject != null && !interactInputHeld) {
+                Release();
+            }
+
+            //Back out
+            if (backInput) {
+                BackOut();
+            }
         }
-
-        if (inspectInput) {
-            Inspect();
-        }
-
-        //Drag grabbed object
-        if (grabbedObject != null)
-            grabbedObject.Drag(cursor.position);
-
-        //Grab & Release
-        if(grabbedObject != null && !interactInputHeld) {
-            Release();
-        }
-
-        //Back out
-        if (backInput) {
-            BackOut();
-        }
+        
     }
 
     private IEnumerator DelayGrab() {

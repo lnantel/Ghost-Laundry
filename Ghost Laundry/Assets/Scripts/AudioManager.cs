@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioClip[] sounds;
 
-    private float masterVolume = 1.0f;
     private AudioSource source;
 
     private void Start() {
@@ -19,13 +18,13 @@ public class AudioManager : MonoBehaviour
         else instance = this;
     }
 
-    public void PlaySound(Sounds sound, float volume) {
+    public void PlaySound(Sounds sound, float volume = 1.0f) {
         source.clip = sounds[(int) sound];
-        source.volume = masterVolume * volume;
+        source.volume = SettingsManager.instance.SFXVolume * volume;
         source.Play();
     }
 
-    public void PlaySoundAtPosition(Sounds sound, Vector2 position, float volume) {
-        AudioSource.PlayClipAtPoint(sounds[(int)sound], position, masterVolume * volume);
+    public void PlaySoundAtPosition(Sounds sound, Vector2 position, float volume = 1.0f) {
+        AudioSource.PlayClipAtPoint(sounds[(int)sound], position, SettingsManager.instance.SFXVolume * volume);
     }
 }

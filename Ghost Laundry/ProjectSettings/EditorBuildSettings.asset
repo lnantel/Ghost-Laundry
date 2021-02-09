@@ -5,7 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/Main.unity
+    guid: a001bb450a521de42b4be589cba147b9
+  - enabled: 1
+    path: Assets/Scenes/Laundromat.unity
+    guid: 2dc146820df8b414097981ea3b869e3f
+  - enabled: 1
+    path: Assets/Scenes/LaundryTasks.unity
+    guid: 7ceb3000925393e498dac65be142d1b8
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 3b7f256a20bc1b642a26b60f4614a0d8
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 04450ff5aeb948f479b79dc2295b180b
+  - enabled: 1
+    path: Assets/Scenes/Pause.unity
+    guid: 128f5ce6fdf81df4fbb02badca9f3ddb
   m_configObjects: {}

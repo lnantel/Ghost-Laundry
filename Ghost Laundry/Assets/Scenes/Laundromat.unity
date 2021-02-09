@@ -123,63 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &126277481
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610163, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9117308861752610172, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 734cdb6a28b7b2a4280a5b46006dde0d, type: 3}
 --- !u!1 &157575526
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -911,7 +854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1508,7 +1451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2394,7 +2337,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 270, z: 90}
 --- !u!114 &2067046936
 MonoBehaviour:
