@@ -182,7 +182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1286527262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85099311cd990f45b4c051126a8eaee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CursorSensitivity: 1
   CursorSpeed: 0.2
   cursor: {fileID: 2046020945}
   LaundryCamera: {fileID: 1749205789}

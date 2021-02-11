@@ -16,6 +16,7 @@ public class LaundryTaskAreaSpawner : MonoBehaviour
             //Instantiate the appropriate laundry task area prefab at the appropriate location
             GameObject laundryTaskArea = Instantiate(laundryTaskAreaPrefab, new Vector3(300.0f, 0.0f, 0.0f), Quaternion.identity);
             workStations[i].laundryTaskArea = laundryTaskArea;
+            workStations[i].Initialize();
         }
     }
 }
