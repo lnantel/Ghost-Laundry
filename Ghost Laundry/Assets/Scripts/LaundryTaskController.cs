@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LaundryTaskController : MonoBehaviour
 {
+    public static LaundryTaskController instance;
+
     public static Action exitedTask;
 
     public float CursorSpeed;
@@ -27,19 +29,21 @@ public class LaundryTaskController : MonoBehaviour
 
     private IEnumerator DelayGrabCoroutine;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
+    private void Awake() {
+        if (instance != null) Destroy(gameObject);
+        else {
+            instance = this;
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable() {
         StartCoroutine(Initialize());
-        Basket.TakeOutGarment += GrabGarmentFromBasket;
+        LaundryBasket.TakeOutGarment += GrabGarmentFromBasket;
     }
 
     private void OnDisable() {
-        Basket.TakeOutGarment -= GrabGarmentFromBasket;
+        LaundryBasket.TakeOutGarment -= GrabGarmentFromBasket;
     }
 
     private IEnumerator Initialize() {
@@ -134,7 +138,7 @@ public class LaundryTaskController : MonoBehaviour
         int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
         Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
         if (col != null) {
-            target = col.GetComponent<LaundryObject>();
+            target = col.GetComponentInParent<LaundryObject>();
         }
         if (target != null) target.OnInspect();
     }

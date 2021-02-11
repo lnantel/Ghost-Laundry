@@ -820,6 +820,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3534737646775619916, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
+      propertyPath: basketCapacity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5748218137804147326, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_Name
       value: Work Station
@@ -1889,9 +1893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b45945a6603ff4597d692de6fecb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskView: {fileID: 0}
-  taskController: {fileID: 0}
   laundryTaskArea: {fileID: 0}
+  containedBaskets: []
+  basketCapacity: 1
 --- !u!1 &1887259839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,9 +2373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b45945a6603ff4597d692de6fecb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskView: {fileID: 0}
-  taskController: {fileID: 0}
   laundryTaskArea: {fileID: 0}
+  containedBaskets: []
+  basketCapacity: 1
 --- !u!1001 &8455859075438780749
 PrefabInstance:
   m_ObjectHideFlags: 0
