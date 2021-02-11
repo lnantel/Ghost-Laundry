@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private CarryableDetector carryableDetector;
     private GameObject carriedObject;
     public Transform carriedPos;
+    private GameObject laundromatBasketPrefab;
 
     //Interact
     private InteractableDetector interactableDetector;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
         interactableDetector = GetComponentInChildren<InteractableDetector>();
 
         moveDir = new Vector2(1.0f, 0.0f);
+
+        laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
 
         //TODO: this will be handled in the animator or an animation script at a later point
         sprite = GetComponent<SpriteRenderer>();
@@ -180,12 +183,48 @@ public class PlayerController : MonoBehaviour
             carriedObject = targetedCarryable;
             carriedObject.GetComponent<Collider2D>().enabled = false;
         }
+        else {
+            //Pick up a basket from a work station
+            Interactable interactable = interactableDetector.GetNearestInteractable();
+            if(interactable != null) {
+                if(interactable is WorkStation) {
+                    WorkStation workStation = (WorkStation)interactable;
+                    if(workStation.containedBaskets.Count > 0) {
+                        Basket basket = workStation.OutputBasket();
+                        GameObject basketObject = Instantiate(laundromatBasketPrefab, transform.position, transform.rotation);
+                        basketObject.GetComponent<LaundromatBasket>().basket = basket;
+
+                        state.StartCarry();
+                        carriedObject = basketObject;
+                        carriedObject.GetComponent<Collider2D>().enabled = false;
+                    }
+                }
+            }
+        }
     }
 
     private void DropCarriedObject() {
         state.EndCarry();
-        carriedObject.GetComponent<Collider2D>().enabled = true;
-        carriedObject = null;
+
+        Interactable interactable = interactableDetector.GetNearestInteractable();
+        if (interactable != null) {
+            LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
+            if (laundromatBasket != null && interactable is WorkStation ) {
+                WorkStation workStation = (WorkStation)interactable;
+                if (workStation.InputBasket(laundromatBasket.basket)) {
+                    Destroy(carriedObject);
+                }
+                else {
+                    carriedObject.GetComponent<Collider2D>().enabled = true;
+                    carriedObject = null;
+                    Debug.Log("Could not input basket: workstation is at capacity");
+                }
+            }
+        }
+        else {
+            carriedObject.GetComponent<Collider2D>().enabled = true;
+            carriedObject = null;
+        }
     }
 
     private void Interact() {

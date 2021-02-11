@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class TaskView : MonoBehaviour
 {
+    public static TaskView instance;
+
     public float popUpTime;
 
     private bool open;
     private float popUpFactor;
     private float timer;
     private Vector3 targetPosition;
+
+    private void Awake() {
+        if (instance != null) Destroy(gameObject);
+        else instance = this;
+    }
 
     private void Start() {
         timer = popUpTime;
