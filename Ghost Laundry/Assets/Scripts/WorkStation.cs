@@ -27,7 +27,7 @@ public class WorkStation : Interactable
     public override void Interact() {
         //TODO:
         //if player is carrying a basket, attempt to input it to the workstation
-        //if input fails, stop interaction
+        //if input fails, cancel interaction
 
         PlayerController.instance.enabled = false;
         laundryTaskArea.SetActive(true);

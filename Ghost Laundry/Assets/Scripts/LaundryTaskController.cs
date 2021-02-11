@@ -138,7 +138,7 @@ public class LaundryTaskController : MonoBehaviour
         int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
         Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
         if (col != null) {
-            target = col.GetComponent<LaundryObject>();
+            target = col.GetComponentInParent<LaundryObject>();
         }
         if (target != null) target.OnInspect();
     }
