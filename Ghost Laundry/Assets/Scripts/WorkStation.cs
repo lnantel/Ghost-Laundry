@@ -9,13 +9,17 @@ public class WorkStation : Interactable
 
     public List<LaundryBasket> containedBaskets;
 
-    public int basketCapacity = 1;
+    public Vector3[] basketSlots;
+    private int basketCapacity;
+    private bool[] basketSlotOccupied;
 
     private GameObject laundryBasketPrefab;
 
     private void Start() {
         containedBaskets = new List<LaundryBasket>();
         laundryBasketPrefab = (GameObject)Resources.Load("LaundryBasket");
+        basketCapacity = basketSlots.Length;
+        basketSlotOccupied = new bool[basketCapacity];
     }
 
     public void Initialize() {
@@ -48,6 +52,16 @@ public class WorkStation : Interactable
         if (containedBaskets.Count > 0) {
             Basket basket = containedBaskets[0].basket;
 
+            //free up corresponding basket slot
+            for(int i = 0; i < basketCapacity; i++) {
+                if (basketSlotOccupied[i]) {
+                    if (basketSlots[i] == containedBaskets[0].transform.localPosition) {
+                        basketSlotOccupied[i] = false;
+                        break;
+                    }
+                }
+            }
+
             //destroy the LaundryBasket object in the LaundryArea
             Destroy(containedBaskets[0].gameObject);
 
@@ -63,11 +77,19 @@ public class WorkStation : Interactable
     public bool InputBasket(Basket basket) {
         //if the workstation has space for a basket
         if (containedBaskets.Count < basketCapacity) {
-            //instantiate it in the LaundryArea
-            GameObject basketObject = Instantiate(laundryBasketPrefab, laundryTaskArea.transform.position, laundryTaskArea.transform.rotation, laundryTaskArea.transform);
-            LaundryBasket laundryBasket = basketObject.GetComponent<LaundryBasket>();
+            //find a free spot
+            Vector3 position = Vector3.zero;
+            for(int i = 0; i < basketCapacity; i++) {
+                if (!basketSlotOccupied[i]) {
+                    position = basketSlots[i];
+                    basketSlotOccupied[i] = true;
+                    break;
+                }
+            }
 
-            //replace default Basket component with the input basket
+            //instantiate it in the LaundryArea
+            GameObject basketObject = Instantiate(laundryBasketPrefab, laundryTaskArea.transform.position + position, laundryTaskArea.transform.rotation, laundryTaskArea.transform);
+            LaundryBasket laundryBasket = basketObject.GetComponent<LaundryBasket>();
             laundryBasket.basket = basket;
 
             //add it to the list
