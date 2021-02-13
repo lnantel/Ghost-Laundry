@@ -34,4 +34,8 @@ public class LaundryGarment : LaundryObject
         if(Released != null)
             Released(this);
     }
+
+    public override void Drag(Vector2 cursorPosition) {
+        transform.position = cursorPosition;
+    }
 }
