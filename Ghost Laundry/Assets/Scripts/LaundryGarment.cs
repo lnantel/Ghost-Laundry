@@ -41,5 +41,6 @@ public class LaundryGarment : LaundryObject
 
     public override void Drag(Vector2 cursorPosition) {
         rb.MovePosition(cursorPosition);
+        rb.velocity = Vector3.zero;
     }
 }
