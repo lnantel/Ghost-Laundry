@@ -71,7 +71,7 @@ public class LaundryBasket : LaundryObject
                 }
                 else {
                     BasketIsFull();
-                    //TODO: If the basket is full, the Garment "bounces" of BasketView.
+                    //TODO: If the basket is full, the Garment "bounces" out of BasketView.
                 }
             }
             else if(alreadyInBasket && !withinBasketView) {
