@@ -14,6 +14,9 @@ public class LaundryTaskController : MonoBehaviour
     public Camera LaundryCamera;
     public GameObject LaundryGarmentPrefab;
 
+    [HideInInspector]
+    public WorkStation activeWorkStation;
+
     private float snappiness = 50.0f;
     private Vector2 worldBottomLeft;
     private Vector2 worldTopRight;
@@ -105,14 +108,26 @@ public class LaundryTaskController : MonoBehaviour
         
     }
 
-    private IEnumerator DelayGrab() {
-        //Detects the targeted LaundryObject
-        LaundryObject target = null;
-        int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
+    private LaundryObject GetTarget() {
+        //Attempts to find a LaundryObject or Basket under the cursor
+        //Priority is given to LaundryObjects
+        int layerMask = LayerMask.GetMask("LaundryObject");
         Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
         if (col != null) {
-            target = col.GetComponent<LaundryObject>();
+            return col.GetComponentInParent<LaundryObject>();
         }
+        else {
+            layerMask = LayerMask.GetMask("Basket");
+            col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+            if (col != null) {
+                return col.GetComponentInParent<LaundryObject>();
+            }
+        }
+        return null;
+    }
+
+    private IEnumerator DelayGrab() {
+        LaundryObject target = GetTarget();
         if(target != null) {
             //If the cursor moves more than 0.1f units while interact is held, or if it is held for longer than grabDelay,
             //then the input is interpreted as a grab rather than an interact.
@@ -134,22 +149,15 @@ public class LaundryTaskController : MonoBehaviour
 
     private void Inspect() {
         //Detects the targeted LaundryObject
-        LaundryObject target = null;
-        int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
-        Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
-        if (col != null) {
-            target = col.GetComponentInParent<LaundryObject>();
-        }
+        LaundryObject target = GetTarget();
         if (target != null) target.OnInspect();
     }
 
     private void Interact(LaundryObject obj) {
-        //Trigger its interaction action
         obj.OnInteract();
     }
 
     private void Grab(LaundryObject obj) {
-        //Grab it
         grabbedObject = obj;
         obj.OnGrab();
     }
@@ -164,6 +172,7 @@ public class LaundryTaskController : MonoBehaviour
         if (grabbedObject != null) Release();
         if (exitedTask != null)
             exitedTask();
+        activeWorkStation = null;
         gameObject.SetActive(false);
     }
 

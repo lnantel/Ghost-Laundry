@@ -9,10 +9,14 @@ public class LaundryGarment : LaundryObject
 
     public Garment garment;
 
+    private Rigidbody2D rb;
+
     private void Start() {
         if(garment == null) {
             garment = new Garment(new Fabric("Silk"), Color.white, false, true);
         }
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public LaundryGarment(Garment garment) {
@@ -36,6 +40,6 @@ public class LaundryGarment : LaundryObject
     }
 
     public override void Drag(Vector2 cursorPosition) {
-        transform.position = cursorPosition;
+        rb.MovePosition(cursorPosition);
     }
 }

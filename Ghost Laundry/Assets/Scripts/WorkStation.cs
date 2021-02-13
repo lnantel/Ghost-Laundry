@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class WorkStation : Interactable
 {
+    public static Action<LaundryGarment> LaundryGarmentReleased;
+
+    public bool HasGravity;
+    public Vector3[] basketSlots;
+
+    [HideInInspector]
     public GameObject laundryTaskArea;
 
+    [HideInInspector]
     public List<LaundryBasket> containedBaskets;
 
-    public Vector3[] basketSlots;
-    private int basketCapacity;
-    private bool[] basketSlotOccupied;
+    protected int basketCapacity;
+    protected bool[] basketSlotOccupied;
 
-    private GameObject laundryBasketPrefab;
+    protected GameObject laundryBasketPrefab;
 
     private void Start() {
         containedBaskets = new List<LaundryBasket>();
@@ -36,12 +43,15 @@ public class WorkStation : Interactable
         PlayerController.instance.enabled = false;
         laundryTaskArea.SetActive(true);
         LaundryTaskController.instance.gameObject.SetActive(true);
+        LaundryTaskController.instance.activeWorkStation = this;
         TaskView.instance.PopUp(transform.position);
         LaundryTaskController.exitedTask += OnTaskExit;
+        LaundryGarment.Released += OnLaundryGarmentReleased;
     }
 
     protected void OnTaskExit() {
         LaundryTaskController.exitedTask -= OnTaskExit;
+        LaundryGarment.Released -= OnLaundryGarmentReleased;
         TaskView.instance.Minimize(transform.position);
         laundryTaskArea.SetActive(false);
         PlayerController.instance.enabled = true;
@@ -99,5 +109,15 @@ public class WorkStation : Interactable
             return true;
         }
         return false;
+    }
+
+    private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
+        if(HasGravity)
+            laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+        else
+            laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+
+        if(LaundryGarmentReleased != null)
+            LaundryGarmentReleased(laundryGarment);
     }
 }

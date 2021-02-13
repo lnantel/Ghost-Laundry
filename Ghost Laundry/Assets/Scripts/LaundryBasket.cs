@@ -27,12 +27,12 @@ public class LaundryBasket : LaundryObject
     }
 
     private void OnEnable() {
-        LaundryGarment.Released += OnGarmentDroppedInBasket;
+        WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         OpenBasketView += OnOtherOpenBasketView;
     }
 
     private void OnDisable() {
-        LaundryGarment.Released -= OnGarmentDroppedInBasket;
+        WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
         OpenBasketView -= OnOtherOpenBasketView;
     }
 
@@ -48,7 +48,7 @@ public class LaundryBasket : LaundryObject
         Debug.Log("Basket is empty");
     }
 
-    void OnGarmentDroppedInBasket(LaundryGarment laundryGarment) {
+    void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
         if (!basketView.activeSelf) {
             if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
                 if (basket.AddGarment(laundryGarment.garment)) {
@@ -63,10 +63,14 @@ public class LaundryBasket : LaundryObject
             bool alreadyInBasket = laundryGarments.Contains(laundryGarment);
             bool withinBasketView = basketView.GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position);
 
-            if (!alreadyInBasket && withinBasketView) {
+            if(alreadyInBasket && withinBasketView) {
+                laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            }
+            else if (!alreadyInBasket && withinBasketView) {
                 if (basket.AddGarment(laundryGarment.garment, laundryGarment.transform.position - transform.position)) {
                     laundryGarment.transform.parent = transform;
                     laundryGarment.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
                     laundryGarments.Add(laundryGarment);
                 }
                 else {
