@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
         else instance = this;
     }
 
+    private void Start() {
+        HideCursor();
+    }
+
     // Update is called once per frame
     void Update()
     {
