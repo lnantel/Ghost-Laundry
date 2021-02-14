@@ -10,13 +10,22 @@ public class LaundryGarment : LaundryObject
     public Garment garment;
 
     private Rigidbody2D rb;
-
+    private LaundryTag laundryTag;
+    private bool lastInspectHeld;
+    
     private void Start() {
         if(garment == null) {
             garment = new Garment(new Fabric("Silk"), Color.white, false, true);
         }
 
         rb = GetComponent<Rigidbody2D>();
+
+        laundryTag = GetComponentInChildren<LaundryTag>();
+    }
+
+    private void LateUpdate() {
+        if (!lastInspectHeld) laundryTag.Hide();
+        else lastInspectHeld = false;
     }
 
     public LaundryGarment(Garment garment) {
@@ -28,9 +37,12 @@ public class LaundryGarment : LaundryObject
         Debug.Log("Garment fold step: " + garment.currentFoldingStep);
     }
 
-    public override void OnInspect() {
-        Debug.Log("Displaying tag: ");
-        Debug.Log("Fabric: " + garment.fabric.name);
+    public override void OnInspectHeld(Vector2 position) {
+        if(laundryTag != null) {
+            laundryTag.Show();
+            laundryTag.transform.position = position;
+            lastInspectHeld = true;
+        }
     }
 
     public override void OnRelease() {

@@ -18,4 +18,7 @@ public class LaundryObject : MonoBehaviour
 
     public virtual void OnInspect() {
     }
+
+    public virtual void OnInspectHeld(Vector2 cursorPosition) {
+    }
 }

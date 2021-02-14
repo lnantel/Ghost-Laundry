@@ -23,7 +23,8 @@ public class LaundryTaskController : MonoBehaviour
 
     private bool interactInput;
     private bool interactInputHeld;
-    private bool inspectInput;
+    private bool inspectInputDown;
+    private bool inspectInputHeld;
     private float moveXInput;
     private float moveYInput;
     private bool backInput;
@@ -63,7 +64,8 @@ public class LaundryTaskController : MonoBehaviour
             //Inputs
             interactInput = Input.GetButtonDown("TaskInteract");
             interactInputHeld = Input.GetButton("TaskInteract");
-            inspectInput = Input.GetButtonDown("Inspect");
+            inspectInputDown = Input.GetButtonDown("Inspect");
+            inspectInputHeld = Input.GetButton("Inspect");
             backInput = Input.GetButtonDown("Back");
 
             moveXInput = Mathf.Lerp(moveXInput, Input.GetAxis("TaskHorizontal"), snappiness * Time.deltaTime);
@@ -87,8 +89,13 @@ public class LaundryTaskController : MonoBehaviour
                 StartCoroutine(DelayGrabCoroutine);
             }
 
-            if (inspectInput) {
+            //Inspect
+            if (inspectInputDown) {
                 Inspect();
+            }
+
+            if (inspectInputHeld) {
+                InspectHold();
             }
 
             //Drag grabbed object
@@ -148,9 +155,13 @@ public class LaundryTaskController : MonoBehaviour
     }
 
     private void Inspect() {
-        //Detects the targeted LaundryObject
         LaundryObject target = GetTarget();
         if (target != null) target.OnInspect();
+    }
+
+    private void InspectHold() {
+        LaundryObject target = GetTarget();
+        if (target != null) target.OnInspectHeld(cursor.position);
     }
 
     private void Interact(LaundryObject obj) {
