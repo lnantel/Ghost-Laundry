@@ -22,14 +22,14 @@ public class WorkStation : Interactable
 
     protected GameObject laundryBasketPrefab;
 
-    private void Start() {
+    protected virtual void Start() {
         containedBaskets = new List<LaundryBasket>();
         laundryBasketPrefab = (GameObject)Resources.Load("LaundryBasket");
         basketCapacity = basketSlots.Length;
         basketSlotOccupied = new bool[basketCapacity];
     }
 
-    public void Initialize() {
+    public virtual void Initialize() {
         LaundryBasket[] laundryBaskets = laundryTaskArea.GetComponentsInChildren<LaundryBasket>();
         foreach (LaundryBasket basket in laundryBaskets)
             containedBaskets.Add(basket);
@@ -49,7 +49,7 @@ public class WorkStation : Interactable
         LaundryGarment.Released += OnLaundryGarmentReleased;
     }
 
-    protected void OnTaskExit() {
+    protected virtual void OnTaskExit() {
         LaundryTaskController.exitedTask -= OnTaskExit;
         LaundryGarment.Released -= OnLaundryGarmentReleased;
         TaskView.instance.Minimize(transform.position);
@@ -57,7 +57,7 @@ public class WorkStation : Interactable
         PlayerController.instance.enabled = true;
     }
 
-    public Basket OutputBasket() {
+    public virtual Basket OutputBasket() {
         //if the workstation contains at least one basket
         if (containedBaskets.Count > 0) {
             Basket basket = containedBaskets[0].basket;
@@ -84,7 +84,7 @@ public class WorkStation : Interactable
         return null;
     }
 
-    public bool InputBasket(Basket basket) {
+    public virtual bool InputBasket(Basket basket) {
         //if the workstation has space for a basket
         if (containedBaskets.Count < basketCapacity) {
             //find a free spot
@@ -111,7 +111,7 @@ public class WorkStation : Interactable
         return false;
     }
 
-    private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
+    protected virtual void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
         if(HasGravity)
             laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         else
@@ -119,5 +119,9 @@ public class WorkStation : Interactable
 
         if(LaundryGarmentReleased != null)
             LaundryGarmentReleased(laundryGarment);
+    }
+
+    public virtual bool ContainsBasket() {
+        return containedBaskets.Count > 0;
     }
 }

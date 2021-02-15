@@ -160,15 +160,19 @@ PrefabInstance:
       value: TestLaundryGarment
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.35
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.12
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
@@ -188,19 +192,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+      propertyPath: m_LocalPosition.x
+      value: -6.35
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      propertyPath: m_LocalPosition.y
+      value: -1.12
       objectReference: {fileID: 0}
     - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8682779000148993897, guid: a36c48d3a60993d4984f259af333b383, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

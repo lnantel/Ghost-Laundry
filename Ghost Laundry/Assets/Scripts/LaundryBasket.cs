@@ -24,16 +24,17 @@ public class LaundryBasket : LaundryObject
         }
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
         laundryGarments = new List<LaundryGarment>();
-        tagSprite.sprite = tags[basket.tag];
         basketCollider = GetComponent<Collider2D>();
     }
 
     private void OnEnable() {
+        if(basket != null) tagSprite.sprite = tags[basket.tag];
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         OpenBasketView += OnOtherOpenBasketView;
     }
 
     private void OnDisable() {
+        if (basketView.activeSelf) DisableBasketView();
         WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
         OpenBasketView -= OnOtherOpenBasketView;
     }
@@ -68,13 +69,16 @@ public class LaundryBasket : LaundryObject
             bool withinBasketView = basketView.GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position);
 
             if(alreadyInBasket && withinBasketView) {
-                laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+                rb.gravityScale = 0.0f;
+                rb.velocity = Vector3.zero;
             }
             else if (!alreadyInBasket && withinBasketView) {
                 if (basket.AddGarment(laundryGarment.garment, laundryGarment.transform.position - transform.position)) {
                     laundryGarment.transform.parent = transform;
-                    laundryGarment.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    laundryGarment.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                    Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+                    rb.gravityScale = 0.0f;
+                    rb.velocity = Vector3.zero;
                     laundryGarments.Add(laundryGarment);
                 }
                 else {
@@ -85,7 +89,6 @@ public class LaundryBasket : LaundryObject
             else if(alreadyInBasket && !withinBasketView) {
                 basket.RemoveGarment(laundryGarment.garment);
                 laundryGarments.Remove(laundryGarment);
-                laundryGarment.GetComponent<SpriteRenderer>().sortingOrder = 0;
             }
         }
         

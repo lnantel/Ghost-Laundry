@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
             if(interactable != null) {
                 if(interactable is WorkStation) {
                     WorkStation workStation = (WorkStation)interactable;
-                    if(workStation.containedBaskets.Count > 0) {
+                    if(workStation.ContainsBasket()) {
                         Basket basket = workStation.OutputBasket();
                         GameObject basketObject = Instantiate(laundromatBasketPrefab, transform.position, transform.rotation);
                         basketObject.GetComponent<LaundromatBasket>().basket = basket;
@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
                 else {
                     carriedObject.GetComponent<Collider2D>().enabled = true;
                     carriedObject = null;
-                    Debug.Log("Could not input basket: workstation is at capacity");
+                    Debug.Log("Could not input basket");
                 }
             }
         }
