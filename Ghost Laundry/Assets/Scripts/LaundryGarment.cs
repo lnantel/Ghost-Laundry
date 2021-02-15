@@ -48,7 +48,7 @@ public class LaundryGarment : LaundryObject
     }
 
     public override void OnInspect() {
-        inspected = true;
+        inspected = !inspected;
     }
 
     public override void OnHover(Vector2 position) {
