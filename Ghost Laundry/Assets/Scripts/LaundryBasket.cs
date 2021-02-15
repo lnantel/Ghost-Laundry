@@ -10,6 +10,7 @@ public class LaundryBasket : LaundryObject
 
     public Basket basket;
     public GameObject basketView;
+    private Collider2D basketCollider;
 
     private GameObject laundryGarmentPrefab;
     private List<LaundryGarment> laundryGarments;
@@ -24,6 +25,7 @@ public class LaundryBasket : LaundryObject
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
         laundryGarments = new List<LaundryGarment>();
         tagSprite.sprite = tags[basket.tag];
+        basketCollider = GetComponent<Collider2D>();
     }
 
     private void OnEnable() {
@@ -37,11 +39,13 @@ public class LaundryBasket : LaundryObject
     }
 
     public override void OnGrab() {
-        Garment garment = basket.RemoveTopGarment();
-        if (garment != null && TakeOutGarment != null)
-            TakeOutGarment(garment);
-        else
-            GrabEmpty();
+        if (basketCollider.enabled) {
+            Garment garment = basket.RemoveTopGarment();
+            if (garment != null && TakeOutGarment != null)
+                TakeOutGarment(garment);
+            else
+                GrabEmpty();
+        }
     }
 
     void GrabEmpty() {
@@ -113,6 +117,7 @@ public class LaundryBasket : LaundryObject
 
     private void EnableBasketView() {
         basketView.SetActive(true);
+        basketCollider.enabled = false;
         OpenBasketView(this);
         //Instantiate all Garments on top of it in their given positions on the Basket object. 
         laundryGarments = new List<LaundryGarment>();
@@ -139,6 +144,7 @@ public class LaundryBasket : LaundryObject
         }
 
         basketView.SetActive(false);
+        basketCollider.enabled = true;
     }
 
     private void OnOtherOpenBasketView(LaundryBasket other) {
