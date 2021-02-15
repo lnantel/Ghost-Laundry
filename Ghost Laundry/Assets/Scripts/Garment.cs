@@ -7,6 +7,7 @@ public class Garment
     public Fabric fabric;
     public Color color;
     public int size;
+    public string clientName; //TODO: Client class
 
     //States
     public bool clean;
@@ -27,6 +28,7 @@ public class Garment
         this.folded = folded;
         this.ruined = ruined;
 
+        clientName = "John Johnson";
         foldingSteps = 3;
         currentFoldingStep = 0;
         size = 1; //TODO: Add to constructor

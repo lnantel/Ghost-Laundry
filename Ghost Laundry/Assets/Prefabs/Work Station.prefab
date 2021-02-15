@@ -144,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b45945a6603ff4597d692de6fecb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskView: {fileID: 0}
-  taskController: {fileID: 0}
   laundryTaskArea: {fileID: 0}
+  containedBaskets: []
+  basketSlots:
+  - {x: 3, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -3, y: 0, z: 0}

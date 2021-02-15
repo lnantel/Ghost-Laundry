@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
             if (input.GetPickUpInput()) {
                 if (state.Carrying)
-                    DropCarriedObject();
+                    PutDown();
                 else
                     PickUp();
             }
@@ -203,13 +203,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DropCarriedObject() {
+    private void PutDown() {
         state.EndCarry();
 
         Interactable interactable = interactableDetector.GetNearestInteractable();
         if (interactable != null) {
             LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
-            if (laundromatBasket != null && interactable is WorkStation ) {
+            if (laundromatBasket != null && interactable is WorkStation) {
                 WorkStation workStation = (WorkStation)interactable;
                 if (workStation.InputBasket(laundromatBasket.basket)) {
                     Destroy(carriedObject);
@@ -225,6 +225,13 @@ public class PlayerController : MonoBehaviour
             carriedObject.GetComponent<Collider2D>().enabled = true;
             carriedObject = null;
         }
+    }
+
+    private void DropCarriedObject() {
+        state.EndCarry();
+
+        carriedObject.GetComponent<Collider2D>().enabled = true;
+        carriedObject = null;
     }
 
     private void Interact() {

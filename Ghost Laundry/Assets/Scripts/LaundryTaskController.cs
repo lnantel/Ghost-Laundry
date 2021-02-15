@@ -14,17 +14,22 @@ public class LaundryTaskController : MonoBehaviour
     public Camera LaundryCamera;
     public GameObject LaundryGarmentPrefab;
 
+    [HideInInspector]
+    public WorkStation activeWorkStation;
+
     private float snappiness = 50.0f;
     private Vector2 worldBottomLeft;
     private Vector2 worldTopRight;
 
     private bool interactInput;
     private bool interactInputHeld;
-    private bool inspectInput;
+    private bool inspectInputDown;
+    private bool inspectInputHeld;
     private float moveXInput;
     private float moveYInput;
     private bool backInput;
 
+    private LaundryObject target;
     private LaundryObject grabbedObject;
 
     private IEnumerator DelayGrabCoroutine;
@@ -60,7 +65,8 @@ public class LaundryTaskController : MonoBehaviour
             //Inputs
             interactInput = Input.GetButtonDown("TaskInteract");
             interactInputHeld = Input.GetButton("TaskInteract");
-            inspectInput = Input.GetButtonDown("Inspect");
+            inspectInputDown = Input.GetButtonDown("Inspect");
+            inspectInputHeld = Input.GetButton("Inspect");
             backInput = Input.GetButtonDown("Back");
 
             moveXInput = Mathf.Lerp(moveXInput, Input.GetAxis("TaskHorizontal"), snappiness * Time.deltaTime);
@@ -84,7 +90,8 @@ public class LaundryTaskController : MonoBehaviour
                 StartCoroutine(DelayGrabCoroutine);
             }
 
-            if (inspectInput) {
+            //Inspect
+            if (inspectInputDown) {
                 Inspect();
             }
 
@@ -101,69 +108,82 @@ public class LaundryTaskController : MonoBehaviour
             if (backInput) {
                 BackOut();
             }
+
+            //Hover
+            target = GetTarget();
+            if (target != null) {
+                target.OnHover(cursor.position);
+            }
         }
-        
+
+    }
+
+    private LaundryObject GetTarget() {
+        //Attempts to find a LaundryObject or Basket under the cursor
+        //Priority is given to LaundryObjects
+        int layerMask = LayerMask.GetMask("LaundryObject");
+        Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+        if (col != null) {
+            return col.GetComponentInParent<LaundryObject>();
+        }
+        else {
+            layerMask = LayerMask.GetMask("Basket");
+            col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+            if (col != null) {
+                return col.GetComponentInParent<LaundryObject>();
+            }
+        }
+        return null;
     }
 
     private IEnumerator DelayGrab() {
-        //Detects the targeted LaundryObject
-        LaundryObject target = null;
-        int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
-        Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
-        if (col != null) {
-            target = col.GetComponent<LaundryObject>();
-        }
         if(target != null) {
             //If the cursor moves more than 0.1f units while interact is held, or if it is held for longer than grabDelay,
             //then the input is interpreted as a grab rather than an interact.
             //Otherwise, on release, the input is interpreted as an interact.
             float timer = 0.0f;
             Vector2 initialCursorPosition = cursor.position;
+            Vector2 initialTargetPosition = target.transform.position;
             float cursorDelta;
             while (true) {
                 yield return new WaitForSeconds(0.0f);
                 timer += Time.deltaTime;
                 cursorDelta = (initialCursorPosition - new Vector2(cursor.position.x, cursor.position.y)).magnitude;
+                if(target != null) cursorDelta += (initialTargetPosition - new Vector2(target.transform.position.x, target.transform.position.y)).magnitude;
                 if (!interactInputHeld || cursorDelta > 0.1f) break;
             }
-            if (interactInputHeld) Grab(target);
-            else Interact(target);
+            if (interactInputHeld) Grab();
+            else Interact();
         }
         DelayGrabCoroutine = null;
     }
 
     private void Inspect() {
-        //Detects the targeted LaundryObject
-        LaundryObject target = null;
-        int layerMask = LayerMask.GetMask("LaundryObject", "Basket");
-        Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
-        if (col != null) {
-            target = col.GetComponentInParent<LaundryObject>();
-        }
         if (target != null) target.OnInspect();
     }
 
-    private void Interact(LaundryObject obj) {
-        //Trigger its interaction action
-        obj.OnInteract();
+    private void Interact() {
+        if(target != null)
+            target.OnInteract();
     }
 
-    private void Grab(LaundryObject obj) {
-        //Grab it
-        grabbedObject = obj;
-        obj.OnGrab();
+    private void Grab() {
+        if(target != null) {
+            grabbedObject = target;
+            target.OnGrab();
+        }
     }
 
     private void Release() {
         grabbedObject.OnRelease();
         grabbedObject = null;
-        //Release a grabbed object
     }
 
     private void BackOut() {
         if (grabbedObject != null) Release();
         if (exitedTask != null)
             exitedTask();
+        activeWorkStation = null;
         gameObject.SetActive(false);
     }
 
