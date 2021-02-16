@@ -7,6 +7,7 @@ public class TaskView : MonoBehaviour
     public static TaskView instance;
 
     public float popUpTime;
+    public float size;
 
     private bool open;
     private float popUpFactor;
@@ -36,7 +37,7 @@ public class TaskView : MonoBehaviour
         else
             popUpFactor = Mathf.Lerp(1.0f, 0.0f, timer / popUpTime);
 
-        transform.localScale = new Vector3(1.6f, 1.0f, 0.9f) * popUpFactor;
+        transform.localScale = new Vector3(1.6f, 1.0f, 0.9f) * popUpFactor * size;
         transform.position = Vector3.Lerp(targetPosition, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -5.0f), popUpFactor);
     }
 

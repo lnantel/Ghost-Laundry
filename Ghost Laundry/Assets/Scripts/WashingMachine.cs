@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class WashingMachine : MonoBehaviour
+public class WashingMachine : WorkStation
 {
     public static Action DoorOpens;
     public static Action DoorCloses;
@@ -13,6 +13,8 @@ public class WashingMachine : MonoBehaviour
     public float WashCycleTime;
     public int Capacity;
 
+    public bool Detergent;
+
     private List<Garment> contents;
 
     [HideInInspector]
@@ -21,7 +23,10 @@ public class WashingMachine : MonoBehaviour
     [HideInInspector]
     public WashingMachineState state;
 
-    private void Start() {
+    protected override void Start() {
+        HasGravity = true;
+        base.Start();
+
         contents = new List<Garment>();
         state = WashingMachineState.DoorClosed;
         washSetting = WashSetting.Hot;
@@ -35,7 +40,7 @@ public class WashingMachine : MonoBehaviour
     }
 
     public bool AddGarment(Garment garment) {
-        if(CurrentLoad() + garment.size <= Capacity) {
+        if (CurrentLoad() + garment.size <= Capacity) {
             contents.Add(garment);
             return true;
         }
@@ -57,20 +62,31 @@ public class WashingMachine : MonoBehaviour
     }
 
     public void ToggleDoor() {
-        if(state == WashingMachineState.DoorClosed || state == WashingMachineState.Done) {
+        if (state == WashingMachineState.DoorClosed || state == WashingMachineState.Done) {
             state = WashingMachineState.DoorOpen;
             DoorOpens();
         }
-        else if(state == WashingMachineState.DoorOpen) {
+        else if (state == WashingMachineState.DoorOpen) {
             state = WashingMachineState.DoorClosed;
             DoorCloses();
         }
     }
 
     public void StartWashCycle() {
-        if(state == WashingMachineState.DoorClosed) {
+        if (state == WashingMachineState.DoorClosed) {
             state = WashingMachineState.Running;
             StartCoroutine(WashCycle());
+        }
+    }
+
+    public bool AddDetergent() {
+        if (!Detergent) {
+            Detergent = true;
+            return true;
+        }
+        else {
+            Debug.Log("Detergent overflow");
+            return false;
         }
     }
 
@@ -82,9 +98,12 @@ public class WashingMachine : MonoBehaviour
         yield return new WaitForSeconds(WashCycleTime);
 
         foreach (Garment garment in contents) {
-            //TODO: Washing logic
-            garment.clean = true;
+            //TODO: Garment-dependant washing logic
+            if (Detergent) {
+                garment.clean = true;
+            }
         }
+        Detergent = false;
         state = WashingMachineState.Done;
     }
 }

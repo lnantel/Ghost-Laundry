@@ -809,8 +809,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1314026797
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d2a525e12c7eb1e4c8820c73c0c7cdc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -891,8 +891,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1314026797
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 60f6cdae6eb8e284da7a7fbb14f20ab6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1768,7 +1768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7689694076823707842, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7689694076823707842, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1813,6 +1813,14 @@ PrefabInstance:
     - target: {fileID: 7689694076823707845, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689694076823707845, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1498004205
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689694076823707845, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
@@ -2385,27 +2393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpTime: 0.1
---- !u!1 &5748218138117131187 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4301830416146534457, guid: 5225aeac70ca5a2498c1de0bd61909c3, type: 3}
-  m_PrefabInstance: {fileID: 8392156675314768778}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5748218138117131189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5748218138117131187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ff725bba03a794fb8669058a0acb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WashCycleTime: 5
-  Capacity: 10
-  washSetting: 0
-  state: 0
+  size: 0.75
 --- !u!1001 &8314683814484616724
 PrefabInstance:
   m_ObjectHideFlags: 0

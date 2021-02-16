@@ -20,7 +20,7 @@ public class LaundryTaskAreaSpawner : MonoBehaviour
 
             if (workStations[i] is TableWorkstation) {
                 prefab = tableAreaPrefab;
-            }else if(workStations[i] is WashingMachineWorkStation) {
+            }else if(workStations[i] is WashingMachine) {
                 prefab = washingMachineAreaPrefab;
             }
             else
