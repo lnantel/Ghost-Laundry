@@ -44,11 +44,14 @@ public class LaundryTaskController : MonoBehaviour
 
     private void OnEnable() {
         StartCoroutine(Initialize());
-        LaundryBasket.TakeOutGarment += GrabGarmentFromBasket;
+        LaundryBasket.TakeOutGarment += GrabGarmentFromContainer;
+        WashingMachineDoor.GarmentGrabbed += GrabGarmentFromContainer;
+
     }
 
     private void OnDisable() {
-        LaundryBasket.TakeOutGarment -= GrabGarmentFromBasket;
+        LaundryBasket.TakeOutGarment -= GrabGarmentFromContainer;
+        WashingMachineDoor.GarmentGrabbed -= GrabGarmentFromContainer;
     }
 
     private IEnumerator Initialize() {
@@ -187,7 +190,7 @@ public class LaundryTaskController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void GrabGarmentFromBasket(Garment garment) {
+    private void GrabGarmentFromContainer(Garment garment) {
         GameObject obj = Instantiate(LaundryGarmentPrefab, cursor.transform.position, cursor.transform.rotation, activeWorkStation.laundryTaskArea.transform);
         LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
         laundryGarment.garment = garment;
