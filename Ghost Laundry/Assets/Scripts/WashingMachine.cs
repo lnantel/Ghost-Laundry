@@ -13,6 +13,7 @@ public class WashingMachine : WorkStation
     public float WashCycleTime;
     public int Capacity;
 
+    [HideInInspector]
     public bool Detergent;
 
     private List<Garment> contents;
