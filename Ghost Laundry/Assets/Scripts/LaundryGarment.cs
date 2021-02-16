@@ -9,6 +9,8 @@ public class LaundryGarment : LaundryObject
 
     public Garment garment;
 
+    public bool OnFoldingSurface;
+
     private Rigidbody2D rb;
     private LaundryTag laundryTag;
     private bool hovering;
@@ -43,8 +45,10 @@ public class LaundryGarment : LaundryObject
 
     public override void OnInteract() {
         inspected = false;
-        garment.Fold();
-        Debug.Log("Garment fold step: " + garment.currentFoldingStep);
+        if (OnFoldingSurface) {
+            garment.Fold();
+            Debug.Log("Garment fold step: " + garment.currentFoldingStep);
+        }
     }
 
     public override void OnInspect() {

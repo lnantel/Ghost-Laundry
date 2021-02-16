@@ -199,6 +199,7 @@ MonoBehaviour:
   cursor: {fileID: 2046020945}
   LaundryCamera: {fileID: 1749205789}
   LaundryGarmentPrefab: {fileID: 8682779000148993894, guid: a36c48d3a60993d4984f259af333b383, type: 3}
+  activeWorkStation: {fileID: 0}
 --- !u!4 &1286527263
 Transform:
   m_ObjectHideFlags: 0
@@ -422,8 +423,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1446689043
+  m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
