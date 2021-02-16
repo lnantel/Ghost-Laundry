@@ -5,6 +5,8 @@ using System;
 
 public class WashingMachine : WorkStation
 {
+    public Animator animator;
+
     public static Action DoorOpens;
     public static Action DoorCloses;
     public static Action WashCycleStarts;
@@ -31,6 +33,10 @@ public class WashingMachine : WorkStation
         contents = new List<Garment>();
         state = WashingMachineState.DoorClosed;
         washSetting = WashSetting.Hot;
+    }
+
+    private void Update() {
+        animator.SetInteger("WashingMachineState", (int)state);
     }
 
     private float CurrentLoad() {
