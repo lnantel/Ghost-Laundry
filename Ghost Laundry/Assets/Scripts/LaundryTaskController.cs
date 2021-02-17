@@ -46,12 +46,14 @@ public class LaundryTaskController : MonoBehaviour
         StartCoroutine(Initialize());
         LaundryBasket.TakeOutGarment += GrabGarmentFromContainer;
         WashingMachineDoor.GarmentGrabbed += GrabGarmentFromContainer;
+        DryerDoor.GarmentGrabbed += GrabGarmentFromContainer;
 
     }
 
     private void OnDisable() {
         LaundryBasket.TakeOutGarment -= GrabGarmentFromContainer;
         WashingMachineDoor.GarmentGrabbed -= GrabGarmentFromContainer;
+        DryerDoor.GarmentGrabbed -= GrabGarmentFromContainer;
     }
 
     private IEnumerator Initialize() {
