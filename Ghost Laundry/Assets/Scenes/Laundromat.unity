@@ -1415,14 +1415,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3534737646775619916, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
-      propertyPath: basketSlots.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3534737646775619916, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
-      propertyPath: HasGravity
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5748218137804147326, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_Name
       value: Work Station 2

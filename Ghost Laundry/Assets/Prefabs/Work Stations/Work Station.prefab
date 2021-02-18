@@ -145,12 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b45945a6603ff4597d692de6fecb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasGravity: 0
+  HasGravity: 1
   basketSlots:
-  - laundryBasket: {fileID: 0}
-    spawnPoint: {x: 0, y: 0, z: 0}
-  - laundryBasket: {fileID: 0}
-    spawnPoint: {x: 0, y: 0, z: 0}
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: 0, y: 0, z: 0}
   laundryTaskArea: {fileID: 0}
