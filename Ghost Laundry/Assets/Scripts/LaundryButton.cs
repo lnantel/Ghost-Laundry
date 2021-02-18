@@ -26,7 +26,7 @@ public class LaundryButton : LaundryObject
 
     private SpriteRenderer spriteRenderer;
 
-    void Start() {
+    protected virtual void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -39,7 +39,7 @@ public class LaundryButton : LaundryObject
         }
     }
 
-    public void Press() {
+    public virtual void Press() {
         OnButtonPressed.Invoke();
         pressed = true;
         spriteRenderer.sprite = pressedSprite;
@@ -49,7 +49,7 @@ public class LaundryButton : LaundryObject
         }
     }
 
-    public void Unpress() {
+    public virtual void Unpress() {
         if (pressed) {
             pressed = false;
             OnButtonUnpressed.Invoke();

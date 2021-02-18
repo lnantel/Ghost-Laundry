@@ -66,8 +66,10 @@ public class Dryer : WorkStation
     }
 
     public void ToggleDryerSetting() {
-        if (dryerSetting == DryerSetting.Low) dryerSetting = DryerSetting.High;
-        else dryerSetting = DryerSetting.Low;
+        if(state != DryerState.Running) {
+            if (dryerSetting == DryerSetting.Low) dryerSetting = DryerSetting.High;
+            else if (dryerSetting == DryerSetting.High) dryerSetting = DryerSetting.Low;
+        }
     }
 
     public void ToggleDoor() {
@@ -99,7 +101,8 @@ public class Dryer : WorkStation
             garment.dry = lintTrapClean; //garments are dried if the lint trap is clean
         }
 
-        lintTrapClean = false;
+        if(contents.Count > 0)
+            lintTrapClean = false;
         state = DryerState.Done;
     }
 

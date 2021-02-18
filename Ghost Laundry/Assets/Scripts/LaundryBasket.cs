@@ -7,10 +7,11 @@ public class LaundryBasket : LaundryObject
 {
     public static Action<Garment> TakeOutGarment;
     public static Action<LaundryBasket> OpenBasketView;
+    public static Action TagChanged;
 
     public Basket basket;
     public GameObject basketView;
-    private Collider2D basketCollider;
+    protected Collider2D basketCollider;
 
     private GameObject laundryGarmentPrefab;
     private List<LaundryGarment> laundryGarments;
@@ -127,7 +128,8 @@ public class LaundryBasket : LaundryObject
 
         for (int i = 0; i < basket.contents.Count; i++) {
             LaundryGarment laundryGarment = Instantiate(laundryGarmentPrefab, basket.positions[i] + transform.position, transform.rotation, transform).GetComponent<LaundryGarment>();
-            laundryGarment.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            laundryGarment.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            laundryGarment.SetGarment(basket.contents[i]);
             laundryGarments.Add(laundryGarment);
         }
     }
@@ -158,7 +160,7 @@ public class LaundryBasket : LaundryObject
     public override void OnInteract() {
         //Cycle through tags
         basket.tag = (basket.tag + 1) % tags.Length;
-
         tagSprite.sprite = tags[basket.tag];
+        if(TagChanged != null) TagChanged();
     }
 }

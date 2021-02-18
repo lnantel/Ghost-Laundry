@@ -19,7 +19,7 @@ public class Garment
     public int foldingSteps;
     public int currentFoldingStep;
 
-    public Garment(Fabric fabric, Color color, bool clean, bool dry, bool pressed = false, bool folded = false, bool ruined = false) {
+    public Garment(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool ruined = false) {
         this.fabric = fabric;
         this.color = color;
         this.clean = clean;
@@ -36,5 +36,31 @@ public class Garment
 
     public void Fold() {
         currentFoldingStep = (currentFoldingStep + 1) % (foldingSteps + 1);
+    }
+
+    public bool Colored() {
+        return !(color == GarmentColor.White);
+    }
+
+    public static Garment GetRandomGarment() {
+        Fabric randomFabric = new Fabric((FabricType)Random.Range(0, 3));
+        Color randomColor = GarmentColor.RandomColor();
+        return new Garment(randomFabric, randomColor);
+    }
+}
+
+public static class GarmentColor {
+    public static Color White = Color.white;
+    public static Color Red = Color.red;
+    public static Color Pink = new Color(1.0f, 0.0f, 1.0f);
+
+    public static Color RandomColor() {
+        int rand = Random.Range(0, 3);
+        switch (rand) {
+            case 0: return White;
+            case 1: return Red;
+            case 2: return Pink;
+            default: return White;
+        }
     }
 }

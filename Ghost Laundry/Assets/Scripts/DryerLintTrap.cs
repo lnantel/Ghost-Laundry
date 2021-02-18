@@ -46,6 +46,7 @@ public class DryerLintTrap : LaundryObject
 
     private void Clean() {
         dryer.CleanLintTrap();
+        lintTrapSpriteRenderer.sprite = openCleanSprite;
     }
 
     private void Close() {

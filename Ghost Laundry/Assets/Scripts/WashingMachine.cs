@@ -64,8 +64,10 @@ public class WashingMachine : WorkStation
     }
 
     public void ToggleWashSetting() {
-        if (washSetting == WashSetting.Cold) washSetting = WashSetting.Hot;
-        else washSetting = WashSetting.Cold;
+        if(state != WashingMachineState.Running) {
+            if (washSetting == WashSetting.Cold) washSetting = WashSetting.Hot;
+            else if(washSetting == WashSetting.Hot) washSetting = WashSetting.Cold;
+        }
     }
 
     public void ToggleDoor() {
@@ -98,14 +100,21 @@ public class WashingMachine : WorkStation
     }
 
     private IEnumerator WashCycle() {
+        bool containsColoredGarments = false;
+
         foreach (Garment garment in contents) {
             garment.dry = false;
+            if (garment.Colored()) containsColoredGarments = true;
         }
 
         yield return new WaitForSeconds(WashCycleTime);
 
         foreach (Garment garment in contents) {
-            //TODO: Garment-dependant washing logic
+            if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {
+                garment.color = GarmentColor.Pink;
+                garment.ruined = true;
+            }
+
             if (Detergent) {
                 garment.clean = true;
             }
