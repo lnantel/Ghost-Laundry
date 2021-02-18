@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!58 &130053384535377274
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616540435706531129}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0016610622, y: 0.0049830675}
+  serializedVersion: 2
+  m_Radius: 0.23513603
 --- !u!1 &864118423418456516
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +223,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
+  m_Offset: {x: -0.11759552, y: -0.029840708}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -218,7 +234,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.3}
+  m_Size: {x: 0.9308595, y: 0.17904472}
   m_EdgeRadius: 0
 --- !u!114 &710598013771260404
 MonoBehaviour:
@@ -232,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4643125e757556409d81f9f9a8c4d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCleanSprite: {fileID: 0}
-  openDirtySprite: {fileID: 0}
+  openCleanSprite: {fileID: 21300000, guid: 378ab38a08e5ae0499bdd96c8f1a97c0, type: 3}
+  openDirtySprite: {fileID: 21300000, guid: 9864b5de3ffd6894a9538614c4c7f763, type: 3}
   closedSprite: {fileID: 21300000, guid: 64428f8a9410f3c418ece3499e6aff63, type: 3}
   startButton: {fileID: 4387379114330128718}
   lintTrapSpriteRenderer: {fileID: 2146352771790269830}
@@ -344,8 +360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5183693787718788575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.63, y: 3.25, z: 0}
-  m_LocalScale: {x: 0.8048396, y: 0.8048396, z: 0.8048396}
+  m_LocalPosition: {x: -0.63, y: 3.24, z: 0}
+  m_LocalScale: {x: 0.8501383, y: 0.867068, z: 0.8048396}
   m_Children: []
   m_Father: {fileID: 1037721697902524373}
   m_RootOrder: 7
@@ -619,8 +635,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9166690416338267258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1132, y: -0.5598, z: 0}
-  m_LocalScale: {x: 1.1491501, y: 0.73665774, z: 2.6649408}
+  m_LocalPosition: {x: -0.1132, y: -0.02, z: 0}
+  m_LocalScale: {x: 1.1836246, y: 0.7587575, z: 2.744889}
   m_Children: []
   m_Father: {fileID: 7139925554001952302}
   m_RootOrder: 0
@@ -665,7 +681,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 9864b5de3ffd6894a9538614c4c7f763, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64428f8a9410f3c418ece3499e6aff63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -723,11 +739,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4
+      value: 2.094
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.51
+      value: 3.239
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -777,14 +793,31 @@ PrefabInstance:
       propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DryerDoor, Assembly-CSharp
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: pressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bffcabe3102767647a7e0acdf4426aed, type: 3}
+    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: unpressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 26757f06b0e5b4045bd3a93a4f525cb0, type: 3}
+    - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 26757f06b0e5b4045bd3a93a4f525cb0, type: 3}
+    m_RemovedComponents:
+    - {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
 --- !u!114 &4387379114330128718 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
   m_PrefabInstance: {fileID: 6616775263789056732}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 616540435706531129}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c51d0add740fccc4aa1e857e5c32c081, type: 3}
@@ -793,5 +826,10 @@ MonoBehaviour:
 --- !u!4 &4177138871818547832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+  m_PrefabInstance: {fileID: 6616775263789056732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &616540435706531129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6007210683204030437, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
   m_PrefabInstance: {fileID: 6616775263789056732}
   m_PrefabAsset: {fileID: 0}
