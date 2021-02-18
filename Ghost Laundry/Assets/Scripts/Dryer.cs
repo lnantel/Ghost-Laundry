@@ -66,8 +66,10 @@ public class Dryer : WorkStation
     }
 
     public void ToggleDryerSetting() {
-        if (dryerSetting == DryerSetting.Low) dryerSetting = DryerSetting.High;
-        else dryerSetting = DryerSetting.Low;
+        if(state != DryerState.Running) {
+            if (dryerSetting == DryerSetting.Low) dryerSetting = DryerSetting.High;
+            else if (dryerSetting == DryerSetting.High) dryerSetting = DryerSetting.Low;
+        }
     }
 
     public void ToggleDoor() {

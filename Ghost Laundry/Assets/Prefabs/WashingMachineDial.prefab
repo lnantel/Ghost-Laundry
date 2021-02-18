@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7073940774672756900}
-  - component: {fileID: 7435610130690900882}
   - component: {fileID: 9219803803665627872}
   - component: {fileID: 7717485927999293818}
+  - component: {fileID: 3108964252132368600}
   m_Layer: 11
   m_Name: WashingMachineDial
   m_TagString: Untagged
@@ -33,44 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7435610130690900882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6007210683204030437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51d0add740fccc4aa1e857e5c32c081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LaundryBasket, Assembly-CSharp
-        m_MethodName: OnInspect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPressFailed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnButtonUnpressed:
-    m_PersistentCalls:
-      m_Calls: []
-  springsBack: 1
-  springBackDelay: 0.15
-  pressedSprite: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
-  unpressedSprite: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
-  pressed: 0
 --- !u!212 &9219803803665627872
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,3 +110,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &3108964252132368600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007210683204030437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f670e7b5e1121439a20b225e1f7ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3108964252132368600}
+        m_TargetAssemblyTypeName: WashSettingDial, Assembly-CSharp
+        m_MethodName: ToggleWashSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnButtonPressFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnButtonUnpressed:
+    m_PersistentCalls:
+      m_Calls: []
+  springsBack: 1
+  springBackDelay: 0.15
+  pressedSprite: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
+  unpressedSprite: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
+  pressed: 0

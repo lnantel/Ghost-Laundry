@@ -170,44 +170,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5804174, y: 0.6162838}
   m_EdgeRadius: 0
---- !u!114 &2662194600066995625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852809488499397489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f670e7b5e1121439a20b225e1f7ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2662194600066995625}
-        m_TargetAssemblyTypeName: WashSettingDial, Assembly-CSharp
-        m_MethodName: ToggleWashSetting
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPressFailed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnButtonUnpressed:
-    m_PersistentCalls:
-      m_Calls: []
-  springsBack: 1
-  springBackDelay: 0.15
-  pressedSprite: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
-  unpressedSprite: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
-  pressed: 0
 --- !u!1 &6043155785769299192
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,30 +830,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7435610130690900882, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
-      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8420562492419017736}
-    - target: {fileID: 7435610130690900882, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
-      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleWashSetting
-      objectReference: {fileID: 0}
-    - target: {fileID: 7435610130690900882, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
-      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WashingMachineDoor, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219803803665627872, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 60d6cee9870e8384aa9d14cc94d928ae, type: 3}
-    m_RemovedComponents:
-    - {fileID: 7435610130690900882, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
---- !u!1 &3852809488499397489 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6007210683204030437, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
-  m_PrefabInstance: {fileID: 7361709292548529300}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &288692442801728560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7073940774672756900, guid: 9847e84bf00664143b9f0afa3652ec89, type: 3}
