@@ -78,4 +78,9 @@ public class LaundryGarment : LaundryObject
         rb.MovePosition(cursorPosition);
         rb.velocity = Vector3.zero; //Stop gravity from accumulating while the object is grabbed
     }
+
+    public void SetGarment(Garment garment) {
+        this.garment = garment;
+        if (spriteRenderer != null) spriteRenderer.color = garment.color;
+    }
 }

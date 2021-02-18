@@ -129,6 +129,7 @@ public class LaundryBasket : LaundryObject
         for (int i = 0; i < basket.contents.Count; i++) {
             LaundryGarment laundryGarment = Instantiate(laundryGarmentPrefab, basket.positions[i] + transform.position, transform.rotation, transform).GetComponent<LaundryGarment>();
             laundryGarment.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            laundryGarment.SetGarment(basket.contents[i]);
             laundryGarments.Add(laundryGarment);
         }
     }
