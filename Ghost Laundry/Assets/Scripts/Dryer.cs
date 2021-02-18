@@ -24,14 +24,14 @@ public class Dryer : WorkStation
     public DryerState state;
 
     private List<Garment> contents;
-    public Animator animator;
+    private Animator animator;
 
     protected override void Start() {
         HasGravity = true;
         base.Start();
 
         contents = new List<Garment>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         state = DryerState.DoorClosed;
         dryerSetting = DryerSetting.High;
         lintTrapClean = true;
