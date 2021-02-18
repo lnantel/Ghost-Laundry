@@ -30,8 +30,8 @@ public class LaundryIroningBoard : LaundryObject
     }
 
     //If the garment is being pressed, returns true; if it is being burned, returns false
-    public bool Press(float ironPosition) {
-        bool steaming = false;
+    public SteamState Press(float ironPosition) {
+        SteamState steam = SteamState.Off;
 
         float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
         Debug.Log("Iron speed: " + ironSpeed);
@@ -39,17 +39,19 @@ public class LaundryIroningBoard : LaundryObject
         if(ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.pressed && !garmentOnBoard.ruined) {
             graceTimer = 0;
             //Press
+            steam = SteamState.Steam;
             pressingProgress += Time.fixedDeltaTime / garmentOnBoard.fabric.ironingTime;
-            steaming = true;
             Debug.Log("Ironing progress: " + pressingProgress);
         }
         else if (graceTimer < gracePeriod) {
             //Grace period
+            steam = SteamState.Off;
             graceTimer += Time.fixedDeltaTime;
             Debug.Log("Grace");
         }
         else {
             //Burn
+            steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
             Debug.Log("Burning!");
         }
@@ -67,7 +69,7 @@ public class LaundryIroningBoard : LaundryObject
         }
 
         lastIronPos = ironPosition;
-        return steaming;
+        return steam;
     }
 
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {

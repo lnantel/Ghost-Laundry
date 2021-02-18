@@ -12,6 +12,7 @@ public class Iron : LaundryObject
 
     private Rigidbody2D rb;
     private IronState state;
+    private SteamState steamState;
     private bool onIroningBoard;
 
     private void Start() {
@@ -49,21 +50,22 @@ public class Iron : LaundryObject
     }
 
     private void FixedUpdate() {
-        if(onIroningBoard && laundryIroningBoard.garmentOnBoard != null) {
-            //Press garment
-            if (laundryIroningBoard.Press(transform.position.x)) {
-                state = IronState.Steaming;
-            }
-            else {
-                state = IronState.Burning;
-            }
+        if(state == IronState.On && onIroningBoard && laundryIroningBoard.garmentOnBoard != null) {
+            steamState = laundryIroningBoard.Press(transform.position.x);
+        }
+        else {
+            steamState = SteamState.Off;
         }
     }
 }
 
 public enum IronState {
     Off,
-    On,
-    Steaming,
-    Burning
+    On
+}
+
+public enum SteamState {
+    Off,
+    Steam,
+    Burn
 }
