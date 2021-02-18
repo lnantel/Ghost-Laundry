@@ -19,7 +19,7 @@ public class LaundryGarment : LaundryObject
     
     private void Start() {
         if(garment == null) {
-            garment = new Garment(new Fabric("Silk"), Color.white, false, true);
+            garment = new Garment(new Fabric(FabricType.Cotton), Color.white, false, true);
         }
 
         rb = GetComponent<Rigidbody2D>();

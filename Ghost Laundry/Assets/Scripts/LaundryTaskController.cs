@@ -47,6 +47,7 @@ public class LaundryTaskController : MonoBehaviour
         LaundryBasket.TakeOutGarment += GrabGarmentFromContainer;
         WashingMachineDoor.GarmentGrabbed += GrabGarmentFromContainer;
         DryerDoor.GarmentGrabbed += GrabGarmentFromContainer;
+        LaundryIroningBoard.GarmentGrabbed += GrabGarmentFromContainer;
 
     }
 
@@ -120,7 +121,6 @@ public class LaundryTaskController : MonoBehaviour
                 target.OnHover(cursor.position);
             }
         }
-
     }
 
     private LaundryObject GetTarget() {
