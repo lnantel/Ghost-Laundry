@@ -98,14 +98,21 @@ public class WashingMachine : WorkStation
     }
 
     private IEnumerator WashCycle() {
+        bool containsColoredGarments = false;
+
         foreach (Garment garment in contents) {
             garment.dry = false;
+            if (garment.Colored()) containsColoredGarments = true;
         }
 
         yield return new WaitForSeconds(WashCycleTime);
 
         foreach (Garment garment in contents) {
-            //TODO: Garment-dependant washing logic
+            if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {
+                garment.color = GarmentColor.Pink;
+                garment.ruined = true;
+            }
+
             if (Detergent) {
                 garment.clean = true;
             }

@@ -16,15 +16,18 @@ public class LaundryGarment : LaundryObject
     private bool hovering;
     private bool inspected;
     private Vector2 lastPosition;
+    private SpriteRenderer spriteRenderer;
     
     private void Start() {
         if(garment == null) {
-            garment = new Garment(new Fabric(FabricType.Cotton), Color.white, false, true);
+            garment = Garment.GetRandomGarment();
         }
 
         rb = GetComponent<Rigidbody2D>();
         laundryTag = GetComponentInChildren<LaundryTag>();
         lastPosition = transform.position;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) spriteRenderer.color = garment.color;
     }
 
     private void LateUpdate() {

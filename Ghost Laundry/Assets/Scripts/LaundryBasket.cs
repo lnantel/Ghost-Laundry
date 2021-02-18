@@ -10,7 +10,7 @@ public class LaundryBasket : LaundryObject
 
     public Basket basket;
     public GameObject basketView;
-    private Collider2D basketCollider;
+    protected Collider2D basketCollider;
 
     private GameObject laundryGarmentPrefab;
     private List<LaundryGarment> laundryGarments;
