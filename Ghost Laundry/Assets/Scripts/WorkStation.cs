@@ -9,30 +9,25 @@ public class WorkStation : Interactable
     public static Action<LaundryGarment> LaundryGarmentReleased;
 
     public bool HasGravity;
-    public Vector3[] basketSlots;
+    public BasketSlot[] basketSlots;
 
     [HideInInspector]
     public GameObject laundryTaskArea;
 
-    [HideInInspector]
-    public List<LaundryBasket> containedBaskets;
-
     protected int basketCapacity;
-    protected bool[] basketSlotOccupied;
 
     protected GameObject laundryBasketPrefab;
 
     protected virtual void Start() {
-        containedBaskets = new List<LaundryBasket>();
+        //containedBaskets = new List<LaundryBasket>();
         laundryBasketPrefab = (GameObject)Resources.Load("LaundryBasket");
         basketCapacity = basketSlots.Length;
-        basketSlotOccupied = new bool[basketCapacity];
     }
 
     public virtual void Initialize() {
         LaundryBasket[] laundryBaskets = laundryTaskArea.GetComponentsInChildren<LaundryBasket>();
         foreach (LaundryBasket basket in laundryBaskets)
-            containedBaskets.Add(basket);
+            AddBasket(basket);
     }
 
     public override void Interact() {
@@ -59,24 +54,20 @@ public class WorkStation : Interactable
 
     public virtual Basket OutputBasket() {
         //if the workstation contains at least one basket
-        if (containedBaskets.Count > 0) {
-            Basket basket = containedBaskets[0].basket;
-
-            //free up corresponding basket slot
-            for(int i = 0; i < basketCapacity; i++) {
-                if (basketSlotOccupied[i]) {
-                    if (basketSlots[i] == containedBaskets[0].transform.localPosition) {
-                        basketSlotOccupied[i] = false;
-                        break;
-                    }
+        if (BasketCount() > 0) {
+            //Get the last non-null LaundryBasket in BasketSlots
+            int basketIndex = 0;
+            Basket basket = null;
+            for(int i = 0; i < basketSlots.Length; i++) {
+                if(basketSlots[i].laundryBasket != null) {
+                    basketIndex = i;
+                    basket = basketSlots[i].laundryBasket.basket;
                 }
             }
 
-            //destroy the LaundryBasket object in the LaundryArea
-            Destroy(containedBaskets[0].gameObject);
-
-            //remove it from the list
-            containedBaskets.RemoveAt(0);
+            //Destroy it
+            Destroy(basketSlots[basketIndex].laundryBasket.gameObject);
+            basketSlots[basketIndex].laundryBasket = null;
 
             //return the basket
             return basket;
@@ -86,27 +77,8 @@ public class WorkStation : Interactable
 
     public virtual bool InputBasket(Basket basket) {
         //if the workstation has space for a basket
-        if (containedBaskets.Count < basketCapacity) {
-            //find a free spot
-            Vector3 position = Vector3.zero;
-            for(int i = 0; i < basketCapacity; i++) {
-                if (!basketSlotOccupied[i]) {
-                    position = basketSlots[i];
-                    basketSlotOccupied[i] = true;
-                    break;
-                }
-            }
-
-            //instantiate it in the LaundryArea
-            GameObject basketObject = Instantiate(laundryBasketPrefab, laundryTaskArea.transform.position + position, laundryTaskArea.transform.rotation, laundryTaskArea.transform);
-            LaundryBasket laundryBasket = basketObject.GetComponent<LaundryBasket>();
-            laundryBasket.basket = basket;
-
-            //add it to the list
-            containedBaskets.Add(laundryBasket);
-
-            //Basket successfully added
-            return true;
+        if (BasketCount() < basketCapacity) {
+            return AddBasket(basket);
         }
         return false;
     }
@@ -122,6 +94,44 @@ public class WorkStation : Interactable
     }
 
     public virtual bool ContainsBasket() {
-        return containedBaskets.Count > 0;
+        return BasketCount() > 0;
+    }
+
+    //Adds an existing LaundryBasket in the first free BasketSlot
+    //Returns true if successful, false otherwise
+    protected virtual bool AddBasket(LaundryBasket laundryBasket) {
+        for(int i = 0; i < basketSlots.Length; i++) {
+            if (basketSlots[i].laundryBasket == null) {
+                basketSlots[i].laundryBasket = laundryBasket;
+                laundryBasket.transform.parent = laundryTaskArea.transform;
+                laundryBasket.transform.localPosition = basketSlots[i].spawnPoint;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Adds a Basket to the first free BasketSlot and Instantiates a new LaundryBasket
+    //Returns true if successful, false otherwise
+    protected virtual bool AddBasket(Basket basket) {
+        for (int i = 0; i < basketSlots.Length; i++) {
+            if(basketSlots[i].laundryBasket == null) {
+                LaundryBasket laundryBasket = Instantiate(laundryBasketPrefab, 
+                    laundryTaskArea.transform.position + basketSlots[i].spawnPoint, 
+                    laundryTaskArea.transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();
+                laundryBasket.basket = basket;
+                basketSlots[i].laundryBasket = laundryBasket;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected virtual int BasketCount() {
+        int count = 0;
+        for(int i = 0; i < basketSlots.Length; i++) {
+            if (basketSlots[i].laundryBasket != null) count++;
+        }
+        return count;
     }
 }

@@ -12,18 +12,19 @@ public class TableWorkstation : WorkStation
     public override void Initialize() {
         base.Initialize();
         for (int i = 0; i < basketCapacity; i++) {
-            LaundryBasket basket = Instantiate(laundryBasketPrefab, laundryTaskArea.transform.position + basketSlots[i], transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();
-            basket.basket = new Basket();
-            containedBaskets.Add(basket);
+            //LaundryBasket basket = Instantiate(laundryBasketPrefab, laundryTaskArea.transform.position + basketSlots[i], transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();
+            //basket.basket = new Basket();
+            //containedBaskets.Add(basket);
+            AddBasket(new Basket());
         }
     }
 
     public override bool InputBasket(Basket basket) {
         //Returns true if the input basket is empty, and replaces it with 'basket'
         //If the input basket is not empty, returns false
-        if (containedBaskets[0].basket.contents.Count > 0) return false;
+        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0) return false;
         else {
-            containedBaskets[0].basket = basket;
+            if (basketSlots[0].laundryBasket != null) basketSlots[0].laundryBasket.basket = basket;
             return true;
         }
     }
@@ -32,24 +33,39 @@ public class TableWorkstation : WorkStation
         //Returns an output basket
         //Empties the corresponding basket in the TableArea but does not destroy it
         for (int i = 1; i < basketCapacity; i++) {
-            if (containedBaskets[i].basket.contents.Count > 0) {
+            if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > 0) {
                 Basket outputBasket = new Basket();
-                outputBasket.contents = containedBaskets[i].basket.contents;
-                outputBasket.positions = containedBaskets[i].basket.positions;
-                outputBasket.tag = containedBaskets[i].basket.tag;
+                outputBasket.contents = basketSlots[i].laundryBasket.basket.contents;
+                outputBasket.positions = basketSlots[i].laundryBasket.basket.positions;
+                outputBasket.tag = basketSlots[i].laundryBasket.basket.tag;
 
-                containedBaskets[i].basket.RemoveAll();
+                basketSlots[i].laundryBasket.basket.RemoveAll();
 
                 return outputBasket;
             }
         }
+
+        //If no output baskets contain anything, check if the input basket does
+        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0) {
+            Basket outputBasket = new Basket();
+            outputBasket.contents = basketSlots[0].laundryBasket.basket.contents;
+            outputBasket.positions = basketSlots[0].laundryBasket.basket.positions;
+            outputBasket.tag = basketSlots[0].laundryBasket.basket.tag;
+
+            basketSlots[0].laundryBasket.basket.RemoveAll();
+
+            return outputBasket;
+        }
+
         return null;
     }
 
     public override bool ContainsBasket() {
-        //Returns true if any of the output baskets contains at least one item
-        for(int i = 1; i < basketCapacity; i++) {
-            if (containedBaskets[i].basket.contents.Count > 0) return true;
+        //Returns true if any basket contains any garment
+        for(int i = 0; i < basketSlots.Length; i++) {
+            if(basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > 0) {
+                return true;
+            }
         }
         return false;
     }
