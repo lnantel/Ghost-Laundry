@@ -24,7 +24,7 @@ public class Dryer : WorkStation
     public DryerState state;
 
     private List<Garment> contents;
-    private Animator animator;
+    public Animator animator;
 
     protected override void Start() {
         HasGravity = true;
