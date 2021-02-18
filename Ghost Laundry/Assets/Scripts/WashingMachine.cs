@@ -64,8 +64,10 @@ public class WashingMachine : WorkStation
     }
 
     public void ToggleWashSetting() {
-        if (washSetting == WashSetting.Cold) washSetting = WashSetting.Hot;
-        else washSetting = WashSetting.Cold;
+        if(state != WashingMachineState.Running) {
+            if (washSetting == WashSetting.Cold) washSetting = WashSetting.Hot;
+            else if(washSetting == WashSetting.Hot) washSetting = WashSetting.Cold;
+        }
     }
 
     public void ToggleDoor() {
