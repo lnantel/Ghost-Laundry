@@ -12,9 +12,6 @@ public class TableWorkstation : WorkStation
     public override void Initialize() {
         base.Initialize();
         for (int i = 0; i < basketCapacity; i++) {
-            //LaundryBasket basket = Instantiate(laundryBasketPrefab, laundryTaskArea.transform.position + basketSlots[i], transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();
-            //basket.basket = new Basket();
-            //containedBaskets.Add(basket);
             AddBasket(new Basket());
         }
     }
@@ -25,6 +22,7 @@ public class TableWorkstation : WorkStation
         if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0) return false;
         else {
             if (basketSlots[0].laundryBasket != null) basketSlots[0].laundryBasket.basket = basket;
+            if (BasketSlotsChanged != null) BasketSlotsChanged();
             return true;
         }
     }
@@ -40,7 +38,7 @@ public class TableWorkstation : WorkStation
                 outputBasket.tag = basketSlots[i].laundryBasket.basket.tag;
 
                 basketSlots[i].laundryBasket.basket.RemoveAll();
-
+                if (BasketSlotsChanged != null) BasketSlotsChanged();
                 return outputBasket;
             }
         }
@@ -53,7 +51,7 @@ public class TableWorkstation : WorkStation
             outputBasket.tag = basketSlots[0].laundryBasket.basket.tag;
 
             basketSlots[0].laundryBasket.basket.RemoveAll();
-
+            if (BasketSlotsChanged != null) BasketSlotsChanged();
             return outputBasket;
         }
 

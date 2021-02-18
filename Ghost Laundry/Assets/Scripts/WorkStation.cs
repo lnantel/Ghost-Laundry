@@ -7,6 +7,7 @@ using System;
 public class WorkStation : Interactable
 {
     public static Action<LaundryGarment> LaundryGarmentReleased;
+    public static Action BasketSlotsChanged;
 
     public bool HasGravity;
     public BasketSlot[] basketSlots;
@@ -28,6 +29,7 @@ public class WorkStation : Interactable
         LaundryBasket[] laundryBaskets = laundryTaskArea.GetComponentsInChildren<LaundryBasket>();
         foreach (LaundryBasket basket in laundryBaskets)
             AddBasket(basket);
+        if(BasketSlotsChanged != null) BasketSlotsChanged();
     }
 
     public override void Interact() {
@@ -70,6 +72,7 @@ public class WorkStation : Interactable
             basketSlots[basketIndex].laundryBasket = null;
 
             //return the basket
+            if (BasketSlotsChanged != null) BasketSlotsChanged();
             return basket;
         }
         return null;
@@ -105,6 +108,7 @@ public class WorkStation : Interactable
                 basketSlots[i].laundryBasket = laundryBasket;
                 laundryBasket.transform.parent = laundryTaskArea.transform;
                 laundryBasket.transform.localPosition = basketSlots[i].spawnPoint;
+                if (BasketSlotsChanged != null) BasketSlotsChanged();
                 return true;
             }
         }
@@ -121,6 +125,7 @@ public class WorkStation : Interactable
                     laundryTaskArea.transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();
                 laundryBasket.basket = basket;
                 basketSlots[i].laundryBasket = laundryBasket;
+                if (BasketSlotsChanged != null) BasketSlotsChanged();
                 return true;
             }
         }

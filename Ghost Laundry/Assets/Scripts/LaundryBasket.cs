@@ -7,6 +7,7 @@ public class LaundryBasket : LaundryObject
 {
     public static Action<Garment> TakeOutGarment;
     public static Action<LaundryBasket> OpenBasketView;
+    public static Action TagChanged;
 
     public Basket basket;
     public GameObject basketView;
@@ -158,7 +159,7 @@ public class LaundryBasket : LaundryObject
     public override void OnInteract() {
         //Cycle through tags
         basket.tag = (basket.tag + 1) % tags.Length;
-
         tagSprite.sprite = tags[basket.tag];
+        if(TagChanged != null) TagChanged();
     }
 }
