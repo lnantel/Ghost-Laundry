@@ -101,7 +101,8 @@ public class Dryer : WorkStation
             garment.dry = lintTrapClean; //garments are dried if the lint trap is clean
         }
 
-        lintTrapClean = false;
+        if(contents.Count > 0)
+            lintTrapClean = false;
         state = DryerState.Done;
     }
 
