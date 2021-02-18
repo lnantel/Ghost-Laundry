@@ -31,7 +31,7 @@ public class Dryer : WorkStation
         base.Start();
 
         contents = new List<Garment>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         state = DryerState.DoorClosed;
         dryerSetting = DryerSetting.High;
         lintTrapClean = true;

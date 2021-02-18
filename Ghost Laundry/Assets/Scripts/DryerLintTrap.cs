@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DryerLintTrap : LaundryObject
 {
-    public Sprite openSprite;
+    public Sprite openCleanSprite;
+    public Sprite openDirtySprite;
     public Sprite closedSprite;
 
     public LaundryButton startButton;
 
     public SpriteRenderer lintTrapSpriteRenderer;
-    public SpriteRenderer lintSpriteRenderer;
 
     private Dryer dryer;
     private bool open;
@@ -34,23 +34,23 @@ public class DryerLintTrap : LaundryObject
     }
 
     private void Open() {
-        if (!dryer.lintTrapClean) {
-            lintSpriteRenderer.enabled = true;
+        if (dryer.lintTrapClean) {
+            lintTrapSpriteRenderer.sprite = openCleanSprite;
         }
-        lintTrapSpriteRenderer.sprite = openSprite;
+        else {
+            lintTrapSpriteRenderer.sprite = openDirtySprite;
+        }
         open = true;
         startButton.pressed = true;
     }
 
     private void Clean() {
         dryer.CleanLintTrap();
-        lintSpriteRenderer.enabled = false;
     }
 
     private void Close() {
         lintTrapSpriteRenderer.sprite = closedSprite;
         open = false;
         startButton.pressed = false;
-        lintSpriteRenderer.enabled = false;
     }
 }
