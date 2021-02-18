@@ -743,7 +743,7 @@ PrefabInstance:
     - target: {fileID: -5144792740164456713, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 2087776418}
+      objectReference: {fileID: 0}
     - target: {fileID: 5732389220405168527, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: m_Offset.y
       value: -0.1209144
@@ -1250,11 +1250,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1272675923 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7502809973228414755, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
-  m_PrefabInstance: {fileID: 660100259}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1489387537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.19
+      value: -4.95
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 58f8a7ea2cd8e10439e81b564969940d, type: 3}
       propertyPath: m_LocalPosition.y
