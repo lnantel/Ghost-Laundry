@@ -9,6 +9,9 @@ public class LaundryIroningBoard : LaundryObject
 
     public Collider2D boardTriggerCollider;
     public SpriteRenderer garmentSpriteRenderer;
+    public Sprite unpressedGarmentSprite;
+    public Sprite pressedGarmentSprite;
+    public Sprite ruinedGarmentSprite;
 
     public Garment garmentOnBoard;
     private float pressingProgress;
@@ -43,13 +46,13 @@ public class LaundryIroningBoard : LaundryObject
             pressingProgress += Time.fixedDeltaTime / garmentOnBoard.fabric.ironingTime;
             Debug.Log("Ironing progress: " + pressingProgress);
         }
-        else if (graceTimer < gracePeriod) {
+        else if (graceTimer < gracePeriod && !garmentOnBoard.ruined) {
             //Grace period
             steam = SteamState.Off;
             graceTimer += Time.fixedDeltaTime;
             Debug.Log("Grace");
         }
-        else {
+        else if(!garmentOnBoard.ruined) {
             //Burn
             steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
@@ -59,12 +62,14 @@ public class LaundryIroningBoard : LaundryObject
         //If the garment was steamed long enough, it becomes pressed
         if (pressingProgress >= 1.0f && !garmentOnBoard.pressed) {
             garmentOnBoard.pressed = true;
+            garmentSpriteRenderer.sprite = pressedGarmentSprite;
             Debug.Log("Ironing done!");
         }
 
         //If the garment was burned too much, it becomes ruined
         if (burnTimer > burnTime && !garmentOnBoard.ruined) {
             garmentOnBoard.ruined = true;
+            garmentSpriteRenderer.sprite = ruinedGarmentSprite;
             Debug.Log("Garment ruined!");
         }
 
@@ -77,7 +82,15 @@ public class LaundryIroningBoard : LaundryObject
             garmentOnBoard = laundryGarment.garment;
             Destroy(laundryGarment.gameObject);
             garmentSpriteRenderer.enabled = true;
+            if (garmentOnBoard.ruined)
+                garmentSpriteRenderer.sprite = ruinedGarmentSprite;
+            else if (garmentOnBoard.pressed)
+                garmentSpriteRenderer.sprite = pressedGarmentSprite;
+            else
+                garmentSpriteRenderer.sprite = unpressedGarmentSprite;
             pressingProgress = 0.0f;
+            burnTimer = 0.0f;
+            graceTimer = 0.0f;
         }
     }
 

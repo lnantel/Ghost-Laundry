@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Iron : LaundryObject
 {
+    public float boardHeight;
+
     public LaundryIroningBoard laundryIroningBoard;
 
     public SpriteRenderer ironSpriteRenderer;
-    public Sprite spriteIronOn;
-    public Sprite spriteIronOff;
+    public Sprite spriteIronStandingOn;
+    public Sprite spriteIronStandingOff;
+    public Sprite spriteIronFlatOn;
+    public Sprite spriteIronFlatOff;
+
+    public ParticleSystem steam;
+    public ParticleSystem smoke;
 
     private Rigidbody2D rb;
     private IronState state;
@@ -17,36 +24,48 @@ public class Iron : LaundryObject
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        steam.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
     public override void Drag(Vector2 cursorPosition) {
+        if (onIroningBoard) {
+            if (Mathf.Abs(cursorPosition.y - rb.position.y) > 2.0f)
+                TakeOffIroningBoard();
+        }
         rb.MovePosition(cursorPosition);
         rb.velocity = Vector3.zero; //Stop gravity from accumulating while the object is grabbed
     }
 
-    //TODO: Set up a LaundryButton on the Iron to turn it on/off
     public void TogglePower() {
         if (state == IronState.Off) {
             state = IronState.On;
-            ironSpriteRenderer.sprite = spriteIronOn;
+            ironSpriteRenderer.sprite = spriteIronStandingOn;
         }
-        else {
+        else if(state == IronState.On) {
             state = IronState.Off;
-            ironSpriteRenderer.sprite = spriteIronOff;
+            ironSpriteRenderer.sprite = spriteIronStandingOff;
         }
     }
 
     public void PlaceOnIroningBoard() {
         onIroningBoard = true;
-        transform.position = new Vector3(transform.position.x, laundryIroningBoard.transform.position.y);
-        rb.rotation = 90.0f;
+        transform.position = new Vector3(transform.position.x, boardHeight);
+        //rb.rotation = 90.0f;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        if (state == IronState.On)
+            ironSpriteRenderer.sprite = spriteIronFlatOn;
+        else
+            ironSpriteRenderer.sprite = spriteIronFlatOff;
     }
 
     public void TakeOffIroningBoard() {
         onIroningBoard = false;
-        rb.rotation = 0.0f;
+        //rb.rotation = 0.0f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        if (state == IronState.On)
+            ironSpriteRenderer.sprite = spriteIronStandingOn;
+        else
+            ironSpriteRenderer.sprite = spriteIronStandingOff;
     }
 
     private void FixedUpdate() {
@@ -55,6 +74,19 @@ public class Iron : LaundryObject
         }
         else {
             steamState = SteamState.Off;
+        }
+
+        if (steamState == SteamState.Steam && !steam.isEmitting) {
+            steam.Play(true);
+            smoke.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+        if (steamState == SteamState.Burn && !smoke.isEmitting) {
+            smoke.Play(true);
+            steam.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+        if (steamState == SteamState.Off && (steam.isEmitting || smoke.isEmitting)) {
+            steam.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            smoke.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
     }
 }

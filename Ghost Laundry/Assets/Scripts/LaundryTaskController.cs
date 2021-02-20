@@ -55,6 +55,8 @@ public class LaundryTaskController : MonoBehaviour
         LaundryBasket.TakeOutGarment -= GrabGarmentFromContainer;
         WashingMachineDoor.GarmentGrabbed -= GrabGarmentFromContainer;
         DryerDoor.GarmentGrabbed -= GrabGarmentFromContainer;
+        LaundryIroningBoard.GarmentGrabbed -= GrabGarmentFromContainer;
+
     }
 
     private IEnumerator Initialize() {
@@ -126,16 +128,23 @@ public class LaundryTaskController : MonoBehaviour
     private LaundryObject GetTarget() {
         //Attempts to find a LaundryObject or Basket under the cursor
         //Priority is given to LaundryObjects
-        int layerMask = LayerMask.GetMask("LaundryObject");
+        int layerMask = LayerMask.GetMask("LaundryGarment");
         Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
         if (col != null) {
             return col.GetComponentInParent<LaundryObject>();
         }
         else {
-            layerMask = LayerMask.GetMask("Basket");
+            layerMask = LayerMask.GetMask("LaundryObject");
             col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
             if (col != null) {
                 return col.GetComponentInParent<LaundryObject>();
+            }
+            else {
+                layerMask = LayerMask.GetMask("Basket");
+                col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+                if (col != null) {
+                    return col.GetComponentInParent<LaundryObject>();
+                }
             }
         }
         return null;
@@ -192,7 +201,7 @@ public class LaundryTaskController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void GrabGarmentFromContainer(Garment garment) {
+    private void GrabGarmentFromContainer(Garment garment) { 
         GameObject obj = Instantiate(LaundryGarmentPrefab, cursor.transform.position, cursor.transform.rotation, activeWorkStation.laundryTaskArea.transform);
         LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
         laundryGarment.SetGarment(garment);

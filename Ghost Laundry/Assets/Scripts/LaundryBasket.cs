@@ -43,8 +43,9 @@ public class LaundryBasket : LaundryObject
     public override void OnGrab() {
         if (basketCollider.enabled) {
             Garment garment = basket.RemoveTopGarment();
-            if (garment != null && TakeOutGarment != null)
+            if (garment != null && TakeOutGarment != null) {
                 TakeOutGarment(garment);
+            }
             else
                 GrabEmpty();
         }

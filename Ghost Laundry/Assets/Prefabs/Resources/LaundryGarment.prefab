@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8682779000148993899}
   - component: {fileID: 8682779000148993892}
   - component: {fileID: 8682779000148993893}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: LaundryGarment
   m_TagString: Untagged
   m_Icon: {fileID: 0}

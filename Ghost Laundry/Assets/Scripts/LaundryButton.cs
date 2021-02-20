@@ -42,8 +42,8 @@ public class LaundryButton : LaundryObject
     public virtual void Press() {
         OnButtonPressed.Invoke();
         pressed = true;
-        spriteRenderer.sprite = pressedSprite;
         if(pressedSprite != null)
+            spriteRenderer.sprite = pressedSprite;
         if (springsBack) {
             StartCoroutine(springBack());
         }
@@ -53,7 +53,8 @@ public class LaundryButton : LaundryObject
         if (pressed) {
             pressed = false;
             OnButtonUnpressed.Invoke();
-            spriteRenderer.sprite = unpressedSprite;
+            if(unpressedSprite != null)
+                spriteRenderer.sprite = unpressedSprite;
         }
     }
 
