@@ -252,7 +252,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5275862, y: 0.19172311}
+  m_Offset: {x: -0.5275862, y: 0.17585039}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -263,7 +263,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88648796, y: 1.3656003}
+  m_Size: {x: 0.88648796, y: 1.4875834}
   m_EdgeRadius: 0
 --- !u!1 &4050527473243874602
 GameObject:
@@ -872,6 +872,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4191437461436822534}
     m_Modifications:
+    - target: {fileID: 45799324910352326, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873204261300163329, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873204261300163329, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873204261300163329, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5843168123173656981, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55999994
@@ -976,6 +992,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5843168124203040255, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843168124203040255, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: RotationModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843168124203040255, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: RotationModule.curve.scalar
+      value: 0.5235988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
 --- !u!4 &557101231238666981 stripped
@@ -1075,6 +1103,22 @@ PrefabInstance:
     - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.1790499
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.20257005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0059385635
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.18410116
       objectReference: {fileID: 0}
     - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_SortingLayer
