@@ -130,6 +130,10 @@ public class LaundryGarment : LaundryObject
         UpdateAppearance();
     }
 
+    private void OnEnable() {
+        UpdateAppearance();
+    }
+
     private void UpdateAppearance() {
         if (spriteRenderer != null && foldingSprites != null && spriteMask != null) {
             if (spriteRenderer != null) {

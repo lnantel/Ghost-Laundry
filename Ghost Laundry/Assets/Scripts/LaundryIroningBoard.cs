@@ -39,7 +39,7 @@ public class LaundryIroningBoard : LaundryObject
         float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
         Debug.Log("Iron speed: " + ironSpeed);
 
-        if(ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.Pressed && !garmentOnBoard.Ruined) {
+        if(ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.Pressed && !garmentOnBoard.Ruined && garmentOnBoard.Clean && garmentOnBoard.Dry) {
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
@@ -52,7 +52,7 @@ public class LaundryIroningBoard : LaundryObject
             graceTimer += Time.fixedDeltaTime;
             Debug.Log("Grace");
         }
-        else if(!garmentOnBoard.Ruined) {
+        else if(!garmentOnBoard.Ruined && garmentOnBoard.Dry) {
             //Burn
             steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
