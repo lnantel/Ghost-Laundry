@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fabric
 {
     public string name;
+    public Sprite pattern;
 
     public float ironingTime;
 
@@ -13,16 +14,23 @@ public class Fabric
             case FabricType.Cotton:
                 name = "Cotton";
                 ironingTime = 3.0f;
+                pattern = null;
                 break;
             case FabricType.Wool:
                 name = "Wool";
                 ironingTime = 3.0f;
+                pattern = Resources.Load<Sprite>("Fabric Patterns/test_pattern");
                 break;
             case FabricType.Synthetic:
                 name = "Synthetic";
                 ironingTime = 3.0f;
+                pattern = Resources.Load<Sprite>("Fabric Patterns/test_pattern");
                 break;
         }
+    }
+
+    public bool Equals(Fabric other) {
+        return name.Equals(other.name);
     }
 }
 

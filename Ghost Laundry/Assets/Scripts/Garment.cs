@@ -10,14 +10,63 @@ public class Garment
     public string clientName; //TODO: Client class
 
     //States
-    public bool clean;
-    public bool dry;
-    public bool pressed;
-    public bool folded;
-    public bool ruined;
+    protected bool clean;
+    protected bool dry;
+    protected bool pressed;
+    protected bool folded;
+    protected bool ruined;
 
     public int foldingSteps;
     public int currentFoldingStep;
+
+    protected GameObject laundryGarmentPrefab;
+
+    public bool Clean { get => GetClean(); set => SetClean(value); }
+    public bool Dry { get => GetDry(); set => SetDry(value); }
+    public bool Pressed { get => GetPressed(); set => SetPressed(value); }
+    public bool Folded { get => GetFolded(); set => SetFolded(value); }
+    public bool Ruined { get => GetRuined(); set => SetRuined(value); }
+
+    //Accessors
+    protected virtual bool GetClean() {
+        return clean;
+    }
+
+    protected virtual void SetClean(bool value) {
+        clean = value;
+    }
+
+    protected virtual bool GetDry() {
+        return dry;
+    }
+
+    protected virtual void SetDry(bool value) {
+        dry = value;
+    }
+
+    protected virtual bool GetPressed() {
+        return pressed;
+    }
+
+    protected virtual void SetPressed(bool value) {
+        pressed = value;
+    }
+
+    protected virtual bool GetFolded() {
+        return folded;
+    }
+
+    protected virtual void SetFolded(bool value) {
+        folded = value;
+    }
+
+    protected virtual bool GetRuined() {
+        return ruined;
+    }
+
+    protected virtual void SetRuined(bool value) {
+        ruined = value;
+    }
 
     public Garment(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool ruined = false) {
         this.fabric = fabric;
@@ -29,12 +78,15 @@ public class Garment
         this.ruined = ruined;
 
         clientName = "John Johnson";
-        foldingSteps = 3;
         currentFoldingStep = 0;
-        size = 1; //TODO: Add to constructor
+
+        //Overridden by garment category
+        foldingSteps = 3;
+        size = 1;
+        laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
     }
 
-    public void Fold() {
+    public virtual void Fold() {
         currentFoldingStep = (currentFoldingStep + 1) % (foldingSteps + 1);
     }
 
@@ -45,7 +97,26 @@ public class Garment
     public static Garment GetRandomGarment() {
         Fabric randomFabric = new Fabric((FabricType)Random.Range(0, 3));
         Color randomColor = GarmentColor.RandomColor();
-        return new Garment(randomFabric, randomColor);
+        int type = Random.Range(0, 4);
+        switch (type) {
+            case 0:
+                return new GarmentTop(randomFabric, randomColor);
+            case 1:
+                return new GarmentPants(randomFabric, randomColor);
+            case 2:
+                return new GarmentUnderwear(randomFabric, randomColor);
+            case 3:
+                return new GarmentSock(randomFabric, randomColor);
+            default:
+                return new Garment(randomFabric, randomColor);
+        }
+    }
+
+    public virtual LaundryGarment CreateLaundryGarment(Vector3 position, Quaternion rotation, Transform parent) {
+        GameObject obj = GameObject.Instantiate(laundryGarmentPrefab, position, rotation, parent);
+        LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
+        laundryGarment.garment = this;
+        return laundryGarment;
     }
 }
 

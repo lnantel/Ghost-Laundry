@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 4708796221510253372}
   - component: {fileID: -2785813503789169210}
   - component: {fileID: 1339586793502687252}
+  - component: {fileID: 1165784098670183694}
   m_Layer: 14
   m_Name: LaundryBasket
   m_TagString: Untagged
@@ -266,6 +267,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!210 &1165784098670183694
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718611636948780301}
+  m_Enabled: 1
+  m_SortingLayerID: 1774020819
+  m_SortingLayer: 3
+  m_SortingOrder: 0
 --- !u!1 &7558291964440188047
 GameObject:
   m_ObjectHideFlags: 0
