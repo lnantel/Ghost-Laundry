@@ -17,6 +17,10 @@ public class LaundryGarment : LaundryObject
     public SpriteRenderer dirtyRenderer;
     public SpriteRenderer wetRenderer;
 
+    public ParticleSystem flies;
+    public ParticleSystem waterDrops;
+    public ParticleSystem sparkles;
+
     private Rigidbody2D rb;
     private LaundryTag laundryTag;
     private bool hovering;
@@ -128,12 +132,42 @@ public class LaundryGarment : LaundryObject
 
     private void UpdateAppearance() {
         if (spriteRenderer != null && foldingSprites != null && spriteMask != null) {
-            spriteRenderer.sprite = foldingSprites[garment.currentFoldingStep];
-            spriteMask.sprite = foldingSprites[garment.currentFoldingStep];
-            spriteRenderer.color = garment.color;
-            fabricRenderer.sprite = garment.fabric.pattern;
-            dirtyRenderer.enabled = !garment.Clean;
-            wetRenderer.enabled = !garment.Dry;
+            if (spriteRenderer != null) {
+                spriteRenderer.sprite = foldingSprites[garment.currentFoldingStep];
+                spriteRenderer.color = garment.color;
+            }
+
+            if(spriteMask != null) {
+                spriteMask.sprite = foldingSprites[garment.currentFoldingStep];
+            }
+
+            if(fabricRenderer != null) {
+                fabricRenderer.sprite = garment.fabric.pattern;
+            }
+
+            if(dirtyRenderer != null) {
+                dirtyRenderer.enabled = !garment.Clean;
+            }
+
+            if (flies != null) {
+                if (!garment.Clean && !flies.isPlaying) flies.Play();
+                if (garment.Clean && flies.isEmitting) flies.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
+
+            if(wetRenderer != null) {
+                wetRenderer.enabled = !garment.Dry;
+            }
+
+            if (waterDrops != null) {
+                if (!garment.Dry && !waterDrops.isPlaying) waterDrops.Play();
+                if (garment.Dry && waterDrops.isEmitting) waterDrops.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
+
+            if(sparkles != null) {
+                if (garment.Pressed && !sparkles.isPlaying) sparkles.Play();
+                if(!garment.Pressed && sparkles.isEmitting) sparkles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
+
             for (int i = 0; i < colliders.Length; i++) {
                 colliders[i].enabled = (i == garment.currentFoldingStep);
             }
