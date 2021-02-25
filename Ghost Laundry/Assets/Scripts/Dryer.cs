@@ -98,7 +98,7 @@ public class Dryer : WorkStation
         yield return new WaitForSeconds(cycleTime);
 
         foreach (Garment garment in contents) {
-            garment.dry = lintTrapClean; //garments are dried if the lint trap is clean
+            garment.Dry = lintTrapClean; //garments are dried if the lint trap is clean
         }
 
         if(contents.Count > 0)

@@ -103,7 +103,7 @@ public class WashingMachine : WorkStation
         bool containsColoredGarments = false;
 
         foreach (Garment garment in contents) {
-            garment.dry = false;
+            garment.Dry = false;
             if (garment.Colored()) containsColoredGarments = true;
         }
 
@@ -112,11 +112,11 @@ public class WashingMachine : WorkStation
         foreach (Garment garment in contents) {
             if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {
                 garment.color = GarmentColor.Pink;
-                garment.ruined = true;
+                garment.Ruined = true;
             }
 
             if (Detergent) {
-                garment.clean = true;
+                garment.Clean = true;
             }
         }
         Detergent = false;

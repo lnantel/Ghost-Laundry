@@ -55,14 +55,18 @@ public class LaundryGarment : LaundryObject
                 if(garment.currentFoldingStep == 0) {
                     //Check for a second, nearby, identical sock
                     int layerMask = LayerMask.GetMask("LaundryGarment");
-                    Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 1.0f, layerMask);
+                    Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 0.5f, layerMask);
                     foreach (Collider2D col in cols) {
-                        LaundryGarment laundryGarment = col.gameObject.GetComponent<LaundryGarment>();
-                        if (laundryGarment.GetInstanceID() == GetInstanceID()) break;       //The sock can't pair with itself
-                        if (laundryGarment.garment is GarmentSock) {                        //If the other garment is also a sock
-                            if (laundryGarment.garment.clientName == garment.clientName     //belonging to the same customer
-                                   && laundryGarment.garment.color == garment.color         //of the same color
-                                   && laundryGarment.garment.fabric == garment.fabric) {    //and the same fabric
+                        LaundryGarment laundryGarment = col.gameObject.GetComponentInParent<LaundryGarment>();
+                        if (laundryGarment != null && laundryGarment.GetInstanceID() == GetInstanceID()) {
+                            continue;       //The sock can't pair with itself.
+                        }
+                        if (laundryGarment != null && laundryGarment.garment is GarmentSock) {                        
+                            //If the other garment is also a sock
+                            if (laundryGarment.garment.clientName.Equals(garment.clientName)     //belonging to the same customer
+                                   && laundryGarment.garment.color.Equals(garment.color)         //of the same color
+                                   && laundryGarment.garment.fabric.Equals(garment.fabric)       //and the same fabric
+                                   && laundryGarment.garment.currentFoldingStep == 0) {     //and not already paired
 
                                 ((GarmentSock)garment).PairUp((GarmentSock)laundryGarment.garment);
                                 Destroy(laundryGarment.gameObject);
@@ -71,8 +75,12 @@ public class LaundryGarment : LaundryObject
                         }
                     }
                 }
-                else if(garment.currentFoldingStep == 1) { 
+                else if(garment.currentFoldingStep == 1) {
+                    //Separate the socks
+                    GarmentSock otherSock = ((GarmentSock)garment).SeparatePair();
 
+                    //Instantiate a LaundryGarment for the other sock
+                    LaundryGarment otherLaundryGarment = otherSock.CreateLaundryGarment(transform.position, transform.rotation, transform.parent);
                 }
             }
             else {

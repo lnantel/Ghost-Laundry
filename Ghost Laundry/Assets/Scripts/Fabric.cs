@@ -24,6 +24,10 @@ public class Fabric
                 break;
         }
     }
+
+    public bool Equals(Fabric other) {
+        return name.Equals(other.name);
+    }
 }
 
 public enum FabricType {

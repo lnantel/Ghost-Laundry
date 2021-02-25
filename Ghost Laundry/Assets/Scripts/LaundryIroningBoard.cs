@@ -39,20 +39,20 @@ public class LaundryIroningBoard : LaundryObject
         float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
         Debug.Log("Iron speed: " + ironSpeed);
 
-        if(ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.pressed && !garmentOnBoard.ruined) {
+        if(ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.Pressed && !garmentOnBoard.Ruined) {
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
             pressingProgress += Time.fixedDeltaTime / garmentOnBoard.fabric.ironingTime;
             Debug.Log("Ironing progress: " + pressingProgress);
         }
-        else if (graceTimer < gracePeriod && !garmentOnBoard.ruined) {
+        else if (graceTimer < gracePeriod && !garmentOnBoard.Ruined) {
             //Grace period
             steam = SteamState.Off;
             graceTimer += Time.fixedDeltaTime;
             Debug.Log("Grace");
         }
-        else if(!garmentOnBoard.ruined) {
+        else if(!garmentOnBoard.Ruined) {
             //Burn
             steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
@@ -60,15 +60,15 @@ public class LaundryIroningBoard : LaundryObject
         }
 
         //If the garment was steamed long enough, it becomes pressed
-        if (pressingProgress >= 1.0f && !garmentOnBoard.pressed) {
-            garmentOnBoard.pressed = true;
+        if (pressingProgress >= 1.0f && !garmentOnBoard.Pressed) {
+            garmentOnBoard.Pressed = true;
             garmentSpriteRenderer.sprite = pressedGarmentSprite;
             Debug.Log("Ironing done!");
         }
 
         //If the garment was burned too much, it becomes ruined
-        if (burnTimer > burnTime && !garmentOnBoard.ruined) {
-            garmentOnBoard.ruined = true;
+        if (burnTimer > burnTime && !garmentOnBoard.Ruined) {
+            garmentOnBoard.Ruined = true;
             garmentSpriteRenderer.sprite = ruinedGarmentSprite;
             Debug.Log("Garment ruined!");
         }
@@ -82,9 +82,9 @@ public class LaundryIroningBoard : LaundryObject
             garmentOnBoard = laundryGarment.garment;
             Destroy(laundryGarment.gameObject);
             garmentSpriteRenderer.enabled = true;
-            if (garmentOnBoard.ruined)
+            if (garmentOnBoard.Ruined)
                 garmentSpriteRenderer.sprite = ruinedGarmentSprite;
-            else if (garmentOnBoard.pressed)
+            else if (garmentOnBoard.Pressed)
                 garmentSpriteRenderer.sprite = pressedGarmentSprite;
             else
                 garmentSpriteRenderer.sprite = unpressedGarmentSprite;
