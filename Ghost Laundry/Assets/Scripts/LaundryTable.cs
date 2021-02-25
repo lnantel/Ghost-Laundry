@@ -22,16 +22,17 @@ public class LaundryTable : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        LaundryGarment obj = collision.GetComponent<LaundryGarment>();
-        if(obj != null) {
-            obj.OnFoldingSurface = true;
+        //LaundryGarment obj = collision.GetComponent<LaundryGarment>();
+        if(collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
+            LaundryGarment laundryGarment = collision.gameObject.GetComponentInParent<LaundryGarment>();
+            laundryGarment.OnFoldingSurface = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        LaundryGarment obj = collision.GetComponent<LaundryGarment>();
-        if (obj != null) {
-            obj.OnFoldingSurface = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
+            LaundryGarment laundryGarment = collision.gameObject.GetComponentInParent<LaundryGarment>();
+            laundryGarment.OnFoldingSurface = false;
         }
     }
 }

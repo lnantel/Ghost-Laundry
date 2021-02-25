@@ -8,6 +8,8 @@ public class LaundryGarment : LaundryObject
     public static Action<LaundryGarment> Released;
 
     public Garment garment;
+    public Sprite[] foldingSprites;
+    public Collider2D[] colliders;
 
     public bool OnFoldingSurface;
 
@@ -27,7 +29,7 @@ public class LaundryGarment : LaundryObject
         laundryTag = GetComponentInChildren<LaundryTag>();
         lastPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null) spriteRenderer.color = garment.color;
+        UpdateAppearance();
     }
 
     private void LateUpdate() {
@@ -49,8 +51,34 @@ public class LaundryGarment : LaundryObject
     public override void OnInteract() {
         inspected = false;
         if (OnFoldingSurface) {
-            garment.Fold();
-            Debug.Log("Garment fold step: " + garment.currentFoldingStep);
+            if(garment is GarmentSock) {
+                if(garment.currentFoldingStep == 0) {
+                    //Check for a second, nearby, identical sock
+                    int layerMask = LayerMask.GetMask("LaundryGarment");
+                    Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 1.0f, layerMask);
+                    foreach (Collider2D col in cols) {
+                        LaundryGarment laundryGarment = col.gameObject.GetComponent<LaundryGarment>();
+                        if (laundryGarment.GetInstanceID() == GetInstanceID()) break;       //The sock can't pair with itself
+                        if (laundryGarment.garment is GarmentSock) {                        //If the other garment is also a sock
+                            if (laundryGarment.garment.clientName == garment.clientName     //belonging to the same customer
+                                   && laundryGarment.garment.color == garment.color         //of the same color
+                                   && laundryGarment.garment.fabric == garment.fabric) {    //and the same fabric
+
+                                ((GarmentSock)garment).PairUp((GarmentSock)laundryGarment.garment);
+                                Destroy(laundryGarment.gameObject);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if(garment.currentFoldingStep == 1) { 
+
+                }
+            }
+            else {
+                garment.Fold();
+            }
+            UpdateAppearance();
         }
     }
 
@@ -81,6 +109,16 @@ public class LaundryGarment : LaundryObject
 
     public void SetGarment(Garment garment) {
         this.garment = garment;
-        if (spriteRenderer != null) spriteRenderer.color = garment.color;
+        UpdateAppearance();
+    }
+
+    private void UpdateAppearance() {
+        if (spriteRenderer != null && foldingSprites != null) {
+            spriteRenderer.sprite = foldingSprites[garment.currentFoldingStep];
+            spriteRenderer.color = garment.color;
+            for (int i = 0; i < colliders.Length; i++) {
+                colliders[i].enabled = (i == garment.currentFoldingStep);
+            }
+        }
     }
 }

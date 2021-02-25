@@ -19,6 +19,8 @@ public class Garment
     public int foldingSteps;
     public int currentFoldingStep;
 
+    protected GameObject laundryGarmentPrefab;
+
     public Garment(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool ruined = false) {
         this.fabric = fabric;
         this.color = color;
@@ -34,6 +36,7 @@ public class Garment
         //Overridden by garment category
         foldingSteps = 3;
         size = 1;
+        laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
     }
 
     public virtual void Fold() {
@@ -47,7 +50,26 @@ public class Garment
     public static Garment GetRandomGarment() {
         Fabric randomFabric = new Fabric((FabricType)Random.Range(0, 3));
         Color randomColor = GarmentColor.RandomColor();
-        return new Garment(randomFabric, randomColor);
+        int type = Random.Range(0, 4);
+        switch (type) {
+            case 0:
+                return new GarmentTop(randomFabric, randomColor);
+            case 1:
+                return new GarmentPants(randomFabric, randomColor);
+            case 2:
+                return new GarmentUnderwear(randomFabric, randomColor);
+            case 3:
+                return new GarmentSock(randomFabric, randomColor);
+            default:
+                return new Garment(randomFabric, randomColor);
+        }
+    }
+
+    public virtual LaundryGarment CreateLaundryGarment(Vector3 position, Quaternion rotation, Transform parent) {
+        GameObject obj = GameObject.Instantiate(laundryGarmentPrefab, position, rotation, parent);
+        LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
+        laundryGarment.garment = this;
+        return laundryGarment;
     }
 }
 

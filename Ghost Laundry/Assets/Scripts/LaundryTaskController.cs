@@ -201,10 +201,8 @@ public class LaundryTaskController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void GrabGarmentFromContainer(Garment garment) { 
-        GameObject obj = Instantiate(LaundryGarmentPrefab, cursor.transform.position, cursor.transform.rotation, activeWorkStation.laundryTaskArea.transform);
-        LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
-        laundryGarment.SetGarment(garment);
+    private void GrabGarmentFromContainer(Garment garment) {
+        LaundryGarment laundryGarment = garment.CreateLaundryGarment(cursor.transform.position, cursor.transform.rotation, activeWorkStation.laundryTaskArea.transform);
         grabbedObject = laundryGarment;
     }
 }
