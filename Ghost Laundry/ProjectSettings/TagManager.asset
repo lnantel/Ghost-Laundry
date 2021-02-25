@@ -50,6 +50,12 @@ TagManager:
   - name: Entities
     uniqueID: 2796963091
     locked: 0
+  - name: LaundryBasket
+    uniqueID: 1774020819
+    locked: 0
+  - name: LaundryGarment
+    uniqueID: 2155010703
+    locked: 0
   - name: UI
     uniqueID: 1446689043
     locked: 0
