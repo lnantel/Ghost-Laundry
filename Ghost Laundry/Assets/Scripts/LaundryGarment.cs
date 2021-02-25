@@ -13,12 +13,17 @@ public class LaundryGarment : LaundryObject
 
     public bool OnFoldingSurface;
 
+    public SpriteRenderer fabricRenderer;
+    public SpriteRenderer dirtyRenderer;
+    public SpriteRenderer wetRenderer;
+
     private Rigidbody2D rb;
     private LaundryTag laundryTag;
     private bool hovering;
     private bool inspected;
     private Vector2 lastPosition;
     private SpriteRenderer spriteRenderer;
+    private SpriteMask spriteMask;
     
     private void Start() {
         if(garment == null) {
@@ -29,6 +34,7 @@ public class LaundryGarment : LaundryObject
         laundryTag = GetComponentInChildren<LaundryTag>();
         lastPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteMask = GetComponent<SpriteMask>();
         UpdateAppearance();
     }
 
@@ -121,9 +127,13 @@ public class LaundryGarment : LaundryObject
     }
 
     private void UpdateAppearance() {
-        if (spriteRenderer != null && foldingSprites != null) {
+        if (spriteRenderer != null && foldingSprites != null && spriteMask != null) {
             spriteRenderer.sprite = foldingSprites[garment.currentFoldingStep];
+            spriteMask.sprite = foldingSprites[garment.currentFoldingStep];
             spriteRenderer.color = garment.color;
+            fabricRenderer.sprite = garment.fabric.pattern;
+            dirtyRenderer.enabled = !garment.Clean;
+            wetRenderer.enabled = !garment.Dry;
             for (int i = 0; i < colliders.Length; i++) {
                 colliders[i].enabled = (i == garment.currentFoldingStep);
             }
