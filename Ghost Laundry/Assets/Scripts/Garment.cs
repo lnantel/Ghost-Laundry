@@ -29,12 +29,14 @@ public class Garment
         this.ruined = ruined;
 
         clientName = "John Johnson";
-        foldingSteps = 3;
         currentFoldingStep = 0;
-        size = 1; //TODO: Add to constructor
+
+        //Overridden by garment category
+        foldingSteps = 3;
+        size = 1;
     }
 
-    public void Fold() {
+    public virtual void Fold() {
         currentFoldingStep = (currentFoldingStep + 1) % (foldingSteps + 1);
     }
 
