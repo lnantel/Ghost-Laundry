@@ -7,7 +7,7 @@ public class Garment
     public Fabric fabric;
     public Color color;
     public int size;
-    public string customerID;
+    public int customerID;
 
     //States
     protected bool clean;
@@ -77,7 +77,7 @@ public class Garment
         this.folded = folded;
         this.ruined = ruined;
 
-        customerID = "John Johnson";
+        customerID = 0;
         currentFoldingStep = 0;
 
         //Overridden by garment category

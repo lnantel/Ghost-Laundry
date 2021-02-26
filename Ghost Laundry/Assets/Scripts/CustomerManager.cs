@@ -9,11 +9,12 @@ public class CustomerManager : MonoBehaviour
 
     public static Action<Customer> CustomerSpawned;
     public static Action<LaundromatBasket> CustomerServed; //Called when the player picks up a customer's laundry basket from the counter
-    public static Action CustomerLeft;
+    public static Action<Customer> CustomerLeft;
     public static Action<CustomerSpot, Customer> SpotAssigned;
 
     public Transform CustomerSpawnPoint;
     public Transform Entrance;
+    public Transform PickUpPosition;
     public CustomerSpot[] CounterSpots;
     public CustomerSpot[] WaitingSpots;
     public CustomerSpot[] QueueSpots;
@@ -22,7 +23,7 @@ public class CustomerManager : MonoBehaviour
     public float CustomerSpawnDelay;
 
     public int CustomerCapacity;
-    private int customersInLaundromat;
+    public List<Customer> customersInLaundromat;
 
     private GameObject customerPrefab;
     private float customerSpawningTimer;
@@ -34,7 +35,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void Start() {
-        customersInLaundromat = 0;
+        customersInLaundromat = new List<Customer>();
         customerPrefab = (GameObject)Resources.Load("Customer");
         ResetTicketNumber();
         SpawnCustomer();
@@ -65,9 +66,9 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void SpawnCustomer() {
-        if(customersInLaundromat < CustomerCapacity) {
+        if(customersInLaundromat.Count < CustomerCapacity) {
             Customer customer = Instantiate(customerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
-            customersInLaundromat++;
+            customersInLaundromat.Add(customer);
             customerSpawningTimer = 0;
             if (CustomerSpawned != null) CustomerSpawned(customer);
         }
@@ -77,8 +78,9 @@ public class CustomerManager : MonoBehaviour
         currentTicketNumber = 1;
     }
 
-    private void OnCustomerLeft() {
-        customersInLaundromat--;
+    private void OnCustomerLeft(Customer customer) {
+        customersInLaundromat.Remove(customer);
+        Destroy(customer.gameObject);
     }
 
     private void Update() {

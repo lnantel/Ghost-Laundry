@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour
     //public string firstname;
     //public string lastname;
     public int ticketNumber;
+    public List<Garment> garments;
     public Basket basket;
 
     public float MaximumWaitingTime;
@@ -31,6 +32,7 @@ public class Customer : MonoBehaviour
 
     private GameObject laundromatBasketPrefab;
     private LaundromatBasket basketOnCounter;
+    private LaundromatBag bagOnCounter;
 
     private void Start() {
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
@@ -48,13 +50,18 @@ public class Customer : MonoBehaviour
 
         //Generate random laundry
         basket = new Basket();
+        garments = new List<Garment>();
+
         int garmentCount = Random.Range(5, 8);
         for(int i = 0; i < garmentCount; i++) {
             Garment garment = Garment.GetRandomGarment();
-            garment.customerID = "#" + ticketNumber.ToString("D3");
+            garment.customerID = ticketNumber;
+            garments.Add(garment);
             basket.AddGarment(garment);
             if(garment is GarmentSock) {
-                basket.AddGarment(new GarmentSock((GarmentSock)garment));
+                GarmentSock otherSock = new GarmentSock((GarmentSock)garment);
+                basket.AddGarment(otherSock);
+                garments.Add(otherSock);
                 i++;
             }
         }
@@ -66,11 +73,13 @@ public class Customer : MonoBehaviour
     private void OnEnable() {
         CustomerManager.CustomerServed += OnCustomerServed;
         CustomerManager.SpotAssigned += OnSpotAssigned;
+        PickUpCounter.BagReadyForPickUp += OnClothesReady;
     }
 
     private void OnDisable() {
         CustomerManager.CustomerServed -= OnCustomerServed;
         CustomerManager.SpotAssigned += OnSpotAssigned;
+        PickUpCounter.BagReadyForPickUp -= OnClothesReady;
     }
 
     private void OnCustomerServed(LaundromatBasket laundromatBasket) {
@@ -83,9 +92,17 @@ public class Customer : MonoBehaviour
 
     private void OnSpotAssigned(CustomerSpot newSpot, Customer customer) {
         if(customer.GetInstanceID() == GetInstanceID()) {
-            spot.Free();
+            if(spot != null) spot.Free();
             spot = newSpot;
             newSpot.customer = this;
+        }
+    }
+
+    private void OnClothesReady(LaundromatBag bag) {
+        if(bag.ticketNumber == ticketNumber) {
+            state = CustomerState.PickingUpBag;
+            spot.Free();
+            bagOnCounter = bag;
         }
     }
 
@@ -98,6 +115,12 @@ public class Customer : MonoBehaviour
     private void RemoveBasketFromCounter() {
         Destroy(basketOnCounter.gameObject);
         basketOnCounter = null;
+    }
+
+    private void PickUpBag() {
+        //TODO: Pay money
+        Destroy(bagOnCounter.gameObject);
+        bagOnCounter = null;
     }
 
     //Returns true when the customer has reached the given destination
@@ -122,32 +145,31 @@ public class Customer : MonoBehaviour
                 if (waitTimer > 0.7f * MaximumWaitingTime) impatient = true;
                 if (waitTimer >= MaximumWaitingTime) {
                     RemoveBasketFromCounter();
+                    spot.Free();
                     state = CustomerState.Ragequitting;
                 } 
                 break;
             case CustomerState.WaitingForClothes:
                 MoveTowards(spot.position);
-                //TODO: Detect when it's time to go pick up bag
                 break;
             case CustomerState.PickingUpBag:
-                if (MoveTowards(spot.position)) {
-                    RemoveBasketFromCounter();
+                if (MoveTowards(CustomerManager.instance.PickUpPosition.position)) {
+                    PickUpBag();
                     state = CustomerState.Leaving;
                 }
                 break;
             case CustomerState.Leaving:
-                if (MoveTowards(spot.position)) {
+                if (MoveTowards(CustomerManager.instance.Entrance.position)) {
                     state = CustomerState.HasLeft;
                 }
                 break;
             case CustomerState.Ragequitting:
-                if (MoveTowards(spot.position)) {
+                if (MoveTowards(CustomerManager.instance.Entrance.position)) {
                     state = CustomerState.HasLeft;
                 }
                 break;
             case CustomerState.HasLeft:
-                if(CustomerManager.CustomerLeft != null) CustomerManager.CustomerLeft();
-                Destroy(gameObject);
+                CustomerManager.CustomerLeft(this);
                 break;
         }
     }
