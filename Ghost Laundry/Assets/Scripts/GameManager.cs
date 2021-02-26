@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public bool paused { get; private set; }
 
+    private int currentTicketNumber = 1;
+
     private void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
@@ -88,5 +90,9 @@ public class GameManager : MonoBehaviour
     private void HideCursor() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public int GetTicketNumber() {
+        return currentTicketNumber++;
     }
 }

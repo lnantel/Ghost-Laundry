@@ -11,6 +11,21 @@ public class GarmentSock : Garment {
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarmentSock");
     }
 
+    public GarmentSock(GarmentSock other) : base(other){
+        this.fabric = other.fabric;
+        this.color = other.color;
+        this.clean = other.clean;
+        this.dry = other.dry;
+        this.pressed = other.pressed;
+        this.folded = other.folded;
+        this.ruined = other.ruined;
+        this.customerID = other.customerID;
+        this.currentFoldingStep = other.currentFoldingStep;
+        this.size = other.size;
+        this.foldingSteps = other.foldingSteps;
+        this.laundryGarmentPrefab = other.laundryGarmentPrefab;
+    }
+
     //Custom accessors to manage paired socks
     protected override bool GetClean() {
         if (pairedSock == null)

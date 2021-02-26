@@ -73,7 +73,7 @@ public class LaundryGarment : LaundryObject
                         }
                         if (laundryGarment != null && laundryGarment.garment is GarmentSock) {                        
                             //If the other garment is also a sock
-                            if (laundryGarment.garment.clientName.Equals(garment.clientName)     //belonging to the same customer
+                            if (laundryGarment.garment.customerID.Equals(garment.customerID)     //belonging to the same customer
                                    && laundryGarment.garment.color.Equals(garment.color)         //of the same color
                                    && laundryGarment.garment.fabric.Equals(garment.fabric)       //and the same fabric
                                    && laundryGarment.garment.currentFoldingStep == 0) {     //and not already paired

@@ -7,7 +7,7 @@ public class Garment
     public Fabric fabric;
     public Color color;
     public int size;
-    public string clientName; //TODO: Client class
+    public string customerID;
 
     //States
     protected bool clean;
@@ -77,13 +77,28 @@ public class Garment
         this.folded = folded;
         this.ruined = ruined;
 
-        clientName = "John Johnson";
+        customerID = "John Johnson";
         currentFoldingStep = 0;
 
         //Overridden by garment category
         foldingSteps = 3;
         size = 1;
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
+    }
+
+    public Garment(Garment other) {
+        this.fabric = other.fabric;
+        this.color = other.color;
+        this.clean = other.clean;
+        this.dry = other.dry;
+        this.pressed = other.pressed;
+        this.folded = other.folded;
+        this.ruined = other.ruined;
+        this.customerID = other.customerID;
+        this.currentFoldingStep = other.currentFoldingStep;
+        this.size = other.size;
+        this.foldingSteps = other.foldingSteps;
+        this.laundryGarmentPrefab = other.laundryGarmentPrefab;
     }
 
     public virtual void Fold() {
