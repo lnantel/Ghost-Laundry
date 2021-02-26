@@ -19,15 +19,18 @@ public class Customer : MonoBehaviour
 
     public CustomerState state;
 
-    public Transform counter;
-    public Transform door;
-    public Transform waitingSpot;
-    public Transform basketSpot;
+    //TODO: Get these from the CustomerManager instead
+    //public Transform counter;
+    //public Transform door;
+    //public Transform waitingSpot;
+    //public Transform basketSpot;
+
+    public CustomerSpot spot;
 
     public float speed;
-    private Vector3 currentDestination;
 
     private GameObject laundromatBasketPrefab;
+    private LaundromatBasket basketOnCounter;
 
     private void Start() {
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
@@ -37,11 +40,11 @@ public class Customer : MonoBehaviour
         body = Random.Range(0, 3);
         legs = Random.Range(0, 3);
 
-        ticketNumber = GameManager.instance.GetTicketNumber();
+        ticketNumber = CustomerManager.instance.GetTicketNumber();
 
         waitTimer = 0;
 
-        state = CustomerState.Arriving;
+        state = CustomerState.Queueing;
 
         //Generate random laundry
         basket = new Basket();
@@ -55,15 +58,46 @@ public class Customer : MonoBehaviour
                 i++;
             }
         }
+
+        //Upon arrival, a new Customer requests a spot in Queue from the CustomerManager
+        CustomerManager.instance.AssignQueueSpot(this);
+    }
+
+    private void OnEnable() {
+        CustomerManager.CustomerServed += OnCustomerServed;
+        CustomerManager.SpotAssigned += OnSpotAssigned;
+    }
+
+    private void OnDisable() {
+        CustomerManager.CustomerServed -= OnCustomerServed;
+        CustomerManager.SpotAssigned += OnSpotAssigned;
+    }
+
+    private void OnCustomerServed(LaundromatBasket laundromatBasket) {
+        if(state == CustomerState.WaitingForService && laundromatBasket.GetInstanceID() == basketOnCounter.GetInstanceID()) {
+            state = CustomerState.WaitingForClothes;
+            CustomerManager.instance.AssignRandomWaitingSpot(this);
+            impatient = false;
+        }
+    }
+
+    private void OnSpotAssigned(CustomerSpot newSpot, Customer customer) {
+        if(customer.GetInstanceID() == GetInstanceID()) {
+            spot.Free();
+            spot = newSpot;
+            newSpot.customer = this;
+        }
     }
 
     private void PlaceBasketOnCounter() {
-        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, basketSpot.position, basketSpot.rotation).GetComponent<LaundromatBasket>();
+        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, spot.position + Vector3.up, transform.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
+        basketOnCounter = laundromatBasket;
     }
 
     private void RemoveBasketFromCounter() {
-
+        Destroy(basketOnCounter.gameObject);
+        basketOnCounter = null;
     }
 
     //Returns true when the customer has reached the given destination
@@ -74,8 +108,11 @@ public class Customer : MonoBehaviour
 
     private void Update() {
         switch (state) {
+            case CustomerState.Queueing:
+                MoveTowards(spot.position);
+                break;
             case CustomerState.Arriving:
-                if (MoveTowards(counter.position)) {
+                if (MoveTowards(spot.position)) {
                     PlaceBasketOnCounter();
                     state = CustomerState.WaitingForService;
                 }
@@ -89,26 +126,27 @@ public class Customer : MonoBehaviour
                 } 
                 break;
             case CustomerState.WaitingForClothes:
-                MoveTowards(waitingSpot.position);
+                MoveTowards(spot.position);
                 //TODO: Detect when it's time to go pick up bag
                 break;
             case CustomerState.PickingUpBag:
-                if (MoveTowards(counter.position)) {
+                if (MoveTowards(spot.position)) {
                     RemoveBasketFromCounter();
                     state = CustomerState.Leaving;
                 }
                 break;
             case CustomerState.Leaving:
-                if (MoveTowards(door.position)) {
+                if (MoveTowards(spot.position)) {
                     state = CustomerState.HasLeft;
                 }
                 break;
             case CustomerState.Ragequitting:
-                if (MoveTowards(door.position)) {
+                if (MoveTowards(spot.position)) {
                     state = CustomerState.HasLeft;
                 }
                 break;
             case CustomerState.HasLeft:
+                if(CustomerManager.CustomerLeft != null) CustomerManager.CustomerLeft();
                 Destroy(gameObject);
                 break;
         }
@@ -116,6 +154,7 @@ public class Customer : MonoBehaviour
 }
 
 public enum CustomerState {
+    Queueing,
     Arriving,
     WaitingForService,
     WaitingForClothes,

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6084744990852787884}
   - component: {fileID: 2943971292945967701}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: BasketTagSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4251936497488886219}
   - component: {fileID: 8382458356304850081}
   - component: {fileID: 2956128723163524651}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LaundromatBasket
   m_TagString: Carryable
   m_Icon: {fileID: 0}

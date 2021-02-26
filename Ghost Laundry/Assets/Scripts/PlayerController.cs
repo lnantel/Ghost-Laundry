@@ -182,6 +182,10 @@ public class PlayerController : MonoBehaviour
             state.StartCarry();
             carriedObject = targetedCarryable;
             carriedObject.GetComponent<Collider2D>().enabled = false;
+            LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
+            if (laundromatBasket != null) {
+                if(CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
+            }
         }
         else {
             //Pick up a basket from a work station
