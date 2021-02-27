@@ -138,11 +138,9 @@ public class LaundryBasket : LaundryObject
 
     private void DisableBasketView() {
         basket.contents = new List<Garment>();
-        basket.currentLoad = 0;
         basket.positions = new List<Vector3>();
         for (int i = 0; i < laundryGarments.Count; i++) {
             basket.contents.Add(laundryGarments[i].garment);
-            basket.currentLoad += laundryGarments[i].garment.size;
             basket.positions.Add(laundryGarments[i].transform.localPosition);
         }
 
