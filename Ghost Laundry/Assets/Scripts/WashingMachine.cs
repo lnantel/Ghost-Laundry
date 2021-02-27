@@ -107,9 +107,11 @@ public class WashingMachine : WorkStation
             //Unfold garments if they are folded
             if (garment is GarmentSock && garment.Folded) {
                 GarmentSock other = ((GarmentSock)garment).SeparatePair();
+                other.currentFoldingStep = 0;
                 other.Dry = false;
                 garmentsToBeAdded.Add(other);
             }
+            garment.currentFoldingStep = 0;
             garment.Dry = false;
             if (garment.Colored()) containsColoredGarments = true;
         }
