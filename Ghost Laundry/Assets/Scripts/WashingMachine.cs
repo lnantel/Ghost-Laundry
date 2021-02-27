@@ -102,10 +102,21 @@ public class WashingMachine : WorkStation
     private IEnumerator WashCycle() {
         bool containsColoredGarments = false;
 
+        List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
+            //Unfold garments if they are folded
+            if (garment is GarmentSock && garment.Folded) {
+                GarmentSock other = ((GarmentSock)garment).SeparatePair();
+                other.Dry = false;
+                garmentsToBeAdded.Add(other);
+            }
             garment.Dry = false;
             if (garment.Colored()) containsColoredGarments = true;
         }
+
+        //Put separated socks in machine
+        foreach (Garment garment in garmentsToBeAdded)
+            contents.Add(garment);
 
         yield return new WaitForSeconds(WashCycleTime);
 
