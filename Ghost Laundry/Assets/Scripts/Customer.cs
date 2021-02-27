@@ -52,14 +52,27 @@ public class Customer : MonoBehaviour
             Garment garment = Garment.GetRandomGarment();
             garment.customerID = ticketNumber;
             garments.Add(garment);
-            basket.AddGarment(garment);
+            //basket.AddGarment(garment);
             if(garment is GarmentSock) {
                 GarmentSock otherSock = new GarmentSock((GarmentSock)garment);
-                basket.AddGarment(otherSock);
+                //basket.AddGarment(otherSock);
                 garments.Add(otherSock);
                 i++;
             }
         }
+
+        //Shuffle clothing to separate socks
+        int n = garments.Count;
+        while (n > 1) {
+            n--;
+            int k = UnityEngine.Random.Range(0, n + 1);
+            Garment value = garments[k];
+            garments[k] = garments[n];
+            garments[n] = value;
+        }
+
+        foreach (Garment garment in garments)
+            basket.AddGarment(garment);
 
         //Upon arrival, a new Customer requests a spot in Queue from the CustomerManager
         CustomerManager.instance.AssignQueueSpot(this);

@@ -80,6 +80,7 @@ public class LaundryGarment : LaundryObject
 
                                 ((GarmentSock)garment).PairUp((GarmentSock)laundryGarment.garment);
                                 Destroy(laundryGarment.gameObject);
+                                AudioManager.instance.PlaySound(Sounds.Fold1 + garment.currentFoldingStep);
                                 break;
                             }
                         }
@@ -88,12 +89,13 @@ public class LaundryGarment : LaundryObject
                 else if(garment.currentFoldingStep == 1) {
                     //Separate the socks
                     GarmentSock otherSock = ((GarmentSock)garment).SeparatePair();
-
+                    AudioManager.instance.PlaySound(Sounds.Fold1 + garment.currentFoldingStep);
                     //Instantiate a LaundryGarment for the other sock
                     LaundryGarment otherLaundryGarment = otherSock.CreateLaundryGarment(transform.position, transform.rotation, transform.parent);
                 }
             }
             else {
+                AudioManager.instance.PlaySound(Sounds.Fold1 + garment.currentFoldingStep);
                 garment.Fold();
             }
             UpdateAppearance();
