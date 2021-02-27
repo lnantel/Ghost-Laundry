@@ -59,6 +59,7 @@ public class LaundryBasket : LaundryObject
         if (!basketView.activeSelf) {
             if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
                 if (basket.AddGarment(laundryGarment.garment)) {
+                    AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                     Destroy(laundryGarment.gameObject);
                 }
                 else {
@@ -74,6 +75,7 @@ public class LaundryBasket : LaundryObject
                 Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
                 rb.gravityScale = 0.0f;
                 rb.velocity = Vector3.zero;
+                AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
             }
             else if (!alreadyInBasket && withinBasketView) {
                 if (basket.AddGarment(laundryGarment.garment, laundryGarment.transform.position - transform.position)) {
@@ -81,6 +83,7 @@ public class LaundryBasket : LaundryObject
                     Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
                     rb.gravityScale = 0.0f;
                     rb.velocity = Vector3.zero;
+                    AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                     laundryGarments.Add(laundryGarment);
                 }
                 else {

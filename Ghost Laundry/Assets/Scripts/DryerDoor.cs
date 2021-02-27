@@ -48,6 +48,7 @@ public class DryerDoor : LaundryObject
         //If released within open door bounds, add garment to machine
         if (dryer.state == DryerState.DoorOpen && GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
             if (dryer.AddGarment(laundryGarment.garment)) {
+                AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                 Destroy(laundryGarment.gameObject);
             }
             else {

@@ -10,5 +10,11 @@ public enum Sounds
     Fold1,
     Fold2,
     Fold3,
-    Fold4
+    Fold4,
+    SyntheticGrab,
+    SyntheticDrop,
+    CottonGrab,
+    CottonDrop,
+    WoolGrab,
+    WoolDrop
 }

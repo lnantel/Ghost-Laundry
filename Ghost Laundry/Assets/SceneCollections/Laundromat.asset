@@ -15,7 +15,7 @@ MonoBehaviour:
   setups:
   - m_Path: Assets/Scenes/Main.unity
     m_IsLoaded: 1
-    m_IsActive: 0
+    m_IsActive: 1
     m_IsSubScene: 0
   - m_Path: Assets/Scenes/Laundromat.unity
     m_IsLoaded: 1
@@ -23,9 +23,13 @@ MonoBehaviour:
     m_IsSubScene: 0
   - m_Path: Assets/Scenes/Customers.unity
     m_IsLoaded: 1
-    m_IsActive: 1
+    m_IsActive: 0
     m_IsSubScene: 0
   - m_Path: Assets/Scenes/LaundryTasks.unity
+    m_IsLoaded: 1
+    m_IsActive: 0
+    m_IsSubScene: 0
+  - m_Path: Assets/Scenes/HUD.unity
     m_IsLoaded: 1
     m_IsActive: 0
     m_IsSubScene: 0

@@ -80,6 +80,7 @@ public class LaundryIroningBoard : LaundryObject
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {
         if (garmentOnBoard == null && boardTriggerCollider.bounds.Contains(laundryGarment.transform.position)) {
             garmentOnBoard = laundryGarment.garment;
+            AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
             Destroy(laundryGarment.gameObject);
             garmentSpriteRenderer.enabled = true;
             if (garmentOnBoard.Ruined)

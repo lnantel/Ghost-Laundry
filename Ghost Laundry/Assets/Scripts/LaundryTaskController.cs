@@ -213,6 +213,7 @@ public class LaundryTaskController : MonoBehaviour
 
     private void GrabGarmentFromContainer(Garment garment) {
         LaundryGarment laundryGarment = garment.CreateLaundryGarment(cursor.transform.position, cursor.transform.rotation, activeWorkStation.laundryTaskArea.transform);
-        grabbedObject = laundryGarment;
+        target = laundryGarment;
+        Grab();
     }
 }
