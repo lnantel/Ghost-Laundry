@@ -8,6 +8,7 @@ public class WorkStation : Interactable
 {
     public static Action<LaundryGarment> LaundryGarmentReleased;
     public static Action BasketSlotsChanged;
+    public static Action RequestCarriedBasket;
 
     public bool HasGravity;
     public BasketSlot[] basketSlots;
@@ -36,6 +37,7 @@ public class WorkStation : Interactable
         //TODO:
         //if player is carrying a basket, attempt to input it to the workstation
         //if input fails, cancel interaction
+        if(RequestCarriedBasket != null) RequestCarriedBasket();
 
         PlayerController.instance.enabled = false;
         laundryTaskArea.SetActive(true);

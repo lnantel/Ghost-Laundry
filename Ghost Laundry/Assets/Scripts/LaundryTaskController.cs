@@ -11,6 +11,9 @@ public class LaundryTaskController : MonoBehaviour
 
     public float CursorSpeed;
     public Transform cursor;
+    public SpriteRenderer cursorSpriteRenderer;
+    public Sprite defaultCursorSprite;
+    public Sprite targetCursorSprite;
     public Camera LaundryCamera;
     public GameObject LaundryGarmentPrefab;
 
@@ -121,6 +124,13 @@ public class LaundryTaskController : MonoBehaviour
             target = GetTarget();
             if (target != null) {
                 target.OnHover(cursor.position);
+                if(interactInputHeld || inspectInputHeld)
+                    cursorSpriteRenderer.sprite = defaultCursorSprite;
+                else
+                    cursorSpriteRenderer.sprite = targetCursorSprite;
+            }
+            else {
+                cursorSpriteRenderer.sprite = defaultCursorSprite;
             }
         }
     }

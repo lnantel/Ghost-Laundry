@@ -24,7 +24,7 @@ public class Fabric
             case FabricType.Synthetic:
                 name = "Synthetic";
                 ironingTime = 3.0f;
-                pattern = Resources.Load<Sprite>("Fabric Patterns/test_pattern");
+                pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2");
                 break;
         }
     }

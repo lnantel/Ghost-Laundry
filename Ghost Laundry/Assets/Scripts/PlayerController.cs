@@ -182,6 +182,10 @@ public class PlayerController : MonoBehaviour
             state.StartCarry();
             carriedObject = targetedCarryable;
             carriedObject.GetComponent<Collider2D>().enabled = false;
+            LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
+            if (laundromatBasket != null) {
+                if(CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
+            }
         }
         else {
             //Pick up a basket from a work station
@@ -204,26 +208,28 @@ public class PlayerController : MonoBehaviour
     }
 
     private void PutDown() {
-        state.EndCarry();
+        if(carriedObject != null) {
+            state.EndCarry();
 
-        Interactable interactable = interactableDetector.GetNearestInteractable();
-        if (interactable != null) {
-            LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
-            if (laundromatBasket != null && interactable is WorkStation) {
-                WorkStation workStation = (WorkStation)interactable;
-                if (workStation.InputBasket(laundromatBasket.basket)) {
-                    Destroy(carriedObject);
-                }
-                else {
-                    carriedObject.GetComponent<Collider2D>().enabled = true;
-                    carriedObject = null;
-                    Debug.Log("Could not input basket");
+            Interactable interactable = interactableDetector.GetNearestInteractable();
+            if (interactable != null) {
+                LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
+                if (laundromatBasket != null && interactable is WorkStation) {
+                    WorkStation workStation = (WorkStation)interactable;
+                    if (workStation.InputBasket(laundromatBasket.basket)) {
+                        Destroy(carriedObject);
+                    }
+                    else {
+                        carriedObject.GetComponent<Collider2D>().enabled = true;
+                        carriedObject = null;
+                        Debug.Log("Could not input basket");
+                    }
                 }
             }
-        }
-        else {
-            carriedObject.GetComponent<Collider2D>().enabled = true;
-            carriedObject = null;
+            else {
+                carriedObject.GetComponent<Collider2D>().enabled = true;
+                carriedObject = null;
+            }
         }
     }
 
@@ -241,7 +247,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+        WorkStation.RequestCarriedBasket += PutDown;
+    }
+
     private void OnDisable() {
+        WorkStation.RequestCarriedBasket -= PutDown;
+
         rb.velocity = Vector3.zero;
         state.EndWalk();
     }

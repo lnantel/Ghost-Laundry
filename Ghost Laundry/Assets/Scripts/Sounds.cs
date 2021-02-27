@@ -4,7 +4,11 @@ using UnityEngine;
 
 public enum Sounds
 {
-    //Player sounds
     Dash,
-    Collision
+    Collision,
+    MoneyGain,
+    Fold1,
+    Fold2,
+    Fold3,
+    Fold4
 }

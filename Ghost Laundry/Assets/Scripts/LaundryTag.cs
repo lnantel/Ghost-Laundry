@@ -25,7 +25,7 @@ public class LaundryTag : MonoBehaviour
 
     private void Initialize() {
         TXT_Fabric.text = "100% " + garment.fabric.name;
-        TXT_Owner.text = "Owner: " + garment.clientName;
+        TXT_Owner.text = "Owner: #" + garment.customerID.ToString("D3");
         //TODO: Change IMG_WashTemp and IMG_DrySetting according to fabric
     }
 
