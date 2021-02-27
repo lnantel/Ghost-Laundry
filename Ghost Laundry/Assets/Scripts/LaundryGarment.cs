@@ -114,6 +114,10 @@ public class LaundryGarment : LaundryObject
         }
     }
 
+    public override void OnGrab() {
+        AudioManager.instance.PlaySound(garment.fabric.grabSound);
+    }
+
     public override void OnRelease() {
         rb.velocity = new Vector2(transform.position.x, transform.position.y) - lastPosition;
 
@@ -178,5 +182,9 @@ public class LaundryGarment : LaundryObject
                 colliders[i].enabled = (i == garment.currentFoldingStep);
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        AudioManager.instance.PlaySound(garment.fabric.dropSound);
     }
 }

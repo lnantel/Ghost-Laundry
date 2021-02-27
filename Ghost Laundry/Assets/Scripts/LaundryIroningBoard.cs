@@ -90,6 +90,7 @@ public class LaundryIroningBoard : LaundryObject
             laundryGarment.garment.currentFoldingStep = 0;
 
             garmentOnBoard = laundryGarment.garment;
+            AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
             Destroy(laundryGarment.gameObject);
             garmentSpriteRenderer.enabled = true;
             if (garmentOnBoard.Ruined)

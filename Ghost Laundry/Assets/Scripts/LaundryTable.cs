@@ -18,6 +18,7 @@ public class LaundryTable : MonoBehaviour
             Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
             rb.velocity = Vector3.zero;
             rb.gravityScale = 0.0f;
+            AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
         }
     }
 
