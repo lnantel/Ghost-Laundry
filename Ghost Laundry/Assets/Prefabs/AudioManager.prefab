@@ -143,3 +143,4 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: deebfdda276477c4b89ffaee91ed8240, type: 3}
   - {fileID: 8300000, guid: db6d47ac654e5fb40b0c917ffc741181, type: 3}
+  - {fileID: 8300000, guid: 585cdd7650ccc3c4db3b72bf1aa92f4f, type: 3}

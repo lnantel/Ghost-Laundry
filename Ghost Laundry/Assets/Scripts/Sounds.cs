@@ -6,5 +6,6 @@ public enum Sounds
 {
     //Player sounds
     Dash,
-    Collision
+    Collision,
+    MoneyGain
 }

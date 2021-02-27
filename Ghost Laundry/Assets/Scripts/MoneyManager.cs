@@ -38,7 +38,11 @@ public class MoneyManager : MonoBehaviour
         if(fee > 0) {
             //Money pop-up
             GameObject popUp = Instantiate(moneyPopUpPrefab, customer.transform.position + Vector3.up, customer.transform.rotation, WorldSpaceCanvas.transform);
-            popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + fee + " + " + tip;
+            if (tip > 0)
+                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + fee + " + " + tip;
+            else
+                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + fee;
+            AudioManager.instance.PlaySoundAtPosition(Sounds.MoneyGain, customer.transform.position);
         }
         else {
             //Dissatisfied customer pop-up
