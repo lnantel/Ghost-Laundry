@@ -19,7 +19,7 @@ public class Fabric
             case FabricType.Wool:
                 name = "Wool";
                 ironingTime = 3.0f;
-                pattern = Resources.Load<Sprite>("Fabric Patterns/test_pattern");
+                pattern = Resources.Load<Sprite>("Fabric Patterns/Laine_v1");
                 break;
             case FabricType.Synthetic:
                 name = "Synthetic";
