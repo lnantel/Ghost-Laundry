@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(SortingGroup))]
 public class LaundromatSpriteSort : MonoBehaviour
 {
+    public Transform groundContact;
+
     private SortingGroup sortingGroup;
 
     // Start is called before the first frame update
@@ -13,12 +15,13 @@ public class LaundromatSpriteSort : MonoBehaviour
     {
         sortingGroup = GetComponent<SortingGroup>();
         sortingGroup.sortingLayerID = SortingLayer.NameToID("Entities");
-        sortingGroup.sortingOrder = -(int)(transform.position.y * 100.0f);
+        if (groundContact == null) groundContact = transform;
+        sortingGroup.sortingOrder = -(int)(groundContact.position.y * 100.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        sortingGroup.sortingOrder = -(int)(transform.position.y * 100.0f);
+        sortingGroup.sortingOrder = -(int)(groundContact.position.y * 100.0f);
     }
 }

@@ -24,10 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private float accelerationFactor;
     private Vector2 moveDir;
-    private bool facingRight;
-
-    //TODO: this will be handled in the animator or an animation script at a later point
-    private SpriteRenderer sprite;
+    public bool facingRight;
 
     //Dash
     public float m_DashDistance;
@@ -58,9 +55,6 @@ public class PlayerController : MonoBehaviour
         moveDir = new Vector2(1.0f, 0.0f);
 
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
-
-        //TODO: this will be handled in the animator or an animation script at a later point
-        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -70,9 +64,6 @@ public class PlayerController : MonoBehaviour
                 Move();
             else
                 state.EndWalk();
-
-            //TODO: this will be handled in the animator or an animation script at a later point
-            sprite.flipX = facingRight;
 
             if (input.GetDashInput() && state.CanDash())
                 StartCoroutine(Dash());

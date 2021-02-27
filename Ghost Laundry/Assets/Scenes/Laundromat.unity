@@ -2579,14 +2579,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TableWorkStation
       objectReference: {fileID: 0}
-    - target: {fileID: 4390509907491975611, guid: ec0bdf742f9491e448f2e581e9b22664, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.2642033
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390509907491975611, guid: ec0bdf742f9491e448f2e581e9b22664, type: 3}
-      propertyPath: m_Size.y
-      value: 1.973458
-      objectReference: {fileID: 0}
     - target: {fileID: 8314683814791598572, guid: ec0bdf742f9491e448f2e581e9b22664, type: 3}
       propertyPath: basketSlots.Array.data[0].spawnPoint.x
       value: -6.31
