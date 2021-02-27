@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
     //Pick up / Drop
     private CarryableDetector carryableDetector;
     private GameObject carriedObject;
+    private SortingGroup carriedObjectSortingGroup;
+    private SortingGroup playerSortingGroup;
     public Transform carriedPos;
     private GameObject laundromatBasketPrefab;
 
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
         moveDir = new Vector2(1.0f, 0.0f);
 
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
+        playerSortingGroup = GetComponentInChildren<SortingGroup>();
     }
 
     void Update()
@@ -79,6 +83,7 @@ public class PlayerController : MonoBehaviour
                 if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
                 carriedObject.transform.position = carriedPos.position;
                 carriedObject.transform.rotation = carriedPos.rotation;
+                carriedObjectSortingGroup.sortingOrder = playerSortingGroup.sortingOrder + 1;
             }
 
             if (input.GetInteractInput()) {
@@ -167,13 +172,38 @@ public class PlayerController : MonoBehaviour
         if(!collision) rb.velocity = startVelocity;
     }
 
+    private void StartCarrying(GameObject obj) {
+        state.StartCarry();
+        carriedObject = obj;
+        carriedObject.GetComponent<Collider2D>().enabled = false;
+        LaundromatSpriteSort spriteSort = obj.GetComponentInChildren<LaundromatSpriteSort>();
+        if (spriteSort != null) {
+            spriteSort.enabled = false;
+            carriedObjectSortingGroup = obj.GetComponentInChildren<SortingGroup>();
+        }
+    }
+
+    private void DropCarriedObject() {
+        state.EndCarry();
+        carriedObject.GetComponent<Collider2D>().enabled = true;
+        LaundromatSpriteSort spriteSort = carriedObject.GetComponentInChildren<LaundromatSpriteSort>();
+        if (spriteSort != null) {
+            spriteSort.enabled = true;
+        }
+        carriedObject = null;
+    }
+
+    private void DestroyCarriedObject() {
+        state.EndCarry();
+        Destroy(carriedObject);
+        carriedObject = null;
+    }
+
     private void PickUp() {
         GameObject targetedCarryable = carryableDetector.GetNearestCarryable();
         if (targetedCarryable != null) {
-            state.StartCarry();
-            carriedObject = targetedCarryable;
-            carriedObject.GetComponent<Collider2D>().enabled = false;
-            LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
+            StartCarrying(targetedCarryable);
+            LaundromatBasket laundromatBasket = targetedCarryable.GetComponent<LaundromatBasket>();
             if (laundromatBasket != null) {
                 if(CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
             }
@@ -189,9 +219,7 @@ public class PlayerController : MonoBehaviour
                         GameObject basketObject = Instantiate(laundromatBasketPrefab, transform.position, transform.rotation);
                         basketObject.GetComponent<LaundromatBasket>().basket = basket;
 
-                        state.StartCarry();
-                        carriedObject = basketObject;
-                        carriedObject.GetComponent<Collider2D>().enabled = false;
+                        StartCarrying(basketObject);
                     }
                 }
             }
@@ -200,35 +228,27 @@ public class PlayerController : MonoBehaviour
 
     private void PutDown() {
         if(carriedObject != null) {
-            state.EndCarry();
-
             Interactable interactable = interactableDetector.GetNearestInteractable();
             if (interactable != null) {
                 LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
                 if (laundromatBasket != null && interactable is WorkStation) {
                     WorkStation workStation = (WorkStation)interactable;
                     if (workStation.InputBasket(laundromatBasket.basket)) {
-                        Destroy(carriedObject);
+                        DestroyCarriedObject();
                     }
                     else {
-                        carriedObject.GetComponent<Collider2D>().enabled = true;
-                        carriedObject = null;
+                        DropCarriedObject();
                         Debug.Log("Could not input basket");
                     }
                 }
+                else {
+                    DropCarriedObject();
+                }
             }
             else {
-                carriedObject.GetComponent<Collider2D>().enabled = true;
-                carriedObject = null;
+                DropCarriedObject();
             }
         }
-    }
-
-    private void DropCarriedObject() {
-        state.EndCarry();
-
-        carriedObject.GetComponent<Collider2D>().enabled = true;
-        carriedObject = null;
     }
 
     private void Interact() {
