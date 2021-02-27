@@ -133,15 +133,25 @@ public class Garment
 
 public static class GarmentColor {
     public static Color White = Color.white;
-    public static Color Red = Color.red;
-    public static Color Pink = new Color(1.0f, 0.0f, 1.0f);
+    public static Color Red = new Color(240f / 256f, 69f / 256f, 69f / 256f);
+    public static Color Pink = new Color(240f / 256f, 128f / 256f, 215f / 256f);
+    public static Color Sky = new Color(91f / 256f, 144f / 256f, 240f / 256f);
+    public static Color Salmon = new Color(240f / 256f, 123f / 256f, 103f / 256f);
+    public static Color Teal = new Color(80f / 256f, 222f / 256f, 240f / 256f);
+    public static Color Golden = new Color(240f / 256f, 181f / 256f, 55f / 256f);
+    public static Color Mint = new Color(67f / 256f, 240f / 256f, 164f / 256f);
 
     public static Color RandomColor() {
-        int rand = Random.Range(0, 3);
+        int rand = Random.Range(0, 8);
         switch (rand) {
             case 0: return White;
             case 1: return Red;
             case 2: return Pink;
+            case 3: return Sky;
+            case 4: return Salmon;
+            case 5: return Teal;
+            case 6: return Golden;
+            case 7: return Mint;
             default: return White;
         }
     }
