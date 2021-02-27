@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8541777147079965178}
   - component: {fileID: 5732389220405168527}
   - component: {fileID: 3534737646775619916}
+  - component: {fileID: 7586722502219313342}
+  - component: {fileID: 8017829730995099117}
   m_Layer: 0
   m_Name: Work Station
   m_TagString: Untagged
@@ -32,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8656006711862061569}
+  - {fileID: 5848748377562005193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,6 +153,60 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: 0, y: 0, z: 0}
   laundryTaskArea: {fileID: 0}
+--- !u!210 &7586722502219313342
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748218137804147326}
+  m_Enabled: 1
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+--- !u!114 &8017829730995099117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748218137804147326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d81222432f740c428f8df5287c41e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundContact: {fileID: 5848748377562005193}
+--- !u!1 &7276995426998019625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5848748377562005193}
+  m_Layer: 0
+  m_Name: GroundContact
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5848748377562005193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276995426998019625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.52, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7502809973228414755}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4050677144347861490
 PrefabInstance:
   m_ObjectHideFlags: 0

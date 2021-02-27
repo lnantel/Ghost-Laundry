@@ -7,14 +7,13 @@ public class Basket
     public List<Garment> contents;
     public List<Vector3> positions;
     public int capacity;
-    public int currentLoad;
+    public int currentLoad { get => GetCurrentLoad(); }
     public int tag;
 
     public Basket(){
         this.contents = new List<Garment>();
         this.positions = new List<Vector3>();
         this.capacity = 10;
-        this.currentLoad = 0;
         this.tag = 0;
     }
 
@@ -23,7 +22,6 @@ public class Basket
         if (HasSpaceFor(garment.size)) {
             contents.Add(garment);
             positions.Add(GetRandomPosition());
-            currentLoad += garment.size;
             return true;
         }
         return false;
@@ -34,7 +32,6 @@ public class Basket
         if (HasSpaceFor(garment.size)) {
             contents.Add(garment);
             positions.Add(position);
-            currentLoad += garment.size;
             return true;
         }
         return false;
@@ -45,7 +42,6 @@ public class Basket
             int index = contents.IndexOf(garment);
             contents.RemoveAt(index);
             positions.RemoveAt(index);
-            currentLoad -= garment.size;
             return true;
         }
         return false;
@@ -55,7 +51,6 @@ public class Basket
         if (contents.Count > 0) {
             Garment garment = contents[contents.Count - 1];
             contents.RemoveAt(contents.Count - 1);
-            currentLoad -= garment.size;
             return garment;
         }
         return null;
@@ -64,7 +59,6 @@ public class Basket
     public List<Garment> RemoveAll() {
         List<Garment> temp = contents;
         contents = new List<Garment>();
-        currentLoad = 0;
         return temp;
     }
 
@@ -74,5 +68,13 @@ public class Basket
 
     private Vector3 GetRandomPosition() {
         return new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0.0f);
+    }
+
+    private int GetCurrentLoad() {
+        int value = 0;
+        foreach (Garment garment in contents) {
+            value += garment.size;
+        }
+        return value;
     }
 }
