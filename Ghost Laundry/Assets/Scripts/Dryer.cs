@@ -97,9 +97,21 @@ public class Dryer : WorkStation
 
         yield return new WaitForSeconds(cycleTime);
 
+        List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
+            //Unfold garments if they are folded
+            if(garment is GarmentSock && garment.Folded) {
+                GarmentSock other = ((GarmentSock)garment).SeparatePair();
+                other.Dry = lintTrapClean;
+                garmentsToBeAdded.Add(other);
+            }
+            garment.currentFoldingStep = 0;
             garment.Dry = lintTrapClean; //garments are dried if the lint trap is clean
         }
+
+        //Put separated socks in machine
+        foreach (Garment garment in garmentsToBeAdded)
+            contents.Add(garment);
 
         if(contents.Count > 0)
             lintTrapClean = false;

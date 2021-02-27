@@ -79,6 +79,16 @@ public class LaundryIroningBoard : LaundryObject
 
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {
         if (garmentOnBoard == null && boardTriggerCollider.bounds.Contains(laundryGarment.transform.position)) {
+
+            //Unfold garment if folded
+            //If pair of socks, separate them, then spawn the extra sock as a LaundryGarment
+            if (laundryGarment.garment is GarmentSock && laundryGarment.garment.Folded) {
+                GarmentSock sock = (GarmentSock)laundryGarment.garment;
+                GarmentSock other = sock.SeparatePair();
+                other.CreateLaundryGarment(laundryGarment.transform.position, laundryGarment.transform.rotation, laundryGarment.transform.parent);
+            }
+            laundryGarment.garment.currentFoldingStep = 0;
+
             garmentOnBoard = laundryGarment.garment;
             Destroy(laundryGarment.gameObject);
             garmentSpriteRenderer.enabled = true;
