@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 4251936497488886219}
   - component: {fileID: 8382458356304850081}
   - component: {fileID: 2956128723163524651}
+  - component: {fileID: 5524665942987099027}
+  - component: {fileID: 255344081266341109}
   m_Layer: 17
   m_Name: LaundromatBasket
   m_TagString: Carryable
@@ -233,3 +235,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9aadd188383014c439ac50677fd97179, type: 3}
   - {fileID: 21300000, guid: 26c049ae15bb4aa4e9f325d1e39be4fe, type: 3}
   tagSprite: {fileID: 2943971292945967701}
+--- !u!210 &5524665942987099027
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751898827253148869}
+  m_Enabled: 1
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+--- !u!114 &255344081266341109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751898827253148869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d81222432f740c428f8df5287c41e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
