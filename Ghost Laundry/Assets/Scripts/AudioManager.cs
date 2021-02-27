@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(Sounds sound, float volume = 1.0f) {
         source.clip = sounds[(int) sound];
         source.volume = SettingsManager.instance.SFXVolume * volume * 0.2f;
-        //source.Play();
         source.PlayOneShot(sounds[(int)sound], SettingsManager.instance.SFXVolume * volume * 0.2f);
     }
 
