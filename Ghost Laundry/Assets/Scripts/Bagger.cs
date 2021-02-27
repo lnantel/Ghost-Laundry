@@ -47,7 +47,6 @@ public class Bagger : WorkStation
                 int ruinedGarments = 0;
 
                 foreach (Garment garment in customersGarments) {
-                    contents.Remove(garment);
                     if (garment.Ruined)
                         ruinedGarments++;
                     else if (garment.Dry && garment.Clean && garment.Folded) {
@@ -55,6 +54,7 @@ public class Bagger : WorkStation
                         if (garment.Pressed)
                             perfectGarments++;
                     }
+                    contents.Remove(garment);
                 }
 
                 //Spawn a LaundromatBag

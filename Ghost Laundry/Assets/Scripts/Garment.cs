@@ -24,7 +24,7 @@ public class Garment
     public bool Clean { get => GetClean(); set => SetClean(value); }
     public bool Dry { get => GetDry(); set => SetDry(value); }
     public bool Pressed { get => GetPressed(); set => SetPressed(value); }
-    public bool Folded { get => GetFolded(); set => SetFolded(value); }
+    public bool Folded { get => GetFolded(); }
     public bool Ruined { get => GetRuined(); set => SetRuined(value); }
 
     //Accessors
@@ -53,11 +53,7 @@ public class Garment
     }
 
     protected virtual bool GetFolded() {
-        return folded;
-    }
-
-    protected virtual void SetFolded(bool value) {
-        folded = value;
+        return currentFoldingStep == foldingSteps;
     }
 
     protected virtual bool GetRuined() {

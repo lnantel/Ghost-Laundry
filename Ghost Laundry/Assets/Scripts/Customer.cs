@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Customer : MonoBehaviour
 {
-    //public string firstname;
-    //public string lastname;
+    public static Action<int, int, Customer> Pay;
+
     public int ticketNumber;
     public List<Garment> garments;
     public Basket basket;
@@ -20,12 +21,6 @@ public class Customer : MonoBehaviour
 
     public CustomerState state;
 
-    //TODO: Get these from the CustomerManager instead
-    //public Transform counter;
-    //public Transform door;
-    //public Transform waitingSpot;
-    //public Transform basketSpot;
-
     public CustomerSpot spot;
 
     public float speed;
@@ -38,9 +33,9 @@ public class Customer : MonoBehaviour
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
 
         //Generate random customer
-        head = Random.Range(0, 3);
-        body = Random.Range(0, 3);
-        legs = Random.Range(0, 3);
+        head = UnityEngine.Random.Range(0, 3);
+        body = UnityEngine.Random.Range(0, 3);
+        legs = UnityEngine.Random.Range(0, 3);
 
         ticketNumber = CustomerManager.instance.GetTicketNumber();
 
@@ -52,7 +47,7 @@ public class Customer : MonoBehaviour
         basket = new Basket();
         garments = new List<Garment>();
 
-        int garmentCount = Random.Range(5, 8);
+        int garmentCount = UnityEngine.Random.Range(5, 8);
         for(int i = 0; i < garmentCount; i++) {
             Garment garment = Garment.GetRandomGarment();
             garment.customerID = ticketNumber;
@@ -118,7 +113,16 @@ public class Customer : MonoBehaviour
     }
 
     private void PickUpBag() {
-        //TODO: Pay money
+        int fee = 0;
+        int tip = 0;
+
+        //TODO: Better money logic
+        if (bagOnCounter.launderedGarments == bagOnCounter.totalGarments) {
+            fee = 15;
+            tip = Mathf.CeilToInt(5.0f * ((float)bagOnCounter.perfectGarments / bagOnCounter.totalGarments));
+        }
+
+        Pay(fee, tip, this);
         Destroy(bagOnCounter.gameObject);
         bagOnCounter = null;
     }
