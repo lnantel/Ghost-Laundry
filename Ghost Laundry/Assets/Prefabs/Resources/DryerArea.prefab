@@ -807,15 +807,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 6186e92a6d2c6844b9b1f0bb63fb8c26, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 6186e92a6d2c6844b9b1f0bb63fb8c26, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 6186e92a6d2c6844b9b1f0bb63fb8c26, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 6186e92a6d2c6844b9b1f0bb63fb8c26, type: 3}
       propertyPath: m_LocalRotation.w
