@@ -10,8 +10,14 @@ public class LaundryTag : MonoBehaviour
 
     public TextMeshProUGUI TXT_Fabric;
     public TextMeshProUGUI TXT_Owner;
-    public Image IMG_WashTemp;
-    public Image IMG_DrySetting;
+
+    public Image WashIcon;
+    public Image DryIcon;
+    public Image PressIcon;
+
+    public Sprite[] WashSprites;
+    public Sprite[] DrySprites;
+    public Sprite[] PressSprites;
 
     private Garment garment;
     private Canvas canvas;
@@ -26,7 +32,9 @@ public class LaundryTag : MonoBehaviour
     private void Initialize() {
         TXT_Fabric.text = "100% " + garment.fabric.name;
         TXT_Owner.text = "Owner: #" + garment.customerID.ToString("D3");
-        //TODO: Change IMG_WashTemp and IMG_DrySetting according to fabric
+        WashIcon.sprite = WashSprites[(int)garment.fabric.washingRestrictions];
+        DryIcon.sprite = DrySprites[(int)garment.fabric.dryingRestrictions];
+        PressIcon.sprite = PressSprites[(int)garment.fabric.pressingRestrictions];
     }
 
     public void Show() {

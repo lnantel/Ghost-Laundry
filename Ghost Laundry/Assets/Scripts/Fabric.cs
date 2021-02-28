@@ -8,6 +8,9 @@ public class Fabric
     public Sprite pattern;
     public Sounds grabSound;
     public Sounds dropSound;
+    public WashingRestrictions washingRestrictions;
+    public DryingRestrictions dryingRestrictions;
+    public PressingRestrictions pressingRestrictions;
 
     public float ironingTime;
 
@@ -19,6 +22,9 @@ public class Fabric
                 pattern = null;
                 grabSound = Sounds.CottonGrab;
                 dropSound = Sounds.CottonDrop;
+                washingRestrictions = WashingRestrictions.None;
+                dryingRestrictions = DryingRestrictions.None;
+                pressingRestrictions = PressingRestrictions.None;
                 break;
             case FabricType.Wool:
                 name = "Wool";
@@ -26,6 +32,9 @@ public class Fabric
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Laine_v1");
                 grabSound = Sounds.WoolGrab;
                 dropSound = Sounds.WoolDrop;
+                washingRestrictions = WashingRestrictions.HotOnly;
+                dryingRestrictions = DryingRestrictions.LowOnly;
+                pressingRestrictions = PressingRestrictions.None;
                 break;
             case FabricType.Synthetic:
                 name = "Synthetic";
@@ -33,6 +42,9 @@ public class Fabric
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2");
                 grabSound = Sounds.SyntheticGrab;
                 dropSound = Sounds.SyntheticDrop;
+                washingRestrictions = WashingRestrictions.ColdOnly;
+                dryingRestrictions = DryingRestrictions.None;
+                pressingRestrictions = PressingRestrictions.NoIroning;
                 break;
         }
     }
@@ -46,4 +58,21 @@ public enum FabricType {
     Cotton,
     Wool,
     Synthetic
+}
+
+public enum WashingRestrictions {
+    None,
+    ColdOnly,
+    HotOnly
+}
+
+public enum DryingRestrictions {
+    None,
+    LowOnly,
+    HighOnly
+}
+
+public enum PressingRestrictions {
+    None,
+    NoIroning
 }

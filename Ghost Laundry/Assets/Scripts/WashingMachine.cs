@@ -128,6 +128,10 @@ public class WashingMachine : WorkStation
                 garment.Ruined = true;
             }
 
+            if ((garment.fabric.washingRestrictions == WashingRestrictions.ColdOnly && washSetting == WashSetting.Hot) ||
+                (garment.fabric.washingRestrictions == WashingRestrictions.HotOnly && washSetting == WashSetting.Cold))
+                garment.Ruined = true;
+
             if (Detergent) {
                 garment.Clean = true;
             }

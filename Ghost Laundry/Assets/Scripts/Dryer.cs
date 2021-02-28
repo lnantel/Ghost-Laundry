@@ -33,7 +33,7 @@ public class Dryer : WorkStation
         contents = new List<Garment>();
         animator = GetComponentInChildren<Animator>();
         state = DryerState.DoorClosed;
-        dryerSetting = DryerSetting.High;
+        dryerSetting = DryerSetting.Low;
         lintTrapClean = true;
     }
 
@@ -95,23 +95,30 @@ public class Dryer : WorkStation
         if (dryerSetting == DryerSetting.High) cycleTime = 10.0f;
         else if (dryerSetting == DryerSetting.Low) cycleTime = 20.0f;
 
-        yield return new WaitForSeconds(cycleTime);
-
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
             //Unfold garments if they are folded
-            if(garment is GarmentSock && garment.Folded) {
+            if (garment is GarmentSock && garment.Folded) {
                 GarmentSock other = ((GarmentSock)garment).SeparatePair();
-                other.Dry = lintTrapClean;
+                other.currentFoldingStep = 0;
                 garmentsToBeAdded.Add(other);
             }
             garment.currentFoldingStep = 0;
-            garment.Dry = lintTrapClean; //garments are dried if the lint trap is clean
         }
 
         //Put separated socks in machine
         foreach (Garment garment in garmentsToBeAdded)
             contents.Add(garment);
+
+        yield return new WaitForSeconds(cycleTime);
+
+        foreach (Garment garment in contents) {
+            if ((garment.fabric.dryingRestrictions == DryingRestrictions.LowOnly && dryerSetting == DryerSetting.High) ||
+                (garment.fabric.dryingRestrictions == DryingRestrictions.HighOnly && dryerSetting == DryerSetting.Low))
+                garment.Ruined = true;
+
+            garment.Dry = lintTrapClean; //garments are dried if the lint trap is clean
+        }
 
         if(contents.Count > 0)
             lintTrapClean = false;
