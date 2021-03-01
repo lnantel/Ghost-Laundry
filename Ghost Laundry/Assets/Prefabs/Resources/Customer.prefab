@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 75995750211119551}
   - component: {fileID: 6257596325074974511}
   - component: {fileID: 1166106683500329105}
+  - component: {fileID: 3138832423848528512}
   m_Layer: 0
   m_Name: Sprite Renderer
   m_TagString: Untagged
@@ -195,3 +196,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 204794778291009423}
+--- !u!95 &3138832423848528512
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798752225256934039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd4d36fc42180cb4cb8c7054b27f25f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -30,9 +30,11 @@ public class Customer : MonoBehaviour
     private GameObject laundromatBasketPrefab;
     private LaundromatBasket basketOnCounter;
     private LaundromatBag bagOnCounter;
+    private Animator animator;
 
     private void Start() {
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
+        animator = GetComponentInChildren<Animator>();
 
         //Generate random customer
         head = UnityEngine.Random.Range(0, 3);
@@ -160,6 +162,7 @@ public class Customer : MonoBehaviour
                 } 
                 break;
             case CustomerState.WaitingForClothes:
+                impatient = false;
                 MoveTowards(spot.position);
                 break;
             case CustomerState.PickingUpBag:
@@ -183,6 +186,7 @@ public class Customer : MonoBehaviour
                 CustomerManager.CustomerLeft(this);
                 break;
         }
+        animator.SetBool("Impatient", impatient);
     }
 }
 
