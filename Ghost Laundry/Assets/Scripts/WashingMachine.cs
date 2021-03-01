@@ -88,17 +88,6 @@ public class WashingMachine : WorkStation
         }
     }
 
-    public bool AddDetergent() {
-        if (!Detergent) {
-            Detergent = true;
-            return true;
-        }
-        else {
-            Debug.Log("Detergent overflow");
-            return false;
-        }
-    }
-
     private IEnumerator WashCycle() {
         bool containsColoredGarments = false;
 
