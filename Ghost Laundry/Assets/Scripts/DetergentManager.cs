@@ -39,6 +39,6 @@ public class DetergentManager : MonoBehaviour
     }
 
     private void OnGUI() {
-        TXT_Detergent.text = "Detergent: " + CurrentAmount + " / " + MaxAmount;
+        TXT_Detergent.text = "Detergent: " + CurrentAmount + "/" + MaxAmount;
     }
 }

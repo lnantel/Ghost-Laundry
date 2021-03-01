@@ -27,10 +27,12 @@ public class MoneyManager : MonoBehaviour
 
     private void OnEnable() {
         Customer.Pay += OnCustomerPay;
+        ShopInteractable.BoughtItem += OnItemBought;
     }
 
     private void OnDisable() {
         Customer.Pay -= OnCustomerPay;
+        ShopInteractable.BoughtItem -= OnItemBought;
     }
 
     private void OnCustomerPay(int fee, int tip, Customer customer) {
@@ -50,6 +52,10 @@ public class MoneyManager : MonoBehaviour
         }
 
         ModifyCurrentAmount(fee + tip);
+    }
+
+    private void OnItemBought(int price) {
+        ModifyCurrentAmount(-price);
     }
 
     private void ModifyCurrentAmount(int amount) {
