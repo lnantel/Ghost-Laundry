@@ -11,6 +11,9 @@ public class MoneyManager : MonoBehaviour
     public int CurrentAmount;
     public int Rent;
 
+    public int LaunderedGarmentFee;
+    public int PerfectGarmentTip;
+
     public TextMeshProUGUI TXT_CurrentAmount;
 
     private GameObject moneyPopUpPrefab;
@@ -21,35 +24,52 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void Start() {
-        CurrentAmount = 0;
+        CurrentAmount = -Rent;
         moneyPopUpPrefab = (GameObject)Resources.Load("MoneyPopUp");
     }
 
     private void OnEnable() {
-        Customer.Pay += OnCustomerPay;
+        ShopInteractable.BoughtItem += OnItemBought;
+        Customer.BagPickedUp += OnBagPickedUp;
     }
 
     private void OnDisable() {
-        Customer.Pay -= OnCustomerPay;
+        ShopInteractable.BoughtItem -= OnItemBought;
+        Customer.BagPickedUp -= OnBagPickedUp;
     }
 
-    private void OnCustomerPay(int fee, int tip, Customer customer) {
+    private void OnBagPickedUp(LaundromatBag bag) {
+        int fee = 0;
+        int tip = 0;
+
+        fee += bag.launderedGarments * LaunderedGarmentFee;
+        tip += bag.perfectGarments * PerfectGarmentTip;
+
+        if(bag.ruinedGarments > 0) {
+            fee = 0;
+            tip = 0;
+        }
+
         //Spawn a pop-up
-        if(fee > 0) {
+        if (fee > 0) {
             //Money pop-up
-            GameObject popUp = Instantiate(moneyPopUpPrefab, customer.transform.position + Vector3.up, customer.transform.rotation, WorldSpaceCanvas.transform);
+            GameObject popUp = Instantiate(moneyPopUpPrefab, bag.transform.position + Vector3.up, bag.transform.rotation, WorldSpaceCanvas.transform);
             if (tip > 0)
-                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + fee + " + " + tip;
+                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + (fee / 100.0f).ToString("N2") + " + " + (tip / 100.0f).ToString("N2");
             else
-                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + fee;
-            AudioManager.instance.PlaySoundAtPosition(Sounds.MoneyGain, customer.transform.position);
+                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + (fee / 100.0f).ToString("N2");
+            AudioManager.instance.PlaySoundAtPosition(Sounds.MoneyGain, bag.transform.position);
         }
         else {
-            //Dissatisfied customer pop-up
+            //TODO: Dissatisfied customer pop-up?
 
         }
 
         ModifyCurrentAmount(fee + tip);
+    }
+
+    private void OnItemBought(int price) {
+        ModifyCurrentAmount(-price);
     }
 
     private void ModifyCurrentAmount(int amount) {
@@ -57,6 +77,6 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void OnGUI() {
-        TXT_CurrentAmount.text = "$" + CurrentAmount;
+        TXT_CurrentAmount.text = "$" + (CurrentAmount / 100.0f).ToString("N2");
     }
 }

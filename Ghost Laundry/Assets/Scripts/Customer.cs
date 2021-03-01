@@ -6,6 +6,8 @@ using System;
 public class Customer : MonoBehaviour
 {
     public static Action<int, int, Customer> Pay;
+    public static Action Ragequit;
+    public static Action<LaundromatBag> BagPickedUp;
 
     public int ticketNumber;
     public List<Garment> garments;
@@ -126,16 +128,7 @@ public class Customer : MonoBehaviour
     }
 
     private void PickUpBag() {
-        int fee = 0;
-        int tip = 0;
-
-        //TODO: Better money logic
-        if (bagOnCounter.launderedGarments == bagOnCounter.totalGarments) {
-            fee = 15;
-            tip = Mathf.CeilToInt(5.0f * ((float)bagOnCounter.perfectGarments / bagOnCounter.totalGarments));
-        }
-
-        Pay(fee, tip, this);
+        BagPickedUp(bagOnCounter);
         Destroy(bagOnCounter.gameObject);
         bagOnCounter = null;
     }
@@ -183,6 +176,7 @@ public class Customer : MonoBehaviour
             case CustomerState.Ragequitting:
                 if (MoveTowards(CustomerManager.instance.Entrance.position)) {
                     state = CustomerState.HasLeft;
+                    if (Ragequit != null) Ragequit();
                 }
                 break;
             case CustomerState.HasLeft:

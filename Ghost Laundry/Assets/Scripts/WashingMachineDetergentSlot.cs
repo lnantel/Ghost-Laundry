@@ -24,10 +24,12 @@ public class WashingMachineDetergentSlot : LaundryObject
         if (washingMachine.state != WashingMachineState.Running) {
             if (!open) {
                 Open();
-            }else if(open && !washingMachine.Detergent) {
-                Fill();
-            }else if(open && washingMachine.Detergent) {
-                Close();
+            }else if (open) {
+                if (washingMachine.Detergent) Close();
+                else {
+                    if (DetergentManager.instance.UseDetergent()) Fill();
+                    else Close();
+                }
             }
         }
     }
@@ -42,7 +44,7 @@ public class WashingMachineDetergentSlot : LaundryObject
     }
 
     private void Fill() {
-        washingMachine.AddDetergent();
+        washingMachine.Detergent = true;
         spriteRenderer.sprite = filledSprite;
     }
 
