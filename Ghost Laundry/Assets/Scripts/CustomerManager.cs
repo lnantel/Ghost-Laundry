@@ -19,10 +19,12 @@ public class CustomerManager : MonoBehaviour
     public CustomerSpot[] WaitingSpots;
     public CustomerSpot[] QueueSpots;
 
-    //TODO: Link this to Reputation
     public float CustomerSpawnDelay;
 
-    public int CustomerCapacity;
+    //TODO: Link to reputation
+    public int MinCapacity;
+    public int MaxCapacity;
+    private int CurrentCapacity;
     public List<Customer> customersInLaundromat;
 
     private GameObject customerPrefab;
@@ -66,7 +68,8 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void SpawnCustomer() {
-        if(customersInLaundromat.Count < CustomerCapacity) {
+        CurrentCapacity = MinCapacity + Mathf.FloorToInt((MaxCapacity - MinCapacity) * ((float)ReputationManager.instance.CurrentAmount / ReputationManager.instance.MaxAmount));
+        if (customersInLaundromat.Count < CurrentCapacity) {
             Customer customer = Instantiate(customerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
             customersInLaundromat.Add(customer);
             customerSpawningTimer = 0;
@@ -94,7 +97,6 @@ public class CustomerManager : MonoBehaviour
                 Customer customer = GetFirstCustomerInQueue();
                 if(customer != null && SpotAssigned != null) {
                     SpotAssigned(CounterSpots[i], customer);
-                    //TODO: Signal to customer that it has a counter spot
                     customer.state = CustomerState.Arriving;
                 }
             }
