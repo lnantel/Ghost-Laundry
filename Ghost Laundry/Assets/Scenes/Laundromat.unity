@@ -154,7 +154,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3308797}
+  m_Offset: {x: 0, y: 0.90014267}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -165,7 +165,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.079662, y: 0.5273123}
+  m_Size: {x: 18.079662, y: 1.6658382}
   m_EdgeRadius: 0
 --- !u!114 &157575528
 MonoBehaviour:
@@ -325,7 +325,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5467815, y: -3.2409096}
+  m_Offset: {x: -0.48578924, y: -3.2409096}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -336,7 +336,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.215372, y: 18.814035}
+  m_Size: {x: 1.3373564, y: 18.814035}
   m_EdgeRadius: 0
 --- !u!212 &410437851
 SpriteRenderer:
@@ -855,6 +855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dryer
       objectReference: {fileID: 0}
+    - target: {fileID: 5924994404482666622, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8eb620d8e858a604e81f93bd6f188336, type: 3}
     - target: {fileID: 7502809973228414755, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2362,7 +2366,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7274699, y: 1.670093}
+  m_Offset: {x: 0.7274704, y: 1.568439}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2373,7 +2377,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.681267, y: 0.545825}
+  m_Size: {x: 18.681267, y: 1.0337648}
   m_EdgeRadius: 0
 --- !u!4 &1996108837
 Transform:
@@ -2566,7 +2570,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 394050755577090679, guid: ec0bdf742f9491e448f2e581e9b22664, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1980709772112600855, guid: ec0bdf742f9491e448f2e581e9b22664, type: 3}
       propertyPath: m_LocalPosition.x
