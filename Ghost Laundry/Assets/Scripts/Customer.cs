@@ -47,7 +47,7 @@ public class Customer : MonoBehaviour
         basket = new Basket();
         garments = new List<Garment>();
 
-        int garmentCount = UnityEngine.Random.Range(5, 8);
+        int garmentCount = UnityEngine.Random.Range(5, 9);
         for(int i = 0; i < garmentCount; i++) {
             Garment garment = Garment.GetRandomGarment();
             garment.customerID = ticketNumber;
