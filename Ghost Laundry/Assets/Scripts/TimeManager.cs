@@ -16,22 +16,38 @@ public class TimeManager : MonoBehaviour
     private float timer;
     private int RealTimeSecondsPerDay;
 
+    public bool TimeIsPassing;
+
     private void Awake() {
         if (instance == null) instance = this;
         else Destroy(gameObject);
     }
 
+    private void OnEnable() {
+        GameManager.PauseGame += OnPause;
+        GameManager.ResumeGame += OnResume;
+    }
+
+    private void OnDisable() {
+        GameManager.PauseGame -= OnPause;
+        GameManager.ResumeGame -= OnResume;
+    }
+
     private void Start() {
         RealTimeSecondsPerDay = RealTimeMinutesPerDay * 60;
+        TimeIsPassing = false;
+        Time.timeScale = 0;
     }
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if(timer >= RealTimeSecondsPerDay) {
-            EndDay();
+        if (TimeIsPassing) {
+            timer += Time.deltaTime;
+            if (timer >= RealTimeSecondsPerDay) {
+                EndDay();
+            }
+            TimeOfDay();
         }
-        TimeOfDay();
     }
 
     public float RemainingTime() {
@@ -48,10 +64,30 @@ public class TimeManager : MonoBehaviour
     }
 
     public void StartDay() {
+        TimeIsPassing = true;
+        Time.timeScale = 1;
         if(StartOfDay != null) StartOfDay(CurrentDay);
+        Debug.Log("DAY " + CurrentDay + " START");
     }
 
     public void EndDay() {
-        if (StartOfDay != null) EndOfDay(CurrentDay);
+        TimeIsPassing = false;
+        Time.timeScale = 0;
+        if (EndOfDay != null) EndOfDay(CurrentDay);
+        Debug.Log("DAY " + CurrentDay + " END");
+    }
+
+    public void NextDay() {
+        CurrentDay++;
+        timer = 0;
+    }
+
+    private void OnPause() {
+        Time.timeScale = 0;
+    }
+
+    private void OnResume() {
+        if (TimeIsPassing)
+            Time.timeScale = 1;
     }
 }

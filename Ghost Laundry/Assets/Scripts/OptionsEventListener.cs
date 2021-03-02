@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class OptionsEventListener : MonoBehaviour
 {
+    public Canvas settingsCanvas;
+
     public Slider MouseSensitivitySlider;
     public Slider MusicVolumeSlider;
     public Slider SFXVolumeSlider;
@@ -17,11 +19,25 @@ public class OptionsEventListener : MonoBehaviour
         MouseSensitivitySlider.onValueChanged.AddListener(SettingsManager.instance.SetMouseSensitivity);
         MusicVolumeSlider.onValueChanged.AddListener(SettingsManager.instance.SetMusicVolume);
         SFXVolumeSlider.onValueChanged.AddListener(SettingsManager.instance.SetSFXVolume);
+
+        GameManager.ShowSettings += OnShowSettings;
+        GameManager.HideSettings += OnHideSettings;
     }
 
     private void OnDisable() {
         MouseSensitivitySlider.onValueChanged.RemoveAllListeners();
         MusicVolumeSlider.onValueChanged.RemoveAllListeners();
         SFXVolumeSlider.onValueChanged.RemoveAllListeners();
+
+        GameManager.ShowSettings -= OnShowSettings;
+        GameManager.HideSettings -= OnHideSettings;
+    }
+
+    private void OnShowSettings() {
+        settingsCanvas.gameObject.SetActive(true);
+    }
+
+    private void OnHideSettings() {
+        settingsCanvas.gameObject.SetActive(false);
     }
 }

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MenuEventListener : MonoBehaviour
 {
+    private void OnEnable() {
+    }
+
+    private void OnDisable() {
+    }
+
     public void OnPlay() {
         GameManager.instance.LaunchGame();
     }
@@ -12,12 +18,12 @@ public class MenuEventListener : MonoBehaviour
         GameManager.instance.Resume();
     }
 
-    public void OnShowOptions() {
-        GameManager.instance.ShowOptions();
+    public void OnShowSettings() {
+        if(GameManager.ShowSettings != null) GameManager.ShowSettings();
     }
 
-    public void OnHideOptions() {
-        GameManager.instance.HideOptions();
+    public void OnHideSettings() {
+        if (GameManager.HideSettings != null) GameManager.HideSettings();
     }
 
     public void OnMainMenu() {
