@@ -294,4 +294,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f51f63bc011cc439b099dc6959025b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetergentRefillPrice: 10
+  DetergentRefillPrice: 1000

@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentDay: 1
-  RealTimeMinutesPerDay: 1
+  RealTimeMinutesPerDay: 15
   TimeIsPassing: 0
 --- !u!4 &2054369829
 Transform:
