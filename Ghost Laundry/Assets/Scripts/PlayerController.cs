@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.instance.paused) {
+        if (Time.timeScale != 0) {
             if (state.CanMove())
                 Move();
             else

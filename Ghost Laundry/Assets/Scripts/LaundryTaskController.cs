@@ -72,7 +72,7 @@ public class LaundryTaskController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.paused) {
+        if (Time.timeScale != 0) {
             //Inputs
             interactInput = Input.GetButtonDown("TaskInteract");
             interactInputHeld = Input.GetButton("TaskInteract");

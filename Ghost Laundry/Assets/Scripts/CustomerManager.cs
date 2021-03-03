@@ -40,7 +40,6 @@ public class CustomerManager : MonoBehaviour
         customersInLaundromat = new List<Customer>();
         customerPrefab = (GameObject)Resources.Load("Customer");
         ResetTicketNumber();
-        SpawnCustomer();
         customerSpawningTimer = 0;
 
         //Assign a unique ID to each CustomerSpot, for comparison purposes

@@ -26,4 +26,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pause.unity
     guid: 128f5ce6fdf81df4fbb02badca9f3ddb
+  - enabled: 1
+    path: Assets/Scenes/Customers.unity
+    guid: 1a18ba31d4d5b444baff5f07f3353005
+  - enabled: 1
+    path: Assets/Scenes/HUD.unity
+    guid: 366cc42767c86d247b7802b2f5e6cd2c
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 884fb101ef6217b41a5ecf43bedd4811
+  - enabled: 1
+    path: Assets/Scenes/NextDay.unity
+    guid: f54ce7d6898e8bb48aad98ff58a6e0cc
   m_configObjects: {}
