@@ -7,6 +7,8 @@ public class Garment
     public Fabric fabric;
     public Color color;
     public int size;
+
+    [HideInInspector]
     public int customerID;
 
     //States
@@ -17,6 +19,7 @@ public class Garment
     protected bool ruined;
 
     public int foldingSteps;
+    [HideInInspector]
     public int currentFoldingStep;
 
     protected GameObject laundryGarmentPrefab;

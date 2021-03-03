@@ -111,7 +111,7 @@ public class Customer : MonoBehaviour
     }
 
     private void OnClothesReady(LaundromatBag bag) {
-        if(bag.ticketNumber == ticketNumber) {
+        if(bag.customerID == ticketNumber) {
             state = CustomerState.PickingUpBag;
             spot.Free();
             bagOnCounter = bag;

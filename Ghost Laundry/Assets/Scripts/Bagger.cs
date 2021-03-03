@@ -59,7 +59,8 @@ public class Bagger : WorkStation
 
                 //Spawn a LaundromatBag
                 LaundromatBag bag = Instantiate(laundromatBagPrefab, bagSpawnPoint.position, bagSpawnPoint.rotation).GetComponent<LaundromatBag>();
-                bag.ticketNumber = customer.ticketNumber;
+                bag.contents = customersGarments;
+                bag.customerID = customer.ticketNumber;
                 bag.totalGarments = customersGarments.Count;
                 bag.launderedGarments = launderedGarments;
                 bag.perfectGarments = perfectGarments;

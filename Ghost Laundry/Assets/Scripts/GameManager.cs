@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     public static Action ShowEvaluation;
     public static Action HideEvaluation;
 
+    public static Action ShowDialog;
+    public static Action HideDialog;
+
     public GameStates state;
     private IEnumerator stateTransition;
 

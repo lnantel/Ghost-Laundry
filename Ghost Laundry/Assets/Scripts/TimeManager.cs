@@ -9,12 +9,15 @@ public class TimeManager : MonoBehaviour
 
     public static Action<int> StartOfDay;
     public static Action<int> EndOfDay;
+    public static Action<int[]> TimeOfDay;
 
     public int CurrentDay;
     public int RealTimeMinutesPerDay;
 
     private float timer;
     private int RealTimeSecondsPerDay;
+
+    private int[] lastCurrentTime;
 
     public bool TimeIsPassing;
 
@@ -43,10 +46,17 @@ public class TimeManager : MonoBehaviour
     {
         if (TimeIsPassing) {
             timer += Time.deltaTime;
+            int[] currentTime = CurrentTime();
+
+            if (currentTime[0] != lastCurrentTime[0] && currentTime[1] != lastCurrentTime[1]) {
+                if (TimeOfDay != null) TimeOfDay(currentTime);
+                Debug.Log("It is " + currentTime[0] + ":" + currentTime[1]);
+            }
+
             if (timer >= RealTimeSecondsPerDay) {
                 EndDay();
             }
-            TimeOfDay();
+            lastCurrentTime = currentTime;
         }
     }
 
@@ -54,12 +64,11 @@ public class TimeManager : MonoBehaviour
         return RealTimeSecondsPerDay - timer;
     }
 
-    public int[] TimeOfDay() {
+    public int[] CurrentTime() {
         float ratio = timer / RealTimeSecondsPerDay;
         float RealTimeSecondsPerHour = RealTimeSecondsPerDay / 12.0f;
         int hour = Mathf.FloorToInt(timer / RealTimeSecondsPerHour);
         int minute = Mathf.FloorToInt(((timer / RealTimeSecondsPerHour) - hour) * 60);
-        Debug.Log(hour + ":" + minute.ToString("D2"));
         return new int[] { hour + 12, minute };
     }
 
