@@ -6,8 +6,8 @@ public abstract class NarrativeEventListener : MonoBehaviour
 {
     public NarrativeEvent narrativeEvent;
 
-    protected int customerID;
-    protected int nextEvent;
+    public int characterIndex;
+    public int customerID;
 
     private void OnEnable() {
         Customer.BagPickedUp += OnLaundryCompleted;

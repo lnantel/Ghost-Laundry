@@ -226,6 +226,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Take(GameObject obj) {
+        if (carriedObject != null) DropCarriedObject();
+        StartCarrying(obj);
+        LaundromatBasket laundromatBasket = obj.GetComponent<LaundromatBasket>();
+        if (laundromatBasket != null) {
+            if (CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
+        }
+    }
+
     private void PutDown() {
         if(carriedObject != null) {
             Interactable interactable = interactableDetector.GetNearestInteractable();

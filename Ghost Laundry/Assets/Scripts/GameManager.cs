@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour {
         SceneManager.sceneUnloaded += OnSceneUnloaded;
         TimeManager.EndOfDay += OnEndOfDay;
         TransitionManager.TransitionDone += OnTransitionEnd;
+        EventManager.StartDialog += OnDialogStart;
+        EventManager.EndDialog += OnDialogEnd;
     }
 
     private void OnDisable() {
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour {
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
         TimeManager.EndOfDay -= OnEndOfDay;
         TransitionManager.TransitionDone -= OnTransitionEnd;
+        EventManager.StartDialog -= OnDialogStart;
+        EventManager.EndDialog -= OnDialogEnd;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
@@ -143,11 +147,10 @@ public class GameManager : MonoBehaviour {
             UnloadAllScenes();
         }
 
-        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop");
+        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog");
         while (scenesLoading != null) yield return null;
 
-        if (keepLoaded.Contains(SceneManager.GetSceneByName("HUD")))
-            keepLoaded.Remove(SceneManager.GetSceneByName("HUD"));
+        keepLoaded.Clear();
 
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
@@ -194,6 +197,7 @@ public class GameManager : MonoBehaviour {
             yield return new WaitForSecondsRealtime(2.0f);
             //Unload all scenes except HUD (to preserve resources)
             keepLoaded.Add(SceneManager.GetSceneByName("HUD"));
+            keepLoaded.Add(SceneManager.GetSceneByName("Dialog"));
             UnloadAllScenes();
         }
 
@@ -270,6 +274,14 @@ public class GameManager : MonoBehaviour {
             stateTransition = GoToTitleScreen();
             StartCoroutine(stateTransition);
         }
+    }
+
+    private void OnDialogStart() {
+        if(ShowDialog != null) ShowDialog();
+    }
+    
+    private void OnDialogEnd(int i) {
+        if (HideDialog != null) HideDialog();
     }
 
     private void ShowCursor() {

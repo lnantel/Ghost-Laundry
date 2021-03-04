@@ -5,10 +5,14 @@ using System;
 
 public class EventManager : MonoBehaviour
 {
-    public static Action EndDialog;
+    public static Action StartDialog;
+    public static Action<int> EndDialog;
+
+    public Canvas dialogCanvas;
 
     //Each character has a tree at a given index in this array
-    public NarrativeEvent[] EventTrees;
+    public string[] customerNames;
+    public NarrativeEventTree[] EventTrees;
 
     [HideInInspector]
     public List<NarrativeEvent> EventsToday;
@@ -17,24 +21,33 @@ public class EventManager : MonoBehaviour
 
     private void Start() {
         EventsToday = new List<NarrativeEvent>();
+
+        for(int i = 0; i < EventTrees.Length; i++) {
+            for (int j = 0; j < EventTrees[i].tree.Length; j++)
+                EventTrees[i].tree[j].EventTreeIndex = i;
+        }
     }
 
     private void OnEnable() {
         TimeManager.StartOfDay += OnDayStart;
         TimeManager.EndOfDay += OnDayEnd;
         TimeManager.TimeOfDay += OnTime;
+
+        RecurringCustomerInteractable.StartDialog += OnDialogStart;
     }
 
     private void OnDisable() {
         TimeManager.StartOfDay -= OnDayStart;
         TimeManager.EndOfDay -= OnDayEnd;
         TimeManager.TimeOfDay -= OnTime;
+
+        RecurringCustomerInteractable.StartDialog -= OnDialogStart;
     }
 
     private void OnDayStart(int day) {
         //Find what events happen today and add them to a list
         //For each character, find the next event; if it is today, add it to the list
-        foreach(NarrativeEvent tree in EventTrees) {
+        foreach(NarrativeEventTree tree in EventTrees) {
             NarrativeEvent nextEvent = tree.GetNextEvent();
             if (nextEvent != null && nextEvent.Day == day)
                 EventsToday.Add(nextEvent);
@@ -48,6 +61,7 @@ public class EventManager : MonoBehaviour
                 //TODO:
                 //spawn the correct customer through CustomerManager
                 //(ignoring reputation and laundromat capacity)
+                CustomerManager.instance.SpawnRecurringCustomer();
             }
         }
     }
@@ -67,23 +81,32 @@ public class EventManager : MonoBehaviour
         NarrativeEvent nextEvent = EventTrees[characterIndex].GetNextEvent();
 
         //Enable flowchart
-        nextEvent.flowchart.gameObject.SetActive(true);
+        if(nextEvent != null) {
+            nextEvent.flowchart.gameObject.SetActive(true);
+            dialogCanvas.gameObject.SetActive(true);
 
-        //Spawn NarrativeEventListener
-        NarrativeEventListener listener = Instantiate(nextEvent.ListenerPrefab).GetComponent<NarrativeEventListener>();
+            //Spawn NarrativeEventListener
+            NarrativeEventListener listener = Instantiate(nextEvent.ListenerPrefab).GetComponent<NarrativeEventListener>();
 
-        //Link it to the correct NarrativeEvent
-        listener.narrativeEvent = nextEvent;
-        currentEvent = nextEvent;
+            //Link it to the correct NarrativeEvent
+            listener.characterIndex = characterIndex;
+            listener.customerID = CustomerManager.instance.GetRecurringCustomer(characterIndex).ticketNumber;
+            listener.narrativeEvent = nextEvent;
+            currentEvent = nextEvent;
+
+            if(StartDialog != null) StartDialog();
+        }
     }
 
     public void EventEnd() {
+        dialogCanvas.gameObject.SetActive(false);
+
         //Mark the event as completed
         if (currentEvent != null) {
             currentEvent.Completed = true;
             currentEvent.flowchart.gameObject.SetActive(false);
         }
 
-        if (EndDialog != null) EndDialog();
+        if (EndDialog != null) EndDialog(currentEvent.EventTreeIndex);
     }
 }

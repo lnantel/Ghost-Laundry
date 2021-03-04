@@ -15,11 +15,9 @@ public class Customer : MonoBehaviour
 
     public float MaximumWaitingTime;
     public bool impatient;
-    private float waitTimer;
+    protected float waitTimer;
 
-    public int head;
-    public int body;
-    public int legs;
+    public int silhouette;
 
     public CustomerState state;
 
@@ -27,19 +25,17 @@ public class Customer : MonoBehaviour
 
     public float speed;
 
-    private GameObject laundromatBasketPrefab;
-    private LaundromatBasket basketOnCounter;
-    private LaundromatBag bagOnCounter;
-    private Animator animator;
+    protected GameObject laundromatBasketPrefab;
+    protected LaundromatBasket basketOnCounter;
+    protected LaundromatBag bagOnCounter;
+    protected Animator animator;
 
-    private void Start() {
+    protected virtual void Start() {
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
         animator = GetComponentInChildren<Animator>();
 
         //Generate random customer
-        head = UnityEngine.Random.Range(0, 3);
-        body = UnityEngine.Random.Range(0, 3);
-        legs = UnityEngine.Random.Range(0, 3);
+        silhouette = UnityEngine.Random.Range(0, 3);
 
         ticketNumber = CustomerManager.instance.GetTicketNumber();
 
@@ -56,10 +52,8 @@ public class Customer : MonoBehaviour
             Garment garment = Garment.GetRandomGarment();
             garment.customerID = ticketNumber;
             garments.Add(garment);
-            //basket.AddGarment(garment);
             if(garment is GarmentSock) {
                 GarmentSock otherSock = new GarmentSock((GarmentSock)garment);
-                //basket.AddGarment(otherSock);
                 garments.Add(otherSock);
                 i++;
             }
@@ -82,19 +76,19 @@ public class Customer : MonoBehaviour
         CustomerManager.instance.AssignQueueSpot(this);
     }
 
-    private void OnEnable() {
+    protected virtual void OnEnable() {
         CustomerManager.CustomerServed += OnCustomerServed;
         CustomerManager.SpotAssigned += OnSpotAssigned;
         PickUpCounter.BagReadyForPickUp += OnClothesReady;
     }
 
-    private void OnDisable() {
+    protected virtual void OnDisable() {
         CustomerManager.CustomerServed -= OnCustomerServed;
         CustomerManager.SpotAssigned += OnSpotAssigned;
         PickUpCounter.BagReadyForPickUp -= OnClothesReady;
     }
 
-    private void OnCustomerServed(LaundromatBasket laundromatBasket) {
+    protected virtual void OnCustomerServed(LaundromatBasket laundromatBasket) {
         if(state == CustomerState.WaitingForService && laundromatBasket.GetInstanceID() == basketOnCounter.GetInstanceID()) {
             state = CustomerState.WaitingForClothes;
             CustomerManager.instance.AssignRandomWaitingSpot(this);
@@ -102,7 +96,7 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void OnSpotAssigned(CustomerSpot newSpot, Customer customer) {
+    protected virtual void OnSpotAssigned(CustomerSpot newSpot, Customer customer) {
         if(customer.GetInstanceID() == GetInstanceID()) {
             if(spot != null) spot.Free();
             spot = newSpot;
@@ -110,7 +104,7 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void OnClothesReady(LaundromatBag bag) {
+    protected virtual void OnClothesReady(LaundromatBag bag) {
         if(bag.customerID == ticketNumber) {
             state = CustomerState.PickingUpBag;
             spot.Free();
@@ -118,75 +112,110 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void PlaceBasketOnCounter() {
+    protected virtual void PlaceBasketOnCounter() {
         LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, spot.position + Vector3.up, transform.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
         basketOnCounter = laundromatBasket;
     }
 
-    private void RemoveBasketFromCounter() {
+    protected virtual void RemoveBasketFromCounter() {
         Destroy(basketOnCounter.gameObject);
         basketOnCounter = null;
     }
 
-    private void PickUpBag() {
+    protected virtual void PickUpBag() {
         BagPickedUp(bagOnCounter);
         Destroy(bagOnCounter.gameObject);
         bagOnCounter = null;
     }
 
     //Returns true when the customer has reached the given destination
-    private bool MoveTowards(Vector3 destination) {
+    protected virtual bool MoveTowards(Vector3 destination) {
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         return (transform.position - destination).magnitude < 0.1f;
     }
 
-    private void Update() {
+    protected virtual void Queueing() {
+        MoveTowards(spot.position);
+    }
+
+    protected virtual void Arriving() {
+        if (MoveTowards(spot.position)) {
+            PlaceBasketOnCounter();
+            state = CustomerState.WaitingForService;
+        }
+    }
+
+    protected virtual void WaitingForService() {
+        waitTimer += Time.deltaTime;
+        if (waitTimer > 0.7f * MaximumWaitingTime) {
+            impatient = true;
+            animator.SetBool("Impatient", impatient);
+        }
+        if (waitTimer >= MaximumWaitingTime) {
+            RemoveBasketFromCounter();
+            spot.Free();
+            state = CustomerState.Ragequitting;
+        }
+    }
+
+    protected virtual void WaitingForClothes() {
+        impatient = false;
+        animator.SetBool("Impatient", impatient);
+        MoveTowards(spot.position);
+    }
+
+    protected virtual void PickingUpBag() {
+        if (MoveTowards(CustomerManager.instance.PickUpPosition.position)) {
+            PickUpBag();
+            state = CustomerState.Leaving;
+        }
+    }
+
+    protected virtual void Leaving() {
+        if (MoveTowards(CustomerManager.instance.Entrance.position)) {
+            state = CustomerState.HasLeft;
+        }
+    }
+
+    protected virtual void Ragequitting() {
+        if (MoveTowards(CustomerManager.instance.Entrance.position)) {
+            state = CustomerState.HasLeft;
+            if (Ragequit != null) Ragequit();
+        }
+    }
+
+    protected virtual void HasLeft() {
+        CustomerManager.CustomerLeft(this);
+    }
+
+    protected virtual void Update() {
         switch (state) {
             case CustomerState.Queueing:
-                MoveTowards(spot.position);
+                Queueing();
                 break;
             case CustomerState.Arriving:
-                if (MoveTowards(spot.position)) {
-                    PlaceBasketOnCounter();
-                    state = CustomerState.WaitingForService;
-                }
+                Arriving();
                 break;
             case CustomerState.WaitingForService:
-                waitTimer += Time.deltaTime;
-                if (waitTimer > 0.7f * MaximumWaitingTime) impatient = true;
-                if (waitTimer >= MaximumWaitingTime) {
-                    RemoveBasketFromCounter();
-                    spot.Free();
-                    state = CustomerState.Ragequitting;
-                } 
+                WaitingForService();
                 break;
             case CustomerState.WaitingForClothes:
-                impatient = false;
-                MoveTowards(spot.position);
+                WaitingForClothes();
                 break;
             case CustomerState.PickingUpBag:
-                if (MoveTowards(CustomerManager.instance.PickUpPosition.position)) {
-                    PickUpBag();
-                    state = CustomerState.Leaving;
-                }
+                PickingUpBag();
                 break;
             case CustomerState.Leaving:
-                if (MoveTowards(CustomerManager.instance.Entrance.position)) {
-                    state = CustomerState.HasLeft;
-                }
+                Leaving();
                 break;
             case CustomerState.Ragequitting:
-                if (MoveTowards(CustomerManager.instance.Entrance.position)) {
-                    state = CustomerState.HasLeft;
-                    if (Ragequit != null) Ragequit();
-                }
+                Ragequitting();
                 break;
             case CustomerState.HasLeft:
-                CustomerManager.CustomerLeft(this);
+                HasLeft();
                 break;
         }
-        animator.SetBool("Impatient", impatient);
     }
 }
 

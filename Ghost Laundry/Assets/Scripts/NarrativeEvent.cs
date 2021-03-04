@@ -19,25 +19,17 @@ public class NarrativeEvent
         return new int[] { hour, minute };
     }
 
+    [HideInInspector]
+    public int EventTreeIndex;
+
     //The flowchart (dialogue tree) associated with the event
-    public Flowchart flowchart;
+    public GameObject flowchart;
 
     //NarrativeEventListener
     public GameObject ListenerPrefab;
 
-    //Child events
-    public NarrativeEvent[] ChildEvents;
     //NextEvent is the index of the next event in the ChildEvents array
     public int NextEventIndex;
-
-    public NarrativeEvent GetNextEvent() {
-        if (Completed && ChildEvents.Length > 0)
-            return ChildEvents[NextEventIndex].GetNextEvent();
-        else if (Completed)
-            return null;
-        else
-            return this;
-    }
 
     public bool Completed;
 }
