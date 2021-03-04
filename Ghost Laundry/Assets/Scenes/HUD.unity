@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &125943219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281171200
-  m_fontColor: {r: 0, g: 0.49056602, b: 0.1751816, a: 1}
+  m_fontColor: {r: 0, g: 0.49019608, b: 0.1764706, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1212,6 +1212,8 @@ MonoBehaviour:
   LaunderedGarmentFee: 200
   PerfectGarmentTip: 50
   TXT_CurrentAmount: {fileID: 802693928}
+  PositiveAmountColor: {r: 0, g: 0.49019608, b: 0.1764706, a: 1}
+  NegativeAmountColor: {r: 0.7372549, g: 0, b: 0.043137256, a: 1}
 --- !u!4 &1230379292
 Transform:
   m_ObjectHideFlags: 0

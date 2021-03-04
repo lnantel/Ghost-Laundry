@@ -15,6 +15,8 @@ public class MoneyManager : MonoBehaviour
     public int PerfectGarmentTip;
 
     public TextMeshProUGUI TXT_CurrentAmount;
+    public Color PositiveAmountColor;
+    public Color NegativeAmountColor;
 
     private GameObject moneyPopUpPrefab;
 
@@ -77,11 +79,13 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void OnGUI() {
-        if(CurrentAmount > 0) {
+        if(CurrentAmount >= 0) {
             TXT_CurrentAmount.text = "$" + (CurrentAmount / 100.0f).ToString("N2");
+            TXT_CurrentAmount.color = PositiveAmountColor;
         }
         else {
             TXT_CurrentAmount.text = "-$" + Mathf.Abs((CurrentAmount / 100.0f)).ToString("N2");
+            TXT_CurrentAmount.color = NegativeAmountColor;
         }
     }
 }
