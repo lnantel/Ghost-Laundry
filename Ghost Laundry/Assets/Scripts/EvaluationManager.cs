@@ -40,6 +40,10 @@ public class EvaluationManager : MonoBehaviour
     private void OnDisable() {
         GameManager.ShowEvaluation -= OnShowEvaluation;
         GameManager.HideEvaluation -= OnHideEvaluation;
+
+        Customer.Pay -= OnCustomerPaid;
+        ShopInteractable.BoughtItem -= OnBoughtItem;
+        Customer.BagPickedUp -= OnBagPickedUp;
     }
 
     private void Start() {

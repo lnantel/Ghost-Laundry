@@ -113,7 +113,7 @@ public class Customer : MonoBehaviour
     }
 
     protected virtual void PlaceBasketOnCounter() {
-        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, spot.position + Vector3.up, transform.rotation).GetComponent<LaundromatBasket>();
+        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, spot.position + Vector3.up * 0.75f, transform.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
         basketOnCounter = laundromatBasket;
     }
