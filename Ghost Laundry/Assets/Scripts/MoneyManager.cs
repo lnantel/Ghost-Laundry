@@ -77,6 +77,11 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void OnGUI() {
-        TXT_CurrentAmount.text = "$" + (CurrentAmount / 100.0f).ToString("N2");
+        if(CurrentAmount > 0) {
+            TXT_CurrentAmount.text = "$" + (CurrentAmount / 100.0f).ToString("N2");
+        }
+        else {
+            TXT_CurrentAmount.text = "-$" + Mathf.Abs((CurrentAmount / 100.0f)).ToString("N2");
+        }
     }
 }

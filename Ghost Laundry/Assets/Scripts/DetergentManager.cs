@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class DetergentManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DetergentManager : MonoBehaviour
     [HideInInspector]
     public int CurrentAmount;
 
-    public TextMeshProUGUI TXT_Detergent;
+    public Image fillImage;
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -39,6 +40,6 @@ public class DetergentManager : MonoBehaviour
     }
 
     private void OnGUI() {
-        TXT_Detergent.text = "Detergent: " + CurrentAmount + "/" + MaxAmount;
+        fillImage.fillAmount = (float)CurrentAmount / MaxAmount;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ReputationManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class ReputationManager : MonoBehaviour
     public int NotDoneRep;
     public int RuinedGarmentRep;
 
-    public TextMeshProUGUI TXT_Reputation;
+    public Image fillImage;
 
     private void OnEnable() {
         Customer.Ragequit += OnRagequit;
@@ -52,6 +53,6 @@ public class ReputationManager : MonoBehaviour
     }
 
     private void OnGUI() {
-        TXT_Reputation.text = "Reputation: " + CurrentAmount + "/" + MaxAmount;
+        fillImage.fillAmount = (float) CurrentAmount / MaxAmount;
     }
 }
