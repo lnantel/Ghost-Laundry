@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour {
             UnloadAllScenes();
         }
 
-        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog");
+        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation");
         while (scenesLoading != null) yield return null;
 
         keepLoaded.Clear();
@@ -272,6 +272,23 @@ public class GameManager : MonoBehaviour {
     public void GoToMainMenu() {
         if (stateTransition == null) {
             stateTransition = GoToTitleScreen();
+            StartCoroutine(stateTransition);
+        }
+    }
+
+    public void OnRetry() {
+        //TODO: Save system: reset resources/narrative events to their state at the start of the day
+        if (stateTransition == null) {
+            TimeManager.instance.RetryDay();
+            stateTransition = GoToTransition();
+            StartCoroutine(stateTransition);
+        }
+    }
+
+    public void OnNextDay() {
+        if (stateTransition == null) {
+            TimeManager.instance.NextDay();
+            stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
     }

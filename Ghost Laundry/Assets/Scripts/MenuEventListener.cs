@@ -33,4 +33,12 @@ public class MenuEventListener : MonoBehaviour
     public void OnQuit() {
         Application.Quit();
     }
+
+    public void OnRetry() {
+        GameManager.instance.OnRetry();
+    }
+
+    public void OnNextDay() {
+        GameManager.instance.OnNextDay();
+    }
 }

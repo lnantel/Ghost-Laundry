@@ -97,6 +97,10 @@ public class TimeManager : MonoBehaviour
         Debug.Log("DAY " + CurrentDay + " END");
     }
 
+    public void RetryDay() {
+        timer = 0;
+    }
+
     public void NextDay() {
         CurrentDay++;
         timer = 0;
