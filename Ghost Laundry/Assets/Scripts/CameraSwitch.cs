@@ -45,12 +45,12 @@ public class CameraSwitch : MonoBehaviour
             timer = 0.0f;
         }
 
-        offsetTimer = Mathf.Clamp(offsetTimer + Time.deltaTime, 0.0f, lerpTime);
+        offsetTimer = Mathf.Clamp(offsetTimer + TimeManager.instance.deltaTime, 0.0f, lerpTime);
         currentOffset = Vector2.Lerp(lastOffset, offset, offsetTimer / lerpTime);
 
         Vector2 offsetDestination = destination + currentOffset;
 
-        timer = Mathf.Clamp(timer + Time.deltaTime, 0.0f, lerpTime);
+        timer = Mathf.Clamp(timer + TimeManager.instance.deltaTime, 0.0f, lerpTime);
         transform.position = Vector2.Lerp(lastDestination, offsetDestination, timer / lerpTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
     }
@@ -80,7 +80,7 @@ public class CameraSwitch : MonoBehaviour
         while (time < lerpTime) {
 
          transform.position = Vector2.Lerp(transform.position, destination,time / lerpTime);
-         time += Time.deltaTime; 
+         time += TimeManager.instance.deltaTime; 
          yield return new WaitForSeconds(0); 
 
         }

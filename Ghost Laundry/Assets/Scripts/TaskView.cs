@@ -30,7 +30,7 @@ public class TaskView : MonoBehaviour
     }
 
     private void Update() {
-        timer = Mathf.Clamp(timer + Time.deltaTime, 0.0f, popUpTime);
+        timer = Mathf.Clamp(timer + TimeManager.instance.deltaTime, 0.0f, popUpTime);
 
         if (open)
             popUpFactor = Mathf.Lerp(0.0f, 1.0f, timer / popUpTime);

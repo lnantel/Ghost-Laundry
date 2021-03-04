@@ -63,32 +63,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale != 0) {
-            if (state.CanMove())
-                Move();
+        if (state.CanMove())
+            Move();
+        else
+            state.EndWalk();
+
+        if (input.GetDashInput() && state.CanDash())
+            StartCoroutine(Dash());
+
+        if (input.GetPickUpInput()) {
+            if (state.Carrying)
+                PutDown();
             else
-                state.EndWalk();
+                PickUp();
+        }
 
-            if (input.GetDashInput() && state.CanDash())
-                StartCoroutine(Dash());
+        if (state.Carrying) {
+            if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
+            carriedObject.transform.position = carriedPos.position;
+            carriedObject.transform.rotation = carriedPos.rotation;
+            carriedObjectSortingGroup.sortingOrder = playerSortingGroup.sortingOrder + 1;
+        }
 
-            if (input.GetPickUpInput()) {
-                if (state.Carrying)
-                    PutDown();
-                else
-                    PickUp();
-            }
-
-            if (state.Carrying) {
-                if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
-                carriedObject.transform.position = carriedPos.position;
-                carriedObject.transform.rotation = carriedPos.rotation;
-                carriedObjectSortingGroup.sortingOrder = playerSortingGroup.sortingOrder + 1;
-            }
-
-            if (input.GetInteractInput()) {
-                Interact();
-            }
+        if (input.GetInteractInput()) {
+            Interact();
         }
     }
 
@@ -147,8 +145,8 @@ public class PlayerController : MonoBehaviour
             else {
                 rb.MovePosition(Vector2.Lerp(dashStartPos, dashEndPos, fraction));
             }
-            dashTimer += Time.deltaTime;
-            yield return new WaitForSeconds(0.0f);
+            dashTimer += TimeManager.instance.deltaTime;
+            yield return new WaitForLaundromatSeconds(0.0f);
         }
 
         if (collision) {
@@ -158,8 +156,8 @@ public class PlayerController : MonoBehaviour
             float reboundTimer = 0.0f;
             while(reboundTimer < m_DashReboundDuration) {
                 rb.MovePosition(Vector2.Lerp(collisionPoint, dashEndPos, m_DashCurve.Evaluate(reboundTimer / m_DashReboundDuration)));
-                reboundTimer += Time.deltaTime;
-                yield return new WaitForSeconds(0.0f);
+                reboundTimer += TimeManager.instance.deltaTime;
+                yield return new WaitForLaundromatSeconds(0.0f);
             }
         }
 
@@ -223,6 +221,15 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void Take(GameObject obj) {
+        if (carriedObject != null) DropCarriedObject();
+        StartCarrying(obj);
+        LaundromatBasket laundromatBasket = obj.GetComponent<LaundromatBasket>();
+        if (laundromatBasket != null) {
+            if (CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
         }
     }
 

@@ -21,11 +21,13 @@ public class CustomerManager : MonoBehaviour
 
     public float CustomerSpawnDelay;
 
-    //TODO: Link to reputation
     public int MinCapacity;
     public int MaxCapacity;
     private int CurrentCapacity;
     public List<Customer> customersInLaundromat;
+
+    //TODO: One for each specific customer
+    private GameObject recurringCustomerPrefab;
 
     private GameObject customerPrefab;
     private float customerSpawningTimer;
@@ -39,6 +41,7 @@ public class CustomerManager : MonoBehaviour
     private void Start() {
         customersInLaundromat = new List<Customer>();
         customerPrefab = (GameObject)Resources.Load("Customer");
+        recurringCustomerPrefab = (GameObject)Resources.Load("RecurringCustomer");
         ResetTicketNumber();
         customerSpawningTimer = 0;
 
@@ -76,6 +79,23 @@ public class CustomerManager : MonoBehaviour
         }
     }
 
+    //TODO: Spawn different recurring customers!
+    public void SpawnRecurringCustomer() {
+        Customer customer = Instantiate(recurringCustomerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
+        customersInLaundromat.Add(customer);
+        customerSpawningTimer = 0;
+        if (CustomerSpawned != null) CustomerSpawned(customer);
+    }
+
+    public RecurringCustomer GetRecurringCustomer(int characterIndex) {
+        foreach(Customer customer in customersInLaundromat) {
+            if(customer is RecurringCustomer) {
+                return ((RecurringCustomer) customer);
+            }
+        }
+        return null;
+    }
+
     public void ResetTicketNumber() {
         currentTicketNumber = 1;
     }
@@ -86,7 +106,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void Update() {
-        customerSpawningTimer += Time.deltaTime;
+        customerSpawningTimer += TimeManager.instance.deltaTime;
         if (customerSpawningTimer >= CustomerSpawnDelay)
             SpawnCustomer();
 

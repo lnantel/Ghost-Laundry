@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    private bool locked;
+    protected bool locked;
 
     // Start is called before the first frame update
     public virtual void Interact() {

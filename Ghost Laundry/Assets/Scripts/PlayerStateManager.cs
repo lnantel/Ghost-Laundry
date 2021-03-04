@@ -47,7 +47,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public IEnumerator DashCooldown(float duration) {
         Lock(ref dashLocks);
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForLaundromatSeconds(duration);
         Unlock(ref dashLocks);
     }
 
