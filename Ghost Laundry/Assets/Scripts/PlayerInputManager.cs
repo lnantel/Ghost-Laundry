@@ -32,16 +32,25 @@ public class PlayerInputManager : MonoBehaviour
 
     void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
+        if (TimeManager.instance.timeScale != 0 && Time.timeScale != 0) {
+            xInput = Input.GetAxisRaw("Horizontal");
+            yInput = Input.GetAxisRaw("Vertical");
+
+            dash = Input.GetButtonDown("Dash");
+
+            pickUp = Input.GetButtonDown("PickUp");
+
+            interact = Input.GetButtonDown("Interact");
+        }
+        else {
+            xInput = 0;
+            yInput = 0;
+            dash = false;
+            pickUp = false;
+            interact = false;
+        }
         Move = new Vector2(xInput, yInput);
         if (Move.magnitude >= 1.0f) Move = Move.normalized;
-
-        dash = Input.GetButtonDown("Dash");
-
-        pickUp = Input.GetButtonDown("PickUp");
-
-        interact = Input.GetButtonDown("Interact");
     }
 
     public bool GetDashInput() {

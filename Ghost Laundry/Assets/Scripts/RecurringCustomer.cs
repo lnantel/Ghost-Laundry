@@ -56,9 +56,14 @@ public class RecurringCustomer : Customer
 
     private void OnEndDialog(int eventTreeIndex) {
         if(EventTreeIndex == eventTreeIndex) {
-            GiveBasketToPlayer();
-            state = CustomerState.WaitingForClothes;
-            CustomerManager.instance.AssignRandomWaitingSpot(this);
+            if(basket.contents.Count > 0) {
+                GiveBasketToPlayer();
+                state = CustomerState.WaitingForClothes;
+                CustomerManager.instance.AssignRandomWaitingSpot(this);
+            }
+            else {
+                state = CustomerState.Leaving;
+            }
         }
     }
 

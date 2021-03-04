@@ -14,6 +14,9 @@ public class TimeManager : MonoBehaviour
     public int CurrentDay;
     public int RealTimeMinutesPerDay;
 
+    public float timeScale;
+    public float deltaTime;
+
     private float timer;
     private int RealTimeSecondsPerDay;
 
@@ -29,28 +32,34 @@ public class TimeManager : MonoBehaviour
     private void OnEnable() {
         GameManager.PauseGame += OnPause;
         GameManager.ResumeGame += OnResume;
+        GameManager.ShowDialog += OnShowDialog;
+        GameManager.HideDialog += OnHideDialog;
     }
 
     private void OnDisable() {
         GameManager.PauseGame -= OnPause;
         GameManager.ResumeGame -= OnResume;
+        GameManager.ShowDialog -= OnShowDialog;
+        GameManager.HideDialog -= OnHideDialog;
     }
 
     private void Start() {
         RealTimeSecondsPerDay = RealTimeMinutesPerDay * 60;
         TimeIsPassing = false;
-        Time.timeScale = 0;
+        timeScale = 0;
+        lastCurrentTime = new int[] { 0, 0 };
     }
 
     void Update()
     {
+        deltaTime = Time.deltaTime * timeScale;
         if (TimeIsPassing) {
-            timer += Time.deltaTime;
+            timer += deltaTime;
             int[] currentTime = CurrentTime();
 
-            if (currentTime[0] != lastCurrentTime[0] && currentTime[1] != lastCurrentTime[1]) {
+            if (currentTime != null && (currentTime[0] != lastCurrentTime[0] || currentTime[1] != lastCurrentTime[1])) {
                 if (TimeOfDay != null) TimeOfDay(currentTime);
-                Debug.Log("It is " + currentTime[0] + ":" + currentTime[1]);
+                Debug.Log("It is " + currentTime[0] + ":" + currentTime[1].ToString("D2"));
             }
 
             if (timer >= RealTimeSecondsPerDay) {
@@ -74,14 +83,16 @@ public class TimeManager : MonoBehaviour
 
     public void StartDay() {
         TimeIsPassing = true;
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+        timeScale = 1;
         if(StartOfDay != null) StartOfDay(CurrentDay);
         Debug.Log("DAY " + CurrentDay + " START");
     }
 
     public void EndDay() {
         TimeIsPassing = false;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        timeScale = 0;
         if (EndOfDay != null) EndOfDay(CurrentDay);
         Debug.Log("DAY " + CurrentDay + " END");
     }
@@ -96,7 +107,16 @@ public class TimeManager : MonoBehaviour
     }
 
     private void OnResume() {
-        if (TimeIsPassing)
-            Time.timeScale = 1;
+        Time.timeScale = 1;
+    }
+
+    private void OnShowDialog() {
+        TimeIsPassing = false;
+        timeScale = 0;
+    }
+
+    private void OnHideDialog() {
+        TimeIsPassing = true;
+        timeScale = 1;
     }
 }

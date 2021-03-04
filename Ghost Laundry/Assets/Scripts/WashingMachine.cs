@@ -109,7 +109,7 @@ public class WashingMachine : WorkStation
         foreach (Garment garment in garmentsToBeAdded)
             contents.Add(garment);
 
-        yield return new WaitForSeconds(WashCycleTime);
+        yield return new WaitForLaundromatSeconds(WashCycleTime);
 
         foreach (Garment garment in contents) {
             if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {

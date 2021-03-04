@@ -10,9 +10,9 @@ public class NarrativeEvent
     public int Day;
 
     [SerializeField]
-    private int hour;
+    private int hour = 0;
     [SerializeField]
-    private int minute;
+    private int minute = 0;
 
     public int[] Time { get => GetTime(); }
     private int[] GetTime() {
@@ -28,7 +28,7 @@ public class NarrativeEvent
     //NarrativeEventListener
     public GameObject ListenerPrefab;
 
-    //NextEvent is the index of the next event in the ChildEvents array
+    //NextEvent is the index of the next event in the NarrativeEventTree array
     public int NextEventIndex;
 
     public bool Completed;

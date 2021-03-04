@@ -4,9 +4,13 @@ using UnityEngine;
 
 public abstract class NarrativeEventListener : MonoBehaviour
 {
+    [HideInInspector]
     public NarrativeEvent narrativeEvent;
 
+    [HideInInspector]
     public int characterIndex;
+
+    [HideInInspector]
     public int customerID;
 
     private void OnEnable() {
@@ -20,8 +24,6 @@ public abstract class NarrativeEventListener : MonoBehaviour
     //Evaluate the bag's contents and determine nextEvent
     protected abstract void OnLaundryCompleted(LaundromatBag bag);
 
-    //Sets narrativeEvent.NextEventIndex to the relative index of the next event in the EventManager array
-    //The next event's absolute index is the index of the current NarrativeEvent + this.NextEvent()
-    //Sets a default value in case of the laundry not being completed
+    //Sets narrativeEvent.NextEventIndex to the index of the next event in the NarrativeEventTree array
     public abstract void NextEvent();
 }

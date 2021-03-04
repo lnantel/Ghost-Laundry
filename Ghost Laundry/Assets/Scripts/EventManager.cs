@@ -93,8 +93,9 @@ public class EventManager : MonoBehaviour
             listener.customerID = CustomerManager.instance.GetRecurringCustomer(characterIndex).ticketNumber;
             listener.narrativeEvent = nextEvent;
             currentEvent = nextEvent;
+            listener.NextEvent(); //sets default NextEventIndex on the narrativeEvent
 
-            if(StartDialog != null) StartDialog();
+            if (StartDialog != null) StartDialog();
         }
     }
 

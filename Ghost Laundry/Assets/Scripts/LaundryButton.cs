@@ -59,7 +59,7 @@ public class LaundryButton : LaundryObject
     }
 
     private IEnumerator springBack() {
-        yield return new WaitForSeconds(springBackDelay);
+        yield return new WaitForLaundromatSeconds(springBackDelay);
         Unpress();
     }
 

@@ -106,7 +106,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void Update() {
-        customerSpawningTimer += Time.deltaTime;
+        customerSpawningTimer += TimeManager.instance.deltaTime;
         if (customerSpawningTimer >= CustomerSpawnDelay)
             SpawnCustomer();
 

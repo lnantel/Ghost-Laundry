@@ -89,7 +89,7 @@ public class Customer : MonoBehaviour
     }
 
     protected virtual void OnCustomerServed(LaundromatBasket laundromatBasket) {
-        if(state == CustomerState.WaitingForService && laundromatBasket.GetInstanceID() == basketOnCounter.GetInstanceID()) {
+        if(state == CustomerState.WaitingForService && basketOnCounter != null && laundromatBasket.GetInstanceID() == basketOnCounter.GetInstanceID()) {
             state = CustomerState.WaitingForClothes;
             CustomerManager.instance.AssignRandomWaitingSpot(this);
             impatient = false;
@@ -131,7 +131,7 @@ public class Customer : MonoBehaviour
 
     //Returns true when the customer has reached the given destination
     protected virtual bool MoveTowards(Vector3 destination) {
-        transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, destination, speed * TimeManager.instance.deltaTime);
         return (transform.position - destination).magnitude < 0.1f;
     }
 
@@ -147,7 +147,7 @@ public class Customer : MonoBehaviour
     }
 
     protected virtual void WaitingForService() {
-        waitTimer += Time.deltaTime;
+        waitTimer += TimeManager.instance.deltaTime;
         if (waitTimer > 0.7f * MaximumWaitingTime) {
             impatient = true;
             animator.SetBool("Impatient", impatient);

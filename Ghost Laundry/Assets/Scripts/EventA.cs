@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventA : NarrativeEventListener {
+    private bool perfectLaundry = false;
+
     public override void NextEvent() {
-        narrativeEvent.NextEventIndex = 1;
+        if(perfectLaundry)
+            narrativeEvent.NextEventIndex = 2;
+        else
+            narrativeEvent.NextEventIndex = 1;
     }
 
     private void Start() {
@@ -30,6 +35,10 @@ public class EventA : NarrativeEventListener {
     protected override void OnLaundryCompleted(LaundromatBag bag) {
         if(customerID == bag.customerID) {
             Debug.Log("Event A OnLaundryCompleted called");
+            if (bag.totalGarments == bag.perfectGarments) {
+                perfectLaundry = true;
+            }
+            NextEvent();
         }
     }
 }

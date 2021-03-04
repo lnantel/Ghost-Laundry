@@ -110,7 +110,7 @@ public class Dryer : WorkStation
         foreach (Garment garment in garmentsToBeAdded)
             contents.Add(garment);
 
-        yield return new WaitForSeconds(cycleTime);
+        yield return new WaitForLaundromatSeconds(cycleTime);
 
         foreach (Garment garment in contents) {
             if ((garment.fabric.dryingRestrictions == DryingRestrictions.LowOnly && dryerSetting == DryerSetting.High) ||

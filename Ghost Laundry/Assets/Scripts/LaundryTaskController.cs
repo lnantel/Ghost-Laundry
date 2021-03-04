@@ -72,7 +72,7 @@ public class LaundryTaskController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale != 0) {
+        if (TimeManager.instance.timeScale != 0 && Time.timeScale != 0) {
             //Inputs
             interactInput = Input.GetButtonDown("TaskInteract");
             interactInputHeld = Input.GetButton("TaskInteract");
@@ -170,8 +170,8 @@ public class LaundryTaskController : MonoBehaviour
             Vector2 initialTargetPosition = target.transform.position;
             float cursorDelta;
             while (true) {
-                yield return new WaitForSeconds(0.0f);
-                timer += Time.deltaTime;
+                yield return new WaitForLaundromatSeconds(0.0f);
+                timer += TimeManager.instance.deltaTime;
                 cursorDelta = (initialCursorPosition - new Vector2(cursor.position.x, cursor.position.y)).magnitude;
                 if(target != null) cursorDelta += (initialTargetPosition - new Vector2(target.transform.position.x, target.transform.position.y)).magnitude;
                 if (!interactInputHeld || cursorDelta > 0.1f) break;

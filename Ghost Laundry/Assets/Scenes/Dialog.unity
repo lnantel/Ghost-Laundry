@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 28830973}
   - component: {fileID: 28830980}
   m_Layer: 0
-  m_Name: Flowchart (1)
+  m_Name: Event B Flowchart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Event A!
+  storyText: This is Event B! Oh no!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 611dbc9f4ce22ed4aa63d3e8857d072a, type: 3}
@@ -245,7 +245,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 109
+    width: 69
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 28830977}
   selectedCommands:
-  - {fileID: 28830980}
+  - {fileID: 28830973}
   variables: []
   description: 
   stepPause: 0
@@ -631,8 +631,9 @@ GameObject:
   - component: {fileID: 972488743}
   - component: {fileID: 972488744}
   - component: {fileID: 972488745}
+  - component: {fileID: 972488746}
   m_Layer: 0
-  m_Name: Flowchart
+  m_Name: Event A Flowchart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,7 +666,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 972488740}
   selectedCommands:
-  - {fileID: 972488745}
+  - {fileID: 972488746}
   variables: []
   description: 
   stepPause: 0
@@ -691,7 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Some text!
+  storyText: Hello! This is Event A!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 611dbc9f4ce22ed4aa63d3e8857d072a, type: 3}
@@ -720,7 +721,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 109
+    width: 69
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -732,6 +733,7 @@ MonoBehaviour:
   - {fileID: 972488743}
   - {fileID: 972488739}
   - {fileID: 972488744}
+  - {fileID: 972488746}
   - {fileID: 972488745}
   suppressAllAutoSelections: 0
 --- !u!114 &972488741
@@ -760,7 +762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &972488743
 MonoBehaviour:
@@ -791,7 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Some different text!
+  storyText: If I wash these clothes perfectly, I'll get Event C tomorrow!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 37b4b1fad842d3543911525047b0ce46, type: 3}
@@ -806,7 +808,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &972488745
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -821,6 +823,33 @@ MonoBehaviour:
   targetObject: {fileID: 1225033083}
   methodName: EventEnd
   delay: 0
+--- !u!114 &972488746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972488737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 5
+  indentLevel: 0
+  storyText: Otherwise, I'll get Event B...
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 37b4b1fad842d3543911525047b0ce46, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1084785471
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +900,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225033083
 GameObject:
@@ -920,7 +949,7 @@ MonoBehaviour:
       minute: 0
       EventTreeIndex: 0
       flowchart: {fileID: 28830972}
-      ListenerPrefab: {fileID: 2740070270142239915, guid: ebc96d017fd45f94a817dcd0eb09b39b, type: 3}
+      ListenerPrefab: {fileID: 2740070270142239915, guid: 40433bcc47a3d484b86a16d99fe50ca8, type: 3}
       NextEventIndex: 3
       Completed: 0
     - Day: 2
@@ -928,7 +957,7 @@ MonoBehaviour:
       minute: 0
       EventTreeIndex: 0
       flowchart: {fileID: 1415840277}
-      ListenerPrefab: {fileID: 2740070270142239915, guid: ebc96d017fd45f94a817dcd0eb09b39b, type: 3}
+      ListenerPrefab: {fileID: 2740070270142239915, guid: 4121a34dd658e3242bf659efb8e14d12, type: 3}
       NextEventIndex: 3
       Completed: 0
   EventsToday: []
@@ -1042,7 +1071,7 @@ GameObject:
   - component: {fileID: 1415840278}
   - component: {fileID: 1415840285}
   m_Layer: 0
-  m_Name: Flowchart (2)
+  m_Name: Event C Flowchart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1062,7 +1091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Whoops!
+  storyText: Woohoo!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 37b4b1fad842d3543911525047b0ce46, type: 3}
@@ -1104,7 +1133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Event C!
+  storyText: Event C! I made it!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 611dbc9f4ce22ed4aa63d3e8857d072a, type: 3}
@@ -1147,7 +1176,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 109
+    width: 69
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1185,10 +1214,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1415840282}
-  selectedCommands:
-  - {fileID: 1415840285}
+  selectedBlocks: []
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -1323,7 +1350,7 @@ RectTransform:
   m_Children:
   - {fileID: 506701428}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1738,7 +1765,7 @@ RectTransform:
   m_Children:
   - {fileID: 1592946264}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1823,7 +1850,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952764451
 GameObject:
@@ -2051,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 28830978}
+  selectedFlowchart: {fileID: 1415840283}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
@@ -2064,5 +2091,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
