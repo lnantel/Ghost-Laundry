@@ -28,7 +28,7 @@ TagManager:
   - LaundromatObject
   - Bagger
   - RecurringCustomer
-  - 
+  - LaundromatCounter
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Entities
     uniqueID: 2796963091
+    locked: 0
+  - name: ForceToFront
+    uniqueID: 3344849093
     locked: 0
   - name: LaundryBasket
     uniqueID: 1774020819

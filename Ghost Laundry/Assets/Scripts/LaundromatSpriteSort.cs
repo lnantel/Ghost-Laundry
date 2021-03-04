@@ -10,6 +10,8 @@ public class LaundromatSpriteSort : MonoBehaviour
 
     private SortingGroup sortingGroup;
 
+    public bool forceToFront;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,13 @@ public class LaundromatSpriteSort : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sortingGroup.sortingOrder = -(int)(groundContact.position.y * 100.0f);
+        if (forceToFront) {
+            sortingGroup.sortingLayerID = SortingLayer.NameToID("ForceToFront");
+            sortingGroup.sortingOrder = 0;
+        }
+        else {
+            sortingGroup.sortingLayerID = SortingLayer.NameToID("Entities");
+            sortingGroup.sortingOrder = -(int)(groundContact.position.y * 100.0f);
+        }
     }
 }
