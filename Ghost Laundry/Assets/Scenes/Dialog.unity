@@ -217,7 +217,7 @@ MonoBehaviour:
     it back I felt like I was in a rookie body!\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 28830977}
   selectedCommands:
-  - {fileID: 28830988}
+  - {fileID: 28830987}
   variables: []
   description: 
   stepPause: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
     do I put them? \r\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -425,7 +425,7 @@ MonoBehaviour:
     and I managed to film it! I'll show you the clip later.\r"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -512,7 +512,7 @@ MonoBehaviour:
     a machine!"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -540,7 +540,7 @@ MonoBehaviour:
     What\u2019s up?\r\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -953,7 +953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 208, y: 45}
+  m_AnchoredPosition: {x: -43, y: 41}
   m_SizeDelta: {x: 77.900024, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &655874472
@@ -1232,7 +1232,6 @@ GameObject:
   - component: {fileID: 972488756}
   - component: {fileID: 972488762}
   - component: {fileID: 972488761}
-  - component: {fileID: 972488763}
   - component: {fileID: 972488765}
   - component: {fileID: 972488764}
   - component: {fileID: 972488770}
@@ -1240,9 +1239,11 @@ GameObject:
   - component: {fileID: 972488768}
   - component: {fileID: 972488767}
   - component: {fileID: 972488766}
-  - component: {fileID: 972488773}
   - component: {fileID: 972488772}
   - component: {fileID: 972488771}
+  - component: {fileID: 972488773}
+  - component: {fileID: 972488774}
+  - component: {fileID: 972488763}
   m_Layer: 0
   m_Name: Event A Flowchart
   m_TagString: Untagged
@@ -1263,11 +1264,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 263.19498, y: 123.87036}
+  scrollPos: {x: 238.22766, y: 74.30852}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.94000006
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -1276,7 +1277,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 972488740}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 972488774}
   variables: []
   description: 
   stepPause: 0
@@ -1306,7 +1308,7 @@ MonoBehaviour:
     \r\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1330,9 +1332,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 65
-    y: 70
-    width: 85.744675
+    x: 64.872345
+    y: 73.19148
+    width: 86.8
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1346,6 +1348,8 @@ MonoBehaviour:
   - {fileID: 972488761}
   - {fileID: 972488739}
   - {fileID: 972488744}
+  - {fileID: 972488774}
+  - {fileID: 972488763}
   - {fileID: 972488746}
   - {fileID: 972488765}
   - {fileID: 972488755}
@@ -1362,10 +1366,9 @@ MonoBehaviour:
   - {fileID: 972488768}
   - {fileID: 972488750}
   - {fileID: 972488759}
-  - {fileID: 972488763}
+  - {fileID: 972488773}
   - {fileID: 972488753}
   - {fileID: 972488769}
-  - {fileID: 972488773}
   - {fileID: 972488757}
   - {fileID: 972488771}
   - {fileID: 972488767}
@@ -1431,9 +1434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: ' *There is just nobody in this store..*
-
-'
+  storyText: '*There is just nobody in this store..*'
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
@@ -1445,7 +1446,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 0}
+  setSayDialog: {fileID: 1603958713}
 --- !u!114 &972488745
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1480,7 +1481,7 @@ MonoBehaviour:
   storyText: "Don't make that funeral face, you know how I love to tease you! \r\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1510,7 +1511,7 @@ MonoBehaviour:
 '
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1534,7 +1535,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: "Anyway, you were skateboarding and then? \r\n\n\n"
+  storyText: 'Anyway, you were skateboarding and then?
+
+
+'
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
@@ -1565,7 +1569,7 @@ MonoBehaviour:
     inappropriate to make my stunts? Because it\u2019s so much fun and risky! \n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1589,7 +1593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "I\u2019ll see what I can do but I can\u2019t promise anything.\r\n"
+  storyText: "I\u2019ll see what I can do but I can\u2019t promise anything."
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
@@ -1616,7 +1620,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: "Poor Karen, she was so young... \r\n \r\n\n"
+  storyText: 'Poor Karen, she was so young...
+
+
+'
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
@@ -1644,7 +1651,7 @@ MonoBehaviour:
   itemId: 9
   indentLevel: 0
   storyText: "You mean \u201Cpushing them to kill themselves\u201D  by doing dangerous
-    actions? \r\n\n"
+    actions?"
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
@@ -1672,10 +1679,10 @@ MonoBehaviour:
   itemId: 8
   indentLevel: 0
   storyText: "Thank you so much! I\u2019m sorry I gotta go and by the way {b} {color=red}do
-    not use detergent on my bone{/color} {/b} if you wash it ok? \n"
+    not use detergent on my bone{/color} {/b} if you wash it ok?"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1699,7 +1706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: "Wait, why are you skateboarding NEXT TO the skatepark? \r\n"
+  storyText: Wait, why are you skateboarding NEXT TO the skatepark?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
@@ -1732,7 +1739,7 @@ MonoBehaviour:
 '
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1756,11 +1763,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 19
   indentLevel: 0
-  storyText: "I can\u2019t wait to put it back to {b} make an even harder stunt!
-    \r{/b}\n\n"
+  storyText: "I can\u2019t wait to put it back to {b}make an even harder stunt!\r{/b}\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1784,11 +1790,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 18
   indentLevel: 0
-  storyText: "Because if so,I won't be able to skate again for a bit, and that would
-    suck! \n"
+  storyText: Because if so,I won't be able to skate again for a bit, and that would
+    suck!
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1812,11 +1818,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 17
   indentLevel: 0
-  storyText: "... So I have all my dirty clothes and a bone covered in mud.  *It
-    reminds me of my chocolate birthday cake* \n\n"
+  storyText: ... So I have all my dirty clothes and a bone covered in mud.  *It reminds
+    me of my chocolate birthday cake*
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1841,7 +1847,7 @@ MonoBehaviour:
   itemId: 16
   indentLevel: 0
   storyText: "And don\u2019t worry about the money! I can make an exception for a
-    loyal customer.\r\n"
+    loyal customer.\r"
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
@@ -1869,7 +1875,6 @@ MonoBehaviour:
   itemId: 15
   indentLevel: 0
   storyText: 'AHHHHHH! Don''t put it on my counter!
-
 
 '
   description: 
@@ -1906,7 +1911,7 @@ MonoBehaviour:
   offset: 0
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
-  facing: 2
+  facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -1943,27 +1948,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 972488737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 22
+  itemId: 35
   indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 1747701563}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 2
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 1
+  _animator:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  _parameterName:
+    stringRef: {fileID: 0}
+    stringVal: IsOnScreen
+  value:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  animatorOLD: {fileID: 0}
+  parameterNameOLD: 
 --- !u!114 &972488764
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1978,11 +1978,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 24
   indentLevel: 0
-  storyText: "I just need you to help me clean this up and do you think you can add
-    this body part in my laundry? \n\n"
+  storyText: I just need you to help me clean this up and do you think you can add
+    this body part in my laundry?
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   offset: 0
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
-  facing: 2
+  facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -2066,10 +2066,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  storyText: "{b}*I can\u2019t imagine myself like those people who stop skateboarding..*{/b}\n"
+  storyText: "{b}*I can\u2019t imagine myself like those people who stop skateboarding..*{/b}"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2094,10 +2094,10 @@ MonoBehaviour:
   itemId: 27
   indentLevel: 0
   storyText: "You don\u2019t have to if you can\u2019t but I\u2019ll get you extra
-    money if you want. \r\n"
+    money if you want."
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2121,12 +2121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 0
-  storyText: '*Oh wait?! It could be a rainbow bone! Dooooope!*
-
-'
+  storyText: '*Oh wait?! It could be a rainbow bone! Dooooope!*'
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2154,7 +2152,7 @@ MonoBehaviour:
     job is to record real heroes dying for the thrill ah ah? \n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2186,7 +2184,7 @@ MonoBehaviour:
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
-  facing: 2
+  facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -2216,7 +2214,7 @@ MonoBehaviour:
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
-  facing: 2
+  facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -2236,17 +2234,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 30
+  itemId: 33
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
   character: {fileID: 1747701563}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
+  portrait: {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
-  facing: 2
+  facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -2254,6 +2252,31 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 1
+--- !u!114 &972488774
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972488737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 34
+  indentLevel: 0
+  _animator:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  _parameterName:
+    stringRef: {fileID: 0}
+    stringVal: IsOnScreen
+  value:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  animatorOLD: {fileID: 0}
+  parameterNameOLD: 
 --- !u!1 &1084785471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,7 +2316,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
   - {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   - {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
-  portraitsFace: 1
+  portraitsFace: 2
   setSayDialog: {fileID: 1603958713}
   description: 
 --- !u!4 &1084785473
@@ -2639,7 +2662,7 @@ MonoBehaviour:
     rest, I started to question myself.\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2737,7 +2760,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1415840282}
   selectedCommands:
-  - {fileID: 1415840286}
+  - {fileID: 1415840288}
   variables: []
   description: 
   stepPause: 0
@@ -2855,7 +2878,7 @@ MonoBehaviour:
     that were at my place yesterday, can you do something for them?
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2883,7 +2906,7 @@ MonoBehaviour:
     about all of this before going back to the skatepark.\r\n\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2941,7 +2964,7 @@ MonoBehaviour:
     death by neck breaking!\r\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -3026,7 +3049,7 @@ MonoBehaviour:
     jump!  \n\n"
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -3053,7 +3076,7 @@ MonoBehaviour:
   storyText: '{b}Why do more and more people stop skateboarding as the years go by?{/b}'
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -3082,7 +3105,7 @@ MonoBehaviour:
 '
   description: 
   character: {fileID: 1747701563}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -3229,7 +3252,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1415840302
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3675,7 +3698,7 @@ MonoBehaviour:
   storyText: {fileID: 2053497925}
   storyTextGO: {fileID: 0}
   characterImage: {fileID: 1952764454}
-  fitTextWithImage: 1
+  fitTextWithImage: 0
   closeOtherDialogs: 0
 --- !u!114 &1603958714
 MonoBehaviour:
@@ -3882,16 +3905,10 @@ MonoBehaviour:
   nameColor: {r: 1, g: 1, b: 1, a: 1}
   soundEffect: {fileID: 0}
   portraits:
-  - {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
-  - {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
-  - {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
-  - {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
-  - {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   - {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
   - {fileID: 21300000, guid: 12ec0331d68acd542a7afec5d50cc2db, type: 3}
   - {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
-  - {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
-  portraitsFace: 2
+  portraitsFace: 0
   setSayDialog: {fileID: 1603958713}
   description: 
 --- !u!4 &1747701564
@@ -4127,14 +4144,14 @@ RectTransform:
   m_GameObject: {fileID: 1952764451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.88, y: 0.88, z: 0.88}
   m_Children: []
   m_Father: {fileID: 1592946264}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -28, y: 216}
+  m_AnchoredPosition: {x: -1657, y: 178}
   m_SizeDelta: {x: 357, y: 435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1952764453
@@ -4230,9 +4247,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.78700006}
-  m_AnchoredPosition: {x: 3, y: 14.130005}
-  m_SizeDelta: {x: -61, y: -63}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 3, y: -21.369995}
+  m_SizeDelta: {x: -61, y: -134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2053497924
 MonoBehaviour:
