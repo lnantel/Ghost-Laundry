@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     protected virtual void Start() {
         //Instantiate pop-up
         popUpPrefab = (GameObject)Resources.Load("InteractablePopUp");
-        popUpInstance = Instantiate(popUpPrefab, transform.position + Vector3.up, transform.rotation, transform);
+        popUpInstance = Instantiate(popUpPrefab, transform.position, transform.rotation, transform);
         popUpInstance.SetActive(false);
     }
 
@@ -50,6 +50,6 @@ public class Interactable : MonoBehaviour
     }
 
     protected void HidePopUp() {
-        popUpInstance.SetActive(false);
+        popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
     }
 }

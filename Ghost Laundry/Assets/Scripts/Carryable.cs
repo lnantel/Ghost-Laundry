@@ -26,7 +26,7 @@ public class Carryable : MonoBehaviour
     }
 
     protected void ShowPopUp(int instanceID) {
-        if (instanceID == gameObject.GetInstanceID()) {
+        if (instanceID == gameObject.GetInstanceID() && !PlayerStateManager.instance.Carrying) {
             popUpInstance.SetActive(true);
         }
         else {
@@ -35,6 +35,6 @@ public class Carryable : MonoBehaviour
     }
 
     protected void HidePopUp() {
-        popUpInstance.SetActive(false);
+        popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
     }
 }
