@@ -46,6 +46,16 @@ public class Fabric
                 dryingRestrictions = DryingRestrictions.None;
                 pressingRestrictions = PressingRestrictions.NoIroning;
                 break;
+            case FabricType.Bone:
+                name = "Bone";
+                ironingTime = 10.0f;
+                pattern = null;
+                grabSound = Sounds.BoneGrab;
+                dropSound = Sounds.BoneDrop;
+                washingRestrictions = WashingRestrictions.NoDetergent;
+                dryingRestrictions = DryingRestrictions.None;
+                pressingRestrictions = PressingRestrictions.NoIroning;
+                break;
         }
     }
 
@@ -57,13 +67,15 @@ public class Fabric
 public enum FabricType {
     Cotton,
     Wool,
-    Synthetic
+    Synthetic,
+    Bone
 }
 
 public enum WashingRestrictions {
     None,
     ColdOnly,
-    HotOnly
+    HotOnly,
+    NoDetergent
 }
 
 public enum DryingRestrictions {

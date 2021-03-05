@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventA : NarrativeEventListener {
-    private bool perfectLaundry = false;
+    private bool boneLaundered = false;
 
     public override void NextEvent() {
-        if(perfectLaundry)
-            narrativeEvent.NextEventIndex = 2;
-        else
+        if(boneLaundered)
             narrativeEvent.NextEventIndex = 1;
+        else
+            narrativeEvent.NextEventIndex = 2;
     }
 
     private void Start() {
@@ -17,13 +17,9 @@ public class EventA : NarrativeEventListener {
 
         //TODO: Generate the basket for this event. For now it's a single random garment
         RecurringCustomer customer = CustomerManager.instance.GetRecurringCustomer(characterIndex);
-        Garment garment = Garment.GetRandomGarment();
+        Garment garment = new OllieFemur();
         garment.customerID = customerID;
         customer.garments.Add(garment);
-        if (garment is GarmentSock) {
-            GarmentSock otherSock = new GarmentSock((GarmentSock)garment);
-            customer.garments.Add(otherSock);
-        }
 
         Basket basket = new Basket();
         foreach (Garment g in customer.garments)
@@ -34,9 +30,10 @@ public class EventA : NarrativeEventListener {
 
     protected override void OnLaundryCompleted(LaundromatBag bag) {
         if(customerID == bag.customerID) {
-            Debug.Log("Event A OnLaundryCompleted called");
-            if (bag.totalGarments == bag.perfectGarments) {
-                perfectLaundry = true;
+            foreach(Garment garment in bag.contents) {
+                if(garment is OllieFemur) {
+                    boneLaundered = garment.Clean && garment.Dry && garment.Folded;
+                }
             }
             NextEvent();
         }

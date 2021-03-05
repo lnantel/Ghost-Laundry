@@ -26,15 +26,19 @@ public class Carryable : MonoBehaviour
     }
 
     protected void ShowPopUp(int instanceID) {
-        if (instanceID == gameObject.GetInstanceID() && !PlayerStateManager.instance.Carrying) {
-            popUpInstance.SetActive(true);
-        }
-        else {
-            popUpInstance.SetActive(false);
+        if(popUpInstance != null) {
+            if (instanceID == gameObject.GetInstanceID() && !PlayerStateManager.instance.Carrying) {
+                popUpInstance.SetActive(true);
+            }
+            else {
+                popUpInstance.SetActive(false);
+            }
         }
     }
 
     protected void HidePopUp() {
-        popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
+        if(popUpInstance != null) {
+            popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
+        }
     }
 }
