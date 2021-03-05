@@ -100,14 +100,20 @@ public class EventManager : MonoBehaviour
     }
 
     public void EventEnd() {
-        dialogCanvas.gameObject.SetActive(false);
-
         //Mark the event as completed
         if (currentEvent != null) {
             currentEvent.Completed = true;
             currentEvent.flowchart.gameObject.SetActive(false);
         }
 
+        //Wait one frame before disabling the dialog canvas to allow for Fungus block end signals to go through to the custom buttons
+        StartCoroutine(DisableDialogCanvas());
+
         if (EndDialog != null) EndDialog(currentEvent.EventTreeIndex);
+    }
+
+    private IEnumerator DisableDialogCanvas() {
+        yield return null;
+        dialogCanvas.gameObject.SetActive(false);
     }
 }
