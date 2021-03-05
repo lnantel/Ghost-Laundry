@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CarryableDetector : MonoBehaviour
 {
+    public static Action<int> NearestCarryable;
+    public static Action NoCarryablesInRange;
+
     private PlayerController player;
     private List<GameObject> carryablesInRange;
+
+    private int lastCount;
 
     private void Start() {
         player = GetComponentInParent<PlayerController>();
@@ -13,13 +19,20 @@ public class CarryableDetector : MonoBehaviour
     }
 
     public GameObject GetNearestCarryable() {
-        GameObject nearest = null;
-        foreach(GameObject carryable in carryablesInRange) {
-            if(nearest == null || Vector2.Distance(carryable.transform.position, transform.position) < Vector2.Distance(nearest.transform.position, transform.position)) {
-                nearest = carryable;
-            }
+        if (carryablesInRange.Count > 0)
+            return carryablesInRange[0];
+        else return null;
+    }
+
+    private void Update() {
+        if (carryablesInRange.Count > 0) {
+            carryablesInRange.Sort((x, y) => Vector2.Distance(x.transform.position, transform.position).CompareTo(Vector2.Distance(y.transform.position, transform.position)));
+            if (NearestCarryable != null) NearestCarryable(carryablesInRange[0].GetInstanceID());
         }
-        return nearest;
+        else if (lastCount > 0) {
+            if (NoCarryablesInRange != null) NoCarryablesInRange();
+        }
+        lastCount = carryablesInRange.Count;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

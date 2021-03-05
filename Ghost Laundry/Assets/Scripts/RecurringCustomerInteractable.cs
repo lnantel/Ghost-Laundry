@@ -9,7 +9,8 @@ public class RecurringCustomerInteractable : Interactable
 
     private RecurringCustomer recurringCustomer;
 
-    private void Start() {
+    protected override void Start() {
+        base.Start();
         locked = true;
         recurringCustomer = GetComponent<RecurringCustomer>();
     }

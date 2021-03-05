@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5682931657036648275}
   - component: {fileID: 1307573139175319059}
   - component: {fileID: 6648959391331163777}
+  - component: {fileID: 5723447099564541830}
   m_Layer: 17
   m_Name: LaundromatBag
   m_TagString: Carryable
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce4a852bbe40314bbaadfaa0236d707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ticketNumber: 0
+  customerID: 0
   totalGarments: 0
   launderedGarments: 0
   perfectGarments: 0
@@ -207,3 +208,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 2142130615741693221}
+  forceToFront: 0
+--- !u!114 &5723447099564541830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269348860110487721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8978c7c556f6d4aa12ecd5af23955b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
