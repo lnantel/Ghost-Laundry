@@ -23,5 +23,6 @@ public enum Sounds
     Tock,
     LaundromatOpening,
     OllieArrives,
-    OllieWhistle
+    OllieWhistle,
+    LaundromatClosing
 }

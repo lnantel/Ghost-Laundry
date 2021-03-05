@@ -12,6 +12,8 @@ public class RecurringCustomer : Customer
     //Name to display on clothing tags, instead of ticket number
     public string customerName;
 
+    
+
     private RecurringCustomerInteractable interactable;
 
     protected override void OnEnable() {
@@ -40,6 +42,7 @@ public class RecurringCustomer : Customer
 
         //Upon arrival, a new Customer requests a spot in Queue from the CustomerManager
         CustomerManager.instance.AssignQueueSpot(this);
+
     }
 
     protected override void Arriving() {
@@ -49,12 +52,35 @@ public class RecurringCustomer : Customer
         }
     }
 
+    
+                
+        
+    
+    
+    private IEnumerator whistleCoroutine;
+ 
     protected override void WaitingForService() {
         //Called every frame
         //While waiting for service, this customer can be interacted with to initiate a narrative event
         //Intentionally left blank. RecurringCustomers do not become impatient.
+        if(whistleCoroutine == null) {
+        whistleCoroutine = WhistleCoroutine();
+        StartCoroutine(whistleCoroutine);
+        }
+        
     }
 
+    IEnumerator WhistleCoroutine(){
+
+         AudioManager.instance.PlaySound(Sounds.OllieWhistle);
+
+         yield return new WaitForSeconds(15); 
+
+         whistleCoroutine = null;
+    }
+    
+
+   
     private void OnEndDialog(int eventTreeIndex) {
         if(EventTreeIndex == eventTreeIndex) {
             if(basket.contents.Count > 0) {
