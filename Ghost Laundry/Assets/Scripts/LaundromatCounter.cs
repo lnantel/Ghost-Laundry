@@ -12,7 +12,7 @@ public class LaundromatCounter : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundromatObject")) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundromatObject") && collision.enabled == true) {
             LaundromatSpriteSort spriteSort = collision.GetComponent<LaundromatSpriteSort>();
             spriteSort.forceToFront = false;
         }

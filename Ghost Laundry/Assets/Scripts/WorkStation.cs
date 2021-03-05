@@ -20,7 +20,8 @@ public class WorkStation : Interactable
 
     protected GameObject laundryBasketPrefab;
 
-    protected virtual void Start() {
+    protected override void Start() {
+        base.Start();
         //containedBaskets = new List<LaundryBasket>();
         laundryBasketPrefab = (GameObject)Resources.Load("LaundryBasket");
         basketCapacity = basketSlots.Length;

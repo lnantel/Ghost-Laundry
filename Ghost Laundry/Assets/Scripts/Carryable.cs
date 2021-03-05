@@ -2,47 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class Carryable : MonoBehaviour
 {
-    protected bool locked;
     protected GameObject popUpPrefab;
     protected GameObject popUpInstance;
     protected bool popUpVisible;
 
     protected virtual void Start() {
         //Instantiate pop-up
-        popUpPrefab = (GameObject)Resources.Load("InteractablePopUp");
-        popUpInstance = Instantiate(popUpPrefab, transform.position, transform.rotation, transform);
+        popUpPrefab = (GameObject)Resources.Load("CarryablePopUp");
+        popUpInstance = Instantiate(popUpPrefab, transform.position + Vector3.up * 0.3f, transform.rotation, transform);
         popUpInstance.SetActive(false);
     }
 
     protected virtual void OnEnable() {
-        InteractableDetector.NearestInteractable += ShowPopUp;
-        InteractableDetector.NoInteractablesInRange += HidePopUp;
+        CarryableDetector.NearestCarryable += ShowPopUp;
+        CarryableDetector.NoCarryablesInRange += HidePopUp;
     }
 
     protected virtual void OnDisable() {
-        InteractableDetector.NearestInteractable -= ShowPopUp;
-        InteractableDetector.NoInteractablesInRange -= HidePopUp;
-    }
-
-    public virtual void Interact() {
-        if (!locked) {
-            Debug.Log("Interaction");
-        }
-    }
-
-    protected void Lock() {
-        locked = true;
-    }
-
-    protected void Unlock() {
-        locked = false;
+        CarryableDetector.NearestCarryable -= ShowPopUp;
+        CarryableDetector.NoCarryablesInRange -= HidePopUp;
     }
 
     protected void ShowPopUp(int instanceID) {
         if(popUpInstance != null) {
-            if (instanceID == GetInstanceID() && !locked) {
+            if (instanceID == gameObject.GetInstanceID() && !PlayerStateManager.instance.Carrying) {
                 popUpInstance.SetActive(true);
             }
             else {

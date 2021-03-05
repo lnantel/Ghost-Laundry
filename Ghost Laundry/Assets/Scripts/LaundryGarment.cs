@@ -13,6 +13,9 @@ public class LaundryGarment : LaundryObject
 
     public bool OnFoldingSurface;
 
+    public SpriteRenderer spriteRenderer;
+    public SpriteMask spriteMask;
+
     public SpriteRenderer fabricRenderer;
     public SpriteRenderer dirtyRenderer;
     public SpriteRenderer wetRenderer;
@@ -26,25 +29,26 @@ public class LaundryGarment : LaundryObject
     private bool hovering;
     private bool inspected;
     private Vector2 lastPosition;
-    private SpriteRenderer spriteRenderer;
-    private SpriteMask spriteMask;
+    private bool initialized;
     
     private void Start() {
         if(garment == null) {
             garment = Garment.GetRandomGarment();
         }
 
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteMask == null) spriteMask = GetComponent<SpriteMask>();
+
         rb = GetComponent<Rigidbody2D>();
         laundryTag = GetComponentInChildren<LaundryTag>();
         lastPosition = transform.position;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteMask = GetComponent<SpriteMask>();
         UpdateAppearance();
+        initialized = true;
     }
 
     private void LateUpdate() {
         if (!hovering) {
-            laundryTag.Hide();
+            if(laundryTag != null) laundryTag.Hide();
             inspected = false;
         }
         else hovering = false;
@@ -137,7 +141,8 @@ public class LaundryGarment : LaundryObject
     }
 
     private void OnEnable() {
-        UpdateAppearance();
+        if(initialized)
+            UpdateAppearance();
     }
 
     private void UpdateAppearance() {

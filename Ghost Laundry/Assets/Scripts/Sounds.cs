@@ -16,5 +16,7 @@ public enum Sounds
     CottonGrab,
     CottonDrop,
     WoolGrab,
-    WoolDrop
+    WoolDrop,
+    BoneGrab,
+    BoneDrop
 }

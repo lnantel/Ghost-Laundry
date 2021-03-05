@@ -123,6 +123,13 @@ public class WashingMachine : WorkStation
 
             if (Detergent) {
                 garment.Clean = true;
+                if (garment.fabric.washingRestrictions == WashingRestrictions.NoDetergent)
+                    garment.Ruined = true;
+            }
+            else if(!Detergent){
+                if (garment.fabric.washingRestrictions == WashingRestrictions.NoDetergent) {
+                    garment.Clean = true;
+                }
             }
         }
         Detergent = false;

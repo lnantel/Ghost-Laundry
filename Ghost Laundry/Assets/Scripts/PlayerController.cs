@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private SortingGroup carriedObjectSortingGroup;
     private SortingGroup playerSortingGroup;
     public Transform carriedPos;
+    public Transform placedPos;
     private GameObject laundromatBasketPrefab;
 
     //Interact
@@ -79,7 +80,10 @@ public class PlayerController : MonoBehaviour
         }
 
         if (state.Carrying) {
-            if (carriedPos.localPosition.x > 0.0f != facingRight) carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
+            if (carriedPos.localPosition.x > 0.0f != facingRight) {
+                carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
+                placedPos.localPosition = new Vector3(-placedPos.localPosition.x, placedPos.localPosition.y, placedPos.localPosition.z);
+            }
             carriedObject.transform.position = carriedPos.position;
             carriedObject.transform.rotation = carriedPos.rotation;
             carriedObjectSortingGroup.sortingOrder = playerSortingGroup.sortingOrder + 1;
@@ -184,6 +188,7 @@ public class PlayerController : MonoBehaviour
     private void DropCarriedObject() {
         state.EndCarry();
         carriedObject.GetComponent<Collider2D>().enabled = true;
+        carriedObject.transform.position = placedPos.position;
         LaundromatSpriteSort spriteSort = carriedObject.GetComponentInChildren<LaundromatSpriteSort>();
         if (spriteSort != null) {
             spriteSort.enabled = true;
