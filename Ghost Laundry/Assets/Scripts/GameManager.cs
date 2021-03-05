@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour {
 
         TimeManager.instance.StartDay();
         //Play sound
+        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
         state = GameStates.Laundromat;
 
         stateTransition = null;
@@ -179,6 +180,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator EndOfDay() {
         //Announce End of Day
+        AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
         state = GameStates.EndOfDay;
 
         //Wait a couple seconds

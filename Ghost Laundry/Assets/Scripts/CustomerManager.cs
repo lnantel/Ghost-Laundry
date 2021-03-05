@@ -81,7 +81,7 @@ public class CustomerManager : MonoBehaviour
 
     //TODO: Spawn different recurring customers!
     public void SpawnRecurringCustomer() {
-        //Play sound
+        AudioManager.instance.PlaySound(Sounds.OllieArrives);
         Customer customer = Instantiate(recurringCustomerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
         customersInLaundromat.Add(customer);
         customerSpawningTimer = 0;

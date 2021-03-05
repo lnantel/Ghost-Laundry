@@ -20,8 +20,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(Sounds sound, float volume = 1.0f) {
         source.clip = sounds[(int) sound];
-        source.volume = SettingsManager.instance.SFXVolume * volume * 0.2f;
-        source.PlayOneShot(sounds[(int)sound], SettingsManager.instance.SFXVolume * volume * 0.2f);
+        source.volume = SettingsManager.instance.SFXVolume * volume * 0.5f;
+        source.PlayOneShot(sounds[(int)sound], SettingsManager.instance.SFXVolume * volume * 0.5f);
     }
 
     public void PlaySoundAtPosition(Sounds sound, Vector2 position, float volume = 1.0f) {
