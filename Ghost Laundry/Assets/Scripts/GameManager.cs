@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour {
     public static Action ShowDialog;
     public static Action HideDialog;
 
+    public static Action ShowHUD;
+    public static Action HideHUD;
+
     public GameStates state;
     private IEnumerator stateTransition;
 
@@ -39,7 +42,7 @@ public class GameManager : MonoBehaviour {
         HideCursor();
         loadedScenes = new List<Scene>();
         keepLoaded = new List<Scene>();
-        state = GameStates.Initialize;
+        //state = GameStates.Initialize;
     }
 
     private void OnEnable() {
@@ -155,6 +158,7 @@ public class GameManager : MonoBehaviour {
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
 
+        if (ShowHUD != null) ShowHUD();
         if (HideSettings != null) HideSettings();
         if (ResumeGame != null) ResumeGame();
         if (FadeIn != null) FadeIn();
@@ -202,11 +206,12 @@ public class GameManager : MonoBehaviour {
             UnloadAllScenes();
         }
 
-        LoadScenes("NextDay");
+        LoadScenes("NextDay", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
 
         state = GameStates.Transition;
 
+        if (HideHUD != null) HideHUD();
         if (FadeIn != null) FadeIn();
 
         HideCursor();
@@ -253,7 +258,8 @@ public class GameManager : MonoBehaviour {
 
     public void LaunchGame() {
         if(state == GameStates.TitleScreen && stateTransition == null) {
-            stateTransition = GoToGame();
+            //stateTransition = GoToGame();
+            stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
     }
