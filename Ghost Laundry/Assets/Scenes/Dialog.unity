@@ -257,7 +257,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 69
-    width: 86.8
+    width: 86
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -307,8 +307,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 28830977}
-  selectedCommands:
-  - {fileID: 28830987}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -1242,8 +1241,6 @@ GameObject:
   - component: {fileID: 972488772}
   - component: {fileID: 972488771}
   - component: {fileID: 972488773}
-  - component: {fileID: 972488774}
-  - component: {fileID: 972488763}
   m_Layer: 0
   m_Name: Event A Flowchart
   m_TagString: Untagged
@@ -1278,7 +1275,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 972488740}
   selectedCommands:
-  - {fileID: 972488774}
+  - {fileID: 972488746}
   variables: []
   description: 
   stepPause: 0
@@ -1334,7 +1331,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 64.872345
     y: 73.19148
-    width: 86.8
+    width: 86
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1348,8 +1345,6 @@ MonoBehaviour:
   - {fileID: 972488761}
   - {fileID: 972488739}
   - {fileID: 972488744}
-  - {fileID: 972488774}
-  - {fileID: 972488763}
   - {fileID: 972488746}
   - {fileID: 972488765}
   - {fileID: 972488755}
@@ -1939,31 +1934,6 @@ MonoBehaviour:
   useDefaultSettings: 1
   fadeDuration: 0
   waitUntilFinished: 0
---- !u!114 &972488763
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972488737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 35
-  indentLevel: 0
-  _animator:
-    animatorRef: {fileID: 0}
-    animatorVal: {fileID: 0}
-  _parameterName:
-    stringRef: {fileID: 0}
-    stringVal: IsOnScreen
-  value:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  animatorOLD: {fileID: 0}
-  parameterNameOLD: 
 --- !u!114 &972488764
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2252,31 +2222,6 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 1
---- !u!114 &972488774
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972488737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 34
-  indentLevel: 0
-  _animator:
-    animatorRef: {fileID: 0}
-    animatorVal: {fileID: 0}
-  _parameterName:
-    stringRef: {fileID: 0}
-    stringVal: IsOnScreen
-  value:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  animatorOLD: {fileID: 0}
-  parameterNameOLD: 
 --- !u!1 &1084785471
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,7 +4287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1415840283}
+  selectedFlowchart: {fileID: 28830978}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
