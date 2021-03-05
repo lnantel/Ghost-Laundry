@@ -18,5 +18,10 @@ public enum Sounds
     WoolGrab,
     WoolDrop,
     BoneGrab,
-    BoneDrop
+    BoneDrop,
+    Tick,
+    Tock,
+    LaundromatOpening,
+    OllieArrives,
+    OllieWhistle
 }

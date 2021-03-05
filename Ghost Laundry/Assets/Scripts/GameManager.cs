@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2.0f);
 
         TimeManager.instance.StartDay();
+        //Play sound
         state = GameStates.Laundromat;
 
         stateTransition = null;

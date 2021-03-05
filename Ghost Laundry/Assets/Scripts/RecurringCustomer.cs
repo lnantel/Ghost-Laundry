@@ -50,6 +50,7 @@ public class RecurringCustomer : Customer
     }
 
     protected override void WaitingForService() {
+        //Called every frame
         //While waiting for service, this customer can be interacted with to initiate a narrative event
         //Intentionally left blank. RecurringCustomers do not become impatient.
     }
