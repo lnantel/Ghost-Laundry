@@ -44,6 +44,10 @@ namespace Fungus
 
         protected float ignoreClickTimer;
 
+        protected bool customButtonClickedFlag;
+
+        protected bool fastForwarding;
+
         protected StandaloneInputModule currentStandaloneInputModule;
 
         protected Writer writer;
@@ -87,7 +91,8 @@ namespace Fungus
             if (writer != null && writer.IsWriting)
             {
                 if (Input.GetButtonDown(currentStandaloneInputModule.submitButton) ||
-                    (cancelEnabled && Input.GetButton(currentStandaloneInputModule.cancelButton)))
+                    (cancelEnabled && Input.GetButton(currentStandaloneInputModule.cancelButton)) ||
+                    fastForwarding)
                 {
                     SetNextLineFlag();
                 }
@@ -127,6 +132,11 @@ namespace Fungus
                     dialogClickedFlag = false;
                     nextLineInputFlag = false;
                 }
+            }
+
+            if (customButtonClickedFlag) {
+                nextLineInputFlag = false;
+                customButtonClickedFlag = false;
             }
 
             // Tell any listeners to move to the next line
@@ -181,6 +191,26 @@ namespace Fungus
             {
                 SetNextLineFlag();
             }
+        }
+
+        /// <summary>
+        /// Sets the custom button clicked flag.
+        /// Prevents NextLineEvent if the click was on a custom button.
+        /// </summary>
+        public virtual void SetCustomButtonClickedFlag() {
+            customButtonClickedFlag = true;
+        }
+
+        /// <summary>
+        /// Toggles fast-forwarding.
+        /// </summary>
+        public virtual void ToggleFastForwarding() {
+            if(Input.GetMouseButtonDown(0))
+                fastForwarding = !fastForwarding;
+        }
+
+        public void ResetFastForwardingFlag() {
+            fastForwarding = false;
         }
 
         #endregion

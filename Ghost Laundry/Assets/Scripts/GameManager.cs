@@ -304,10 +304,12 @@ public class GameManager : MonoBehaviour {
 
     private void OnDialogStart() {
         if(ShowDialog != null) ShowDialog();
+        ShowCursor();
     }
     
     private void OnDialogEnd(int i) {
         if (HideDialog != null) HideDialog();
+        HideCursor();
     }
 
     private void ShowCursor() {
