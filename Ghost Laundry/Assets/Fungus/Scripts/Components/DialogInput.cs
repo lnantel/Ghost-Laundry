@@ -48,6 +48,8 @@ namespace Fungus
 
         protected bool fastForwarding;
 
+        protected bool ignoreClicksFlag;
+
         protected StandaloneInputModule currentStandaloneInputModule;
 
         protected Writer writer;
@@ -139,6 +141,10 @@ namespace Fungus
                 customButtonClickedFlag = false;
             }
 
+            if (ignoreClicksFlag) {
+                nextLineInputFlag = false;
+            }
+
             // Tell any listeners to move to the next line
             if (nextLineInputFlag)
             {
@@ -209,8 +215,25 @@ namespace Fungus
                 fastForwarding = !fastForwarding;
         }
 
+        /// <summary>
+        /// Resets fast-forwarding flag. Called when a dialog event is completed.
+        /// </summary>
         public void ResetFastForwardingFlag() {
             fastForwarding = false;
+        }
+
+        /// <summary>
+        /// Sets ignore clicks flag. Prevents NextLineEvent until reset.
+        /// </summary>
+        public void SetIgnoreClicksFlag() {
+            ignoreClicksFlag = true;
+        }
+
+        /// <summary>
+        /// Resets ignore clicks flag. Permits NextLineEvent until set.
+        /// </summary>
+        public void ResetIgnoreClicksFlag() {
+            ignoreClicksFlag = false;
         }
 
         #endregion
