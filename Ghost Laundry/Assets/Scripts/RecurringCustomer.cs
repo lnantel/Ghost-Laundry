@@ -12,8 +12,6 @@ public class RecurringCustomer : Customer
     //Name to display on clothing tags, instead of ticket number
     public string customerName;
 
-    
-
     private RecurringCustomerInteractable interactable;
 
     protected override void OnEnable() {
