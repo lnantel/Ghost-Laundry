@@ -51,11 +51,6 @@ public class RecurringCustomer : Customer
             state = CustomerState.WaitingForService;
         }
     }
-
-    
-                
-        
-    
     
     private IEnumerator whistleCoroutine;
  
@@ -67,15 +62,11 @@ public class RecurringCustomer : Customer
         whistleCoroutine = WhistleCoroutine();
         StartCoroutine(whistleCoroutine);
         }
-        
     }
 
-    IEnumerator WhistleCoroutine(){
-
+    private IEnumerator WhistleCoroutine(){
          AudioManager.instance.PlaySound(Sounds.OllieWhistle);
-
-         yield return new WaitForSeconds(15); 
-
+         yield return new WaitForLaundromatSeconds(15); 
          whistleCoroutine = null;
     }
     
