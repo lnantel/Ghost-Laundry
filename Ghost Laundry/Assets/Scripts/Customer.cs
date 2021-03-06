@@ -17,7 +17,7 @@ public class Customer : MonoBehaviour
     public bool impatient;
     protected float waitTimer;
 
-    public int silhouette;
+    public Sprite[] silhouettes;
 
     public CustomerState state;
 
@@ -35,7 +35,8 @@ public class Customer : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         //Generate random customer
-        silhouette = UnityEngine.Random.Range(0, 3);
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.sprite = silhouettes[UnityEngine.Random.Range(0, silhouettes.Length)];
 
         ticketNumber = CustomerManager.instance.GetTicketNumber();
 

@@ -40,7 +40,7 @@ public class Bagger : WorkStation
 
                 }
             }
-            if(garmentCount == customer.garments.Count) {
+            if(garmentCount != 0 && garmentCount == customer.garments.Count) {
                 //Remove all of this customer's garments from the bagger
                 int launderedGarments = 0;
                 int perfectGarments = 0;
