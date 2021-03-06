@@ -8,6 +8,7 @@ public class LaundryBasket : LaundryObject
     public static Action<Garment> TakeOutGarment;
     public static Action<LaundryBasket> OpenBasketView;
     public static Action TagChanged;
+    public static Action<LaundryGarment> PlacedInBasketView;
 
     public Basket basket;
     public GameObject basketView;
@@ -32,12 +33,14 @@ public class LaundryBasket : LaundryObject
         if(basket != null) tagSprite.sprite = tags[basket.tag];
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         OpenBasketView += OnOtherOpenBasketView;
+        PlacedInBasketView += OnPlacedInBasketView;
     }
 
     private void OnDisable() {
         if (basketView.activeSelf) DisableBasketView();
         WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
         OpenBasketView -= OnOtherOpenBasketView;
+        PlacedInBasketView -= OnPlacedInBasketView;
     }
 
     public override void OnGrab() {
@@ -56,26 +59,17 @@ public class LaundryBasket : LaundryObject
     }
 
     void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
-        if (!basketView.activeSelf) {
-            if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
-                if (basket.AddGarment(laundryGarment.garment)) {
-                    AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                    Destroy(laundryGarment.gameObject);
-                }
-                else {
-                    BasketIsFull();
-                }
-            }
-        }
-        else {
+        if (basketView.activeSelf) {
+            //If BasketView is open
             bool alreadyInBasket = laundryGarments.Contains(laundryGarment);
             bool withinBasketView = basketView.GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position);
 
-            if(alreadyInBasket && withinBasketView) {
+            if (alreadyInBasket && withinBasketView) {
                 Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
                 rb.gravityScale = 0.0f;
                 rb.velocity = Vector3.zero;
                 AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
+                if (PlacedInBasketView != null) PlacedInBasketView(laundryGarment);
             }
             else if (!alreadyInBasket && withinBasketView) {
                 if (basket.AddGarment(laundryGarment.garment, laundryGarment.transform.position - transform.position)) {
@@ -88,15 +82,51 @@ public class LaundryBasket : LaundryObject
                 }
                 else {
                     BasketIsFull();
-                    //TODO: If the basket is full, the Garment "bounces" out of BasketView.
                 }
+                if (PlacedInBasketView != null) PlacedInBasketView(laundryGarment);
             }
-            else if(alreadyInBasket && !withinBasketView) {
+            else if (alreadyInBasket && !withinBasketView) {
                 basket.RemoveGarment(laundryGarment.garment);
                 laundryGarments.Remove(laundryGarment);
             }
         }
-        
+        else {
+            //If BasketView is closed
+            //Wait for a frame, in case an overlapping BasketView captures the garment first
+            StartCoroutine(DelayedAddToBasket(laundryGarment));
+        }
+    }
+
+    private bool placedInBasketView;
+    private int placedInBasketViewID;
+
+    private void OnPlacedInBasketView(LaundryGarment laundryGarment) {
+        placedInBasketView = true;
+        placedInBasketViewID = laundryGarment.GetInstanceID();
+        StartCoroutine(ResetPlacedInBasketViewFlag());
+    }
+
+    private IEnumerator DelayedAddToBasket(LaundryGarment laundryGarment) {
+        //Wait for a frame, in case an overlapping BasketView captures the garment first
+        yield return new WaitForSeconds(0);
+        if(!(placedInBasketView && laundryGarment.GetInstanceID() == placedInBasketViewID)) {
+            if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
+                if (basket.AddGarment(laundryGarment.garment)) {
+                    AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
+                    Destroy(laundryGarment.gameObject);
+                }
+                else {
+                    BasketIsFull();
+                }
+            }
+        }
+    }
+
+    private IEnumerator ResetPlacedInBasketViewFlag() {
+        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(0);
+        placedInBasketView = false;
+        placedInBasketViewID = 0;
     }
 
     void BasketIsFull() {
