@@ -244,14 +244,7 @@ public class GameManager : MonoBehaviour {
                 if (Input.GetButtonDown("Pause"))
                     Resume();
                 break;
-            case GameStates.Evaluation: //TODO: For debug purposes, until the eval screen is done, pressing escape will start the next day
-                if (Input.GetButtonDown("Pause")) {
-                    if (stateTransition == null) {
-                        TimeManager.instance.NextDay();
-                        stateTransition = GoToTransition();
-                        StartCoroutine(stateTransition);
-                    }
-                }
+            case GameStates.Evaluation:
                 break;
             default:
                 break;
