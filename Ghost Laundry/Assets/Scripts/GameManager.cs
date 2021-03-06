@@ -165,11 +165,13 @@ public class GameManager : MonoBehaviour {
 
         HideCursor();
 
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
+
+        yield return new WaitForSecondsRealtime(1.0f);
 
         TimeManager.instance.StartDay();
-        //Play sound
-        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
         state = GameStates.Laundromat;
 
         stateTransition = null;
