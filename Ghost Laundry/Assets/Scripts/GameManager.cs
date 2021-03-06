@@ -165,11 +165,13 @@ public class GameManager : MonoBehaviour {
 
         HideCursor();
 
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
+
+        yield return new WaitForSecondsRealtime(1.0f);
 
         TimeManager.instance.StartDay();
-        //Play sound
-        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
         state = GameStates.Laundromat;
 
         stateTransition = null;
@@ -244,14 +246,7 @@ public class GameManager : MonoBehaviour {
                 if (Input.GetButtonDown("Pause"))
                     Resume();
                 break;
-            case GameStates.Evaluation: //TODO: For debug purposes, until the eval screen is done, pressing escape will start the next day
-                if (Input.GetButtonDown("Pause")) {
-                    if (stateTransition == null) {
-                        TimeManager.instance.NextDay();
-                        stateTransition = GoToTransition();
-                        StartCoroutine(stateTransition);
-                    }
-                }
+            case GameStates.Evaluation:
                 break;
             default:
                 break;
