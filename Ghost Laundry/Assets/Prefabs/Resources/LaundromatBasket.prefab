@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 7992859443279578878}
+  CanBePlacedOnThings: 1
   forceToFront: 0
 --- !u!114 &2887861957450346750
 MonoBehaviour:

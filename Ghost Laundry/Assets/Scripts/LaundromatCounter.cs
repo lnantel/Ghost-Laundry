@@ -1,20 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LaundromatCounter : MonoBehaviour
 {
+    private SortingGroup sortingGroup;
+
+    private void Start() {
+        sortingGroup = GetComponent<SortingGroup>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundromatObject")) {
-            LaundromatSpriteSort spriteSort = collision.GetComponent<LaundromatSpriteSort>();
-            spriteSort.forceToFront = true;
+        LaundromatSpriteSort spriteSort = collision.GetComponent<LaundromatSpriteSort>();
+        if (spriteSort != null && spriteSort.CanBePlacedOnThings) {
+            spriteSort.PlacedOn(sortingGroup);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundromatObject") && collision.enabled == true) {
-            LaundromatSpriteSort spriteSort = collision.GetComponent<LaundromatSpriteSort>();
-            spriteSort.forceToFront = false;
+        LaundromatSpriteSort spriteSort = collision.GetComponent<LaundromatSpriteSort>();
+        if (spriteSort != null && spriteSort.CanBePlacedOnThings) {
+            spriteSort.RemovedFromSurface();
         }
     }
 }

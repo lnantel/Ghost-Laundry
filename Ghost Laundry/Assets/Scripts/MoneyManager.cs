@@ -26,18 +26,19 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void Start() {
-        CurrentAmount = -Rent;
         moneyPopUpPrefab = (GameObject)Resources.Load("MoneyPopUp");
     }
 
     private void OnEnable() {
         ShopInteractable.BoughtItem += OnItemBought;
         Customer.BagPickedUp += OnBagPickedUp;
+        TimeManager.StartOfDay += OnStartOfDay;
     }
 
     private void OnDisable() {
         ShopInteractable.BoughtItem -= OnItemBought;
         Customer.BagPickedUp -= OnBagPickedUp;
+        TimeManager.StartOfDay -= OnStartOfDay;
     }
 
     private void OnBagPickedUp(LaundromatBag bag) {
@@ -87,5 +88,9 @@ public class MoneyManager : MonoBehaviour
             TXT_CurrentAmount.text = "-$" + Mathf.Abs((CurrentAmount / 100.0f)).ToString("N2");
             TXT_CurrentAmount.color = NegativeAmountColor;
         }
+    }
+
+    private void OnStartOfDay(int day) {
+        ModifyCurrentAmount(-Rent);
     }
 }
