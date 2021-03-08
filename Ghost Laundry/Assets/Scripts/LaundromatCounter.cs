@@ -21,7 +21,7 @@ public class LaundromatCounter : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision) {
         LaundromatSpriteSort spriteSort = collision.GetComponent<LaundromatSpriteSort>();
         if (spriteSort != null && spriteSort.CanBePlacedOnThings) {
-            spriteSort.RemovedFromSurface();
+
         }
     }
 }
