@@ -88,6 +88,7 @@ MonoBehaviour:
     customer: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
   speed: 3
+  steam: {fileID: 8741670355334928196}
   EventTreeIndex: 0
   customerName: Ollie
 --- !u!114 &2457908287423719674
@@ -356,5 +357,10 @@ PrefabInstance:
 --- !u!4 &8741670355334928197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8438522107325719020, guid: a9f26312f914fa0428b51d2f7223d72e, type: 3}
+  m_PrefabInstance: {fileID: 885803928403523241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8741670355334928196 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8438522107325719021, guid: a9f26312f914fa0428b51d2f7223d72e, type: 3}
   m_PrefabInstance: {fileID: 885803928403523241}
   m_PrefabAsset: {fileID: 0}

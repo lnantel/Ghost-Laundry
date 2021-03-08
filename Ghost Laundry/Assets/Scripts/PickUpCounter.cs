@@ -10,9 +10,9 @@ public class PickUpCounter : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision) {
         LaundromatBag bag = collision.GetComponent<LaundromatBag>();
         if (bag != null && !bag.ReadyForPickUp) {
-            collision.enabled = false;
             bag.ReadyForPickUp = true;
             bag.GetComponent<LaundromatSpriteSort>().CanBePlacedOnThings = false;
+            collision.enabled = false;
             BagReadyForPickUp(bag);
         }
     }
