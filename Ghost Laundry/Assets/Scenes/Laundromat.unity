@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 0}
+  CanBePlacedOnThings: 0
   forceToFront: 0
 --- !u!210 &342125765
 SortingGroup:
@@ -954,6 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 0}
+  CanBePlacedOnThings: 0
   forceToFront: 0
 --- !u!210 &706596584
 SortingGroup:
@@ -2170,6 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 1820400787}
+  CanBePlacedOnThings: 0
   forceToFront: 0
 --- !u!210 &1844736929
 SortingGroup:
@@ -2519,7 +2522,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7274704, y: 0.87429094}
+  m_Offset: {x: 0.7274704, y: 1.0486295}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2530,7 +2533,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.681267, y: 1.6318789}
+  m_Size: {x: 18.681267, y: 1.2832017}
   m_EdgeRadius: 0
 --- !u!4 &1996108837
 Transform:

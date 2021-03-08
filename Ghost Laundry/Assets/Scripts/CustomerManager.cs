@@ -58,11 +58,13 @@ public class CustomerManager : MonoBehaviour
     private void OnEnable() {
         CustomerLeft += OnCustomerLeft;
         CustomerSpot.Freed += OnCustomerSpotFreed;
+        TimeManager.StartOfDay += OnStartOfDay;
     }
 
     private void OnDisable() {
         CustomerLeft -= OnCustomerLeft;
         CustomerSpot.Freed -= OnCustomerSpotFreed;
+        TimeManager.StartOfDay -= OnStartOfDay;
     }
 
     public int GetTicketNumber() {
@@ -75,6 +77,7 @@ public class CustomerManager : MonoBehaviour
             Customer customer = Instantiate(customerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
             customersInLaundromat.Add(customer);
             customerSpawningTimer = 0;
+            AudioManager.instance.PlaySound(Sounds.CustomerArrives);
             if (CustomerSpawned != null) CustomerSpawned(customer);
         }
     }
@@ -157,5 +160,9 @@ public class CustomerManager : MonoBehaviour
                 if (QueueSpots[i + 1].Claimed && SpotAssigned != null) SpotAssigned(spot, QueueSpots[i + 1].customer);
             }
         }
+    }
+
+    private void OnStartOfDay(int day) {
+        SpawnCustomer();
     }
 }

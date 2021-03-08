@@ -7,8 +7,10 @@ using UnityEngine;
 public class LaundromatSpriteSort : MonoBehaviour
 {
     public Transform groundContact;
+    public bool CanBePlacedOnThings;
 
     private SortingGroup sortingGroup;
+    private SortingGroup surfaceSortingGroup;
 
     public bool forceToFront;
 
@@ -28,9 +30,23 @@ public class LaundromatSpriteSort : MonoBehaviour
             sortingGroup.sortingLayerID = SortingLayer.NameToID("ForceToFront");
             sortingGroup.sortingOrder = 0;
         }
-        else {
+        else if (surfaceSortingGroup != null) {
+            sortingGroup.sortingLayerID = surfaceSortingGroup.sortingLayerID;
+            sortingGroup.sortingOrder = surfaceSortingGroup.sortingOrder + 1;
+        }
+        else
+        {
             sortingGroup.sortingLayerID = SortingLayer.NameToID("Entities");
             sortingGroup.sortingOrder = -(int)(groundContact.position.y * 100.0f);
         }
+    }
+
+    public void PlacedOn(SortingGroup other) {
+        if(CanBePlacedOnThings)
+            surfaceSortingGroup = other;
+    }
+
+    public void RemovedFromSurface() {
+        surfaceSortingGroup = null;
     }
 }

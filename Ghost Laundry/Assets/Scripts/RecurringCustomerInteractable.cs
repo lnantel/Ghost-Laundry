@@ -10,7 +10,9 @@ public class RecurringCustomerInteractable : Interactable
     private RecurringCustomer recurringCustomer;
 
     protected override void Start() {
-        base.Start();
+        popUpPrefab = (GameObject)Resources.Load("DialogPopUp");
+        popUpInstance = Instantiate(popUpPrefab, transform.position, transform.rotation, transform);
+        popUpInstance.SetActive(false);
         locked = true;
         recurringCustomer = GetComponent<RecurringCustomer>();
     }

@@ -169,6 +169,7 @@ public class GameManager : MonoBehaviour {
 
         AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
 
+
         yield return new WaitForSecondsRealtime(1.0f);
 
         TimeManager.instance.StartDay();

@@ -109,14 +109,16 @@ public class LaundryBasket : LaundryObject
     private IEnumerator DelayedAddToBasket(LaundryGarment laundryGarment) {
         //Wait for a frame, in case an overlapping BasketView captures the garment first
         yield return new WaitForSeconds(0);
-        if(!(placedInBasketView && laundryGarment.GetInstanceID() == placedInBasketViewID)) {
-            if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
-                if (basket.AddGarment(laundryGarment.garment)) {
-                    AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                    Destroy(laundryGarment.gameObject);
-                }
-                else {
-                    BasketIsFull();
+        if(laundryGarment != null) {
+            if (!(placedInBasketView && laundryGarment.GetInstanceID() == placedInBasketViewID)) {
+                if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
+                    if (basket.AddGarment(laundryGarment.garment)) {
+                        AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
+                        Destroy(laundryGarment.gameObject);
+                    }
+                    else {
+                        BasketIsFull();
+                    }
                 }
             }
         }

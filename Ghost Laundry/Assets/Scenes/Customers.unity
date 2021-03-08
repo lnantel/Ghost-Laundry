@@ -218,16 +218,16 @@ MonoBehaviour:
   CounterSpots:
   - ID: 0
     customer: {fileID: 0}
-    position: {x: 1, y: -4.5, z: 0}
+    position: {x: 1, y: -5, z: 0}
   - ID: 0
     customer: {fileID: 0}
-    position: {x: 2.45, y: -4.5, z: 0}
+    position: {x: 2.45, y: -5, z: 0}
   - ID: 0
     customer: {fileID: 0}
-    position: {x: 3.9, y: -4.5, z: 0}
+    position: {x: 3.9, y: -5, z: 0}
   - ID: 0
     customer: {fileID: 0}
-    position: {x: 5.35, y: -4.5, z: 0}
+    position: {x: 5.35, y: -5, z: 0}
   WaitingSpots:
   - ID: 0
     customer: {fileID: 0}
@@ -320,7 +320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592839247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -4.5, z: 0}
+  m_LocalPosition: {x: 1, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
