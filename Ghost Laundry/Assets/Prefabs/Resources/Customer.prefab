@@ -90,6 +90,7 @@ MonoBehaviour:
     customer: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
   speed: 3
+  steam: {fileID: 8741670355334928196}
 --- !u!1 &5798752225256934039
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8438522107325719020, guid: a9f26312f914fa0428b51d2f7223d72e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.268
+      value: 0.843
       objectReference: {fileID: 0}
     - target: {fileID: 8438522107325719020, guid: a9f26312f914fa0428b51d2f7223d72e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -297,5 +298,10 @@ PrefabInstance:
 --- !u!4 &8741670355334928197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8438522107325719020, guid: a9f26312f914fa0428b51d2f7223d72e, type: 3}
+  m_PrefabInstance: {fileID: 885803928403523241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8741670355334928196 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8438522107325719021, guid: a9f26312f914fa0428b51d2f7223d72e, type: 3}
   m_PrefabInstance: {fileID: 885803928403523241}
   m_PrefabAsset: {fileID: 0}

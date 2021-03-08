@@ -25,6 +25,8 @@ public class Customer : MonoBehaviour
 
     public float speed;
 
+    public ParticleSystem steam;
+
     protected GameObject laundromatBasketPrefab;
     protected LaundromatBasket basketOnCounter;
     protected LaundromatBag bagOnCounter;
@@ -151,6 +153,7 @@ public class Customer : MonoBehaviour
         waitTimer += TimeManager.instance.deltaTime;
         if (waitTimer > 0.7f * MaximumWaitingTime) {
             impatient = true;
+            steam.gameObject.SetActive(true);
             animator.SetBool("Impatient", impatient);
         }
         if (waitTimer >= MaximumWaitingTime) {
@@ -162,6 +165,7 @@ public class Customer : MonoBehaviour
 
     protected virtual void WaitingForClothes() {
         impatient = false;
+        steam.gameObject.SetActive(false);
         animator.SetBool("Impatient", impatient);
         MoveTowards(spot.position);
     }

@@ -67,7 +67,7 @@ public class MoneyManager : MonoBehaviour
             //TODO: Dissatisfied customer pop-up?
 
         }
-
+        Customer.Pay(fee, tip, null);
         ModifyCurrentAmount(fee + tip);
     }
 
