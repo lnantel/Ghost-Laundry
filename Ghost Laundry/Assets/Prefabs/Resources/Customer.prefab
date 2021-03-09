@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ticketNumber: 23
-  MaximumWaitingTime: 20
+  MaximumWaitingTime: 180
   impatient: 0
   silhouettes:
   - {fileID: 21300000, guid: 1aae74330cdc8b748bddd339e66b6b70, type: 3}
