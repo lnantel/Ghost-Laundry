@@ -110,9 +110,9 @@ public class Garment
     }
 
     public static Garment GetRandomGarment() {
-        Fabric randomFabric = new Fabric((FabricType)Random.Range(0, 3));
+        Fabric randomFabric = Fabric.GetRandomFabric();
         Color randomColor = GarmentColor.RandomColor();
-        int type = Random.Range(0, 4);
+        int type = Random.Range(0, 7);
         switch (type) {
             case 0:
                 return new GarmentTop(randomFabric, randomColor);
@@ -122,6 +122,12 @@ public class Garment
                 return new GarmentUnderwear(randomFabric, randomColor);
             case 3:
                 return new GarmentSock(randomFabric, randomColor);
+            case 4:
+                return new GarmentSkirt(randomFabric, randomColor);
+            case 5:
+                return new GarmentDress(randomFabric, randomColor);
+            case 6:
+                return new GarmentShirt(randomFabric, randomColor);
             default:
                 return new Garment(randomFabric, randomColor);
         }

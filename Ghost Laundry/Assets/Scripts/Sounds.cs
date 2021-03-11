@@ -30,5 +30,11 @@ public enum Sounds
     ShirtButton2,
     ShirtButton3,
     ShirtButton4,
-    ShirtButton5
+    ShirtButton5,
+    LinenGrab,
+    LinenDrop,
+    SilkGrab,
+    SilkDrop,
+    DenimGrab,
+    DenimDrop
 }
