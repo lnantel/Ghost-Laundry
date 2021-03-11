@@ -93,12 +93,14 @@ public class GarmentSock : Garment {
 
     public void PairUp(GarmentSock other) {
         pairedSock = other;
+        AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
         currentFoldingStep = 1;
     }
 
     public GarmentSock SeparatePair() {
         GarmentSock sock = pairedSock;
         pairedSock = null;
+        AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
         currentFoldingStep = 0;
         return sock;
     }

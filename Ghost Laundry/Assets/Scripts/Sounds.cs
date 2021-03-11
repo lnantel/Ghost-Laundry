@@ -25,5 +25,10 @@ public enum Sounds
     OllieArrives,
     OllieWhistle,
     LaundromatClosing,
-    CustomerArrives
+    CustomerArrives,
+    ShirtButton1,
+    ShirtButton2,
+    ShirtButton3,
+    ShirtButton4,
+    ShirtButton5
 }

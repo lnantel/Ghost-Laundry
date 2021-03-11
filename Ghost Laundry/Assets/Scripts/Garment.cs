@@ -101,6 +101,7 @@ public class Garment
     }
 
     public virtual void Fold() {
+        AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
         currentFoldingStep = (currentFoldingStep + 1) % (foldingSteps + 1);
     }
 
