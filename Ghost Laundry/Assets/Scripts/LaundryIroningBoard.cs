@@ -39,20 +39,20 @@ public class LaundryIroningBoard : LaundryObject
         float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
         Debug.Log("Iron speed: " + ironSpeed);
 
-        if(garmentOnBoard.fabric.pressingRestrictions != PressingRestrictions.NoIroning && ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.Pressed && !garmentOnBoard.Ruined && garmentOnBoard.Clean && garmentOnBoard.Dry) {
+        if(garmentOnBoard.fabric.pressingRestrictions != PressingRestrictions.NoIroning && ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.Pressed && !(garmentOnBoard.Burned || garmentOnBoard.Melted) && garmentOnBoard.Clean && garmentOnBoard.Dry) {
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
             pressingProgress += Time.fixedDeltaTime / garmentOnBoard.fabric.ironingTime;
             Debug.Log("Ironing progress: " + pressingProgress);
         }
-        else if (graceTimer < gracePeriod && !garmentOnBoard.Ruined) {
+        else if (graceTimer < gracePeriod && !(garmentOnBoard.Burned || garmentOnBoard.Melted)) {
             //Grace period
             steam = SteamState.Off;
             graceTimer += Time.fixedDeltaTime;
             Debug.Log("Grace");
         }
-        else if(!garmentOnBoard.Ruined && garmentOnBoard.Dry) {
+        else if(!(garmentOnBoard.Burned || garmentOnBoard.Melted) && garmentOnBoard.Dry) {
             //Burn
             steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
@@ -67,8 +67,11 @@ public class LaundryIroningBoard : LaundryObject
         }
 
         //If the garment was burned too much, it becomes ruined
-        if (burnTimer > burnTime && !garmentOnBoard.Ruined) {
-            garmentOnBoard.Ruined = true;
+        if (burnTimer > burnTime && !(garmentOnBoard.Burned || garmentOnBoard.Melted)) {
+            if (garmentOnBoard.fabric.name.Equals("Synthetic"))
+                garmentOnBoard.Melted = true;
+            else
+                garmentOnBoard.Burned = true;
             garmentSpriteRenderer.sprite = ruinedGarmentSprite;
             Debug.Log("Garment ruined!");
         }

@@ -114,17 +114,23 @@ public class WashingMachine : WorkStation
         foreach (Garment garment in contents) {
             if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {
                 garment.color = GarmentColor.Pink;
-                garment.Ruined = true;
+                garment.Dyed = true;
             }
 
-            if ((garment.fabric.washingRestrictions == WashingRestrictions.ColdOnly && washSetting == WashSetting.Hot) ||
-                (garment.fabric.washingRestrictions == WashingRestrictions.HotOnly && washSetting == WashSetting.Cold))
-                garment.Ruined = true;
+            if (garment.fabric.washingRestrictions == WashingRestrictions.HandWashOnly)
+                garment.Torn = true;
+
+            if (garment.fabric.washingRestrictions == WashingRestrictions.ColdOnly && washSetting == WashSetting.Hot)
+                garment.Melted = true;
+
+            if(garment.fabric.washingRestrictions == WashingRestrictions.HotOnly && washSetting == WashSetting.Cold) {
+                garment.Shrunk = true;
+            }
 
             if (Detergent) {
                 garment.Clean = true;
                 if (garment.fabric.washingRestrictions == WashingRestrictions.NoDetergent)
-                    garment.Ruined = true;
+                    garment.Dyed = true;
             }
             else if(!Detergent){
                 if (garment.fabric.washingRestrictions == WashingRestrictions.NoDetergent) {
