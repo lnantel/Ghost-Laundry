@@ -16,6 +16,7 @@ public class LaundryTaskAreaSpawner : MonoBehaviour
         GameObject washingMachineAreaPrefab = (GameObject)Resources.Load("WashingMachineArea");
         GameObject dryerAreaPrefab = (GameObject)Resources.Load("DryerArea");
         GameObject ironingBoardPrefab = (GameObject)Resources.Load("IroningBoardArea");
+        GameObject clotheslinePrefab = (GameObject)Resources.Load("ClotheslineArea");
 
         for (int i = 0; i < workStations.Length; i++) {
             //Instantiate the appropriate laundry task area prefab at the appropriate location
@@ -31,6 +32,9 @@ public class LaundryTaskAreaSpawner : MonoBehaviour
             }
             else if (workStations[i] is IroningBoard) {
                 prefab = ironingBoardPrefab;
+            }
+            else if(workStations[i] is Clothesline) {
+                prefab = clotheslinePrefab;
             }
             else
                 prefab = laundryTaskAreaPrefab;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OllieFemur : Garment
 {
-    public OllieFemur(bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool ruined = false) : base(new Fabric(FabricType.Bone), GarmentColor.White, clean, dry, pressed, folded, ruined) {
+    public OllieFemur(bool clean = false, float humidity = 0.0f, bool pressed = false, bool folded = false, bool ruined = false) : base(new Fabric(FabricType.Bone), GarmentColor.White, clean, humidity, pressed, folded, ruined) {
         size = 1;
         foldingSteps = 0;
         laundryGarmentPrefab = (GameObject)Resources.Load("OllieFemur");

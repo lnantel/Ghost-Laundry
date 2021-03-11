@@ -5,7 +5,7 @@ using UnityEngine;
 public class GarmentSock : Garment {
     private GarmentSock pairedSock;
 
-    public GarmentSock(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, clean, dry, pressed, folded, shrunk, burned, dyed, torn, melted) {
+    public GarmentSock(Fabric fabric, Color color, bool clean = false, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, clean, humidity, pressed, folded, shrunk, burned, dyed, torn, melted) {
         size = 1;
         foldingSteps = 1;
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarmentSock");
@@ -15,7 +15,7 @@ public class GarmentSock : Garment {
         this.fabric = other.fabric;
         this.color = other.color;
         this.clean = other.clean;
-        this.dry = other.dry;
+        this.humidity = other.humidity;
         this.pressed = other.pressed;
         this.folded = other.folded;
         this.shrunk = other.shrunk;
@@ -144,6 +144,16 @@ public class GarmentSock : Garment {
     protected override void SetTorn(bool value) {
         base.SetTorn(value);
         if (pairedSock != null) pairedSock.SetTorn(value);
+    }
+
+    protected override float GetHumidity() {
+        if (pairedSock == null) return base.GetHumidity();
+        return Mathf.Max(base.GetHumidity(), pairedSock.GetHumidity());
+    }
+
+    protected override void SetHumidity(float value) {
+        base.SetHumidity(value);
+        if (pairedSock != null) pairedSock.SetHumidity(value);
     }
 
     public void PairUp(GarmentSock other) {
