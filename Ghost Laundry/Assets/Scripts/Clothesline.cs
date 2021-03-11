@@ -27,14 +27,14 @@ public class Clothesline : WorkStation
             List<int> indexes = new List<int>();
             indexes.Add(position);
 
-            while (indexes.Count < garment.size) {
+            while (indexes.Count < garment.clotheslinePegs) {
                 if (spaceRight) {
                     if (hungGarments[r] == null)
                         indexes.Add(r++);
                     else
                         spaceRight = false;
                 }         
-                if (spaceLeft && indexes.Count < garment.size) {
+                if (spaceLeft && indexes.Count < garment.clotheslinePegs) {
                     if (hungGarments[l] == null)
                         indexes.Add(l--);
                     else
@@ -50,8 +50,10 @@ public class Clothesline : WorkStation
                     break;
             }
 
-            if(indexes.Count >= garment.size) {
+            if(indexes.Count >= garment.clotheslinePegs) {
                 foreach(int i in indexes) {
+                    garment.currentFoldingStep = 0;
+                    //TODO: Paired socks?
                     hungGarments[i] = garment;
                 }
                 return true;

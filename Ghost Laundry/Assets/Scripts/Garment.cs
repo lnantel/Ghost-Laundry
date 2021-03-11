@@ -7,6 +7,7 @@ public class Garment
     public Fabric fabric;
     public Color color;
     public int size;
+    public int clotheslinePegs;
 
     [HideInInspector]
     public int customerID;
@@ -143,6 +144,7 @@ public class Garment
         //Overridden by garment category
         foldingSteps = 3;
         size = 1;
+        clotheslinePegs = 1;
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
     }
 
