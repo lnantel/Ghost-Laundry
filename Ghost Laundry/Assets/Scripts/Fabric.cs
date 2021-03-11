@@ -114,8 +114,8 @@ public enum WashingRestrictions {
     None,
     ColdOnly,
     HotOnly,
-    NoDetergent,
-    HandWashOnly
+    HandWashOnly,
+    NoDetergent
 }
 
 public enum DryingRestrictions {
