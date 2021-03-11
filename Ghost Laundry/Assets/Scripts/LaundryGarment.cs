@@ -20,9 +20,14 @@ public class LaundryGarment : LaundryObject
     public SpriteRenderer dirtyRenderer;
     public SpriteRenderer wetRenderer;
 
+    public Sprite tornPattern;
+    public Sprite meltedPattern;
+    public Sprite burnedPattern;
+
     public ParticleSystem flies;
     public ParticleSystem waterDrops;
     public ParticleSystem sparkles;
+    public ParticleSystem ruin;
 
     private Rigidbody2D rb;
     private LaundryTag laundryTag;
@@ -36,8 +41,8 @@ public class LaundryGarment : LaundryObject
             garment = Garment.GetRandomGarment();
         }
 
-        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteMask == null) spriteMask = GetComponent<SpriteMask>();
+        //if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        //if (spriteMask == null) spriteMask = GetComponent<SpriteMask>();
 
         rb = GetComponent<Rigidbody2D>();
         laundryTag = GetComponentInChildren<LaundryTag>();
@@ -149,15 +154,18 @@ public class LaundryGarment : LaundryObject
                 spriteRenderer.color = garment.color;
             }
 
-            if(spriteMask != null) {
+            if (spriteMask != null) {
                 spriteMask.sprite = foldingSprites[garment.currentFoldingStep];
             }
 
-            if(fabricRenderer != null) {
+            if (fabricRenderer != null) {
                 fabricRenderer.sprite = garment.fabric.pattern;
+                if (garment.Torn) fabricRenderer.sprite = tornPattern;
+                if (garment.Melted) fabricRenderer.sprite = meltedPattern;
+                if (garment.Burned) fabricRenderer.sprite = burnedPattern;
             }
 
-            if(dirtyRenderer != null) {
+            if (dirtyRenderer != null) {
                 dirtyRenderer.enabled = !garment.Clean;
             }
 
@@ -166,7 +174,7 @@ public class LaundryGarment : LaundryObject
                 if (garment.Clean && flies.isEmitting) flies.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
 
-            if(wetRenderer != null) {
+            if (wetRenderer != null) {
                 wetRenderer.enabled = !garment.Dry;
             }
 
@@ -175,9 +183,21 @@ public class LaundryGarment : LaundryObject
                 if (garment.Dry && waterDrops.isEmitting) waterDrops.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
 
-            if(sparkles != null) {
+            if (sparkles != null) {
                 if (garment.Pressed && !sparkles.isPlaying) sparkles.Play();
-                if(!garment.Pressed && sparkles.isEmitting) sparkles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                if (!garment.Pressed && sparkles.isEmitting) sparkles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
+
+            if (garment.Shrunk) {
+                spriteRenderer.transform.localScale = new Vector3(0.9f, 0.9f, 1.0f);
+            }
+            else {
+                spriteRenderer.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            }
+
+            if(ruin != null) {
+                if (garment.Ruined && !ruin.isPlaying) ruin.Play();
+                if (!garment.Ruined && ruin.isEmitting) ruin.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
 
             for (int i = 0; i < colliders.Length; i++) {

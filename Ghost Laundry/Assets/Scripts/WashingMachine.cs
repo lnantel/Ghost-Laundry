@@ -117,6 +117,9 @@ public class WashingMachine : WorkStation
                 garment.Dyed = true;
             }
 
+            if (garment.fabric.washingRestrictions == WashingRestrictions.HandWashOnly)
+                garment.Torn = true;
+
             if (garment.fabric.washingRestrictions == WashingRestrictions.ColdOnly && washSetting == WashSetting.Hot)
                 garment.Melted = true;
 

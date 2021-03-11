@@ -298,7 +298,7 @@ SortingGroup:
   m_GameObject: {fileID: 8682779000148993894}
   m_Enabled: 1
   m_SortingLayerID: -2139956593
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
 --- !u!212 &8682779000148993898
 SpriteRenderer:
@@ -464,12 +464,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c98bdaebc8419d74786889f1ec178a6d, type: 3}
   colliders: []
   OnFoldingSurface: 0
+  spriteRenderer: {fileID: 0}
+  spriteMask: {fileID: 0}
   fabricRenderer: {fileID: 5979507287749420690}
   dirtyRenderer: {fileID: 4855078365467643645}
   wetRenderer: {fileID: 434178695178137833}
+  tornPattern: {fileID: 0}
+  meltedPattern: {fileID: 0}
+  burnedPattern: {fileID: 0}
   flies: {fileID: 3116874242115008375}
   waterDrops: {fileID: 7355749936262722464}
   sparkles: {fileID: 6352498967563318982}
+  ruin: {fileID: 0}
 --- !u!1001 &893263641545377049
 PrefabInstance:
   m_ObjectHideFlags: 0
