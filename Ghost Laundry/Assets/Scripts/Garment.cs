@@ -16,7 +16,11 @@ public class Garment
     protected bool dry;
     protected bool pressed;
     protected bool folded;
-    protected bool ruined;
+    protected bool shrunk;
+    protected bool burned;
+    protected bool melted;
+    protected bool dyed;
+    protected bool torn;
 
     public int foldingSteps;
     [HideInInspector]
@@ -28,7 +32,12 @@ public class Garment
     public bool Dry { get => GetDry(); set => SetDry(value); }
     public bool Pressed { get => GetPressed(); set => SetPressed(value); }
     public bool Folded { get => GetFolded(); }
-    public bool Ruined { get => GetRuined(); set => SetRuined(value); }
+    public bool Ruined { get => GetRuined(); }
+    public bool Shrunk { get => GetShrunk(); set => SetShrunk(value); }
+    public bool Burned { get => GetBurned(); set => SetBurned(value); }
+    public bool Melted { get => GetMelted(); set => SetMelted(value); }
+    public bool Dyed { get => GetDyed(); set => SetDyed(value); }
+    public bool Torn { get => GetTorn(); set => SetTorn(value); }
 
     //Accessors
     protected virtual bool GetClean() {
@@ -60,21 +69,61 @@ public class Garment
     }
 
     protected virtual bool GetRuined() {
-        return ruined;
+        return (shrunk || burned || melted || dyed || torn);
     }
 
-    protected virtual void SetRuined(bool value) {
-        ruined = value;
+    protected virtual bool GetShrunk() {
+        return shrunk;
     }
 
-    public Garment(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool ruined = false) {
+    protected virtual void SetShrunk(bool value) {
+        shrunk = value;
+    }
+
+    protected virtual bool GetBurned() {
+        return burned;
+    }
+
+    protected virtual void SetBurned(bool value) {
+        burned = value;
+    }
+
+    protected virtual bool GetMelted() {
+        return melted;
+    }
+
+    protected virtual void SetMelted(bool value) {
+        melted = value;
+    }
+
+    protected virtual bool GetDyed() {
+        return dyed;
+    }
+
+    protected virtual void SetDyed(bool value) {
+        dyed = value;
+    }
+
+    protected virtual bool GetTorn() {
+        return torn;
+    }
+
+    protected virtual void SetTorn(bool value) {
+        torn = value;
+    }
+
+    public Garment(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) {
         this.fabric = fabric;
         this.color = color;
         this.clean = clean;
         this.dry = dry;
         this.pressed = pressed;
         this.folded = folded;
-        this.ruined = ruined;
+        this.shrunk = shrunk;
+        this.dyed = dyed;
+        this.melted = melted;
+        this.torn = torn;
+        this.burned = burned;
 
         customerID = 0;
         currentFoldingStep = 0;
@@ -92,7 +141,11 @@ public class Garment
         this.dry = other.dry;
         this.pressed = other.pressed;
         this.folded = other.folded;
-        this.ruined = other.ruined;
+        this.shrunk = other.shrunk;
+        this.dyed = other.dyed;
+        this.melted = other.melted;
+        this.torn = other.torn;
+        this.burned = other.burned;
         this.customerID = other.customerID;
         this.currentFoldingStep = other.currentFoldingStep;
         this.size = other.size;

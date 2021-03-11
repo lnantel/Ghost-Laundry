@@ -115,7 +115,7 @@ public class Dryer : WorkStation
         foreach (Garment garment in contents) {
             if ((garment.fabric.dryingRestrictions == DryingRestrictions.LowOnly && dryerSetting == DryerSetting.High) ||
                 (garment.fabric.dryingRestrictions == DryingRestrictions.HighOnly && dryerSetting == DryerSetting.Low))
-                garment.Ruined = true;
+                garment.Torn = true;
 
             garment.Dry = lintTrapClean; //garments are dried if the lint trap is clean
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GarmentSock : Garment {
     private GarmentSock pairedSock;
 
-    public GarmentSock(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool ruined = false) : base(fabric, color, clean, dry, pressed, folded, ruined) {
+    public GarmentSock(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, clean, dry, pressed, folded, shrunk, burned, dyed, torn, melted) {
         size = 1;
         foldingSteps = 1;
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarmentSock");
@@ -18,7 +18,11 @@ public class GarmentSock : Garment {
         this.dry = other.dry;
         this.pressed = other.pressed;
         this.folded = other.folded;
-        this.ruined = other.ruined;
+        this.shrunk = other.shrunk;
+        this.dyed = other.dyed;
+        this.melted = other.melted;
+        this.torn = other.torn;
+        this.burned = other.burned;
         this.customerID = other.customerID;
         this.currentFoldingStep = other.currentFoldingStep;
         this.size = other.size;
@@ -82,13 +86,64 @@ public class GarmentSock : Garment {
             return base.GetRuined() || pairedSock.GetRuined();
     }
 
-    protected override void SetRuined(bool value) {
+    protected override bool GetShrunk() {
         if (pairedSock == null)
-            base.SetRuined(value);
-        else {
-            base.SetRuined(value);
-            pairedSock.SetRuined(value);
-        }
+            return base.GetShrunk();
+        else
+            return base.GetShrunk() || pairedSock.GetShrunk();
+    }
+
+    protected override void SetShrunk(bool value) {
+        base.SetShrunk(value);
+        if (pairedSock != null) pairedSock.SetShrunk(value);
+    }
+
+    protected override bool GetBurned() {
+        if (pairedSock == null)
+            return base.GetBurned();
+        else
+            return base.GetBurned() || pairedSock.GetBurned();
+    }
+
+    protected override void SetBurned(bool value) {
+        base.SetBurned(value);
+        if (pairedSock != null) pairedSock.SetBurned(value);
+    }
+
+    protected override bool GetMelted() {
+        if (pairedSock == null)
+            return base.GetMelted();
+        else
+            return base.GetMelted() || pairedSock.GetMelted();
+    }
+
+    protected override void SetMelted(bool value) {
+        base.SetMelted(value);
+        if (pairedSock != null) pairedSock.SetMelted(value);
+    }
+
+    protected override bool GetDyed() {
+        if (pairedSock == null)
+            return base.GetDyed();
+        else
+            return base.GetDyed() || pairedSock.GetDyed();
+    }
+
+    protected override void SetDyed(bool value) {
+        base.SetDyed(value);
+        if (pairedSock != null) pairedSock.SetDyed(value);
+    }
+
+    protected override bool GetTorn() {
+        if (pairedSock == null)
+            return base.GetTorn();
+        else
+            return base.GetTorn() || pairedSock.GetTorn();
+    }
+
+    protected override void SetTorn(bool value) {
+        base.SetTorn(value);
+        if (pairedSock != null) pairedSock.SetTorn(value);
     }
 
     public void PairUp(GarmentSock other) {
