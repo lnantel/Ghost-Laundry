@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Clothesline : WorkStation
 {
+    public static Action<int> GarmentHung;
+    public static Action<int> GarmentRemoved;
+
     //Chaque emplacement dans le tableau hungGarments représente une pince à linge, et contient une référence vers le vêtement accroché
     //Si aucun vêtement n'est accroché, l'emplacement est null
     public Garment[] hungGarments;
@@ -26,6 +30,7 @@ public class Clothesline : WorkStation
             bool spaceLeft = l < hungGarments.Length && l >= 0;
             List<int> indexes = new List<int>();
             indexes.Add(position);
+            int leftmostIndex = position;
 
             while (indexes.Count < garment.clotheslinePegs) {
                 if (spaceRight) {
@@ -35,10 +40,12 @@ public class Clothesline : WorkStation
                         spaceRight = false;
                 }         
                 if (spaceLeft && indexes.Count < garment.clotheslinePegs) {
-                    if (hungGarments[l] == null)
+                    if (hungGarments[l] == null) {
+                        leftmostIndex = l;
                         indexes.Add(l--);
+                    }
                     else
-                        spaceRight = false;
+                        spaceLeft = false;
                 }
 
                 if (r >= hungGarments.Length)
@@ -56,6 +63,7 @@ public class Clothesline : WorkStation
                     //TODO: Paired socks?
                     hungGarments[i] = garment;
                 }
+                if (GarmentHung != null) GarmentHung(leftmostIndex);
                 return true;
             }
             else {
@@ -73,11 +81,17 @@ public class Clothesline : WorkStation
 
     public Garment RemoveGarmentFromLine(int position) {
         //Check whether position contains a garment
+        bool actionCalled = false;
         if(hungGarments[position] != null) {
             Garment garment = hungGarments[position];
             for(int i = 0; i < hungGarments.Length; i++) {
-                if (hungGarments[i] != null && hungGarments[i].Equals(garment))
+                if (hungGarments[i] != null && hungGarments[i].Equals(garment)) {
                     hungGarments[i] = null;
+                    if (!actionCalled) {
+                        if (GarmentRemoved != null) GarmentRemoved(i);
+                        actionCalled = true;
+                    }
+                }
             }
             return garment;
         }
