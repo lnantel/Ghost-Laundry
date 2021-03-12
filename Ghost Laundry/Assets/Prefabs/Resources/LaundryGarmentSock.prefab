@@ -532,8 +532,8 @@ MonoBehaviour:
   dirtyRenderer: {fileID: 6580917452606773564}
   wetRenderer: {fileID: 4976772476262266874}
   tornPattern: {fileID: 21300000, guid: 052d3ba0e87688a4d9c023f43717c72d, type: 3}
-  meltedPattern: {fileID: 21300000, guid: 9aadd188383014c439ac50677fd97179, type: 3}
-  burnedPattern: {fileID: 21300000, guid: 1c75973689d9094498b191e2e901d77b, type: 3}
+  meltedPattern: {fileID: 21300000, guid: 0509b8384f8d40642be902d8518e57fc, type: 3}
+  burnedPattern: {fileID: 21300000, guid: 32fb0002bc8307f46ad60df7fec71971, type: 3}
   flies: {fileID: 1117929745558654288}
   waterDrops: {fileID: 3355016172944335661}
   sparkles: {fileID: 5279823898797483801}
