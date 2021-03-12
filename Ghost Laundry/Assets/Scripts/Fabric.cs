@@ -60,7 +60,7 @@ public class Fabric
             case FabricType.Linen:
                 name = "Linen";
                 ironingTime = 3.0f;
-                pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2"); ;
+                pattern = Resources.Load<Sprite>("Fabric Patterns/Linen_material"); ;
                 grabSound = Sounds.LinenGrab;
                 dropSound = Sounds.LinenDrop;
                 washingRestrictions = WashingRestrictions.None;
@@ -70,7 +70,7 @@ public class Fabric
             case FabricType.Silk:
                 name = "Silk";
                 ironingTime = 3.0f;
-                pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2"); ;
+                pattern = Resources.Load<Sprite>("Fabric Patterns/Silk_material"); ;
                 grabSound = Sounds.SilkGrab;
                 dropSound = Sounds.SilkDrop;
                 washingRestrictions = WashingRestrictions.HandWashOnly;
@@ -80,7 +80,7 @@ public class Fabric
             case FabricType.Denim:
                 name = "Denim";
                 ironingTime = 3.0f;
-                pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2"); ;
+                pattern = Resources.Load<Sprite>("Fabric Patterns/Denim_material"); ;
                 grabSound = Sounds.DenimGrab;
                 dropSound = Sounds.DenimDrop;
                 washingRestrictions = WashingRestrictions.None;
