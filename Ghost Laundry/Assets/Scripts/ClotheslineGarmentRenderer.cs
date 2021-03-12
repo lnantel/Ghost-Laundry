@@ -44,6 +44,12 @@ public class ClotheslineGarmentRenderer : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+        if(garment != null) {
+            UpdateAppearance();
+        }
+    }
+
     public void UpdateAppearance() {
         //Update appearance
         if (garment != null) {
