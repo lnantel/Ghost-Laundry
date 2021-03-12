@@ -51,7 +51,7 @@ public class LaundryTaskController : MonoBehaviour
         WashingMachineDoor.GarmentGrabbed += GrabGarmentFromContainer;
         DryerDoor.GarmentGrabbed += GrabGarmentFromContainer;
         LaundryIroningBoard.GarmentGrabbed += GrabGarmentFromContainer;
-
+        ClotheslinePeg.GrabGarment += GrabGarmentFromContainer;
     }
 
     private void OnDisable() {
@@ -59,7 +59,7 @@ public class LaundryTaskController : MonoBehaviour
         WashingMachineDoor.GarmentGrabbed -= GrabGarmentFromContainer;
         DryerDoor.GarmentGrabbed -= GrabGarmentFromContainer;
         LaundryIroningBoard.GarmentGrabbed -= GrabGarmentFromContainer;
-
+        ClotheslinePeg.GrabGarment -= GrabGarmentFromContainer;
     }
 
     private IEnumerator Initialize() {

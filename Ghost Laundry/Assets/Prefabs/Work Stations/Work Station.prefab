@@ -151,7 +151,7 @@ MonoBehaviour:
   HasGravity: 1
   basketSlots:
   - laundryBasket: {fileID: 0}
-    spawnPoint: {x: 0, y: 0, z: 0}
+    spawnPoint: {x: -6, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
 --- !u!210 &7586722502219313342
 SortingGroup:
@@ -177,6 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 5848748377562005193}
+  CanBePlacedOnThings: 0
+  forceToFront: 0
 --- !u!1 &7276995426998019625
 GameObject:
   m_ObjectHideFlags: 0

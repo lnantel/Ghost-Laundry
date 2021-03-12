@@ -160,6 +160,7 @@ public class LaundryGarment : LaundryObject
 
             if (fabricRenderer != null) {
                 fabricRenderer.sprite = garment.fabric.pattern;
+                if (garment.Ruined) fabricRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 if (garment.Torn) fabricRenderer.sprite = tornPattern;
                 if (garment.Melted) fabricRenderer.sprite = meltedPattern;
                 if (garment.Burned) fabricRenderer.sprite = burnedPattern;
@@ -181,6 +182,8 @@ public class LaundryGarment : LaundryObject
             if (waterDrops != null) {
                 if (!garment.Dry && !waterDrops.isPlaying) waterDrops.Play();
                 if (garment.Dry && waterDrops.isEmitting) waterDrops.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                ParticleSystem.EmissionModule emission = waterDrops.emission;
+                emission.rateOverTime = 8.0f * garment.Humidity;
             }
 
             if (sparkles != null) {

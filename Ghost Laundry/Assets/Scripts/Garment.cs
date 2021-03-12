@@ -7,13 +7,13 @@ public class Garment
     public Fabric fabric;
     public Color color;
     public int size;
+    public int clotheslinePegs;
 
     [HideInInspector]
     public int customerID;
 
     //States
     protected bool clean;
-    protected bool dry;
     protected bool pressed;
     protected bool folded;
     protected bool shrunk;
@@ -21,6 +21,7 @@ public class Garment
     protected bool melted;
     protected bool dyed;
     protected bool torn;
+    protected float humidity;
 
     public int foldingSteps;
     [HideInInspector]
@@ -38,6 +39,7 @@ public class Garment
     public bool Melted { get => GetMelted(); set => SetMelted(value); }
     public bool Dyed { get => GetDyed(); set => SetDyed(value); }
     public bool Torn { get => GetTorn(); set => SetTorn(value); }
+    public float Humidity { get => GetHumidity(); set => SetHumidity(value); }
 
     //Accessors
     protected virtual bool GetClean() {
@@ -49,11 +51,14 @@ public class Garment
     }
 
     protected virtual bool GetDry() {
-        return dry;
+        return humidity < 0.01f;
     }
 
     protected virtual void SetDry(bool value) {
-        dry = value;
+        if (value)
+            humidity = 0.0f;
+        else
+            humidity = 1.0f;
     }
 
     protected virtual bool GetPressed() {
@@ -112,11 +117,19 @@ public class Garment
         torn = value;
     }
 
-    public Garment(Fabric fabric, Color color, bool clean = false, bool dry = true, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) {
+    protected virtual float GetHumidity() {
+        return humidity;
+    }
+
+    protected virtual void SetHumidity(float value) {
+        humidity = Mathf.Clamp01(value);
+    }
+
+    public Garment(Fabric fabric, Color color, bool clean = false, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) {
         this.fabric = fabric;
         this.color = color;
         this.clean = clean;
-        this.dry = dry;
+        this.humidity = humidity;
         this.pressed = pressed;
         this.folded = folded;
         this.shrunk = shrunk;
@@ -131,6 +144,7 @@ public class Garment
         //Overridden by garment category
         foldingSteps = 3;
         size = 1;
+        clotheslinePegs = 1;
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
     }
 
@@ -138,7 +152,7 @@ public class Garment
         this.fabric = other.fabric;
         this.color = other.color;
         this.clean = other.clean;
-        this.dry = other.dry;
+        this.humidity = other.humidity;
         this.pressed = other.pressed;
         this.folded = other.folded;
         this.shrunk = other.shrunk;
