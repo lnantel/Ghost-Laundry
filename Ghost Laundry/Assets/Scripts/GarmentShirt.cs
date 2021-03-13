@@ -12,11 +12,11 @@ public class GarmentShirt : Garment
     }
 
     public override void Fold() {
-        if(currentFoldingStep >= 0 && currentFoldingStep <= 4) {
+        if(currentFoldingStep >= 0 && currentFoldingStep <= 5) {
             AudioManager.instance.PlaySound(Sounds.ShirtButton1 + currentFoldingStep);
         }
         else {
-            AudioManager.instance.PlaySound(Sounds.Fold1 + (currentFoldingStep - 4));
+            AudioManager.instance.PlaySound(Sounds.Fold1 + (currentFoldingStep - 5));
         }
         currentFoldingStep = (currentFoldingStep + 1) % (foldingSteps + 1);
     }
