@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07314083, y: 0.06583589}
+  m_Offset: {x: 0.032604516, y: 0.012963355}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.74731857, y: 0.72290146}
+  m_Size: {x: 0.69092107, y: 0.82864654}
   m_EdgeRadius: 0
 --- !u!1 &2118707420359026592
 GameObject:
@@ -216,7 +216,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16973892, y: -0.03448546}
+  m_Offset: {x: -0.038226813, y: -0.030960679}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -227,7 +227,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9619016, y: 0.9611647}
+  m_Size: {x: 1.3073366, y: 1.51809}
   m_EdgeRadius: 0
 --- !u!1 &5454747128676657154
 GameObject:
@@ -301,7 +301,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f88b6e4ab77e972468d31670aa602034, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -351,7 +351,7 @@ SpriteRenderer:
   m_SortingLayerID: -1498004205
   m_SortingLayer: 2
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 1de89a01c49a69a42acb98f22e23b027, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f88b6e4ab77e972468d31670aa602034, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -488,7 +488,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010470599, y: 0.08778119}
+  m_Offset: {x: 0.25368485, y: -0.07083678}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -499,7 +499,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9657573, y: 0.917274}
+  m_Size: {x: 0.7895146, y: 1.4741993}
   m_EdgeRadius: 0
 --- !u!1 &8069041206068950228
 GameObject:
@@ -660,9 +660,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foldingSprites:
-  - {fileID: 21300000, guid: 1de89a01c49a69a42acb98f22e23b027, type: 3}
-  - {fileID: 21300000, guid: b551edf8434490d4a9e451e1a5099ce9, type: 3}
-  - {fileID: 21300000, guid: bc0948dd71e807645880801800813d5e, type: 3}
+  - {fileID: 21300000, guid: f88b6e4ab77e972468d31670aa602034, type: 3}
+  - {fileID: 21300000, guid: 4e93af3a52027874aa94866ddc0def05, type: 3}
+  - {fileID: 21300000, guid: 4f14d204ac5bd174987364c62fcbc117, type: 3}
   colliders:
   - {fileID: 4064771008452778329}
   - {fileID: 3511840941654357431}
@@ -700,11 +700,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4016263920628055297, guid: f31e30b3404f5ea43a1ea52ae93b92e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.204
       objectReference: {fileID: 0}
     - target: {fileID: 4016263920628055297, guid: f31e30b3404f5ea43a1ea52ae93b92e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.162
+      value: 0.394
       objectReference: {fileID: 0}
     - target: {fileID: 4016263920628055297, guid: f31e30b3404f5ea43a1ea52ae93b92e7, type: 3}
       propertyPath: m_LocalPosition.z

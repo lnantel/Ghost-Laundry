@@ -88,6 +88,7 @@ public class ClotheslineGarmentRenderer : MonoBehaviour
             }
 
             fabricRenderer.sprite = garment.fabric.pattern;
+            if (garment.Ruined) fabricRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             if (garment.Torn) fabricRenderer.sprite = tornPattern;
             if (garment.Melted) fabricRenderer.sprite = meltedPattern;
             if (garment.Burned) fabricRenderer.sprite = burnedPattern;
