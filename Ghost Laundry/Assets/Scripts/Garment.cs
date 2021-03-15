@@ -13,7 +13,7 @@ public class Garment
     public int customerID;
 
     //States
-    protected bool clean;
+    protected float cleanliness;
     protected bool pressed;
     protected bool folded;
     protected bool shrunk;
@@ -30,6 +30,7 @@ public class Garment
     protected GameObject laundryGarmentPrefab;
 
     public bool Clean { get => GetClean(); set => SetClean(value); }
+    public float Cleanliness { get => GetCleanliness(); set => SetCleanliness(value); }
     public bool Dry { get => GetDry(); set => SetDry(value); }
     public bool Pressed { get => GetPressed(); set => SetPressed(value); }
     public bool Folded { get => GetFolded(); }
@@ -43,11 +44,22 @@ public class Garment
 
     //Accessors
     protected virtual bool GetClean() {
-        return clean;
+        return cleanliness >= 0.99f;
     }
 
     protected virtual void SetClean(bool value) {
-        clean = value;
+        if (value)
+            cleanliness = 1.0f;
+        else
+            cleanliness = 0.0f;
+    }
+
+    protected virtual float GetCleanliness() {
+        return cleanliness;
+    }
+
+    protected virtual void SetCleanliness(float value) {
+        cleanliness = Mathf.Clamp01(value);
     }
 
     protected virtual bool GetDry() {
@@ -125,10 +137,10 @@ public class Garment
         humidity = Mathf.Clamp01(value);
     }
 
-    public Garment(Fabric fabric, Color color, bool clean = false, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) {
+    public Garment(Fabric fabric, Color color, float cleanliness = 0.0f, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) {
         this.fabric = fabric;
         this.color = color;
-        this.clean = clean;
+        this.cleanliness = cleanliness;
         this.humidity = humidity;
         this.pressed = pressed;
         this.folded = folded;
@@ -151,7 +163,7 @@ public class Garment
     public Garment(Garment other) {
         this.fabric = other.fabric;
         this.color = other.color;
-        this.clean = other.clean;
+        this.cleanliness = other.cleanliness;
         this.humidity = other.humidity;
         this.pressed = other.pressed;
         this.folded = other.folded;

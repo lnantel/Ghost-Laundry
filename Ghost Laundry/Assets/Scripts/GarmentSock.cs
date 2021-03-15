@@ -5,7 +5,7 @@ using UnityEngine;
 public class GarmentSock : Garment {
     private GarmentSock pairedSock;
 
-    public GarmentSock(Fabric fabric, Color color, bool clean = false, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, clean, humidity, pressed, folded, shrunk, burned, dyed, torn, melted) {
+    public GarmentSock(Fabric fabric, Color color, float cleanliness = 0.0f, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, cleanliness, humidity, pressed, folded, shrunk, burned, dyed, torn, melted) {
         size = 1;
         foldingSteps = 1;
         clotheslinePegs = 1;
@@ -15,7 +15,7 @@ public class GarmentSock : Garment {
     public GarmentSock(GarmentSock other) : base(other){
         this.fabric = other.fabric;
         this.color = other.color;
-        this.clean = other.clean;
+        this.cleanliness = other.cleanliness;
         this.humidity = other.humidity;
         this.pressed = other.pressed;
         this.folded = other.folded;
@@ -46,6 +46,16 @@ public class GarmentSock : Garment {
             base.SetClean(value);
             pairedSock.SetClean(value);
         }
+    }
+
+    protected override float GetCleanliness() {
+        if (pairedSock != null) return Mathf.Max(base.GetCleanliness(), pairedSock.GetCleanliness());
+        return base.GetCleanliness();
+    }
+
+    protected override void SetCleanliness(float value) {
+        base.SetCleanliness(value);
+        if (pairedSock != null) pairedSock.SetCleanliness(value);
     }
 
     protected override bool GetPressed() {
