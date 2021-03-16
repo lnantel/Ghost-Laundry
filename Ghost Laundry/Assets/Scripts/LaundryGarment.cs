@@ -51,16 +51,16 @@ public class LaundryGarment : LaundryObject
         initialized = true;
     }
 
+    private void FixedUpdate() {
+        lastPosition = rb.position;
+    }
+
     private void LateUpdate() {
         if (!hovering) {
             if(laundryTag != null) laundryTag.Hide();
             inspected = false;
         }
         else hovering = false;
-    }
-
-    private void FixedUpdate() {
-        lastPosition = transform.position;
     }
 
     public LaundryGarment(Garment garment) {
@@ -125,7 +125,7 @@ public class LaundryGarment : LaundryObject
     }
 
     public override void OnRelease() {
-        rb.velocity = new Vector2(transform.position.x, transform.position.y) - lastPosition;
+        rb.velocity = (new Vector2(transform.position.x, transform.position.y) - lastPosition) * 10.0f;
 
         if(Released != null)
             Released(this);

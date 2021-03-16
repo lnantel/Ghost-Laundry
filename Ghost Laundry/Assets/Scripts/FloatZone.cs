@@ -20,7 +20,7 @@ public class FloatZone : MonoBehaviour
                     collision.attachedRigidbody.gravityScale = -FloatSpeed;
                 }
                 else {
-                    collision.attachedRigidbody.gravityScale = 0.0f;
+                    collision.attachedRigidbody.gravityScale = 1.0f;
                 }
             }
         }
