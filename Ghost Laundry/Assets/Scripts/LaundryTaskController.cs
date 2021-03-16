@@ -33,7 +33,8 @@ public class LaundryTaskController : MonoBehaviour
     private bool backInput;
 
     private LaundryObject target;
-    private LaundryObject grabbedObject;
+    public LaundryObject grabbedObject;
+    public float grabDelay;
 
     private IEnumerator DelayGrabCoroutine;
 
@@ -52,6 +53,7 @@ public class LaundryTaskController : MonoBehaviour
         DryerDoor.GarmentGrabbed += GrabGarmentFromContainer;
         LaundryIroningBoard.GarmentGrabbed += GrabGarmentFromContainer;
         ClotheslinePeg.GrabGarment += GrabGarmentFromContainer;
+        LaundrySewingMachine.GarmentGrabbed += GrabGarmentFromContainer;
     }
 
     private void OnDisable() {
@@ -60,6 +62,7 @@ public class LaundryTaskController : MonoBehaviour
         DryerDoor.GarmentGrabbed -= GrabGarmentFromContainer;
         LaundryIroningBoard.GarmentGrabbed -= GrabGarmentFromContainer;
         ClotheslinePeg.GrabGarment -= GrabGarmentFromContainer;
+        LaundrySewingMachine.GarmentGrabbed -= GrabGarmentFromContainer;
     }
 
     private IEnumerator Initialize() {
@@ -174,7 +177,7 @@ public class LaundryTaskController : MonoBehaviour
                 timer += TimeManager.instance.deltaTime;
                 cursorDelta = (initialCursorPosition - new Vector2(cursor.position.x, cursor.position.y)).magnitude;
                 if(target != null) cursorDelta += (initialTargetPosition - new Vector2(target.transform.position.x, target.transform.position.y)).magnitude;
-                if (!interactInputHeld || cursorDelta > 0.1f) break;
+                if (!interactInputHeld || cursorDelta > 0.1f || timer > grabDelay) break;
             }
             if (interactInputHeld) Grab();
             else Interact();
