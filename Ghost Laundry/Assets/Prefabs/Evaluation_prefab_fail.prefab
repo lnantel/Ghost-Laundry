@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money collected : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
-  m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
+  m_sharedMaterial: {fileID: -99416046064558932, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1918,15 +1918,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: You couldn't pay the rent!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
-  m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
+  m_sharedMaterial: {fileID: -99416046064558932, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291211514
-  m_fontColor: {r: 0.9811321, g: 0.69049484, b: 0.77612907, a: 1}
+    rgba: 4288708591
+  m_fontColor: {r: 0.93725497, g: 0.49803925, b: 0.627451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1949,7 +1949,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2806,8 +2806,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Products : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
-  m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
+  m_sharedMaterial: {fileID: -99416046064558932, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2837,7 +2837,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2971,8 +2971,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Rent : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
-  m_sharedMaterial: {fileID: -4533877871394675605, guid: d4d3c68677dfc184ea115d8c1a38e61e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
+  m_sharedMaterial: {fileID: -99416046064558932, guid: 3df20f55032f89a4bafe73cf6f4d9a99, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3002,7 +3002,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
