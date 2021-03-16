@@ -139,13 +139,22 @@ public class Customer : MonoBehaviour
     }
 
     protected virtual void Queueing() {
-        MoveTowards(spot.position);
+        if (MoveTowards(spot.position)) {
+            animator.SetBool("Walking", false);
+        }
+        else
+            animator.SetBool("Walking", true);
+
     }
 
     protected virtual void Arriving() {
         if (MoveTowards(spot.position)) {
+            animator.SetBool("Walking", false);
             PlaceBasketOnCounter();
             state = CustomerState.WaitingForService;
+        }
+        else {
+            animator.SetBool("Walking", true);
         }
     }
 
@@ -167,27 +176,40 @@ public class Customer : MonoBehaviour
         impatient = false;
         steam.gameObject.SetActive(false);
         animator.SetBool("Impatient", impatient);
-        MoveTowards(spot.position);
+        if (MoveTowards(spot.position)) {
+            animator.SetBool("Walking", false);
+        }
+        else
+            animator.SetBool("Walking", true);
     }
 
     protected virtual void PickingUpBag() {
         if (MoveTowards(CustomerManager.instance.PickUpPosition.position)) {
+            animator.SetBool("Walking", false);
             PickUpBag();
             state = CustomerState.Leaving;
         }
+        else
+            animator.SetBool("Walking", true);
     }
 
     protected virtual void Leaving() {
         if (MoveTowards(CustomerManager.instance.Entrance.position)) {
+            animator.SetBool("Walking", false);
             state = CustomerState.HasLeft;
         }
+        else
+            animator.SetBool("Walking", true);
     }
 
     protected virtual void Ragequitting() {
         if (MoveTowards(CustomerManager.instance.Entrance.position)) {
+            animator.SetBool("Walking", false);
             state = CustomerState.HasLeft;
             if (Ragequit != null) Ragequit();
         }
+        else
+            animator.SetBool("Walking", true);
     }
 
     protected virtual void HasLeft() {
