@@ -5,7 +5,7 @@ using System;
 
 public class LaundryTub : MonoBehaviour
 {
-    public SpriteRenderer BubblesSprite;
+    public GameObject BubblesSprite;
     public float bubblesMinY;
     public float bubblesMaxY;
 
@@ -34,11 +34,11 @@ public class LaundryTub : MonoBehaviour
 
     private void UpdateAppearance() {
         if (washTub.IsSoapy) {
-            BubblesSprite.enabled = true;
+            BubblesSprite.SetActive(true);
             BubblesSprite.transform.localPosition = new Vector3(BubblesSprite.transform.localPosition.x, bubblesMinY + (bubblesMaxY - bubblesMinY) * ((washTub.SoapLevel - 1.0f) / (washTub.MaxSoapLevel - 1.0f)), BubblesSprite.transform.localPosition.z);
         }
         else {
-            BubblesSprite.enabled = false;
+            BubblesSprite.SetActive(false);
         }
     }
 }

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class WashBoard : LaundryObject
 {
+    public ParticleSystem bubbles;
+
+    public Color maxDirtyColor;
+    public Color minDirtyColor;
+    public Color cleanColor;
+
     private WashTub washTub;
     private LaundryGarment heldLaundryGarment;
     private Vector2 lastPosition;
@@ -22,7 +28,17 @@ public class WashBoard : LaundryObject
             heldLaundryGarment = null;
         }
         else if (laundryGarment != null && IsHeld(laundryGarment) && (heldLaundryGarment != null && laundryGarment.GetInstanceID() == heldLaundryGarment.GetInstanceID())) {
-            washTub.Scrub(laundryGarment.garment, Vector2.Distance(laundryGarment.transform.position, lastPosition));
+            ParticleSystem.EmissionModule emission = bubbles.emission;
+            emission.enabled = washTub.Scrub(laundryGarment.garment, Vector2.Distance(laundryGarment.transform.position, lastPosition));
+
+            ParticleSystem.MainModule main = bubbles.main;
+            if (!laundryGarment.garment.Clean)
+                main.startColor = Color.Lerp(maxDirtyColor, minDirtyColor, laundryGarment.garment.Cleanliness);
+            else
+                main.startColor = cleanColor;
+
+            bubbles.transform.position = laundryGarment.transform.position;
+
             laundryGarment.UpdateAppearance();
             lastPosition = laundryGarment.transform.position;
         }
