@@ -33,7 +33,7 @@ public class LaundryTaskController : MonoBehaviour
     private bool backInput;
 
     private LaundryObject target;
-    private LaundryObject grabbedObject;
+    public LaundryObject grabbedObject;
 
     private IEnumerator DelayGrabCoroutine;
 

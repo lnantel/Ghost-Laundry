@@ -147,7 +147,7 @@ public class LaundryGarment : LaundryObject
             UpdateAppearance();
     }
 
-    private void UpdateAppearance() {
+    public void UpdateAppearance() {
         if (spriteRenderer != null && foldingSprites != null && spriteMask != null) {
             if (spriteRenderer != null) {
                 spriteRenderer.sprite = foldingSprites[garment.currentFoldingStep];

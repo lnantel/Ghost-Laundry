@@ -439,13 +439,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8682779000148993893
 MonoBehaviour:
@@ -469,9 +469,13 @@ MonoBehaviour:
   fabricRenderer: {fileID: 2257905961198730683}
   dirtyRenderer: {fileID: 6580917452606773564}
   wetRenderer: {fileID: 4976772476262266874}
+  tornPattern: {fileID: 0}
+  meltedPattern: {fileID: 0}
+  burnedPattern: {fileID: 0}
   flies: {fileID: 1117929745558654288}
   waterDrops: {fileID: 3355016172944335661}
   sparkles: {fileID: 5279823898797483801}
+  ruin: {fileID: 0}
 --- !u!210 &806944476626522672
 SortingGroup:
   m_ObjectHideFlags: 0

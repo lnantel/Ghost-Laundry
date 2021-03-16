@@ -59,7 +59,7 @@ public class TimeManager : MonoBehaviour
 
             if (currentTime != null && (currentTime[0] != lastCurrentTime[0] || currentTime[1] != lastCurrentTime[1])) {
                 if (TimeOfDay != null) TimeOfDay(currentTime);
-                Debug.Log("It is " + currentTime[0] + ":" + currentTime[1].ToString("D2"));
+                //Debug.Log("It is " + currentTime[0] + ":" + currentTime[1].ToString("D2"));
             }
 
             if (timer >= RealTimeSecondsPerDay) {
@@ -86,7 +86,7 @@ public class TimeManager : MonoBehaviour
         //Time.timeScale = 1;
         timeScale = 1;
         if(StartOfDay != null) StartOfDay(CurrentDay);
-        Debug.Log("DAY " + CurrentDay + " START");
+        //Debug.Log("DAY " + CurrentDay + " START");
     }
 
     public void EndDay() {
@@ -94,7 +94,7 @@ public class TimeManager : MonoBehaviour
         //Time.timeScale = 0;
         timeScale = 0;
         if (EndOfDay != null) EndOfDay(CurrentDay);
-        Debug.Log("DAY " + CurrentDay + " END");
+        //Debug.Log("DAY " + CurrentDay + " END");
     }
 
     public void RetryDay() {
