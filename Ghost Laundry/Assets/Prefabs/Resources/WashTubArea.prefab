@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e6549ba9678d54b9e0d4a2523f78e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BubblesSprite: {fileID: 8191301979920289471}
+  BubblesSprite: {fileID: 8866562730119104465}
   bubblesMinY: -1.2
   bubblesMaxY: 0
 --- !u!60 &7321695469807102813
@@ -446,6 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3374892601557459244}
   - component: {fileID: 8191301979920289471}
+  - component: {fileID: 6627595814062583040}
   m_Layer: 0
   m_Name: SoapBubbles
   m_TagString: Untagged
@@ -464,7 +465,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5776140951272388943}
+  m_Father: {fileID: 427759143253620114}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8191301979920289471
@@ -518,6 +519,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!95 &6627595814062583040
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3308406529261856819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4050527473243874602
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +1012,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d97bfb12b74b86469fa9f2709fb541c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbles: {fileID: 0}
+  maxDirtyColor: {r: 0, g: 0, b: 0, a: 0}
+  minDirtyColor: {r: 0, g: 0, b: 0, a: 0}
+  cleanColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!60 &4369024748188083306
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1052,7 +1076,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3374892601557459244}
+  - {fileID: 427759143253620114}
   m_Father: {fileID: 8806762506632257524}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1239,6 +1263,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloatSpeed: 1
+--- !u!1 &8866562730119104465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 427759143253620114}
+  m_Layer: 0
+  m_Name: SoapBubblesHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &427759143253620114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866562730119104465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3374892601557459244}
+  m_Father: {fileID: 5776140951272388943}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &560413046675543046
 PrefabInstance:
   m_ObjectHideFlags: 0
