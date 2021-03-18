@@ -239,6 +239,24 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private IEnumerator GoToSelectionScreen() {
+        if (SceneManager.sceneCount > 1) {
+            FadeOut();
+            yield return new WaitForSecondsRealtime(2.0f);
+            UnloadAllScenes();
+        }
+
+        LoadScenes("SelectionScreen", "Options", "HUD", "Dialog");
+        while (scenesLoading != null) yield return null;
+
+        if (HideHUD != null) HideHUD();
+        if (FadeIn != null) FadeIn();
+
+        ShowCursor();
+
+        stateTransition = null;
+    }
+
     private void Update() {
         switch (state) {
             case GameStates.Initialize:
@@ -257,13 +275,15 @@ public class GameManager : MonoBehaviour {
                 break;
             case GameStates.Evaluation:
                 break;
+            case GameStates.SelectionScreen:
+                break;
             default:
                 break;
         }
     }
 
     public void LaunchGame() {
-        if(state == GameStates.TitleScreen && stateTransition == null) {
+        if(stateTransition == null) {
             stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
@@ -276,7 +296,11 @@ public class GameManager : MonoBehaviour {
     }
     
     public void LoadGame() {
-
+        if(stateTransition == null) {
+            state = GameStates.SelectionScreen;
+            stateTransition = GoToSelectionScreen();
+            StartCoroutine(stateTransition);
+        }
     }
 
     public void Pause() {

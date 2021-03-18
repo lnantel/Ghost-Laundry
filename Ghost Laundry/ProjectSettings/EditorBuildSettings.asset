@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Evaluation.unity
     guid: e961c10d08474c24886c95fad2fd5a3c
+  - enabled: 1
+    path: Assets/Scenes/SelectionScreen.unity
+    guid: 76097fb1f8d5c8c459aba4ac69cc780b
   m_configObjects: {}
