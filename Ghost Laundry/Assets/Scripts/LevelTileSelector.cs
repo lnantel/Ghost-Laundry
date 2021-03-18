@@ -24,6 +24,13 @@ public class LevelTileSelector : MonoBehaviour
 
         if (selectable) {
             TXT_Money.text = (SaveManager.Data.Days[index - 1].Money / 100.0f).ToString("N2");
+            TXT_Rep.text = (SaveManager.Data.Days[index - 1].Reputation / 200.0f).ToString("N0");
+
+            int hours = Mathf.FloorToInt(SaveManager.Data.Days[index - 1].Playtime / 3600.0f);
+            int minutes = Mathf.FloorToInt((SaveManager.Data.Days[index - 1].Playtime - hours * 3600.0f) / 60.0f);
+            int seconds = Mathf.FloorToInt(SaveManager.Data.Days[index - 1].Playtime - hours * 3600.0f - minutes * 60.0f);
+
+            TXT_Time.text = hours.ToString("D2") + ":" + minutes.ToString("D2") + ":" + seconds.ToString("D2");
         }
     }
 
@@ -38,7 +45,7 @@ public class LevelTileSelector : MonoBehaviour
         }
         else {
             selected = false;
-            popUp.SetActive(false);
+            popUp.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
         }
     }
 

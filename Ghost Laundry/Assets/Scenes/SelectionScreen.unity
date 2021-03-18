@@ -167,7 +167,7 @@ MonoBehaviour:
   - {fileID: 572858800}
   - {fileID: 1432115188}
   - {fileID: 45789744}
-  ghostSpeed: 1
+  ghostSpeed: 25
 --- !u!4 &5311931
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,50 +1067,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 404401122}
     m_Modifications:
-    - target: {fileID: 6763058147666228102, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_text
-      value: test
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147666228102, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 1663011
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147666228102, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147666228102, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.1370199
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147666228102, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.3773585
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147666228102, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.09825563
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147893118914, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_text
-      value: test
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147893118914, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 1663011
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147893118914, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147893118914, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058147893118914, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: _SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6763058147893118915, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 1
@@ -1125,7 +1081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6763058148368080974, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6763058148368080975, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1169,18 +1125,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6763058148368080975, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058148969082058, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_text
-      value: test
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058148969082058, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 1663011
-      objectReference: {fileID: 0}
-    - target: {fileID: 6763058148969082058, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
-      propertyPath: m_fontColor.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6763058149418160342, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
@@ -3500,10 +3444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3887,9 +3831,9 @@ RectTransform:
   m_Father: {fileID: 985720910}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -596, y: -348}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 103, y: 42}
   m_SizeDelta: {x: 305, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1022136293
@@ -3934,7 +3878,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1022136294}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5311930}
+        m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
+        m_MethodName: BackToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1022136294
 MonoBehaviour:
   m_ObjectHideFlags: 0

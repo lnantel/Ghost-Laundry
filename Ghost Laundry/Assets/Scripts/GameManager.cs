@@ -160,8 +160,6 @@ public class GameManager : MonoBehaviour {
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation");
         while (scenesLoading != null) yield return null;
 
-        //keepLoaded.Clear();
-
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
 
