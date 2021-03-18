@@ -10,8 +10,16 @@ public class MenuEventListener : MonoBehaviour
     private void OnDisable() {
     }
 
-    public void OnPlay() {
+    public void OnContinue() {
         GameManager.instance.LaunchGame();
+    }
+
+    public void OnNewGame() {
+        GameManager.instance.LaunchNewGame();
+    }
+
+    public void OnLoadGame() {
+        GameManager.instance.LoadGame();
     }
 
     public void OnResume() {

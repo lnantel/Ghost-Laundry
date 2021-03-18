@@ -98,6 +98,7 @@ public class TimeManager : MonoBehaviour
     }
 
     public void RetryDay() {
+        CurrentDay--;
         timer = 0;
     }
 

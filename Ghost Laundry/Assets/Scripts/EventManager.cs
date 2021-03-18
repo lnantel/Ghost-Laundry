@@ -5,6 +5,8 @@ using System;
 
 public class EventManager : MonoBehaviour
 {
+    public static EventManager instance;
+
     public static Action StartDialog;
     public static Action<int> EndDialog;
 
@@ -18,6 +20,11 @@ public class EventManager : MonoBehaviour
     public List<NarrativeEvent> EventsToday;
 
     private NarrativeEvent currentEvent;
+
+    private void Awake() {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start() {
         EventsToday = new List<NarrativeEvent>();

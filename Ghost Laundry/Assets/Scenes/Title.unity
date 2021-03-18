@@ -207,7 +207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1259130739}
         m_TargetAssemblyTypeName: MenuEventListener, Assembly-CSharp
-        m_MethodName: OnPlay
+        m_MethodName: OnNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -471,7 +471,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1259130739}
         m_TargetAssemblyTypeName: MenuEventListener, Assembly-CSharp
-        m_MethodName: OnPlay
+        m_MethodName: OnContinue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1360,7 +1360,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1259130739}
         m_TargetAssemblyTypeName: MenuEventListener, Assembly-CSharp
-        m_MethodName: OnPlay
+        m_MethodName: OnLoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
