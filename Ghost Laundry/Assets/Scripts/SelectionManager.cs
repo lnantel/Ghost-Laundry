@@ -5,9 +5,14 @@ using System;
 
 public class SelectionManager : MonoBehaviour
 {
+    public static Action ShowConfirmationWindow;
+    public static Action HideConfirmationWindow;
+
     public Transform ghost;
 
     public Transform[] Levels;
+
+    public GameObject confirmationWindow;
 
     public float ghostSpeed;
 
@@ -59,8 +64,18 @@ public class SelectionManager : MonoBehaviour
     }
 
     private void OnDayClicked(int day) {
-        SaveManager.LoadDay(day);
+        if (ShowConfirmationWindow != null) ShowConfirmationWindow();
+        confirmationWindow.SetActive(true);
+    }
+
+    public void OnSelectionConfirmed() {
+        SaveManager.LoadDay(selectedDay);
         GameManager.instance.LaunchGame();
+    }
+
+    public void OnSelectionCancelled() {
+        if (HideConfirmationWindow != null) HideConfirmationWindow();
+        confirmationWindow.SetActive(false);
     }
 
     public void BackToMainMenu() {

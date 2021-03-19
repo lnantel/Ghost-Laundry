@@ -61,6 +61,15 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public int[] CharactersWithEventsOnDay(int day) {
+        List<int> result = new List<int>();
+        for(int i = 0; i < EventTrees.Length; i++){
+            if (EventTrees[i].HasEventOnDay(day))
+                result.Add(i);
+        }
+        return result.ToArray();
+    }
+
     private void OnTime(int[] currentTime) {
         //Check today's events. If it is time for one of them,
         foreach(NarrativeEvent eventToday in EventsToday) {

@@ -12,6 +12,7 @@ public class SaveData
         public int TreeIndex;
         public int Index;
         public int NextIndex;
+        public bool Completed;
     }
 
     [System.Serializable]
@@ -20,7 +21,6 @@ public class SaveData
         public int Money;
         public int Detergent;
         public int Reputation;
-        public float Playtime;
         public List<EventData> narrativeData;
     }
 

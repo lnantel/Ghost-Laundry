@@ -157,6 +157,8 @@ public class GameManager : MonoBehaviour {
             UnloadAllScenes();
         }
 
+        if (ShowHUD != null) ShowHUD();
+
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation");
         while (scenesLoading != null) yield return null;
 
@@ -197,7 +199,9 @@ public class GameManager : MonoBehaviour {
 
         //Save progress
         TimeManager.instance.NextDay();
-        SaveManager.Save();
+        if (MoneyManager.instance.CurrentAmount >= 0) {
+            SaveManager.Save();
+        }
 
         //Wait a couple seconds
         yield return new WaitForSecondsRealtime(2.0f);

@@ -17,4 +17,16 @@ public class NarrativeEventTree
         }
         return null;
     }
+
+    public bool HasEventOnDay(int day) {
+        for(int i = 0; i < tree.Length;) {
+            if (tree[i].Day == day) return true;
+            if (tree[i].Completed) {
+                i = tree[i].NextEventIndex;
+            }
+            else
+                return false;
+        }
+        return false;
+    }
 }

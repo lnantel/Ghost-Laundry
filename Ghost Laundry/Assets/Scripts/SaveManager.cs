@@ -22,17 +22,15 @@ public class SaveManager : MonoBehaviour
         day.Detergent = DetergentManager.instance.CurrentAmount;
         day.Money = MoneyManager.instance.CurrentAmount;
         day.Reputation = ReputationManager.instance.CurrentAmount;
-        day.Playtime = 0.0f; //TODO: Track playtime in TimeManager
         day.narrativeData = new List<SaveData.EventData>();
         for(int i = 0; i < EventManager.instance.EventTrees.Length; i++) {
             for(int j = 0; j < EventManager.instance.EventTrees[i].tree.Length; j++) {
-                if (EventManager.instance.EventTrees[i].tree[j].Completed) {
-                    SaveData.EventData eventData = new SaveData.EventData();
-                    eventData.TreeIndex = i;
-                    eventData.Index = j;
-                    eventData.NextIndex = EventManager.instance.EventTrees[i].tree[j].NextEventIndex;
-                    day.narrativeData.Add(eventData);
-                }
+                SaveData.EventData eventData = new SaveData.EventData();
+                eventData.Completed = EventManager.instance.EventTrees[i].tree[j].Completed;
+                eventData.TreeIndex = i;
+                eventData.Index = j;
+                eventData.NextIndex = EventManager.instance.EventTrees[i].tree[j].NextEventIndex;
+                day.narrativeData.Add(eventData);
             }
         }
 
@@ -46,7 +44,7 @@ public class SaveManager : MonoBehaviour
         Data.Days.Add(day);
 
         if(FileManager.WriteToFile("SaveData.dat", Data.ToJson())) {
-            Debug.Log("Save successful");
+            //Debug.Log("Save successful");
         }
         else {
             Debug.LogError("Failed to save");
@@ -66,7 +64,6 @@ public class SaveManager : MonoBehaviour
                     latestDay = Data.Days[i].CurrentDay;
             }
             LoadDay(latestDay);
-            Debug.Log("SaveData successfully loaded");
         }
         else {
             CreateNewSave();
@@ -82,10 +79,9 @@ public class SaveManager : MonoBehaviour
                 DetergentManager.instance.CurrentAmount = day.Detergent;
                 MoneyManager.instance.CurrentAmount = day.Money;
                 ReputationManager.instance.CurrentAmount = day.Reputation;
-                //TODO: Playtime
                 for(int j = 0; j < day.narrativeData.Count; j++) {
                     SaveData.EventData eventData = day.narrativeData[j];
-                    EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].Completed = true;
+                    EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].Completed = eventData.Completed;
                     EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].NextEventIndex = eventData.NextIndex;
                 }
                 break;
@@ -100,14 +96,13 @@ public class SaveManager : MonoBehaviour
         day.Money = 0;
         day.Reputation = 0;
         day.Detergent = DetergentManager.instance.MaxAmount;
-        day.Playtime = 0;
         day.narrativeData = new List<SaveData.EventData>();
 
         Data.Days = new List<SaveData.DayData>();
         Data.Days.Add(day);
 
         if (FileManager.WriteToFile("SaveData.dat", Data.ToJson())) {
-            Debug.Log("New save file created successfully");
+            //Debug.Log("New save file created successfully");
         }
         else {
             Debug.LogError("Failed to save");
