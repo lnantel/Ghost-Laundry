@@ -47,7 +47,10 @@ public class Customer : MonoBehaviour
         state = CustomerState.Queueing;
 
         basket = LaundryManager.GetRandomBasket();
+        foreach (Garment garment in basket.contents)
+            garment.customerID = ticketNumber;
 
+        garments = basket.contents;
         //Upon arrival, a new Customer requests a spot in Queue from the CustomerManager
         CustomerManager.instance.AssignQueueSpot(this);
     }
