@@ -12,6 +12,11 @@ public class SewingMachine : WorkStation
 
     public Garment garmentOnMachine;
 
+    protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("SewingMachineArea");
+        base.Start();
+    }
+
     public void ResetProgress() {
         progress = 0.0f;
         if (SewingProgressUpdated != null) SewingProgressUpdated();

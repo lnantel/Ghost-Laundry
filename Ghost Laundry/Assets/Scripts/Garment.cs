@@ -245,3 +245,14 @@ public static class GarmentColor {
         }
     }
 }
+
+[System.Serializable]
+public enum GarmentType {
+    Top,
+    Pants,
+    Sock,
+    Underwear,
+    Dress,
+    Skirt,
+    Shirt
+}

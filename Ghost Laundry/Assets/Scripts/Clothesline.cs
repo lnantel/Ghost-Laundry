@@ -15,6 +15,7 @@ public class Clothesline : WorkStation
     public int Pegs;
 
     protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("ClotheslineArea");
         base.Start();
         hungGarments = new Garment[Pegs];
     }

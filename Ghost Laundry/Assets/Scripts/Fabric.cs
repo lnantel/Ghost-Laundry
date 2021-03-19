@@ -100,6 +100,7 @@ public class Fabric
     }
 }
 
+[System.Serializable]
 public enum FabricType {
     Cotton,
     Wool,

@@ -27,6 +27,8 @@ public class Dryer : WorkStation
     private Animator animator;
 
     protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("DryerArea");
+
         HasGravity = true;
         base.Start();
 
