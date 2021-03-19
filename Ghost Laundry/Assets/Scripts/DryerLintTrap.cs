@@ -42,16 +42,20 @@ public class DryerLintTrap : LaundryObject
         }
         open = true;
         startButton.pressed = true;
+        AudioManager.instance.PlaySound(Sounds.OpenLintTrap);
     }
 
     private void Clean() {
         dryer.CleanLintTrap();
         lintTrapSpriteRenderer.sprite = openCleanSprite;
+        AudioManager.instance.PlaySound(Sounds.CleanLintTrap);
     }
 
     private void Close() {
         lintTrapSpriteRenderer.sprite = closedSprite;
         open = false;
         startButton.pressed = false;
+        AudioManager.instance.PlaySound(Sounds.CloseLintTrap);
+
     }
 }

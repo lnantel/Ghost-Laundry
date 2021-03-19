@@ -27,6 +27,8 @@ public class WashTub : WorkStation
     //Returns true if the garment was successfully scrubbed.
     public bool Scrub(Garment garment, float distance) {
         if(!garment.Dry && IsSoapy) {
+            AudioManager.instance.PlaySound(Sounds.ScratchGarment);
+            AudioManager.instance.PlaySound(Sounds.BubbleFoam);
             bool garmentWasDirty = !garment.Clean;
             garment.Cleanliness = garment.Cleanliness + distance * ScrubbingStrength;
             //If the garment was successfully cleaned, decrease the soap level
@@ -39,8 +41,10 @@ public class WashTub : WorkStation
         return false;
     }
 
+
     //Plunge makes a given garment wet.
     public void Plunge(Garment garment) {
         garment.Dry = false;
     }
+
 }

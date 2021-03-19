@@ -20,9 +20,11 @@ public class WashBoard : LaundryObject
 
     private void OnTriggerStay2D(Collider2D collision) {
         LaundryGarment laundryGarment = collision.GetComponentInParent<LaundryGarment>();
+        
         if (laundryGarment != null && IsHeld(laundryGarment) && (heldLaundryGarment == null || laundryGarment.GetInstanceID() != heldLaundryGarment.GetInstanceID())) {
             heldLaundryGarment = laundryGarment;
             lastPosition = laundryGarment.transform.position;
+            
         }
         else if (laundryGarment != null && !IsHeld(laundryGarment) && (heldLaundryGarment != null && laundryGarment.GetInstanceID() == heldLaundryGarment.GetInstanceID())) {
             heldLaundryGarment = null;
@@ -30,6 +32,7 @@ public class WashBoard : LaundryObject
         else if (laundryGarment != null && IsHeld(laundryGarment) && (heldLaundryGarment != null && laundryGarment.GetInstanceID() == heldLaundryGarment.GetInstanceID())) {
             ParticleSystem.EmissionModule emission = bubbles.emission;
             emission.enabled = washTub.Scrub(laundryGarment.garment, Vector2.Distance(laundryGarment.transform.position, lastPosition));
+            
 
             ParticleSystem.MainModule main = bubbles.main;
             if (!laundryGarment.garment.Clean)
@@ -41,7 +44,12 @@ public class WashBoard : LaundryObject
 
             laundryGarment.UpdateAppearance();
             lastPosition = laundryGarment.transform.position;
+            
+            
         }
+
+        
+        
     }
 
     //Returns true is the laundryGarment is currently being held by the cursor.

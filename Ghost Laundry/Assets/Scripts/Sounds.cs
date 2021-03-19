@@ -39,7 +39,7 @@ public enum Sounds
     DenimGrab,
     DenimDrop,
 
-    //WM, 8 sons
+    //WM, 9 sons
 
     OpenWMDoor,
     CloseWMDoor,
@@ -47,7 +47,8 @@ public enum Sounds
     OpenDetergentWM,
     CloseDetergentWM,
     PourDetergent,
-    ButtonWM,
+    StartButtonWM,
+    SettingButtonWM,
     EndWMBeep,
 
     //Dryer 8 sons
@@ -58,7 +59,8 @@ public enum Sounds
     OpenLintTrap,
     CloseLintTrap,
     CleanLintTrap,
-    ButtonDryer,
+    StartButtonDryer,
+    SettingButtonDryer,
     EndDryerBeep,
 
     //IronBoard 4 sons
@@ -77,10 +79,10 @@ public enum Sounds
 
 
     //Emballeur 4 sons
-    DropGarment, 
+    DropGarmentEmb, 
     OpenEmbDoor,
     CloseEmbDoor,
-    ProcessingEmb,
+    ProcessingEmb
 
 
 }

@@ -40,10 +40,13 @@ public class Iron : LaundryObject
         if (state == IronState.Off) {
             state = IronState.On;
             ironSpriteRenderer.sprite = spriteIronStandingOn;
+            AudioManager.instance.PlaySound(Sounds.IronIsOn);
+
         }
         else if(state == IronState.On) {
             state = IronState.Off;
             ironSpriteRenderer.sprite = spriteIronStandingOff;
+
         }
     }
 

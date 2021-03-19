@@ -43,6 +43,7 @@ public class LaundryIroningBoard : LaundryObject
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
+            AudioManager.instance.PlaySound(Sounds.IronIsWorking);
             pressingProgress += Time.fixedDeltaTime / garmentOnBoard.fabric.ironingTime;
             Debug.Log("Ironing progress: " + pressingProgress);
         }
@@ -55,6 +56,7 @@ public class LaundryIroningBoard : LaundryObject
         else if(!(garmentOnBoard.Burned || garmentOnBoard.Melted) && garmentOnBoard.Dry) {
             //Burn
             steam = SteamState.Burn;
+            AudioManager.instance.PlaySound(Sounds.IronisBurning);
             burnTimer += Time.fixedDeltaTime;
             Debug.Log("Burning!");
         }

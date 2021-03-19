@@ -35,9 +35,35 @@ public class WashingMachine : WorkStation
         washSetting = WashSetting.Hot;
     }
 
+    private IEnumerator WMCoroutine;
+    private IEnumerator WMDoneCoroutine;
     private void Update() {
         animator.SetInteger("WashingMachineState", (int)state);
+
+       if(state == WashingMachineState.Running && WMCoroutine == null){           
+        WMCoroutine = WashingMachineRunningCoroutineSound();
+        StartCoroutine(WMCoroutine);   
+       }
+
+       if(state == WashingMachineState.Done && WMDoneCoroutine == null){           
+        WMDoneCoroutine = WashingMachineDoneCoroutineSound();
+        StartCoroutine(WMDoneCoroutine);   
+       }
+
+    
+         IEnumerator WashingMachineRunningCoroutineSound(){
+         AudioManager.instance.PlaySound(Sounds.RunningWM,0.3f);
+         yield return new WaitForLaundromatSeconds(1); 
+         WMCoroutine = null;
+        }
+
+        IEnumerator WashingMachineDoneCoroutineSound(){
+         AudioManager.instance.PlaySound(Sounds.EndWMBeep,0.3f);;
+         yield return new WaitForLaundromatSeconds(1); 
+         WMCoroutine = null;
+        }
     }
+
 
     private float CurrentLoad() {
         float value = 0.0f;
@@ -85,11 +111,14 @@ public class WashingMachine : WorkStation
         if (state == WashingMachineState.DoorClosed) {
             state = WashingMachineState.Running;
             StartCoroutine(WashCycle());
+            
         }
+
     }
 
     private IEnumerator WashCycle() {
         bool containsColoredGarments = false;
+
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
@@ -110,6 +139,7 @@ public class WashingMachine : WorkStation
             contents.Add(garment);
 
         yield return new WaitForLaundromatSeconds(WashCycleTime);
+
 
         foreach (Garment garment in contents) {
             if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {
@@ -140,6 +170,7 @@ public class WashingMachine : WorkStation
         }
         Detergent = false;
         state = WashingMachineState.Done;
+
     }
 }
 
