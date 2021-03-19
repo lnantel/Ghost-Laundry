@@ -16,37 +16,32 @@ public class EventA : NarrativeEventListener {
         GameObject laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
 
         RecurringCustomer customer = CustomerManager.instance.GetRecurringCustomer(characterIndex);
-        Garment garment = new OllieFemur();
-        garment.customerID = customerID;
-        customer.garments.Add(garment);
+        Garment bone = new OllieFemur();
 
-        int garmentCount = 6;
-        for (int i = 0; i < garmentCount; i++) {
-            garment = Garment.GetRandomGarment();
-            garment.customerID = customer.ticketNumber;
-            customer.garments.Add(garment);
-            if (garment is GarmentSock) {
-                GarmentSock otherSock = new GarmentSock((GarmentSock)garment);
-                customer.garments.Add(otherSock);
-                i++;
+        Basket basket = LaundryManager.GetRandomBasket();
+        while (!basket.AddGarment(bone)) {
+            //If there is no space in the basket for the bone, remove something
+            Garment removed = basket.RemoveTopGarment();
+            //If the removed garment is a sock, remove its match
+            if(removed is GarmentSock) {
+                foreach(Garment garment in basket.contents) {
+                    if(garment is GarmentSock) {
+                        if (garment.color.Equals(removed.color) && garment.fabric.Equals(removed.fabric)) {
+                            basket.RemoveGarment(garment);
+                            break;
+                        }
+                    }
+
+                }
             }
         }
 
-        //Shuffle clothing to separate socks
-        int n = customer.garments.Count;
-        while (n > 1) {
-            n--;
-            int k = UnityEngine.Random.Range(0, n + 1);
-            Garment value = customer.garments[k];
-            customer.garments[k] = customer.garments[n];
-            customer.garments[n] = value;
+        foreach(Garment garment in basket.contents) {
+            garment.customerID = customerID;
         }
 
-        Basket basket = new Basket();
-        foreach (Garment g in customer.garments)
-            basket.AddGarment(g);
-
         customer.basket = basket;
+        customer.garments = basket.contents;
     }
 
     protected override void OnLaundryCompleted(LaundromatBag bag) {

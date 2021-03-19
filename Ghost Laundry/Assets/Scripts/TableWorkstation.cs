@@ -5,12 +5,13 @@ using UnityEngine;
 public class TableWorkstation : WorkStation
 {
     protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("TableArea");
         HasGravity = true;
         base.Start();
     }
 
-    public override void Initialize() {
-        base.Initialize();
+    public override IEnumerator Initialize() {
+        yield return base.Initialize();
         for (int i = 0; i < basketCapacity; i++) {
             AddBasket(new Basket());
         }

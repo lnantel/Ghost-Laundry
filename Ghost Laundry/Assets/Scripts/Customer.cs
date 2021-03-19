@@ -46,35 +46,11 @@ public class Customer : MonoBehaviour
 
         state = CustomerState.Queueing;
 
-        //Generate random laundry
-        basket = new Basket();
-        garments = new List<Garment>();
-
-        int garmentCount = UnityEngine.Random.Range(5, 9);
-        for(int i = 0; i < garmentCount; i++) {
-            Garment garment = Garment.GetRandomGarment();
+        basket = LaundryManager.GetRandomBasket();
+        foreach (Garment garment in basket.contents)
             garment.customerID = ticketNumber;
-            garments.Add(garment);
-            if(garment is GarmentSock) {
-                GarmentSock otherSock = new GarmentSock((GarmentSock)garment);
-                garments.Add(otherSock);
-                i++;
-            }
-        }
 
-        //Shuffle clothing to separate socks
-        int n = garments.Count;
-        while (n > 1) {
-            n--;
-            int k = UnityEngine.Random.Range(0, n + 1);
-            Garment value = garments[k];
-            garments[k] = garments[n];
-            garments[n] = value;
-        }
-
-        foreach (Garment garment in garments)
-            basket.AddGarment(garment);
-
+        garments = basket.contents;
         //Upon arrival, a new Customer requests a spot in Queue from the CustomerManager
         CustomerManager.instance.AssignQueueSpot(this);
     }

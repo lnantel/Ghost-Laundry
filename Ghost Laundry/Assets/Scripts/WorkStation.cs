@@ -15,6 +15,7 @@ public class WorkStation : Interactable
 
     [HideInInspector]
     public GameObject laundryTaskArea;
+    protected GameObject areaPrefab;
 
     protected int basketCapacity;
 
@@ -22,12 +23,19 @@ public class WorkStation : Interactable
 
     protected override void Start() {
         base.Start();
-        //containedBaskets = new List<LaundryBasket>();
+        
         laundryBasketPrefab = (GameObject)Resources.Load("LaundryBasket");
         basketCapacity = basketSlots.Length;
+
+        if(areaPrefab == null) areaPrefab = (GameObject)Resources.Load("LaundryTaskArea");
+        laundryTaskArea = Instantiate(areaPrefab, new Vector3(300.0f, 0.0f, 0.0f), Quaternion.identity, transform);
+
+        laundryTaskArea.SetActive(false);
+        StartCoroutine(Initialize());
     }
 
-    public virtual void Initialize() {
+    public virtual IEnumerator Initialize() {
+        yield return null;
         LaundryBasket[] laundryBaskets = laundryTaskArea.GetComponentsInChildren<LaundryBasket>();
         foreach (LaundryBasket basket in laundryBaskets)
             AddBasket(basket);
@@ -35,7 +43,6 @@ public class WorkStation : Interactable
     }
 
     public override void Interact() {
-        //TODO:
         //if player is carrying a basket, attempt to input it to the workstation
         //if input fails, cancel interaction
         if(RequestCarriedBasket != null) RequestCarriedBasket();

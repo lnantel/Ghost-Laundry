@@ -13,6 +13,11 @@ public class WashTub : WorkStation
     public bool IsSoapy { get => SoapLevel > 0; }
     public float ScrubbingStrength;
 
+    protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("WashTubArea");
+        base.Start();
+    }
+
     //Replenishes the tub's soap level
     public void RefillSoap() {
         if(SoapLevel <= MaxSoapLevel) {
