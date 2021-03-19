@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour {
     private IEnumerator stateTransition;
 
     //This list contains all currently loaded scenes except Main.
-    private List<Scene> loadedScenes;
-    private List<Scene> keepLoaded;
+    private List<string> loadedScenes;
+    private List<string> keepLoaded;
     private IEnumerator scenesLoading;
 
     private void Awake() {
@@ -40,9 +40,11 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         HideCursor();
-        loadedScenes = new List<Scene>();
-        keepLoaded = new List<Scene>();
-        //state = GameStates.Initialize;
+        loadedScenes = new List<string>();
+        keepLoaded = new List<string>();
+        keepLoaded.Add("HUD");
+        keepLoaded.Add("Dialog");
+        keepLoaded.Add("Options");
     }
 
     private void OnEnable() {
@@ -65,18 +67,23 @@ public class GameManager : MonoBehaviour {
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
         if (scene.buildIndex != 0)
-            loadedScenes.Add(scene);
+            loadedScenes.Add(scene.name);
     }
 
     private void OnSceneUnloaded(Scene scene) {
         if (scene.buildIndex != 0)
-            loadedScenes.Remove(scene);
+            loadedScenes.Remove(scene.name);
     }
 
     private void UnloadAllScenes() {
-        foreach (Scene scene in loadedScenes) {
-            if(!keepLoaded.Contains(scene))
-                SceneManager.UnloadSceneAsync(scene.buildIndex);
+        foreach (string sceneName in loadedScenes) {
+            bool keepSceneLoaded = false;
+            foreach(string s in keepLoaded) {
+                if (s.Equals(sceneName)) keepSceneLoaded = true;
+            }
+            if (!keepSceneLoaded) {
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(sceneName));
+            }
         }
     }
 
@@ -95,11 +102,8 @@ public class GameManager : MonoBehaviour {
         List<AsyncOperation> ops = new List<AsyncOperation>();
         foreach(string sceneName in sceneNames) {
             bool alreadyLoaded = false;
-            foreach(Scene scene in loadedScenes) {
-                if (scene.name.Equals(sceneName)) {
-                    alreadyLoaded = true;
-                    break;
-                }
+            foreach (string s in loadedScenes) {
+                if (s.Equals(sceneName)) alreadyLoaded = true;
             }
             if (!alreadyLoaded) {
                 AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -130,11 +134,14 @@ public class GameManager : MonoBehaviour {
             UnloadAllScenes();
         }
 
-        LoadScenes("Title", "Options");
+        LoadScenes("Title", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
+
+        SaveManager.LoadSaveData();
 
         state = GameStates.TitleScreen;
 
+        if (HideHUD != null) HideHUD();
         if (HideSettings != null) HideSettings();
         if (FadeIn != null) FadeIn();
 
@@ -150,10 +157,10 @@ public class GameManager : MonoBehaviour {
             UnloadAllScenes();
         }
 
+        if (ShowHUD != null) ShowHUD();
+
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation");
         while (scenesLoading != null) yield return null;
-
-        keepLoaded.Clear();
 
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
@@ -190,6 +197,12 @@ public class GameManager : MonoBehaviour {
         AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
         state = GameStates.EndOfDay;
 
+        //Save progress
+        TimeManager.instance.NextDay();
+        if (MoneyManager.instance.CurrentAmount >= 0) {
+            SaveManager.Save();
+        }
+
         //Wait a couple seconds
         yield return new WaitForSecondsRealtime(2.0f);
 
@@ -205,13 +218,10 @@ public class GameManager : MonoBehaviour {
         if (SceneManager.sceneCount > 1) {
             FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
-            //Unload all scenes except HUD (to preserve resources)
-            keepLoaded.Add(SceneManager.GetSceneByName("HUD"));
-            keepLoaded.Add(SceneManager.GetSceneByName("Dialog"));
             UnloadAllScenes();
         }
 
-        LoadScenes("NextDay", "HUD", "Dialog");
+        LoadScenes("NextDay", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
 
         state = GameStates.Transition;
@@ -229,6 +239,24 @@ public class GameManager : MonoBehaviour {
             stateTransition = GoToGame();
             StartCoroutine(stateTransition);
         }
+    }
+
+    private IEnumerator GoToSelectionScreen() {
+        if (SceneManager.sceneCount > 1) {
+            FadeOut();
+            yield return new WaitForSecondsRealtime(2.0f);
+            UnloadAllScenes();
+        }
+
+        LoadScenes("SelectionScreen", "Options", "HUD", "Dialog");
+        while (scenesLoading != null) yield return null;
+
+        if (HideHUD != null) HideHUD();
+        if (FadeIn != null) FadeIn();
+
+        ShowCursor();
+
+        stateTransition = null;
     }
 
     private void Update() {
@@ -249,15 +277,30 @@ public class GameManager : MonoBehaviour {
                 break;
             case GameStates.Evaluation:
                 break;
+            case GameStates.SelectionScreen:
+                break;
             default:
                 break;
         }
     }
 
     public void LaunchGame() {
-        if(state == GameStates.TitleScreen && stateTransition == null) {
-            //stateTransition = GoToGame();
+        if(stateTransition == null) {
             stateTransition = GoToTransition();
+            StartCoroutine(stateTransition);
+        }
+    }
+
+    public void LaunchNewGame() {
+        SaveManager.CreateNewSave();
+        SaveManager.LoadSaveData();
+        LaunchGame();
+    }
+    
+    public void LoadGame() {
+        if(stateTransition == null) {
+            state = GameStates.SelectionScreen;
+            stateTransition = GoToSelectionScreen();
             StartCoroutine(stateTransition);
         }
     }
@@ -282,9 +325,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnRetry() {
-        //TODO: Save system: reset resources/narrative events to their state at the start of the day
         if (stateTransition == null) {
-            TimeManager.instance.RetryDay();
+            SaveManager.LoadDay(TimeManager.instance.CurrentDay - 1);
             stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
@@ -292,7 +334,6 @@ public class GameManager : MonoBehaviour {
 
     public void OnNextDay() {
         if (stateTransition == null) {
-            TimeManager.instance.NextDay();
             stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
@@ -329,5 +370,6 @@ public enum GameStates {
     Laundromat,
     StartOfDay,
     EndOfDay,
-    Evaluation
+    Evaluation,
+    SelectionScreen
 }

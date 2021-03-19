@@ -476,6 +476,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1315318397}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuEventListener, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLoadGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230792295202653108, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7400082222929427543, guid: 442a79ba9d195524f9707f5de8ee69a1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -744,6 +772,34 @@ PrefabInstance:
     - target: {fileID: 4222573412415441038, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
       propertyPath: m_margin.z
       value: -356.86484
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1315318397}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuEventListener, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLoadGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298190651340375899, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e62bb07f3f20a84f974c1062fce998d, type: 3}
