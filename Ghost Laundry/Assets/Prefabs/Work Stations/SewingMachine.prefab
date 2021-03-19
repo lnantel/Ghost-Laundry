@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5317343536743612623}
   - component: {fileID: 4656494049767314736}
   m_Layer: 0
-  m_Name: WashTubRenderer
+  m_Name: SewingMachineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: -1498004205
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5ed02624e08c02e4f9be03382d854fdc, type: 3}
-  m_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 213bc2f0d803aed40b3d5d9d582f41ba, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -254,11 +254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618077861524966387, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.213
+      value: -0.909
       objectReference: {fileID: 0}
     - target: {fileID: 4618077861524966387, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.73
+      value: -0.327
       objectReference: {fileID: 0}
     - target: {fileID: 4618077861524966387, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_LocalPosition.z

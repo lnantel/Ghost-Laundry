@@ -7,6 +7,14 @@ public class LaundrySewingMachine : LaundryObject
 {
     public static Action<Garment> GarmentGrabbed;
 
+    public SpriteRenderer tableRenderer;
+    public Sprite tableOn;
+    public Sprite tableOff;
+
+    public SpriteRenderer machineRenderer;
+    public Sprite machineDown;
+    public Sprite machineUp;
+
     private SewingMachine sewingMachine;
     private Collider2D col;
 
@@ -17,10 +25,12 @@ public class LaundrySewingMachine : LaundryObject
 
     private void OnEnable() {
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
+        SewingMachine.SewingProgressUpdated += OnProgress;
     }
 
     private void OnDisable() {
         WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
+        SewingMachine.SewingProgressUpdated -= OnProgress;
     }
 
     private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
@@ -38,5 +48,16 @@ public class LaundrySewingMachine : LaundryObject
         Garment garment = sewingMachine.RemoveGarmentFromMachine();
         if (garment != null)
             GarmentGrabbed(garment);
+    }
+
+    private void OnProgress() {
+        if(sewingMachine.progress % 0.1f < 0.05f) {
+            tableRenderer.sprite = tableOff;
+            machineRenderer.sprite = machineUp;
+        }
+        else {
+            tableRenderer.sprite = tableOn;
+            machineRenderer.sprite = machineDown;
+        }
     }
 }
