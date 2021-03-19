@@ -37,5 +37,50 @@ public enum Sounds
     SilkGrab,
     SilkDrop,
     DenimGrab,
-    DenimDrop
+    DenimDrop,
+
+    //WM, 8 sons
+
+    OpenWMDoor,
+    CloseWMDoor,
+    RunningWM,
+    OpenDetergentWM,
+    CloseDetergentWM,
+    PourDetergent,
+    ButtonWM,
+    EndWMBeep,
+
+    //Dryer 8 sons
+
+    OpenDryerDoor,
+    CloseDryerDoor,
+    RunningDryer,
+    OpenLintTrap,
+    CloseLintTrap,
+    CleanLintTrap,
+    ButtonDryer,
+    EndDryerBeep,
+
+    //IronBoard 4 sons
+
+    IronIsOn,
+    IronIsWorking,
+    IronisBurning,
+    ShiningGarment,
+
+    //Bassine 4 sons
+    ScratchGarment, 
+    // Scintillement, 
+    BubbleFoam,
+    PourSoap,
+    SplashGarment,
+
+
+    //Emballeur 4 sons
+    DropGarment, 
+    OpenEmbDoor,
+    CloseEmbDoor,
+    ProcessingEmb,
+
+
 }
