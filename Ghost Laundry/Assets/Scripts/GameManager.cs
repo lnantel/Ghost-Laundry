@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour {
 
         if (ShowHUD != null) ShowHUD();
 
-        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation");
+        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
         while (scenesLoading != null) yield return null;
 
         state = GameStates.StartOfDay;
@@ -175,7 +175,6 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSecondsRealtime(1.0f);
 
         AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
-
 
         yield return new WaitForSecondsRealtime(1.0f);
 

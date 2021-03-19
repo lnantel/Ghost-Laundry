@@ -47,4 +47,40 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SelectionScreen.unity
     guid: 76097fb1f8d5c8c459aba4ac69cc780b
+  - enabled: 1
+    path: Assets/Scenes/Days/Day1.unity
+    guid: e815c1ea0ac920544a228e47cf4e56ca
+  - enabled: 1
+    path: Assets/Scenes/Days/Day2.unity
+    guid: 738f883970216b94c92fe3f57b7e31e8
+  - enabled: 1
+    path: Assets/Scenes/Days/Day3.unity
+    guid: 7b8d9f0d109b28744844db23bc9f760b
+  - enabled: 1
+    path: Assets/Scenes/Days/Day4.unity
+    guid: 71a46e1f428267040aff3962ffa194a9
+  - enabled: 1
+    path: Assets/Scenes/Days/Day5.unity
+    guid: 1daf93cfc790c2f488c1bf7225849f99
+  - enabled: 1
+    path: Assets/Scenes/Days/Day6.unity
+    guid: 5fb587f3a0f853c4fbead6b6980d61de
+  - enabled: 1
+    path: Assets/Scenes/Days/Day7.unity
+    guid: 12e9d16b3e418c04680724fcda7e0551
+  - enabled: 1
+    path: Assets/Scenes/Days/Day8.unity
+    guid: 4b536e763ee82744c81ab1c5483644a3
+  - enabled: 1
+    path: Assets/Scenes/Days/Day9.unity
+    guid: 5172b5fb6c5206c41be7b9b415f69fc4
+  - enabled: 1
+    path: Assets/Scenes/Days/Day10.unity
+    guid: 2296a7e7ef878d3499bbbece94680791
+  - enabled: 1
+    path: Assets/Scenes/Days/Day11.unity
+    guid: 678bffd0cc93bf24f87940918277757d
+  - enabled: 1
+    path: Assets/Scenes/Days/Day12.unity
+    guid: 25a2f2fd58661284bac537181fd30f5a
   m_configObjects: {}

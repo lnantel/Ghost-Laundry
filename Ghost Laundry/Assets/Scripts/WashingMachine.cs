@@ -27,6 +27,7 @@ public class WashingMachine : WorkStation
     public WashingMachineState state;
 
     protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("WashingMachineArea");
         HasGravity = true;
         base.Start();
 
