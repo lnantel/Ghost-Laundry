@@ -21,6 +21,8 @@ public class LaundryIroningBoard : LaundryObject
     private float graceTimer;
     private float burnTimer;
 
+    private IEnumerator SoundCoroutine; 
+
     public float minIronSpeed;
     private float lastIronPos;
 
@@ -61,6 +63,7 @@ public class LaundryIroningBoard : LaundryObject
 
         //If the garment was steamed long enough, it becomes pressed
         if (pressingProgress >= 1.0f && !garmentOnBoard.Pressed) {
+            AudioManager.instance.PlaySound(Sounds.ShiningGarment);
             garmentOnBoard.Pressed = true;
             garmentSpriteRenderer.sprite = pressedGarmentSprite;
             Debug.Log("Ironing done!");
@@ -77,7 +80,29 @@ public class LaundryIroningBoard : LaundryObject
         }
 
         lastIronPos = ironPosition;
+
+        if(SoundCoroutine == null){
+
+            SoundCoroutine = SteamSound(steam); 
+            StartCoroutine(SoundCoroutine); 
+        }
         return steam;
+    }
+
+    private IEnumerator SteamSound(SteamState steam){
+
+        if(steam == SteamState.Steam){
+
+            AudioManager.instance.PlaySound(Sounds.IronIsWorking);
+
+        } else if(steam == SteamState.Burn) {
+
+            AudioManager.instance.PlaySound(Sounds.IronisBurning);
+
+        }
+
+        yield return new WaitForLaundromatSeconds(1);
+        SoundCoroutine = null; 
     }
 
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {

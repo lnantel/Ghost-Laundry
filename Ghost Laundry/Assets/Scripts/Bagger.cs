@@ -22,6 +22,7 @@ public class Bagger : WorkStation
     public override bool InputBasket(Basket basket) {
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
+            AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
         }
         OutputBags();
         return true;

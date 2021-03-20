@@ -56,6 +56,7 @@ public class Garment
 
     protected virtual float GetCleanliness() {
         return cleanliness;
+        
     }
 
     protected virtual void SetCleanliness(float value) {

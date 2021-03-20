@@ -17,12 +17,16 @@ public class WashingMachineDoor : LaundryObject
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         WashingMachine.DoorCloses += CloseDoor;
         WashingMachine.DoorOpens += OpenDoor;
+        
+        
     }
 
     private void OnDisable() {
         WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
         WashingMachine.DoorCloses -= CloseDoor;
         WashingMachine.DoorOpens -= OpenDoor;
+
+        
     }
 
     private void Start() {
@@ -63,13 +67,17 @@ public class WashingMachineDoor : LaundryObject
 
     private void OpenDoor() {
         spriteRenderer.sprite = openDoorSprite;
+        AudioManager.instance.PlaySound(Sounds.OpenWMDoor);
     }
 
     private void CloseDoor() {
         spriteRenderer.sprite = closedDoorSprite;
+        AudioManager.instance.PlaySound(Sounds.CloseWMDoor);
     }
 
     public void StartWashCycle() {
         washingMachine.StartWashCycle();
+        AudioManager.instance.PlaySound(Sounds.StartButtonWM);
+
     }
 }

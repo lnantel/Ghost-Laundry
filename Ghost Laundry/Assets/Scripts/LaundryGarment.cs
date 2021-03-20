@@ -187,7 +187,9 @@ public class LaundryGarment : LaundryObject
             }
 
             if (sparkles != null) {
-                if (garment.Pressed && !sparkles.isPlaying) sparkles.Play();
+                if (garment.Pressed && !sparkles.isPlaying){
+                sparkles.Play();
+                } 
                 if (!garment.Pressed && sparkles.isEmitting) sparkles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
 

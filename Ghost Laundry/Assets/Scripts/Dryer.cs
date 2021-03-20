@@ -39,9 +39,34 @@ public class Dryer : WorkStation
         lintTrapClean = true;
     }
 
+    private IEnumerator DryerRunningCoroutine;
+    private IEnumerator DryerDoneCoroutine;
     private void Update() {
         animator.SetInteger("DryerState", (int)state);
+
+        if(state == DryerState.Running && DryerRunningCoroutine == null){           
+        DryerRunningCoroutine = DryerRunningCoroutineSound();
+        StartCoroutine(DryerRunningCoroutine);   
+       }
+
+       if(state == DryerState.Done && DryerDoneCoroutine == null){           
+        DryerDoneCoroutine = DryerDoneCoroutineSound();
+        StartCoroutine(DryerDoneCoroutine);   
+       }
+    
     }
+
+    IEnumerator DryerRunningCoroutineSound(){
+         AudioManager.instance.PlaySound(Sounds.RunningDryer,0.3f);
+         yield return new WaitForLaundromatSeconds(1); 
+         DryerRunningCoroutine = null;
+        }
+
+         IEnumerator DryerDoneCoroutineSound(){
+         AudioManager.instance.PlaySound(Sounds.EndDryerBeep,0.3f);
+         yield return new WaitForLaundromatSeconds(2); 
+         DryerDoneCoroutine = null;
+        }
 
     private float CurrentLoad() {
         float value = 0.0f;
@@ -126,12 +151,16 @@ public class Dryer : WorkStation
         if(contents.Count > 0)
             lintTrapClean = false;
         state = DryerState.Done;
+
+      
+
     }
 
     public void CleanLintTrap() {
         if (!lintTrapClean) lintTrapClean = true;
         else
             Debug.Log("Lint trap already clean");
+
     }
 }
 

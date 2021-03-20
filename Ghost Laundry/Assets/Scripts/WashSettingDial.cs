@@ -20,6 +20,7 @@ public class WashSettingDial : LaundryButton
     private void Rotate() {
         if (washingMachine.washSetting == WashSetting.Cold) {
             transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+
         }
         else if (washingMachine.washSetting == WashSetting.Hot) {
             transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
@@ -28,5 +29,7 @@ public class WashSettingDial : LaundryButton
 
     public void ToggleWashSetting() {
         washingMachine.ToggleWashSetting();
+        AudioManager.instance.PlaySound(Sounds.SettingButtonWM);
+
     }
 }
