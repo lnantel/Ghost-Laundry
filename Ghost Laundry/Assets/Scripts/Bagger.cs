@@ -30,9 +30,9 @@ public class Bagger : WorkStation
     }
 
     public override bool InputBasket(Basket basket) {
+        AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
-            AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
         }
         CheckContentsForOutput();
         return true;
@@ -48,19 +48,31 @@ public class Bagger : WorkStation
                     customersGarments.Add(garment);
                     garmentCount++;
                     if (garment is GarmentSock && ((GarmentSock)garment).currentFoldingStep == 1) garmentCount++; //paired socks count twice!
-
                 }
             }
+            Debug.Log("Bagger contains " + contents.Count + "garments");
             if(garmentCount != 0 && garmentCount == customer.garments.Count) {
+                Debug.Log("Immediate Output for customer " + customer.ticketNumber);
                 if(OutputCoroutine == null) {
                     OutputCoroutine = OutputBag(customer, customersGarments);
                     StartCoroutine(OutputCoroutine);
                 }
                 else {
-                    OutputData output = new OutputData();
-                    output.customer = customer;
-                    output.customersGarments = customersGarments;
-                    OutputQueue.Add(output);
+                    //Add output to queue if it isn't already there
+                    bool alreadyInQueue = false;
+                    for(int i = 0; i < OutputQueue.Count; i++) {
+                        if(OutputQueue[i].customer.ticketNumber == customer.ticketNumber) {
+                            alreadyInQueue = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyInQueue) {
+                        Debug.Log("Queuing Output for customer " + customer.ticketNumber);
+                        OutputData output = new OutputData();
+                        output.customer = customer;
+                        output.customersGarments = customersGarments;
+                        OutputQueue.Add(output);
+                    }
                 }
             }
         }
@@ -101,12 +113,14 @@ public class Bagger : WorkStation
         
         //Check if there is another bag to output in the queue
         if(OutputQueue.Count > 0) {
+            Debug.Log("Processing next output");
             OutputData output = OutputQueue[0];
             OutputQueue.RemoveAt(0);
             OutputCoroutine = OutputBag(output.customer, output.customersGarments);
             StartCoroutine(OutputCoroutine);
         }
         else {
+            Debug.Log("Queue empty");
             OutputCoroutine = null;
         }
     }

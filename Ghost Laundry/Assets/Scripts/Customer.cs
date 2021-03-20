@@ -36,6 +36,8 @@ public class Customer : MonoBehaviour
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
         animator = GetComponentInChildren<Animator>();
 
+        garments = new List<Garment>();
+
         //Generate random customer
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = silhouettes[UnityEngine.Random.Range(0, silhouettes.Length)];
@@ -47,10 +49,11 @@ public class Customer : MonoBehaviour
         state = CustomerState.Queueing;
 
         basket = LaundryManager.GetRandomBasket();
-        foreach (Garment garment in basket.contents)
+        foreach (Garment garment in basket.contents) {
             garment.customerID = ticketNumber;
+            garments.Add(garment);
+        }
 
-        garments = basket.contents;
         //Upon arrival, a new Customer requests a spot in Queue from the CustomerManager
         CustomerManager.instance.AssignQueueSpot(this);
     }
