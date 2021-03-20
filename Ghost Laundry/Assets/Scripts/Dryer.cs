@@ -64,7 +64,7 @@ public class Dryer : WorkStation
 
          IEnumerator DryerDoneCoroutineSound(){
          AudioManager.instance.PlaySound(Sounds.EndDryerBeep,0.3f);
-         yield return new WaitForLaundromatSeconds(2); 
+         yield return new WaitForLaundromatSeconds(6); 
          DryerDoneCoroutine = null;
         }
 
