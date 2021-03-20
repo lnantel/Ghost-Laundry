@@ -50,9 +50,7 @@ public class Bagger : WorkStation
                     if (garment is GarmentSock && ((GarmentSock)garment).currentFoldingStep == 1) garmentCount++; //paired socks count twice!
                 }
             }
-            Debug.Log("Bagger contains " + contents.Count + "garments");
             if(garmentCount != 0 && garmentCount == customer.garments.Count) {
-                Debug.Log("Immediate Output for customer " + customer.ticketNumber);
                 if(OutputCoroutine == null) {
                     OutputCoroutine = OutputBag(customer, customersGarments);
                     StartCoroutine(OutputCoroutine);
@@ -67,7 +65,6 @@ public class Bagger : WorkStation
                         }
                     }
                     if (!alreadyInQueue) {
-                        Debug.Log("Queuing Output for customer " + customer.ticketNumber);
                         OutputData output = new OutputData();
                         output.customer = customer;
                         output.customersGarments = customersGarments;
@@ -113,14 +110,12 @@ public class Bagger : WorkStation
         
         //Check if there is another bag to output in the queue
         if(OutputQueue.Count > 0) {
-            Debug.Log("Processing next output");
             OutputData output = OutputQueue[0];
             OutputQueue.RemoveAt(0);
             OutputCoroutine = OutputBag(output.customer, output.customersGarments);
             StartCoroutine(OutputCoroutine);
         }
         else {
-            Debug.Log("Queue empty");
             OutputCoroutine = null;
         }
     }
