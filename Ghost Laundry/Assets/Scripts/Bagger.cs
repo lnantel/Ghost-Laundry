@@ -32,7 +32,7 @@ public class Bagger : WorkStation
     public override bool InputBasket(Basket basket) {
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
-            AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
+            AudioManager.instance.PlaySound(Sounds.DropGarmentEmb,0.4f);
         }
         CheckContentsForOutput();
         return true;
@@ -70,7 +70,7 @@ public class Bagger : WorkStation
 
         yield return new WaitForLaundromatSeconds(0.2f);
 
-        AudioManager.instance.PlaySound(Sounds.ProcessingEmb);
+        AudioManager.instance.PlaySound(Sounds.ProcessingEmb,0.4f);
 
         yield return new WaitForLaundromatSeconds(1.0f);
         
