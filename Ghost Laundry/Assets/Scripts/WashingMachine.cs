@@ -51,18 +51,20 @@ public class WashingMachine : WorkStation
        }
 
     
-         IEnumerator WashingMachineRunningCoroutineSound(){
+        
+    }
+
+     IEnumerator WashingMachineRunningCoroutineSound(){
          AudioManager.instance.PlaySound(Sounds.RunningWM,0.3f);
          yield return new WaitForLaundromatSeconds(1); 
          WMCoroutine = null;
         }
 
-        IEnumerator WashingMachineDoneCoroutineSound(){
+    IEnumerator WashingMachineDoneCoroutineSound(){
          AudioManager.instance.PlaySound(Sounds.EndWMBeep,0.3f);;
          yield return new WaitForLaundromatSeconds(1); 
-         WMCoroutine = null;
+         WMDoneCoroutine = null;
         }
-    }
 
 
     private float CurrentLoad() {

@@ -51,10 +51,10 @@ public class Dryer : WorkStation
         DryerDoneCoroutine = DryerDoneCoroutineSound();
         StartCoroutine(DryerDoneCoroutine);   
        }
-
     
+    }
 
-         IEnumerator DryerRunningCoroutineSound(){
+    IEnumerator DryerRunningCoroutineSound(){
          AudioManager.instance.PlaySound(Sounds.RunningDryer,0.3f);
          yield return new WaitForLaundromatSeconds(1); 
          DryerRunningCoroutine = null;
@@ -65,8 +65,6 @@ public class Dryer : WorkStation
          yield return new WaitForLaundromatSeconds(2); 
          DryerDoneCoroutine = null;
         }
-    
-    }
 
     private float CurrentLoad() {
         float value = 0.0f;

@@ -13,6 +13,8 @@ public class WashTub : WorkStation
     public bool IsSoapy { get => SoapLevel > 0; }
     public float ScrubbingStrength;
 
+    private IEnumerator SoundCoroutine; 
+
     //Replenishes the tub's soap level
     public void RefillSoap() {
         if(SoapLevel <= MaxSoapLevel) {
@@ -26,9 +28,13 @@ public class WashTub : WorkStation
     //Scrub increases a given Garment's cleanliness based on the 'distance' argument, if the garment is wet and the tub is soapy. 
     //Returns true if the garment was successfully scrubbed.
     public bool Scrub(Garment garment, float distance) {
-        if(!garment.Dry && IsSoapy) {
-            AudioManager.instance.PlaySound(Sounds.ScratchGarment);
-            AudioManager.instance.PlaySound(Sounds.BubbleFoam);
+        if(!garment.Dry && distance * ScrubbingStrength > 0.01f){
+            if(SoundCoroutine == null){
+                SoundCoroutine = ScrubbingSounds();
+                StartCoroutine(SoundCoroutine); 
+            }
+        }
+        if(!garment.Dry && IsSoapy) {  
             bool garmentWasDirty = !garment.Clean;
             garment.Cleanliness = garment.Cleanliness + distance * ScrubbingStrength;
             //If the garment was successfully cleaned, decrease the soap level
@@ -39,6 +45,16 @@ public class WashTub : WorkStation
             return true;
         }
         return false;
+    }
+
+    IEnumerator ScrubbingSounds(){
+
+        AudioManager.instance.PlaySound(Sounds.ScratchGarment);
+        if(IsSoapy){
+            AudioManager.instance.PlaySound(Sounds.BubbleFoam);
+        }
+        yield return new WaitForLaundromatSeconds(1);
+        SoundCoroutine = null; 
     }
 
 
