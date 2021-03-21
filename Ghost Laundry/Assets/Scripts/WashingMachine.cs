@@ -56,14 +56,14 @@ public class WashingMachine : WorkStation
     }
 
      IEnumerator WashingMachineRunningCoroutineSound(){
-         AudioManager.instance.PlaySound(Sounds.RunningWM,0.3f);
+         AudioManager.instance.PlaySound(Sounds.RunningWM,0.4f);
          yield return new WaitForLaundromatSeconds(1); 
          WMCoroutine = null;
         }
 
     IEnumerator WashingMachineDoneCoroutineSound(){
-         AudioManager.instance.PlaySound(Sounds.EndWMBeep,0.3f);;
-         yield return new WaitForLaundromatSeconds(1); 
+         AudioManager.instance.PlaySound(Sounds.EndWMBeep,0.4f);;
+         yield return new WaitForLaundromatSeconds(6); 
          WMDoneCoroutine = null;
         }
 

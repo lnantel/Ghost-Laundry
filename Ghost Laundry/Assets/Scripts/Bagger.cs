@@ -79,7 +79,7 @@ public class Bagger : WorkStation
 
         yield return new WaitForLaundromatSeconds(0.2f);
 
-        AudioManager.instance.PlaySound(Sounds.ProcessingEmb);
+        AudioManager.instance.PlaySound(Sounds.ProcessingEmb,0.4f);
 
         yield return new WaitForLaundromatSeconds(1.0f);
         

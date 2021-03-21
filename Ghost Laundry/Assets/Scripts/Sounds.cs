@@ -72,7 +72,6 @@ public enum Sounds
 
     //Bassine 4 sons
     ScratchGarment, 
-    // Scintillement, 
     BubbleFoam,
     PourSoap,
     SplashGarment,

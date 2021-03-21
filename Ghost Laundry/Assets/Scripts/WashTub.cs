@@ -59,7 +59,7 @@ public class WashTub : WorkStation
         if(IsSoapy){
             AudioManager.instance.PlaySound(Sounds.BubbleFoam);
         }
-        yield return new WaitForLaundromatSeconds(1);
+        yield return new WaitForLaundromatSeconds(0.5f);
         SoundCoroutine = null; 
     }
 
