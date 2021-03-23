@@ -169,15 +169,9 @@ MonoBehaviour:
   MinimumNumberOfGarments: 5
   MaximumNumberOfGarments: 9
   LaundryGenerationParameters:
-  - ratio: 50
+  - ratio: 100
     fabric: 0
     garmentType: 00000000010000000200000003000000040000000500000006000000
-  - ratio: 25
-    fabric: 1
-    garmentType: 000000000200000005000000
-  - ratio: 25
-    fabric: 2
-    garmentType: 00000000010000000200000003000000
   WeightedFabricIndices: 
 --- !u!1 &342125761 stripped
 GameObject:
@@ -244,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 8eb620d8e858a604e81f93bd6f188336, type: 3}
     - target: {fileID: 7502809973228414755, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.53
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: m_LocalPosition.y
@@ -282,6 +276,10 @@ PrefabInstance:
     - target: {fileID: 5748218137804147326, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
       propertyPath: m_Name
       value: WashTub
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748218137804147326, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
       propertyPath: m_LocalPosition.x
@@ -342,11 +340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.77
+      value: 7.65
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33
+      value: 2.99
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_LocalPosition.z
@@ -409,6 +407,10 @@ PrefabInstance:
     - target: {fileID: 5748218137804147326, guid: 38b257a12bda73b4592ba833caabc380, type: 3}
       propertyPath: m_Name
       value: SewingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748218137804147326, guid: 38b257a12bda73b4592ba833caabc380, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 38b257a12bda73b4592ba833caabc380, type: 3}
       propertyPath: m_LocalPosition.x
@@ -588,11 +590,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2047374089427696996, guid: 5225aeac70ca5a2498c1de0bd61909c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.69
+      value: -4.94
       objectReference: {fileID: 0}
     - target: {fileID: 2047374089427696996, guid: 5225aeac70ca5a2498c1de0bd61909c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1
+      value: 2.99
       objectReference: {fileID: 0}
     - target: {fileID: 2047374089427696996, guid: 5225aeac70ca5a2498c1de0bd61909c3, type: 3}
       propertyPath: m_LocalPosition.z
