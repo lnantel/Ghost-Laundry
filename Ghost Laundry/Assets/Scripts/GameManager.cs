@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
     public static Action ShowHUD;
     public static Action HideHUD;
 
+    public static Action EventManagerReset;
+
     public GameStates state;
     private IEnumerator stateTransition;
 
@@ -252,6 +254,7 @@ public class GameManager : MonoBehaviour {
 
         if (HideHUD != null) HideHUD();
         if (FadeIn != null) FadeIn();
+        if (ResumeGame != null) ResumeGame();
 
         ShowCursor();
 
@@ -356,6 +359,18 @@ public class GameManager : MonoBehaviour {
     private void HideCursor() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void ResetEventManager() {
+        StartCoroutine(ReloadDialogScene());
+    }
+
+    private IEnumerator ReloadDialogScene() {
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("Dialog"));
+        LoadScenes("Dialog");
+        while (scenesLoading != null) yield return null;
+
+        if (EventManagerReset != null) EventManagerReset();
     }
 }
 

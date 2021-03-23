@@ -8,6 +8,8 @@ public class SewingMachine : WorkStation
     public static Action GarmentUpdated;
     public static Action SewingProgressUpdated;
 
+    public float TimeToSew;
+
     public float progress;
 
     public Garment garmentOnMachine;
@@ -26,7 +28,7 @@ public class SewingMachine : WorkStation
     //Returns true if the machine sews successfully (progress is made)
     public bool Sew() {
         if(garmentOnMachine != null && progress < 1.0f) {
-            progress += TimeManager.instance.deltaTime;
+            progress += (TimeManager.instance.deltaTime / TimeToSew);
             if (SewingProgressUpdated != null) SewingProgressUpdated();
             if (progress >= 1.0f) {
                 garmentOnMachine.Torn = false;

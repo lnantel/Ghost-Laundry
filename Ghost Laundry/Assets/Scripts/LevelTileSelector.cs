@@ -121,7 +121,8 @@ public class LevelTileSelector : MonoBehaviour
             popUp.SetActive(true);
         }
         else {
-            popUp.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
+            Animator animator = popUp.GetComponentInChildren<Animator>();
+            if(animator != null && animator.isActiveAndEnabled) animator.SetTrigger("HidePopUp");
         }
     }
 

@@ -36,12 +36,15 @@ public class EventA : NarrativeEventListener {
             }
         }
 
+        List<Garment> olliesGarments = new List<Garment>();
+
         foreach(Garment garment in basket.contents) {
             garment.customerID = customerID;
+            olliesGarments.Add(garment);
         }
 
         customer.basket = basket;
-        customer.garments = basket.contents;
+        customer.garments = olliesGarments;
     }
 
     protected override void OnLaundryCompleted(LaundromatBag bag) {
