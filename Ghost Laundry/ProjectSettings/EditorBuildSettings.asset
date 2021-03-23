@@ -64,7 +64,7 @@ EditorBuildSettings:
     guid: 00adba59ccd58c142b5e198a6384989d
   - enabled: 1
     path: Assets/Scenes/Days/Day7.unity
-    guid: 12e9d16b3e418c04680724fcda7e0551
+    guid: 10769334d28062e48a3b8131cda4517d
   - enabled: 1
     path: Assets/Scenes/Days/Day8.unity
     guid: 4b536e763ee82744c81ab1c5483644a3
