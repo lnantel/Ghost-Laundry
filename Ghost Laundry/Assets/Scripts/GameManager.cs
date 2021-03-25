@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour {
 
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
+        TimeManager.instance.ResetTimeManager();
 
         if (ShowHUD != null) ShowHUD();
         if (HideSettings != null) HideSettings();

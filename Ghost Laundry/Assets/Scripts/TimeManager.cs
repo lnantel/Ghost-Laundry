@@ -59,7 +59,6 @@ public class TimeManager : MonoBehaviour
 
             if (currentTime != null && (currentTime[0] != lastCurrentTime[0] || currentTime[1] != lastCurrentTime[1])) {
                 if (TimeOfDay != null) TimeOfDay(currentTime);
-                //Debug.Log("It is " + currentTime[0] + ":" + currentTime[1].ToString("D2"));
             }
 
             if (timer >= RealTimeSecondsPerDay) {
@@ -83,18 +82,15 @@ public class TimeManager : MonoBehaviour
 
     public void StartDay() {
         TimeIsPassing = true;
-        //Time.timeScale = 1;
         timeScale = 1;
+        timer = 0;
         if(StartOfDay != null) StartOfDay(CurrentDay);
-        //Debug.Log("DAY " + CurrentDay + " START");
     }
 
     public void EndDay() {
         TimeIsPassing = false;
-        //Time.timeScale = 0;
         timeScale = 0;
         if (EndOfDay != null) EndOfDay(CurrentDay);
-        //Debug.Log("DAY " + CurrentDay + " END");
     }
 
     public void RetryDay() {
@@ -105,6 +101,14 @@ public class TimeManager : MonoBehaviour
     public void NextDay() {
         CurrentDay++;
         timer = 0;
+    }
+
+    public void ResetTimeManager() {
+        RealTimeSecondsPerDay = RealTimeMinutesPerDay * 60;
+        TimeIsPassing = false;
+        timeScale = 0;
+        timer = 0;
+        lastCurrentTime = new int[] { 0, 0 };
     }
 
     private void OnPause() {
