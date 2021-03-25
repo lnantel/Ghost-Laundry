@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: a001bb450a521de42b4be589cba147b9
@@ -52,35 +49,35 @@ EditorBuildSettings:
     guid: e815c1ea0ac920544a228e47cf4e56ca
   - enabled: 1
     path: Assets/Scenes/Days/Day2.unity
-    guid: 738f883970216b94c92fe3f57b7e31e8
+    guid: 61405f25638dc004ea8db5fdcee17c5a
   - enabled: 1
     path: Assets/Scenes/Days/Day3.unity
-    guid: 7b8d9f0d109b28744844db23bc9f760b
+    guid: 52c156fb4f69e6b4a983d4a421f7b560
   - enabled: 1
     path: Assets/Scenes/Days/Day4.unity
-    guid: 71a46e1f428267040aff3962ffa194a9
+    guid: 11b3a7dbbec6a9d49bed8a75fd2f1737
   - enabled: 1
     path: Assets/Scenes/Days/Day5.unity
-    guid: 1daf93cfc790c2f488c1bf7225849f99
+    guid: 486ed2c91807b4b4084169031ec634d0
   - enabled: 1
     path: Assets/Scenes/Days/Day6.unity
-    guid: 5fb587f3a0f853c4fbead6b6980d61de
+    guid: 00adba59ccd58c142b5e198a6384989d
   - enabled: 1
     path: Assets/Scenes/Days/Day7.unity
-    guid: 12e9d16b3e418c04680724fcda7e0551
+    guid: 10769334d28062e48a3b8131cda4517d
   - enabled: 1
     path: Assets/Scenes/Days/Day8.unity
-    guid: 4b536e763ee82744c81ab1c5483644a3
+    guid: 37932fdccfb11c6408bfbaf61f2ad0aa
   - enabled: 1
     path: Assets/Scenes/Days/Day9.unity
-    guid: 5172b5fb6c5206c41be7b9b415f69fc4
+    guid: f262d381a26b48541811fd8244821063
   - enabled: 1
     path: Assets/Scenes/Days/Day10.unity
-    guid: 2296a7e7ef878d3499bbbece94680791
+    guid: fe43ae5032a235e4b83350e0143c832b
   - enabled: 1
     path: Assets/Scenes/Days/Day11.unity
-    guid: 678bffd0cc93bf24f87940918277757d
+    guid: d07160daa037c574db271381a4a731b2
   - enabled: 1
     path: Assets/Scenes/Days/Day12.unity
-    guid: 25a2f2fd58661284bac537181fd30f5a
+    guid: 67a95c15acf21f44a856208b638239d5
   m_configObjects: {}
