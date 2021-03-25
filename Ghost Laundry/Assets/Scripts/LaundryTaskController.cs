@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LaundryTaskController : MonoBehaviour
 {
@@ -142,19 +143,30 @@ public class LaundryTaskController : MonoBehaviour
         //Attempts to find a LaundryObject or Basket under the cursor
         //Priority is given to LaundryObjects
         int layerMask = LayerMask.GetMask("LaundryGarment");
-        Collider2D col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(cursor.position, 0.01f, layerMask);
+        Collider2D col = null;
+        if (cols.Length > 0) {
+            int maxSortingOrder = -10000; //arbitrarily large value
+            for(int i = 0; i < cols.Length; i++) {
+                SortingGroup sortingGroup = cols[i].GetComponentInParent<SortingGroup>();
+                if (sortingGroup.sortingOrder >= maxSortingOrder) {
+                    maxSortingOrder = sortingGroup.sortingOrder;
+                    col = cols[i];
+                }
+            }
+        }
         if (col != null) {
             return col.GetComponentInParent<LaundryObject>();
         }
         else {
             layerMask = LayerMask.GetMask("LaundryObject");
-            col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+            col = Physics2D.OverlapCircle(cursor.position, 0.01f, layerMask);
             if (col != null) {
                 return col.GetComponentInParent<LaundryObject>();
             }
             else {
                 layerMask = LayerMask.GetMask("Basket");
-                col = Physics2D.OverlapCircle(cursor.position, 0.1f, layerMask);
+                col = Physics2D.OverlapCircle(cursor.position, 0.01f, layerMask);
                 if (col != null) {
                     return col.GetComponentInParent<LaundryObject>();
                 }

@@ -4,36 +4,49 @@ using UnityEngine;
 
 public class LaundryTable : MonoBehaviour
 {
-    private void OnEnable() {
-        WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
-    }
+    private IEnumerator soundCoroutine;
 
-    private void OnDisable() {
-        WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
-    }
-
-    private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
-        //If released within table bounds, turn off gravity and set velocity to 0
-        if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
-            Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector3.zero;
-            rb.gravityScale = 0.0f;
-            AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        //LaundryGarment obj = collision.GetComponent<LaundryGarment>();
-        if(collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
             LaundryGarment laundryGarment = collision.gameObject.GetComponentInParent<LaundryGarment>();
-            laundryGarment.OnFoldingSurface = true;
+            if(!laundryGarment.IsHeld) {
+                Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+                rb.velocity = Vector3.zero;
+                rb.gravityScale = 0.0f;
+
+                if (!laundryGarment.OnFoldingSurface) {
+                    laundryGarment.OnFoldingSurface = true;
+                    if(soundCoroutine == null) {
+                        soundCoroutine = DropSound(laundryGarment.garment.fabric.dropSound);
+                        StartCoroutine(soundCoroutine);
+                    }
+                }
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
             LaundryGarment laundryGarment = collision.gameObject.GetComponentInParent<LaundryGarment>();
-            laundryGarment.OnFoldingSurface = false;
+            if (laundryGarment.IsHeld) {
+                laundryGarment.OnFoldingSurface = false;
+            }
+            else {
+                Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+                //Does the laundryGarment's new collider touch the trigger?
+                if (laundryGarment.colliders[laundryGarment.garment.currentFoldingStep].bounds.Intersects(GetComponent<Collider2D>().bounds)) {
+                    rb.gravityScale = 0.0f;
+                }
+                else {
+                    rb.gravityScale = 1.0f;
+                }
+            }
         }
+    }
+
+    private IEnumerator DropSound(Sounds sound) {
+        AudioManager.instance.PlaySound(sound);
+        yield return null;
+        soundCoroutine = null;
     }
 }

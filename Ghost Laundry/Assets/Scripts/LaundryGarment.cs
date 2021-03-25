@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Rendering;
 
 public class LaundryGarment : LaundryObject
 {
+    public static Action<LaundryGarment> Created;
     public static Action<LaundryGarment> Released;
 
     public Garment garment;
@@ -12,6 +14,8 @@ public class LaundryGarment : LaundryObject
     public Collider2D[] colliders;
 
     public bool OnFoldingSurface;
+
+    public SortingGroup sortingGroup;
 
     public SpriteRenderer spriteRenderer;
     public SpriteMask spriteMask;
@@ -29,6 +33,8 @@ public class LaundryGarment : LaundryObject
     public ParticleSystem sparkles;
     public ParticleSystem ruin;
 
+    public bool IsHeld { get => sortingGroup.sortingOrder == 1; }
+
     private Rigidbody2D rb;
     private LaundryTag laundryTag;
     private bool hovering;
@@ -41,13 +47,13 @@ public class LaundryGarment : LaundryObject
             garment = Garment.GetRandomGarment();
         }
 
-        //if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
-        //if (spriteMask == null) spriteMask = GetComponent<SpriteMask>();
+        sortingGroup = GetComponent<SortingGroup>();
 
         rb = GetComponent<Rigidbody2D>();
         laundryTag = GetComponentInChildren<LaundryTag>();
         lastPosition = transform.position;
         UpdateAppearance();
+        if (Created != null) Created(this);
         initialized = true;
     }
 
@@ -122,13 +128,33 @@ public class LaundryGarment : LaundryObject
 
     public override void OnGrab() {
         AudioManager.instance.PlaySound(garment.fabric.grabSound);
+        if (sortingGroup != null) sortingGroup.sortingOrder = 1;
+        else StartCoroutine(DelayedOnGrab());
+    }
+
+    private IEnumerator DelayedOnGrab() {
+        yield return null;
+        if (sortingGroup != null) sortingGroup.sortingOrder = 1;
     }
 
     public override void OnRelease() {
+        if (sortingGroup != null) sortingGroup.sortingOrder = 0;
         rb.velocity = (new Vector2(transform.position.x, transform.position.y) - lastPosition) * 10.0f;
 
         if(Released != null)
             Released(this);
+    }
+
+    private void OnOtherReleased(LaundryGarment other) {
+        if(other.GetInstanceID() != GetInstanceID()) {
+            if (sortingGroup != null) sortingGroup.sortingOrder--;
+        }
+    }
+
+    private void OnOtherCreated(LaundryGarment other) {
+        if(other.GetInstanceID() != GetInstanceID()) {
+            if (sortingGroup != null) sortingGroup.sortingOrder--;
+        }
     }
 
     public override void Drag(Vector2 cursorPosition) {
@@ -143,8 +169,15 @@ public class LaundryGarment : LaundryObject
     }
 
     private void OnEnable() {
+        LaundryGarment.Released += OnOtherReleased;
+        LaundryGarment.Created += OnOtherCreated;
         if(initialized)
             UpdateAppearance();
+    }
+
+    private void OnDisable() {
+        LaundryGarment.Released -= OnOtherReleased;
+        LaundryGarment.Created -= OnOtherCreated;
     }
 
     public void UpdateAppearance() {
