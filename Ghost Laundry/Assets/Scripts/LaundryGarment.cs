@@ -33,6 +33,8 @@ public class LaundryGarment : LaundryObject
     public ParticleSystem sparkles;
     public ParticleSystem ruin;
 
+    public bool IsHeld { get => sortingGroup.sortingOrder == 1; }
+
     private Rigidbody2D rb;
     private LaundryTag laundryTag;
     private bool hovering;
@@ -126,7 +128,13 @@ public class LaundryGarment : LaundryObject
 
     public override void OnGrab() {
         AudioManager.instance.PlaySound(garment.fabric.grabSound);
-        if(sortingGroup != null) sortingGroup.sortingOrder = 1;
+        if (sortingGroup != null) sortingGroup.sortingOrder = 1;
+        else StartCoroutine(DelayedOnGrab());
+    }
+
+    private IEnumerator DelayedOnGrab() {
+        yield return null;
+        if (sortingGroup != null) sortingGroup.sortingOrder = 1;
     }
 
     public override void OnRelease() {
