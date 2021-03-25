@@ -20,6 +20,8 @@ public class LaundryBasket : LaundryObject
     public Sprite[] tags;
     public SpriteRenderer tagSprite;
 
+    private Animator animator;
+
     private void Start() {
         if (basket == null) {
             basket = new Basket();
@@ -27,6 +29,7 @@ public class LaundryBasket : LaundryObject
         laundryGarmentPrefab = (GameObject)Resources.Load("LaundryGarment");
         laundryGarments = new List<LaundryGarment>();
         basketCollider = GetComponent<Collider2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable() {
@@ -48,6 +51,7 @@ public class LaundryBasket : LaundryObject
             Garment garment = basket.RemoveTopGarment();
             if (garment != null && TakeOutGarment != null) {
                 TakeOutGarment(garment);
+                animator.SetTrigger("BasketOutput");
             }
             else
                 GrabEmpty();
@@ -55,7 +59,7 @@ public class LaundryBasket : LaundryObject
     }
 
     void GrabEmpty() {
-        Debug.Log("Basket is empty");
+        animator.SetTrigger("BasketEmpty");
     }
 
     void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
@@ -115,6 +119,7 @@ public class LaundryBasket : LaundryObject
                     if (basket.AddGarment(laundryGarment.garment)) {
                         AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                         Destroy(laundryGarment.gameObject);
+                        animator.SetTrigger("BasketInput");
                     }
                     else {
                         BasketIsFull();
@@ -132,7 +137,7 @@ public class LaundryBasket : LaundryObject
     }
 
     void BasketIsFull() {
-        Debug.Log("Basket is full");
+        animator.SetTrigger("BasketFull");
     }
 
     public override void Drag(Vector2 cursorPosition) {
