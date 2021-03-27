@@ -22,8 +22,11 @@ public class Iron : LaundryObject
     private SteamState steamState;
     private bool onIroningBoard;
 
+    private IroningBoard ironingBoard;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        ironingBoard = GetComponentInParent<IroningBoard>();
         steam.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
@@ -72,7 +75,7 @@ public class Iron : LaundryObject
     }
 
     private void FixedUpdate() {
-        if(state == IronState.On && onIroningBoard && laundryIroningBoard.garmentOnBoard != null) {
+        if(state == IronState.On && onIroningBoard && ironingBoard.garmentOnBoard != null) {
             steamState = laundryIroningBoard.Press(transform.position.x);
         }
         else {

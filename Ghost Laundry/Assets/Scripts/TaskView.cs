@@ -9,10 +9,12 @@ public class TaskView : MonoBehaviour
     public float popUpTime;
     public float size;
 
-    private bool open;
+    public bool open;
     private float popUpFactor;
+    private float lastPopUpFactor;
     private float timer;
     private Vector3 targetPosition;
+    private GameObject taskArea;
 
     private void Awake() {
         if (instance != null) Destroy(gameObject);
@@ -37,13 +39,20 @@ public class TaskView : MonoBehaviour
         else
             popUpFactor = Mathf.Lerp(1.0f, 0.0f, timer / popUpTime);
 
+        if (lastPopUpFactor > 0.0f && popUpFactor == 0.0f) {
+            taskArea.SetActive(false);
+        }
+
         transform.localScale = new Vector3(1.6f, 1.0f, 0.9f) * popUpFactor * size;
         transform.position = Vector3.Lerp(targetPosition, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -5.0f), popUpFactor);
+
+        lastPopUpFactor = popUpFactor;
     }
 
-    public void Minimize(Vector3 toPosition) {
+    public void Minimize(Vector3 toPosition, GameObject taskArea) {
         timer = 0.0f;
         targetPosition = new Vector3(toPosition.x, toPosition.y, -5.0f);
         open = false;
+        this.taskArea = taskArea;
     }
 }

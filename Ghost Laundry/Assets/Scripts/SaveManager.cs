@@ -104,7 +104,7 @@ public class SaveManager : MonoBehaviour
     private void OnEventsReset() {
         Data = new SaveData();
         SaveData.DayData day = new SaveData.DayData();
-        day.CurrentDay = 1;
+        day.CurrentDay = 0;
         day.Money = 0;
         day.Reputation = 0;
         day.Detergent = DetergentManager.instance.MaxAmount;

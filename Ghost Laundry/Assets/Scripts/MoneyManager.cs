@@ -91,6 +91,7 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void OnStartOfDay(int day) {
-        ModifyCurrentAmount(-Rent);
+        if(day != 0)
+            ModifyCurrentAmount(-Rent);
     }
 }

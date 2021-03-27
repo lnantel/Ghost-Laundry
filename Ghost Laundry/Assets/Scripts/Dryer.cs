@@ -26,6 +26,8 @@ public class Dryer : WorkStation
     private List<Garment> contents;
     private Animator animator;
 
+    private bool autoCompleteFlag;
+
     protected override void Start() {
         areaPrefab = (GameObject)Resources.Load("DryerArea");
 
@@ -56,6 +58,10 @@ public class Dryer : WorkStation
     
     }
 
+    public void SetAutoCompleteFlag() {
+        autoCompleteFlag = true;
+    }
+
     IEnumerator DryerRunningCoroutineSound(){
          AudioManager.instance.PlaySound(Sounds.RunningDryer,0.4f);
          yield return new WaitForLaundromatSeconds(1); 
@@ -68,7 +74,7 @@ public class Dryer : WorkStation
          DryerDoneCoroutine = null;
         }
 
-    private float CurrentLoad() {
+    public float CurrentLoad() {
         float value = 0.0f;
         foreach (Garment garment in contents)
             value += garment.size;
@@ -137,7 +143,13 @@ public class Dryer : WorkStation
         foreach (Garment garment in garmentsToBeAdded)
             contents.Add(garment);
 
-        yield return new WaitForLaundromatSeconds(cycleTime);
+        if (autoCompleteFlag) {
+            yield return new WaitForLaundromatSeconds(2.0f);
+            autoCompleteFlag = false;
+        }
+        else {
+            yield return new WaitForLaundromatSeconds(cycleTime);
+        }
 
         foreach (Garment garment in contents) {
             if ((garment.fabric.dryingRestrictions == DryingRestrictions.LowOnly && dryerSetting == DryerSetting.High) ||

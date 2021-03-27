@@ -54,7 +54,9 @@ public class TimeManager : MonoBehaviour
     {
         deltaTime = Time.deltaTime * timeScale;
         if (TimeIsPassing) {
-            timer += deltaTime;
+            if(CurrentDay != 0) {
+                timer += deltaTime;
+            }
             int[] currentTime = CurrentTime();
 
             if (currentTime != null && (currentTime[0] != lastCurrentTime[0] || currentTime[1] != lastCurrentTime[1])) {

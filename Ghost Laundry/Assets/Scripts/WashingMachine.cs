@@ -20,6 +20,8 @@ public class WashingMachine : WorkStation
 
     private List<Garment> contents;
 
+    private bool autoCompleteFlag;
+
     [HideInInspector]
     public WashSetting washSetting;
 
@@ -49,10 +51,7 @@ public class WashingMachine : WorkStation
        if(state == WashingMachineState.Done && WMDoneCoroutine == null){           
         WMDoneCoroutine = WashingMachineDoneCoroutineSound();
         StartCoroutine(WMDoneCoroutine);   
-       }
-
-    
-        
+       }        
     }
 
      IEnumerator WashingMachineRunningCoroutineSound(){
@@ -67,8 +66,11 @@ public class WashingMachine : WorkStation
          WMDoneCoroutine = null;
         }
 
+    public void SetAutoCompleteFlag() {
+        autoCompleteFlag = true;
+    }
 
-    private float CurrentLoad() {
+    public float CurrentLoad() {
         float value = 0.0f;
         foreach (Garment garment in contents)
             value += garment.size;
@@ -141,8 +143,13 @@ public class WashingMachine : WorkStation
         foreach (Garment garment in garmentsToBeAdded)
             contents.Add(garment);
 
-        yield return new WaitForLaundromatSeconds(WashCycleTime);
-
+        if (autoCompleteFlag) {
+            yield return new WaitForLaundromatSeconds(2.0f);
+            autoCompleteFlag = false;
+        }
+        else {
+            yield return new WaitForLaundromatSeconds(WashCycleTime);
+        }
 
         foreach (Garment garment in contents) {
             if(!garment.Colored() && washSetting == WashSetting.Hot && containsColoredGarments) {

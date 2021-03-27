@@ -171,17 +171,21 @@ public class GameManager : MonoBehaviour {
         if (ShowHUD != null) ShowHUD();
         if (HideSettings != null) HideSettings();
         if (ResumeGame != null) ResumeGame();
-        if (FadeIn != null) FadeIn();
 
-        HideCursor();
+        if(TimeManager.instance.CurrentDay != 0) {
+            HideCursor();
 
-        yield return new WaitForSecondsRealtime(1.0f);
+            if (FadeIn != null) FadeIn();
 
-        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
+            yield return new WaitForSecondsRealtime(1.0f);
 
-        yield return new WaitForSecondsRealtime(1.0f);
+            AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
+
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
 
         TimeManager.instance.StartDay();
+
         state = GameStates.Laundromat;
 
         stateTransition = null;
@@ -195,25 +199,32 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator EndOfDay() {
-        //Announce End of Day
-        AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
-        state = GameStates.EndOfDay;
+        if(TimeManager.instance.CurrentDay != 0) {
+            //Announce End of Day
+            AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
+            state = GameStates.EndOfDay;
+        }
 
         //Save progress
         TimeManager.instance.NextDay();
-        if (MoneyManager.instance.CurrentAmount >= 0) {
+        if (TimeManager.instance.CurrentDay == 1 || MoneyManager.instance.CurrentAmount >= 0) {
             SaveManager.Save();
         }
 
-        //Wait a couple seconds
-        yield return new WaitForSecondsRealtime(2.0f);
+        if(TimeManager.instance.CurrentDay > 1) {
+            //Wait a couple seconds
+            yield return new WaitForSecondsRealtime(2.0f);
 
-        //Show the Evaluation screen
-        state = GameStates.Evaluation;
-        if(ShowEvaluation != null) ShowEvaluation();
-        ShowCursor();
-
-        stateTransition = null;
+            //Show the Evaluation screen
+            state = GameStates.Evaluation;
+            if (ShowEvaluation != null) ShowEvaluation();
+            ShowCursor();
+            stateTransition = null;
+        }
+        else {
+            stateTransition = GoToTransition();
+            StartCoroutine(stateTransition);
+        }
     }
 
     private IEnumerator GoToTransition() {
@@ -289,7 +300,12 @@ public class GameManager : MonoBehaviour {
 
     public void LaunchGame() {
         if(stateTransition == null) {
-            stateTransition = GoToTransition();
+            if(TimeManager.instance.CurrentDay != 0) {
+                stateTransition = GoToTransition();
+            }
+            else {
+                stateTransition = GoToGame();
+            }
             StartCoroutine(stateTransition);
         }
     }
@@ -342,22 +358,22 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void OnDialogStart() {
+    public void OnDialogStart() {
         if(ShowDialog != null) ShowDialog();
         ShowCursor();
     }
     
-    private void OnDialogEnd(int i) {
+    public void OnDialogEnd(int i) {
         if (HideDialog != null) HideDialog();
         HideCursor();
     }
 
-    private void ShowCursor() {
+    public void ShowCursor() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    private void HideCursor() {
+    public void HideCursor() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

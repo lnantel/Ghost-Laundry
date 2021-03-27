@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bagger : WorkStation
 {
+    public static Action BasketInput;
+    public static Action BagOutput;
+
     public Transform bagSpawnPoint;
 
     private GameObject laundromatBagPrefab;
     private List<Garment> contents;
 
     private IEnumerator OutputCoroutine;
+
+    private TutorialManager tutorialManager;
 
     private struct OutputData {
         public Customer customer;
@@ -23,6 +29,7 @@ public class Bagger : WorkStation
         contents = new List<Garment>();
         laundromatBagPrefab = (GameObject)Resources.Load("LaundromatBag");
         OutputQueue = new List<OutputData>();
+        if (TimeManager.instance.CurrentDay == 0) tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
     public override void Interact() {
@@ -34,8 +41,44 @@ public class Bagger : WorkStation
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
         }
-        CheckContentsForOutput();
+        if (BasketInput != null) BasketInput();
+        if (TimeManager.instance.CurrentDay == 0) TutorialCheckContentsForOutput();
+        else CheckContentsForOutput();
         return true;
+    }
+
+    private void TutorialCheckContentsForOutput() {
+        for(int i = 0; i < tutorialManager.tutorialCustomers.Count; i++) {
+            bool baggerContainsAll = true;
+            List<Garment> customersGarments = new List<Garment>();
+            for(int j = 0; j < tutorialManager.tutorialCustomers[i].Count; j++) {
+                if (!contents.Contains(tutorialManager.tutorialCustomers[i][j])) baggerContainsAll = false;
+                else customersGarments.Add(tutorialManager.tutorialCustomers[i][j]);
+            }
+
+            if (baggerContainsAll) {
+                if (OutputCoroutine == null) {
+                    OutputCoroutine = OutputBag(null, customersGarments);
+                    StartCoroutine(OutputCoroutine);
+                }
+                else {
+                    //Add output to queue if it isn't already there
+                    bool alreadyInQueue = false;
+                    for (int k = 0; k < OutputQueue.Count; k++) {
+                        if (OutputQueue[k].customersGarments[0].customerID == i) {
+                            alreadyInQueue = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyInQueue) {
+                        OutputData output = new OutputData();
+                        output.customer = null;
+                        output.customersGarments = customersGarments;
+                        OutputQueue.Add(output);
+                    }
+                }
+            }
+        }
     }
 
     private void CheckContentsForOutput() {
@@ -102,12 +145,18 @@ public class Bagger : WorkStation
         //Spawn a LaundromatBag
         LaundromatBag bag = Instantiate(laundromatBagPrefab, bagSpawnPoint.position, bagSpawnPoint.rotation).GetComponent<LaundromatBag>();
         bag.contents = customersGarments;
-        bag.customerID = customer.ticketNumber;
+        if(customer == null) {
+            bag.customerID = customersGarments[0].customerID;
+        }
+        else
+            bag.customerID = customer.ticketNumber;
         bag.totalGarments = customersGarments.Count;
         bag.launderedGarments = launderedGarments;
         bag.perfectGarments = perfectGarments;
         bag.ruinedGarments = ruinedGarments;
-        
+
+        if (BagOutput != null) BagOutput();
+
         //Check if there is another bag to output in the queue
         if(OutputQueue.Count > 0) {
             OutputData output = OutputQueue[0];

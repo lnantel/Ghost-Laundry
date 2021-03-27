@@ -111,11 +111,13 @@ public class CustomerManager : MonoBehaviour
 
     private void Update() {
         customerSpawningTimer += TimeManager.instance.deltaTime;
-        if (customerSpawningTimer >= CustomerSpawnDelay)
-            SpawnCustomer();
+        if (customerSpawningTimer >= CustomerSpawnDelay) {
+            if(TimeManager.instance.CurrentDay != 0)
+                SpawnCustomer();
+        }
 
         //If any counter spot is unclaimed, assign it to the first customer in the queue
-        for(int i = 0; i < CounterSpots.Length; i++) {
+        for (int i = 0; i < CounterSpots.Length; i++) {
             if (!CounterSpots[i].Claimed) {
                 Customer customer = GetFirstCustomerInQueue();
                 if(customer != null && SpotAssigned != null) {
@@ -164,6 +166,6 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void OnStartOfDay(int day) {
-        SpawnCustomer();
+        if(day != 0) SpawnCustomer();
     }
 }
