@@ -171,11 +171,12 @@ public class GameManager : MonoBehaviour {
         if (ShowHUD != null) ShowHUD();
         if (HideSettings != null) HideSettings();
         if (ResumeGame != null) ResumeGame();
-        if (FadeIn != null) FadeIn();
-
-        HideCursor();
 
         if(TimeManager.instance.CurrentDay != 0) {
+            HideCursor();
+
+            if (FadeIn != null) FadeIn();
+
             yield return new WaitForSecondsRealtime(1.0f);
 
             AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
@@ -367,12 +368,12 @@ public class GameManager : MonoBehaviour {
         HideCursor();
     }
 
-    private void ShowCursor() {
+    public void ShowCursor() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    private void HideCursor() {
+    public void HideCursor() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

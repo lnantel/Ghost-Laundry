@@ -13,7 +13,7 @@ public class PickUpCounter : MonoBehaviour
             bag.ReadyForPickUp = true;
             bag.GetComponent<LaundromatSpriteSort>().CanBePlacedOnThings = false;
             collision.enabled = false;
-            BagReadyForPickUp(bag);
+            if(BagReadyForPickUp != null) BagReadyForPickUp(bag);
         }
     }
 }

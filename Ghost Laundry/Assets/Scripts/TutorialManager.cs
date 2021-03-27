@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Fungus;
 
 public class TutorialManager : MonoBehaviour
 {
-    public Flowchart[] flowcharts;
-
-    public Canvas dialogCanvas;
+    public Canvas skipCanvas;
 
     public Transform playerSpawnPoint;
     public Transform firstBasketSpawn;
@@ -17,16 +14,18 @@ public class TutorialManager : MonoBehaviour
     public int tutorialStep;
     public int tutorialSubStep;
 
+    public List<List<Garment>> tutorialCustomers;
+
     void Start()
     {
         tutorialStep = 1;
         tutorialSubStep = 1;
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
+        tutorialCustomers = new List<List<Garment>>();
     }
 
     private void OnEnable() {
         WashingMachineDoor.GarmentGrabbed += OnRuinedGarmentGrabbed;
-        TimeManager.StartOfDay += StartTutorial;
         BaggerAnimator.PlayerNearby += OnPlayerNearBagger;
         Bagger.BasketInput += OnBaggerInput;
         Bagger.BagOutput += OnBagOutput;
@@ -34,7 +33,6 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDisable() {
         WashingMachineDoor.GarmentGrabbed -= OnRuinedGarmentGrabbed;
-        TimeManager.StartOfDay -= StartTutorial;
         BaggerAnimator.PlayerNearby -= OnPlayerNearBagger;
         Bagger.BasketInput -= OnBaggerInput;
         Bagger.BagOutput -= OnBagOutput;
@@ -145,17 +143,34 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void StartTutorial(int day) {
-        if(day == 0) {
-            //TODO: Disable literally everything
+    public void StartTutorial() {
+        GameManager.instance.HideCursor();
+        skipCanvas.gameObject.SetActive(false);
+        StartCoroutine(StartTutorialCoroutine());
+    }
 
-            DetergentManager.instance.CurrentAmount = 2;
+    private IEnumerator StartTutorialCoroutine() {
+        if (GameManager.FadeIn != null) GameManager.FadeIn();
 
-            //Start the first dialog
-            PlayerController.instance.transform.position = playerSpawnPoint.position;
-            tutorialStarted = true;
-            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        //TODO: Disable literally everything
+
+        DetergentManager.instance.CurrentAmount = 2;
+
+        PlayerController.instance.transform.position = playerSpawnPoint.position;
+        tutorialStarted = true;
+
+        //Start the first dialog
+        yield return new WaitForSecondsRealtime(1.0f);
+        TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+    }
+
+    private void CreateTutorialCustomer(Basket basket) {
+        List<Garment> garments = new List<Garment>();
+        for (int i = 0; i < basket.contents.Count; i++) {
+            basket.contents[i].customerID = tutorialCustomers.Count;
+            garments.Add(basket.contents[i]);
         }
+        tutorialCustomers.Add(garments);
     }
 
     private void SpawnFirstBasket() {
@@ -169,6 +184,8 @@ public class TutorialManager : MonoBehaviour
         basket.AddGarment(new GarmentShirt(cotton, GarmentColor.White));
         basket.AddGarment(new GarmentTop(cotton, GarmentColor.White));
         basket.AddGarment(new GarmentPants(cotton, GarmentColor.Salmon));
+
+        CreateTutorialCustomer(basket);
 
         LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
@@ -186,6 +203,8 @@ public class TutorialManager : MonoBehaviour
         basket.AddGarment(new GarmentShirt(cotton, GarmentColor.Red));
         basket.AddGarment(new GarmentTop(cotton, GarmentColor.White));
         basket.AddGarment(new GarmentTop(cotton, GarmentColor.Salmon));
+
+        CreateTutorialCustomer(basket);
 
         LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
@@ -274,7 +293,10 @@ public class TutorialManager : MonoBehaviour
             //Enable start button
         }
 
-        if(washingMachine.state == WashingMachineState.Running) {
+        //TODO: Auto-complete the wash cycle
+        washingMachine.SetAutoCompleteFlag();
+
+        if (washingMachine.state == WashingMachineState.Running) {
             tutorialSubStep = 5;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
@@ -283,8 +305,7 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator step3ECR;
 
     private void Step3E() {
-        //TODO: Auto-complete the wash cycle
-        
+
         //Wait for player to take out ruined garment
     }
 
@@ -399,6 +420,7 @@ public class TutorialManager : MonoBehaviour
             whiteBasketSpawned = true;
         }
         //Then, detect when the clothes in the basket have been washed
+        washingMachine.SetAutoCompleteFlag();
         bool allGarmentsWashed = true;
         for(int i = 0; i < garmentsToWash.Count; i++) {
             if (!garmentsToWash[i].Clean) allGarmentsWashed = false;
@@ -425,9 +447,10 @@ public class TutorialManager : MonoBehaviour
 
     private void Step6A() {
         //TODO: Activate start button when dryer is full and door is closed
+        //TODO: Auto-complete the dryer cycle
+        dryer.SetAutoCompleteFlag();
         //Detect when the dryer is running
-        if(dryer.state == DryerState.Running) {
-            //TODO: Auto-complete the dryer cycle
+        if (dryer.state == DryerState.Running) {
             //Then, trigger step 6B
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -479,6 +502,17 @@ public class TutorialManager : MonoBehaviour
 
     private void Step7C() {
         //TODO: Reset to the start of Step 7
+        for(int i = 0; i < garmentsToWash.Count; i++) {
+            garmentsToWash[i].Burned = false;
+            garmentsToWash[i].Pressed = false;
+        }
+
+        LaundryGarment[] laundryGarments = ironingBoard.GetComponentsInChildren<LaundryGarment>();
+        for(int i = 0; i < laundryGarments.Length; i++) {
+            laundryGarments[i].UpdateAppearance();
+        }
+
+        tutorialSubStep = 1;
     }
 
     private void Step8A() {
@@ -533,19 +567,21 @@ public class TutorialManager : MonoBehaviour
     private void OnBagOutput() {
         if (tutorialStep == 9 && tutorialSubStep == 3) {
             tutorialStep = 10;
-            tutorialSubStep = 1;
+            tutorialSubStep = 0;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
+    public TutorialBoss tutorialBoss;
+
     private void Step10() {
         //Free practice
         //Enable everything, make baskets appear at the counter whenever a bag is produced
-        //Spawn the Boss and make him interactable
-        //On interaction, start day 1
+        //Spawn the Boss
+        tutorialBoss.gameObject.SetActive(true);
     }
 
-    private void OnReady() {
+    public void OnReady() {
         TimeManager.instance.EndDay();
     }
 }
