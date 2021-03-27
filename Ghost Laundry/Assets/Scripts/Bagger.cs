@@ -5,6 +5,7 @@ using System;
 
 public class Bagger : WorkStation
 {
+    public static Action BasketInput;
     public static Action BagOutput;
 
     public Transform bagSpawnPoint;
@@ -37,6 +38,7 @@ public class Bagger : WorkStation
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
         }
+        if (BasketInput != null) BasketInput();
         CheckContentsForOutput();
         return true;
     }

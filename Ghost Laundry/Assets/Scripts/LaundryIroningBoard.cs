@@ -13,7 +13,6 @@ public class LaundryIroningBoard : LaundryObject
     public Sprite pressedGarmentSprite;
     public Sprite ruinedGarmentSprite;
 
-    public Garment garmentOnBoard;
     private float pressingProgress;
 
     public float burnTime;
@@ -26,12 +25,18 @@ public class LaundryIroningBoard : LaundryObject
     public float minIronSpeed;
     private float lastIronPos;
 
+    private IroningBoard ironingBoard;
+
     private void OnEnable() {
         WorkStation.LaundryGarmentReleased += LaundryGarmentReleased;
     }
 
     private void OnDisable() {
         WorkStation.LaundryGarmentReleased -= LaundryGarmentReleased;
+    }
+
+    private void Start() {
+        ironingBoard = GetComponentInParent<IroningBoard>();
     }
 
     //If the garment is being pressed, returns true; if it is being burned, returns false
@@ -41,20 +46,20 @@ public class LaundryIroningBoard : LaundryObject
         float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
         Debug.Log("Iron speed: " + ironSpeed);
 
-        if(garmentOnBoard.fabric.pressingRestrictions != PressingRestrictions.NoIroning && ironSpeed > minIronSpeed && pressingProgress < 1.0f && !garmentOnBoard.Pressed && !(garmentOnBoard.Burned || garmentOnBoard.Melted) && garmentOnBoard.Clean && garmentOnBoard.Dry) {
+        if(ironingBoard.garmentOnBoard.fabric.pressingRestrictions != PressingRestrictions.NoIroning && ironSpeed > minIronSpeed && pressingProgress < 1.0f && !ironingBoard.garmentOnBoard.Pressed && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted) && ironingBoard.garmentOnBoard.Clean && ironingBoard.garmentOnBoard.Dry) {
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
-            pressingProgress += Time.fixedDeltaTime / garmentOnBoard.fabric.ironingTime;
+            pressingProgress += Time.fixedDeltaTime / ironingBoard.garmentOnBoard.fabric.ironingTime;
             Debug.Log("Ironing progress: " + pressingProgress);
         }
-        else if (graceTimer < gracePeriod && !(garmentOnBoard.Burned || garmentOnBoard.Melted)) {
+        else if (graceTimer < gracePeriod && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted)) {
             //Grace period
             steam = SteamState.Off;
             graceTimer += Time.fixedDeltaTime;
             Debug.Log("Grace");
         }
-        else if(!(garmentOnBoard.Burned || garmentOnBoard.Melted) && garmentOnBoard.Dry) {
+        else if(!(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted) && ironingBoard.garmentOnBoard.Dry) {
             //Burn
             steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
@@ -62,19 +67,19 @@ public class LaundryIroningBoard : LaundryObject
         }
 
         //If the garment was steamed long enough, it becomes pressed
-        if (pressingProgress >= 1.0f && !garmentOnBoard.Pressed) {
+        if (pressingProgress >= 1.0f && !ironingBoard.garmentOnBoard.Pressed) {
             AudioManager.instance.PlaySound(Sounds.ShiningGarment);
-            garmentOnBoard.Pressed = true;
+            ironingBoard.garmentOnBoard.Pressed = true;
             garmentSpriteRenderer.sprite = pressedGarmentSprite;
             Debug.Log("Ironing done!");
         }
 
         //If the garment was burned too much, it becomes ruined
-        if (burnTimer > burnTime && !(garmentOnBoard.Burned || garmentOnBoard.Melted)) {
-            if (garmentOnBoard.fabric.name.Equals("Synthetic"))
-                garmentOnBoard.Melted = true;
+        if (burnTimer > burnTime && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted)) {
+            if (ironingBoard.garmentOnBoard.fabric.name.Equals("Synthetic"))
+                ironingBoard.garmentOnBoard.Melted = true;
             else
-                garmentOnBoard.Burned = true;
+                ironingBoard.garmentOnBoard.Burned = true;
             garmentSpriteRenderer.sprite = ruinedGarmentSprite;
             Debug.Log("Garment ruined!");
         }
@@ -106,7 +111,7 @@ public class LaundryIroningBoard : LaundryObject
     }
 
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {
-        if (garmentOnBoard == null && boardTriggerCollider.bounds.Contains(laundryGarment.transform.position)) {
+        if (ironingBoard.garmentOnBoard == null && boardTriggerCollider.bounds.Contains(laundryGarment.transform.position)) {
 
             //Unfold garment if folded
             //If pair of socks, separate them, then spawn the extra sock as a LaundryGarment
@@ -117,13 +122,13 @@ public class LaundryIroningBoard : LaundryObject
             }
             laundryGarment.garment.currentFoldingStep = 0;
 
-            garmentOnBoard = laundryGarment.garment;
+            ironingBoard.garmentOnBoard = laundryGarment.garment;
             AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
             Destroy(laundryGarment.gameObject);
             garmentSpriteRenderer.enabled = true;
-            if (garmentOnBoard.Ruined)
+            if (ironingBoard.garmentOnBoard.Ruined)
                 garmentSpriteRenderer.sprite = ruinedGarmentSprite;
-            else if (garmentOnBoard.Pressed)
+            else if (ironingBoard.garmentOnBoard.Pressed)
                 garmentSpriteRenderer.sprite = pressedGarmentSprite;
             else
                 garmentSpriteRenderer.sprite = unpressedGarmentSprite;
@@ -134,9 +139,9 @@ public class LaundryIroningBoard : LaundryObject
     }
 
     public override void OnGrab() {
-        if (garmentOnBoard != null) {
-            if(GarmentGrabbed != null) GarmentGrabbed(garmentOnBoard);
-            garmentOnBoard = null;
+        if (ironingBoard.garmentOnBoard != null) {
+            if(GarmentGrabbed != null) GarmentGrabbed(ironingBoard.garmentOnBoard);
+            ironingBoard.garmentOnBoard = null;
             garmentSpriteRenderer.enabled = false;
         }
     }

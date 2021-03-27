@@ -299,7 +299,12 @@ public class GameManager : MonoBehaviour {
 
     public void LaunchGame() {
         if(stateTransition == null) {
-            stateTransition = GoToTransition();
+            if(TimeManager.instance.CurrentDay != 0) {
+                stateTransition = GoToTransition();
+            }
+            else {
+                stateTransition = GoToGame();
+            }
             StartCoroutine(stateTransition);
         }
     }
@@ -352,12 +357,12 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void OnDialogStart() {
+    public void OnDialogStart() {
         if(ShowDialog != null) ShowDialog();
         ShowCursor();
     }
     
-    private void OnDialogEnd(int i) {
+    public void OnDialogEnd(int i) {
         if (HideDialog != null) HideDialog();
         HideCursor();
     }

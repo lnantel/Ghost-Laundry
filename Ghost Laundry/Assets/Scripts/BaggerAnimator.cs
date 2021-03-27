@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BaggerAnimator : MonoBehaviour
 {
+    public static Action PlayerNearby;
+
     public Sprite Open;
     public Sprite Closed;
 
@@ -17,6 +20,7 @@ public class BaggerAnimator : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
             spriteRenderer.sprite = Open;
+            if (PlayerNearby != null) PlayerNearby();
             AudioManager.instance.PlaySound(Sounds.OpenEmbDoor,0.4f);
         }
     }

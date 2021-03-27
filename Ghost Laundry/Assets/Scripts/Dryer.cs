@@ -68,7 +68,7 @@ public class Dryer : WorkStation
          DryerDoneCoroutine = null;
         }
 
-    private float CurrentLoad() {
+    public float CurrentLoad() {
         float value = 0.0f;
         foreach (Garment garment in contents)
             value += garment.size;

@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
         carriedObject = null;
     }
 
-    private void PickUp() {
+    public void PickUp() {
         if(state.CurrentRoomIndex == 0) {
             GameObject targetedCarryable = carryableDetector.GetNearestCarryable();
             if (targetedCarryable != null) {

@@ -10,7 +10,9 @@ public class TutorialManager : MonoBehaviour
     public Canvas dialogCanvas;
 
     public Transform playerSpawnPoint;
+    public Transform firstBasketSpawn;
 
+    private GameObject laundromatBasketPrefab;
     private bool tutorialStarted;
     public int tutorialStep;
     public int tutorialSubStep;
@@ -19,16 +21,23 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialStep = 1;
         tutorialSubStep = 1;
+        laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
     }
 
     private void OnEnable() {
         WashingMachineDoor.GarmentGrabbed += OnRuinedGarmentGrabbed;
         TimeManager.StartOfDay += StartTutorial;
+        BaggerAnimator.PlayerNearby += OnPlayerNearBagger;
+        Bagger.BasketInput += OnBaggerInput;
+        Bagger.BagOutput += OnBagOutput;
     }
 
     private void OnDisable() {
         WashingMachineDoor.GarmentGrabbed -= OnRuinedGarmentGrabbed;
         TimeManager.StartOfDay -= StartTutorial;
+        BaggerAnimator.PlayerNearby -= OnPlayerNearBagger;
+        Bagger.BasketInput -= OnBaggerInput;
+        Bagger.BagOutput -= OnBagOutput;
     }
 
     void Update()
@@ -140,28 +149,46 @@ public class TutorialManager : MonoBehaviour
         if(day == 0) {
             //TODO: Disable literally everything
 
+            DetergentManager.instance.CurrentAmount = 2;
+
             //Start the first dialog
             PlayerController.instance.transform.position = playerSpawnPoint.position;
             tutorialStarted = true;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
-    private void StartDialog(int step, int substep = 0) {
-        flowcharts[step - 1].gameObject.SetActive(true);
-        dialogCanvas.gameObject.SetActive(true);
-        if (GameManager.ShowDialog != null) GameManager.ShowDialog();
+    private void SpawnFirstBasket() {
+        Basket basket = new Basket();
+        Fabric cotton = new Fabric(FabricType.Cotton);
+
+        basket.AddGarment(new GarmentPants(cotton, GarmentColor.Sky));
+        basket.AddGarment(new GarmentUnderwear(cotton, GarmentColor.White));
+        basket.AddGarment(new GarmentSock(cotton, GarmentColor.Red));
+        basket.AddGarment(new GarmentSock(cotton, GarmentColor.Red));
+        basket.AddGarment(new GarmentShirt(cotton, GarmentColor.White));
+        basket.AddGarment(new GarmentTop(cotton, GarmentColor.White));
+        basket.AddGarment(new GarmentPants(cotton, GarmentColor.Salmon));
+
+        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
+        laundromatBasket.basket = basket;
     }
 
-    private void OnDialogEnd(int step, int substep = 0) {
-        flowcharts[step - 1].gameObject.SetActive(false);
-        StartCoroutine(DisableDialogCanvas());
-        if (GameManager.HideDialog != null) GameManager.HideDialog();
-    }
-    
-    private IEnumerator DisableDialogCanvas() {
-        yield return null;
-        dialogCanvas.gameObject.SetActive(false);
+    private void SpawnSecondBasket() {
+        Basket basket = new Basket();
+        Fabric cotton = new Fabric(FabricType.Cotton);
+
+        basket.AddGarment(new GarmentPants(cotton, GarmentColor.White));
+        basket.AddGarment(new GarmentUnderwear(cotton, GarmentColor.Mint));
+        basket.AddGarment(new GarmentSock(cotton, GarmentColor.Golden));
+        basket.AddGarment(new GarmentUnderwear(cotton, GarmentColor.White));
+        basket.AddGarment(new GarmentSock(cotton, GarmentColor.Golden));
+        basket.AddGarment(new GarmentShirt(cotton, GarmentColor.Red));
+        basket.AddGarment(new GarmentTop(cotton, GarmentColor.White));
+        basket.AddGarment(new GarmentTop(cotton, GarmentColor.Salmon));
+
+        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
+        laundromatBasket.basket = basket;
     }
 
     private bool playerHasMoved;
@@ -177,7 +204,7 @@ public class TutorialManager : MonoBehaviour
 
         if(timeSinceMoved > 3.0f) {
             tutorialSubStep = 2;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
@@ -185,23 +212,29 @@ public class TutorialManager : MonoBehaviour
         //TODO: Enable dash
 
         //When the player goes through the counter into the laundromat, trigger step 2
-        if(PlayerStateManager.instance.CurrentRoomIndex == 0) {
+        if(PlayerStateManager.instance.CurrentRoomIndex == 0 && !PlayerStateManager.instance.Dashing) {
             tutorialStep = 2;
             tutorialSubStep = 0;
-            StartDialog(tutorialStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep);
         }
     }
 
     public WashingMachine washingMachine;
+    private bool firstBasketSpawned;
     private void Step2() {
         //Create and/or enable the basket
+        if (!firstBasketSpawned) {
+            SpawnFirstBasket();
+            firstBasketSpawned = true;
+        }
+
         //Allow placing it in the washing machine with either space or E, but don't enable the Laundry View just yet
 
         //When the player places the basket into the washing machine, trigger step 3
         if (washingMachine.ContainsBasket()) {
             tutorialStep = 3;
             tutorialSubStep = 1;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
@@ -218,21 +251,21 @@ public class TutorialManager : MonoBehaviour
 
         if(timeSinceLaundryViewOpened > 1.0f) {
             tutorialSubStep = 2;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
     private void Step3B() {
         if(washingMachine.state == WashingMachineState.DoorOpen) {
             tutorialSubStep = 3;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
     private void Step3C() {
         if(washingMachine.state == WashingMachineState.DoorClosed && (int)washingMachine.CurrentLoad() == washingMachine.Capacity) {
             tutorialSubStep = 4;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
@@ -243,7 +276,7 @@ public class TutorialManager : MonoBehaviour
 
         if(washingMachine.state == WashingMachineState.Running) {
             tutorialSubStep = 5;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
@@ -253,7 +286,6 @@ public class TutorialManager : MonoBehaviour
         //TODO: Auto-complete the wash cycle
         
         //Wait for player to take out ruined garment
-
     }
 
     private void OnRuinedGarmentGrabbed(Garment garment) {
@@ -268,101 +300,229 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator Step3ECoroutine() {
         yield return new WaitForLaundromatSeconds(1.0f);
         tutorialSubStep = 6;
-        StartDialog(tutorialStep, tutorialSubStep);
+        TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         step3ECR = null;
     }
 
     public TableWorkstation table;
 
+    private bool secondBasketSpawned;
     private void Step3F() {
         //Spawn a new basket
-        //Destroy the old one, as well as all its current and former contents
-        //Enable putting baskets into the Table
+        if (!secondBasketSpawned) {
+            SpawnSecondBasket();
+            
+            //Destroy the old one, as well as all its current and former contents
+            washingMachine.OutputBasket();
+            while (true) {
+                Garment g = washingMachine.RemoveTopGarment();
+                if (g == null) break;
+            }
+
+            LaundryGarment[] laundryGarments = washingMachine.GetComponentsInChildren<LaundryGarment>();
+            for (int i = 0; i < laundryGarments.Length; i++) {
+                Destroy(laundryGarments[i].gameObject);
+            }
+
+            secondBasketSpawned = true;
+        }
+
+        //TODO: Enable putting baskets into the Table
 
         //When the new basket is input to the table, move on to step 4
         if (table.basketSlots[0].laundryBasket.basket.contents.Count > 0) {
             tutorialStep = 4;
             tutorialSubStep = 1;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
+    int whiteBasketIndex = -1;
+    int coloredBasketIndex = -1;
+
     private void Step4A() {
+        //TODO: Disable folding clothes
         //Detect when one basket of the table contains X colored garments and another contains Y white garments
+
+        for(int i = 0; i < table.basketSlots.Length; i++) {
+            if(table.basketSlots[i].laundryBasket.basket.contents.Count == 3) {
+                whiteBasketIndex = i;
+                for (int j = 0; j < table.basketSlots[i].laundryBasket.basket.contents.Count; j++) {
+                    if (table.basketSlots[i].laundryBasket.basket.contents[j].Colored()) whiteBasketIndex = -1;
+                }
+            }
+
+            if(table.basketSlots[i].laundryBasket.basket.contents.Count == 5) {
+                coloredBasketIndex = i;
+                for (int j = 0; j < table.basketSlots[i].laundryBasket.basket.contents.Count; j++) {
+                    if (!table.basketSlots[i].laundryBasket.basket.contents[j].Colored()) coloredBasketIndex = -1;
+                }
+            }
+        }
+
         //Then move on to step 4 B
+        if (whiteBasketIndex != -1 && coloredBasketIndex != -1) {
+            tutorialSubStep = 2;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
     }
 
+    Basket whiteBasket;
+    Basket coloredBasket;
+
+    bool whiteBasketSpawned = false;
+
+    List<Garment> garmentsToWash = new List<Garment>();
+
     private void Step4B() {
-        //Detect when one basket is taken out of the table
-        //Then, lock the table
+        if (!whiteBasketSpawned) {
+            //Close table view and give basket of white clothing to player
+            LaundryTaskController.instance.BackOut();
+
+            whiteBasket = table.basketSlots[whiteBasketIndex].laundryBasket.basket;
+            coloredBasket = table.basketSlots[coloredBasketIndex].laundryBasket.basket;
+
+            LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
+            laundromatBasket.basket = new Basket();
+            laundromatBasket.basket.tag = whiteBasket.tag;
+
+            for (int i = 0; i < whiteBasket.contents.Count; i++) {
+                laundromatBasket.basket.AddGarment(whiteBasket.contents[i]);
+                garmentsToWash.Add(whiteBasket.contents[i]);
+            }
+
+            PlayerController.instance.Take(laundromatBasket.gameObject);
+
+            table.basketSlots[whiteBasketIndex].laundryBasket.basket.RemoveAll();
+            if (WorkStation.BasketSlotsChanged != null) WorkStation.BasketSlotsChanged();
+
+            whiteBasketSpawned = true;
+        }
         //Then, detect when the clothes in the basket have been washed
+        bool allGarmentsWashed = true;
+        for(int i = 0; i < garmentsToWash.Count; i++) {
+            if (!garmentsToWash[i].Clean) allGarmentsWashed = false;
+        }
+
         //Then, trigger step 5
+        if (allGarmentsWashed) {
+            tutorialStep = 5;
+            tutorialSubStep = 0;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
     }
 
     public Dryer dryer;
     private void Step5() {
-        //Enable the dryer & Detect when the basket is input to the dryer
+        //TODO: Enable the dryer 
+        //Detect when the basket is input to the dryer
         if (dryer.ContainsBasket()) {
             tutorialStep = 6;
             tutorialSubStep = 1;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
     private void Step6A() {
+        //TODO: Activate start button when dryer is full and door is closed
         //Detect when the dryer is running
-        //Auto-complete the dryer cycle
-        //Then, trigger step 6B
+        if(dryer.state == DryerState.Running) {
+            //TODO: Auto-complete the dryer cycle
+            //Then, trigger step 6B
+            tutorialSubStep = 2;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
     }
 
     public IroningBoard ironingBoard;
     private void Step6B() {
-        //Enable the ironing board
-        //When all clothes are removed from the dryer, disable it
+        //TODO: Enable the ironing board
+        //TODO: When all clothes are removed from the dryer, disable it
         //When the basket is input to the ironing board, trigger step 7
         if (ironingBoard.ContainsBasket()) {
             tutorialStep = 7;
             tutorialSubStep = 1;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
     private void Step7A() {
         //Wait for the player to iron all the clothes and remove them from the board
-        //TODO: Cache the laundryIroningBoard ref
         //TODO: Check that all garments are ironed or burned
-        if(ironingBoard.GetComponentInChildren<LaundryIroningBoard>().garmentOnBoard == null) {
+        bool allGarmentsPressedOrBurned = true;
 
+        for(int i = 0; i < garmentsToWash.Count; i++) {
+            if (!(garmentsToWash[i].Pressed || garmentsToWash[i].Burned)) allGarmentsPressedOrBurned = false;
+        }
+
+        if(allGarmentsPressedOrBurned && ironingBoard.garmentOnBoard == null) {
+            bool allBurned = true;
+            for (int i = 0; i < garmentsToWash.Count; i++) {
+                if (!garmentsToWash[i].Burned) allBurned = false;
+            }
+            if (allBurned)
+                tutorialSubStep = 3;
+            else
+                tutorialSubStep = 2;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
     private void Step7B() {
-
         //If the table contains all the garments, proceed to step 8
+        if (table.basketSlots[0].laundryBasket.basket.contents.Count == garmentsToWash.Count) {
+            tutorialStep = 8;
+            tutorialSubStep = 1;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
     }
 
     private void Step7C() {
-        //Reset to the start of Step 7
+        //TODO: Reset to the start of Step 7
     }
 
     private void Step8A() {
         //If all the clean garments are folded, proceed to 8B
+        bool allFolded = true;
+        for (int i = 0; i < garmentsToWash.Count; i++) {
+            if (!garmentsToWash[i].Folded) allFolded = false;
+        }
+
+        if (allFolded) {
+            tutorialSubStep = 2;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
     }
 
+    public Bagger bagger;
     private void Step8B() {
         //Wait for the player to approach the bagger with the basket
+    }
 
+    private void OnPlayerNearBagger() {
+        if (tutorialStep == 8 && tutorialSubStep == 2 && PlayerStateManager.instance.Carrying) {
+            tutorialStep = 9;
+            tutorialSubStep = 1;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
     }
 
     private void Step9A() {
         //Wait for the player to dump the basket into the bagger
     }
 
+    private void OnBaggerInput() {
+        if(tutorialStep == 9 && tutorialSubStep == 1) {
+            tutorialSubStep = 2;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
+    }
+
     private void Step9B() {
         //Wait for the player to buy detergent, then trigger step 9C
         if(DetergentManager.instance.CurrentAmount > 0) {
             tutorialSubStep = 3;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
@@ -374,7 +534,7 @@ public class TutorialManager : MonoBehaviour
         if (tutorialStep == 9 && tutorialSubStep == 3) {
             tutorialStep = 10;
             tutorialSubStep = 1;
-            StartDialog(tutorialStep, tutorialSubStep);
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 

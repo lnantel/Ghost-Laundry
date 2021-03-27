@@ -218,12 +218,12 @@ public class LaundryTaskController : MonoBehaviour
         grabbedObject = null;
     }
 
-    private void BackOut() {
+    public void BackOut() {
         if (grabbedObject != null) Release();
-        if (exitedTask != null)
-            exitedTask();
         activeWorkStation = null;
         gameObject.SetActive(false);
+        if (exitedTask != null)
+            exitedTask();
     }
 
     private void GrabGarmentFromContainer(Garment garment) {

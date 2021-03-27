@@ -59,9 +59,9 @@ public class WorkStation : Interactable
     protected virtual void OnTaskExit() {
         LaundryTaskController.exitedTask -= OnTaskExit;
         LaundryGarment.Released -= OnLaundryGarmentReleased;
-        TaskView.instance.Minimize(transform.position);
-        laundryTaskArea.SetActive(false);
+
         PlayerController.instance.enabled = true;
+        TaskView.instance.Minimize(transform.position, laundryTaskArea);
     }
 
     public virtual Basket OutputBasket() {
