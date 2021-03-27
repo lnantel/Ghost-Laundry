@@ -9,7 +9,7 @@ public class TaskView : MonoBehaviour
     public float popUpTime;
     public float size;
 
-    private bool open;
+    public bool open;
     private float popUpFactor;
     private float timer;
     private Vector3 targetPosition;

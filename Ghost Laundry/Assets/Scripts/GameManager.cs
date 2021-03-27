@@ -175,13 +175,16 @@ public class GameManager : MonoBehaviour {
 
         HideCursor();
 
-        yield return new WaitForSecondsRealtime(1.0f);
+        if(TimeManager.instance.CurrentDay != 0) {
+            yield return new WaitForSecondsRealtime(1.0f);
 
-        AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
+            AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
 
-        yield return new WaitForSecondsRealtime(1.0f);
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
 
         TimeManager.instance.StartDay();
+
         state = GameStates.Laundromat;
 
         stateTransition = null;
@@ -195,25 +198,32 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator EndOfDay() {
-        //Announce End of Day
-        AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
-        state = GameStates.EndOfDay;
+        if(TimeManager.instance.CurrentDay != 0) {
+            //Announce End of Day
+            AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
+            state = GameStates.EndOfDay;
+        }
 
         //Save progress
         TimeManager.instance.NextDay();
-        if (MoneyManager.instance.CurrentAmount >= 0) {
+        if (TimeManager.instance.CurrentDay == 1 || MoneyManager.instance.CurrentAmount >= 0) {
             SaveManager.Save();
         }
 
-        //Wait a couple seconds
-        yield return new WaitForSecondsRealtime(2.0f);
+        if(TimeManager.instance.CurrentDay > 1) {
+            //Wait a couple seconds
+            yield return new WaitForSecondsRealtime(2.0f);
 
-        //Show the Evaluation screen
-        state = GameStates.Evaluation;
-        if(ShowEvaluation != null) ShowEvaluation();
-        ShowCursor();
-
-        stateTransition = null;
+            //Show the Evaluation screen
+            state = GameStates.Evaluation;
+            if (ShowEvaluation != null) ShowEvaluation();
+            ShowCursor();
+            stateTransition = null;
+        }
+        else {
+            stateTransition = GoToTransition();
+            StartCoroutine(stateTransition);
+        }
     }
 
     private IEnumerator GoToTransition() {

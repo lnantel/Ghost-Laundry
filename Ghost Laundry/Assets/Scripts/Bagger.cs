@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bagger : WorkStation
 {
+    public static Action BagOutput;
+
     public Transform bagSpawnPoint;
 
     private GameObject laundromatBagPrefab;
@@ -107,7 +110,9 @@ public class Bagger : WorkStation
         bag.launderedGarments = launderedGarments;
         bag.perfectGarments = perfectGarments;
         bag.ruinedGarments = ruinedGarments;
-        
+
+        if (BagOutput != null) BagOutput();
+
         //Check if there is another bag to output in the queue
         if(OutputQueue.Count > 0) {
             OutputData output = OutputQueue[0];
