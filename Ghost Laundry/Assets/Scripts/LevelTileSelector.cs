@@ -34,8 +34,8 @@ public class LevelTileSelector : MonoBehaviour
 
         if (selectable) {
             TXT_Day.text = "Day " + index;
-            TXT_Money.text = (SaveManager.Data.Days[index - 1].Money / 100.0f).ToString("N2");
-            TXT_Rep.text = (SaveManager.Data.Days[index - 1].Reputation / 200.0f).ToString("N0");
+            TXT_Money.text = (SaveManager.Data.Days[index].Money / 100.0f).ToString("N2");
+            TXT_Rep.text = (SaveManager.Data.Days[index].Reputation / 200.0f).ToString("N0");
 
             //Event Icons
             int[] characters = EventManager.instance.CharactersWithEventsOnDay(index);

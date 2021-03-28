@@ -6,6 +6,8 @@ public class TutorialManager : MonoBehaviour
 {
     public Canvas skipCanvas;
 
+    public TutorialArrow arrow;
+
     public Transform playerSpawnPoint;
     public Transform firstBasketSpawn;
 
@@ -152,7 +154,7 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator StartTutorialCoroutine() {
         if (GameManager.FadeIn != null) GameManager.FadeIn();
 
-        //TODO: Disable literally everything
+        //Disable literally everything
         //Washing Machine
         washingMachine.Lock();
         washingMachine.DoorLocked = true;
@@ -199,7 +201,7 @@ public class TutorialManager : MonoBehaviour
         tutorialCustomers.Add(garments);
     }
 
-    private void SpawnFirstBasket() {
+    private LaundromatBasket SpawnFirstBasket() {
         Basket basket = new Basket();
         Fabric cotton = new Fabric(FabricType.Cotton);
 
@@ -215,9 +217,10 @@ public class TutorialManager : MonoBehaviour
 
         LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
+        return laundromatBasket;
     }
 
-    private void SpawnSecondBasket() {
+    private LaundromatBasket SpawnSecondBasket() {
         Basket basket = new Basket();
         Fabric cotton = new Fabric(FabricType.Cotton);
 
@@ -234,6 +237,17 @@ public class TutorialManager : MonoBehaviour
 
         LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
         laundromatBasket.basket = basket;
+        return laundromatBasket;
+    }
+
+    private LaundromatBasket SpawnRandomBasket() {
+        Basket basket = LaundryManager.GetRandomBasket();
+
+        CreateTutorialCustomer(basket);
+
+        LaundromatBasket laundromatBasket = Instantiate(laundromatBasketPrefab, firstBasketSpawn.position, firstBasketSpawn.rotation).GetComponent<LaundromatBasket>();
+        laundromatBasket.basket = basket;
+        return laundromatBasket;
     }
 
     private bool moveUnlocked;
@@ -270,16 +284,28 @@ public class TutorialManager : MonoBehaviour
     }
 
     public WashingMachine washingMachine;
+    private LaundromatBasket firstBasket;
     private bool firstBasketSpawned;
     private void Step2() {
         //Create and/or enable the basket
         if (!firstBasketSpawned) {
-            SpawnFirstBasket();
+            firstBasket = SpawnFirstBasket();
             firstBasketSpawned = true;
+            //Allow placing it in the washing machine with space
+            washingMachine.Unlock();
         }
 
-        //Allow placing it in the washing machine with space
-        washingMachine.Unlock();
+        if (firstBasketSpawned && !PlayerStateManager.instance.Carrying) {
+            if (firstBasket != null) {
+                arrow.SetTarget(firstBasket.transform);
+            }
+            else {
+                arrow.Deactivate();
+            }
+        }
+        else {
+            arrow.SetTarget(washingMachine.transform);
+        }
 
         //When the player places the basket into the washing machine, trigger step 3
         if (washingMachine.ContainsBasket()) {
@@ -371,13 +397,14 @@ public class TutorialManager : MonoBehaviour
 
     public TableWorkstation table;
 
+    private LaundromatBasket secondBasket;
     private bool secondBasketSpawned;
     private void Step3F() {
         //Close washing machine, spawn a new basket
         if (step3ECR == null && !secondBasketSpawned) {
             LaundryTaskController.instance.BackOut();
 
-            SpawnSecondBasket();
+            secondBasket = SpawnSecondBasket();
             
             //Destroy the old one, as well as all its current and former contents
             washingMachine.OutputBasket();
@@ -396,6 +423,18 @@ public class TutorialManager : MonoBehaviour
             table.Unlock();
 
             secondBasketSpawned = true;
+        }
+
+        if (secondBasketSpawned && !PlayerStateManager.instance.Carrying) {
+            if(secondBasket != null) {
+                arrow.SetTarget(secondBasket.transform);
+            }
+            else {
+                arrow.Deactivate();
+            }
+        }
+        else {
+            arrow.SetTarget(table.transform);
         }
 
         //When the new basket is input to the table, move on to step 4
@@ -432,6 +471,7 @@ public class TutorialManager : MonoBehaviour
         if (whiteBasketIndex != -1 && coloredBasketIndex != -1) {
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            table.basketSlots[coloredBasketIndex].Lock();
         }
     }
 
@@ -469,6 +509,9 @@ public class TutorialManager : MonoBehaviour
 
             whiteBasketSpawned = true;
         }
+
+        arrow.SetTarget(washingMachine.transform);
+
         //Then, detect when the clothes in the basket have been washed
         washingMachine.SetAutoCompleteFlag();
         bool allGarmentsWashed = true;
@@ -498,6 +541,10 @@ public class TutorialManager : MonoBehaviour
             washingMachine.Lock();
             //and enable the dryer
             dryer.Unlock();
+            arrow.SetTarget(dryer.transform);
+        }
+        else {
+            arrow.SetTarget(washingMachine.transform);
         }
 
         //Detect when the basket is input to the dryer
@@ -532,6 +579,10 @@ public class TutorialManager : MonoBehaviour
             dryer.Lock();
             //Enable the ironing board
             ironingBoard.Unlock();
+            arrow.SetTarget(ironingBoard.transform);
+        }
+        else {
+            arrow.SetTarget(dryer.transform);
         }
 
         //When the basket is input to the ironing board, trigger step 7
@@ -572,6 +623,10 @@ public class TutorialManager : MonoBehaviour
             ironingBoard.Lock();
             //Enable the table
             table.Unlock();
+            arrow.SetTarget(table.transform);
+        }
+        else {
+            arrow.SetTarget(ironingBoard.transform);
         }
 
         //If the table contains all the garments, proceed to step 8
@@ -619,6 +674,10 @@ public class TutorialManager : MonoBehaviour
             table.Lock();
             //Unlock the bagger
             bagger.Unlock();
+            arrow.SetTarget(bagger.transform);
+        }
+        else {
+            arrow.SetTarget(table.transform);
         }
     }
 
@@ -632,6 +691,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Step9A() {
         //Wait for the player to dump the basket into the bagger
+        arrow.SetTarget(bagger.transform);
     }
 
     private void OnBaggerInput() {
@@ -643,11 +703,33 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    public Transform WallToShop;
+    public Transform Shop;
+
     private void Step9B() {
         //Wait for the player to buy detergent, then trigger step 9C
+        if(PlayerStateManager.instance.CurrentRoomIndex == 0) {
+            arrow.SetTarget(WallToShop);
+        }else if(PlayerStateManager.instance.CurrentRoomIndex == 2) {
+            arrow.SetTarget(Shop);
+        }
+
         if(DetergentManager.instance.CurrentAmount > 0) {
             tutorialSubStep = 3;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            arrow.Deactivate();
+            //Enable everything
+            washingMachine.Unlock();
+            washingMachine.DoorLocked = false;
+            washingMachine.StartButtonLocked = false;
+            washingMachine.DetergentSlotLocked = false;
+            washingMachine.SettingsLocked = false;
+
+            dryer.Unlock();
+            ironingBoard.Unlock();
+            table.Unlock();
+            table.FoldingLocked = false;
+            table.basketSlots[coloredBasketIndex].Unlock();
         }
     }
 
@@ -661,25 +743,20 @@ public class TutorialManager : MonoBehaviour
             tutorialSubStep = 0;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
+
+        //Make baskets appear at the counter whenever a bag is produced during Step 10
+        if (tutorialStep == 10) {
+            SpawnRandomBasket();
+        }
     }
 
     public TutorialBoss tutorialBoss;
 
     private void Step10() {
         //Free practice
-        //Enable everything, make baskets appear at the counter whenever a bag is produced
-        washingMachine.Unlock();
-        washingMachine.DoorLocked = false;
-        washingMachine.StartButtonLocked = false;
-        washingMachine.DetergentSlotLocked = false;
-        washingMachine.SettingsLocked = false;
-
-        dryer.Unlock();
-        ironingBoard.Unlock();
-        table.Unlock();
-        table.FoldingLocked = false;
 
         //Spawn the Boss
+        //Talking to him ends the tutorial
         tutorialBoss.gameObject.SetActive(true);
     }
 

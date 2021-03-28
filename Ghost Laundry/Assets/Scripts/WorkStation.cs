@@ -71,7 +71,7 @@ public class WorkStation : Interactable
             int basketIndex = 0;
             Basket basket = null;
             for(int i = 0; i < basketSlots.Length; i++) {
-                if(basketSlots[i].laundryBasket != null) {
+                if(basketSlots[i].laundryBasket != null && !basketSlots[i].Locked) {
                     basketIndex = i;
                     basket = basketSlots[i].laundryBasket.basket;
                 }
@@ -114,7 +114,7 @@ public class WorkStation : Interactable
     //Returns true if successful, false otherwise
     protected virtual bool AddBasket(LaundryBasket laundryBasket) {
         for(int i = 0; i < basketSlots.Length; i++) {
-            if (basketSlots[i].laundryBasket == null) {
+            if (basketSlots[i].laundryBasket == null && !basketSlots[i].Locked) {
                 basketSlots[i].laundryBasket = laundryBasket;
                 laundryBasket.transform.parent = laundryTaskArea.transform;
                 laundryBasket.transform.localPosition = basketSlots[i].spawnPoint;
@@ -129,7 +129,7 @@ public class WorkStation : Interactable
     //Returns true if successful, false otherwise
     protected virtual bool AddBasket(Basket basket) {
         for (int i = 0; i < basketSlots.Length; i++) {
-            if(basketSlots[i].laundryBasket == null) {
+            if(basketSlots[i].laundryBasket == null && !basketSlots[i].Locked) {
                 LaundryBasket laundryBasket = Instantiate(laundryBasketPrefab, 
                     laundryTaskArea.transform.position + basketSlots[i].spawnPoint, 
                     laundryTaskArea.transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();

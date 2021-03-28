@@ -157,7 +157,9 @@ public class Dryer : WorkStation
                 garment.fabric.dryingRestrictions == DryingRestrictions.HangDryOnly)
                 garment.Torn = true;
 
-            garment.Dry = lintTrapClean; //garments are dried if the lint trap is clean
+            if (lintTrapClean) {
+                garment.Dry = true;
+            }
         }
 
         if(contents.Count > 0)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GarmentSock : Garment {
-    private GarmentSock pairedSock;
+    public GarmentSock pairedSock;
 
     public GarmentSock(Fabric fabric, Color color, float cleanliness = 0.0f, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, cleanliness, humidity, pressed, folded, shrunk, burned, dyed, torn, melted) {
         size = 1;
@@ -171,6 +171,7 @@ public class GarmentSock : Garment {
         pairedSock = other;
         AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
         currentFoldingStep = 1;
+        other.currentFoldingStep = 1;
     }
 
     public GarmentSock SeparatePair() {
@@ -178,6 +179,7 @@ public class GarmentSock : Garment {
         pairedSock = null;
         AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
         currentFoldingStep = 0;
+        sock.currentFoldingStep = 0;
         return sock;
     }
 }

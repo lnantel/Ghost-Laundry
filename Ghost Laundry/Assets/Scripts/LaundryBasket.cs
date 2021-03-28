@@ -20,6 +20,8 @@ public class LaundryBasket : LaundryObject
     public Sprite[] tags;
     public SpriteRenderer tagSprite;
 
+    public bool Locked { get; private set; }
+
     private Animator animator;
 
     private void Start() {
@@ -46,15 +48,28 @@ public class LaundryBasket : LaundryObject
         PlacedInBasketView -= OnPlacedInBasketView;
     }
 
+    public void Lock() {
+        Locked = true;
+        if (basketView.activeSelf) {
+            DisableBasketView();
+        }
+    }
+
+    public void Unlock() {
+        Locked = false;
+    }
+
     public override void OnGrab() {
-        if (basketCollider.enabled) {
-            Garment garment = basket.RemoveTopGarment();
-            if (garment != null && TakeOutGarment != null) {
-                TakeOutGarment(garment);
-                animator.SetTrigger("BasketOutput");
+        if (!Locked) {
+            if (basketCollider.enabled) {
+                Garment garment = basket.RemoveTopGarment();
+                if (garment != null && TakeOutGarment != null) {
+                    TakeOutGarment(garment);
+                    animator.SetTrigger("BasketOutput");
+                }
+                else
+                    GrabEmpty();
             }
-            else
-                GrabEmpty();
         }
     }
 
@@ -63,41 +78,43 @@ public class LaundryBasket : LaundryObject
     }
 
     void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
-        if (basketView.activeSelf) {
-            //If BasketView is open
-            bool alreadyInBasket = laundryGarments.Contains(laundryGarment);
-            bool withinBasketView = basketView.GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position);
+        if (!Locked) {
+            if (basketView.activeSelf) {
+                //If BasketView is open
+                bool alreadyInBasket = laundryGarments.Contains(laundryGarment);
+                bool withinBasketView = basketView.GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position);
 
-            if (alreadyInBasket && withinBasketView) {
-                Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
-                rb.gravityScale = 0.0f;
-                rb.velocity = Vector3.zero;
-                AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                if (PlacedInBasketView != null) PlacedInBasketView(laundryGarment);
-            }
-            else if (!alreadyInBasket && withinBasketView) {
-                if (basket.AddGarment(laundryGarment.garment, laundryGarment.transform.position - transform.position)) {
-                    laundryGarment.transform.parent = transform;
+                if (alreadyInBasket && withinBasketView) {
                     Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
                     rb.gravityScale = 0.0f;
                     rb.velocity = Vector3.zero;
                     AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                    laundryGarments.Add(laundryGarment);
+                    if (PlacedInBasketView != null) PlacedInBasketView(laundryGarment);
                 }
-                else {
-                    BasketIsFull();
+                else if (!alreadyInBasket && withinBasketView) {
+                    if (basket.AddGarment(laundryGarment.garment, laundryGarment.transform.position - transform.position)) {
+                        laundryGarment.transform.parent = transform;
+                        Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+                        rb.gravityScale = 0.0f;
+                        rb.velocity = Vector3.zero;
+                        AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
+                        laundryGarments.Add(laundryGarment);
+                    }
+                    else {
+                        BasketIsFull();
+                    }
+                    if (PlacedInBasketView != null) PlacedInBasketView(laundryGarment);
                 }
-                if (PlacedInBasketView != null) PlacedInBasketView(laundryGarment);
+                else if (alreadyInBasket && !withinBasketView) {
+                    basket.RemoveGarment(laundryGarment.garment);
+                    laundryGarments.Remove(laundryGarment);
+                }
             }
-            else if (alreadyInBasket && !withinBasketView) {
-                basket.RemoveGarment(laundryGarment.garment);
-                laundryGarments.Remove(laundryGarment);
+            else {
+                //If BasketView is closed
+                //Wait for a frame, in case an overlapping BasketView captures the garment first
+                StartCoroutine(DelayedAddToBasket(laundryGarment));
             }
-        }
-        else {
-            //If BasketView is closed
-            //Wait for a frame, in case an overlapping BasketView captures the garment first
-            StartCoroutine(DelayedAddToBasket(laundryGarment));
         }
     }
 
@@ -148,15 +165,17 @@ public class LaundryBasket : LaundryObject
         //Show contents of the basket in a pop-up window.
         //Garments can be grabbed, inspected, and generally behave the same as they would in the laundry view.
         //Any garments inside the pop-up are inside the basket, and vice-versa.
-        
+
         //Enable BasketView. 
-        if (!basketView.activeSelf) {
-            EnableBasketView();
-        }
-        
-        //When closing: Save all new Garment positions, minimize and disable the BasketView.
-        else if (basketView.activeSelf) {
-            DisableBasketView();
+        if (!Locked) {
+            if (!basketView.activeSelf) {
+                EnableBasketView();
+            }
+
+            //When closing: Save all new Garment positions, minimize and disable the BasketView.
+            else if (basketView.activeSelf) {
+                DisableBasketView();
+            }
         }
     }
 
