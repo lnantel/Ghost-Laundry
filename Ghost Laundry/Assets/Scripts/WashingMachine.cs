@@ -18,9 +18,18 @@ public class WashingMachine : WorkStation
     [HideInInspector]
     public bool Detergent;
 
+    [HideInInspector]
+    public bool SettingsLocked;
+    [HideInInspector]
+    public bool DoorLocked;
+    [HideInInspector]
+    public bool StartButtonLocked;
+    [HideInInspector]
+    public bool DetergentSlotLocked;
+
     private List<Garment> contents;
 
-    private bool autoCompleteFlag;
+    private bool autoCompleteFlag;    
 
     [HideInInspector]
     public WashSetting washSetting;
@@ -95,30 +104,28 @@ public class WashingMachine : WorkStation
     }
 
     public void ToggleWashSetting() {
-        if(state != WashingMachineState.Running) {
+        if(state != WashingMachineState.Running && !SettingsLocked) {
             if (washSetting == WashSetting.Cold) washSetting = WashSetting.Hot;
             else if(washSetting == WashSetting.Hot) washSetting = WashSetting.Cold;
         }
     }
 
     public void ToggleDoor() {
-        if (state == WashingMachineState.DoorClosed || state == WashingMachineState.Done) {
+        if (!DoorLocked && (state == WashingMachineState.DoorClosed || state == WashingMachineState.Done)) {
             state = WashingMachineState.DoorOpen;
             DoorOpens();
         }
-        else if (state == WashingMachineState.DoorOpen) {
+        else if (!DoorLocked && (state == WashingMachineState.DoorOpen)) {
             state = WashingMachineState.DoorClosed;
             DoorCloses();
         }
     }
 
     public void StartWashCycle() {
-        if (state == WashingMachineState.DoorClosed) {
+        if (!StartButtonLocked && state == WashingMachineState.DoorClosed) {
             state = WashingMachineState.Running;
             StartCoroutine(WashCycle());
-            
         }
-
     }
 
     private IEnumerator WashCycle() {
@@ -181,6 +188,10 @@ public class WashingMachine : WorkStation
         Detergent = false;
         state = WashingMachineState.Done;
 
+    }
+
+    protected override List<Garment> GetCustomContainerGarments() {
+        return contents;
     }
 }
 

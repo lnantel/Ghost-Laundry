@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TableWorkstation : WorkStation
 {
+    [HideInInspector]
+    public bool FoldingLocked;
+
     protected override void Start() {
         areaPrefab = (GameObject)Resources.Load("TableArea");
         HasGravity = true;
@@ -20,7 +23,7 @@ public class TableWorkstation : WorkStation
     public override bool InputBasket(Basket basket) {
         //Returns true if the input basket is empty, and replaces it with 'basket'
         //If the input basket is not empty, returns false
-        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0) return false;
+        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0 && !basketSlots[0].Locked) return false;
         else {
             if (basketSlots[0].laundryBasket != null) basketSlots[0].laundryBasket.basket = basket;
             if (BasketSlotsChanged != null) BasketSlotsChanged();
@@ -32,7 +35,7 @@ public class TableWorkstation : WorkStation
         //Returns an output basket
         //Empties the corresponding basket in the TableArea but does not destroy it
         for (int i = 1; i < basketCapacity; i++) {
-            if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > 0) {
+            if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > 0 && !basketSlots[i].Locked) {
                 Basket outputBasket = new Basket();
                 outputBasket.contents = basketSlots[i].laundryBasket.basket.contents;
                 outputBasket.positions = basketSlots[i].laundryBasket.basket.positions;
@@ -45,7 +48,7 @@ public class TableWorkstation : WorkStation
         }
 
         //If no output baskets contain anything, check if the input basket does
-        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0) {
+        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0 && !basketSlots[0].Locked) {
             Basket outputBasket = new Basket();
             outputBasket.contents = basketSlots[0].laundryBasket.basket.contents;
             outputBasket.positions = basketSlots[0].laundryBasket.basket.positions;

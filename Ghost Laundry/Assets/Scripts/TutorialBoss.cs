@@ -12,7 +12,7 @@ public class TutorialBoss : Interactable
         popUpInstance.SetActive(false);
     }
 
-    public override void Interact() {
+    protected override void Interaction() {
         tutorialManager.OnReady();
     }
 }

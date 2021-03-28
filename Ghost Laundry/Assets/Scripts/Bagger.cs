@@ -32,7 +32,7 @@ public class Bagger : WorkStation
         if (TimeManager.instance.CurrentDay == 0) tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
-    public override void Interact() {
+    protected override void Interaction() {
         if(RequestCarriedBasket != null) RequestCarriedBasket();
     }
 
@@ -40,6 +40,9 @@ public class Bagger : WorkStation
         AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
+            if(garment is GarmentSock garmentSock && garment.Folded) {
+                contents.Add(garmentSock.pairedSock);
+            }
         }
         if (BasketInput != null) BasketInput();
         if (TimeManager.instance.CurrentDay == 0) TutorialCheckContentsForOutput();
@@ -90,7 +93,6 @@ public class Bagger : WorkStation
                 if(garment.customerID == customer.ticketNumber) {
                     customersGarments.Add(garment);
                     garmentCount++;
-                    if (garment is GarmentSock && ((GarmentSock)garment).currentFoldingStep == 1) garmentCount++; //paired socks count twice!
                 }
             }
             if(garmentCount != 0 && garmentCount == customer.garments.Count) {

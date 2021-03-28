@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-    protected bool locked;
+    public bool Locked { get;  protected set; }
     protected GameObject popUpPrefab;
     protected GameObject popUpInstance;
+    protected Animator popUpAnimator;
     protected bool popUpVisible;
 
     protected virtual void Start() {
         //Instantiate pop-up
         popUpPrefab = (GameObject)Resources.Load("InteractablePopUp");
         popUpInstance = Instantiate(popUpPrefab, transform.position, transform.rotation, transform);
+        popUpAnimator = popUpInstance.GetComponentInChildren<Animator>();
         popUpInstance.SetActive(false);
     }
 
@@ -26,23 +28,29 @@ public class Interactable : MonoBehaviour
         InteractableDetector.NoInteractablesInRange -= HidePopUp;
     }
 
-    public virtual void Interact() {
-        if (!locked) {
-            Debug.Log("Interaction");
+    public void OnInteract() {
+        if (!Locked) {
+            Interaction();
+        }
+        else {
+            Debug.Log("Interactable locked");
         }
     }
 
-    protected void Lock() {
-        locked = true;
+    protected abstract void Interaction();
+
+    public void Lock() {
+        HidePopUp();
+        Locked = true;
     }
 
-    protected void Unlock() {
-        locked = false;
+    public void Unlock() {
+        Locked = false;
     }
 
     protected void ShowPopUp(int instanceID) {
-        if(popUpInstance != null) {
-            if (instanceID == GetInstanceID() && !locked) {
+        if(!Locked && popUpInstance != null) {
+            if (instanceID == GetInstanceID() && !Locked) {
                 popUpInstance.SetActive(true);
             }
             else {
@@ -52,8 +60,8 @@ public class Interactable : MonoBehaviour
     }
 
     protected void HidePopUp() {
-        if(popUpInstance != null) {
-            popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
+        if(popUpInstance != null && popUpAnimator != null) {
+            popUpAnimator.SetTrigger("HidePopUp");
         }
     }
 }

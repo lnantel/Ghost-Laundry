@@ -8,8 +8,22 @@ public class BasketSlot
     public LaundryBasket laundryBasket;
     public Vector3 spawnPoint;
 
+    [HideInInspector]
+    public bool Locked { get; private set; }
+
     public BasketSlot(LaundryBasket laundryBasket, Vector3 spawnPoint) {
         this.laundryBasket = laundryBasket;
         this.spawnPoint = spawnPoint;
+        Locked = false;
+    }
+
+    public void Lock() {
+        Locked = true;
+        laundryBasket.Lock();
+    }
+
+    public void Unlock() {
+        Locked = false;
+        laundryBasket.Unlock();
     }
 }

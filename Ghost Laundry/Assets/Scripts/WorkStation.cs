@@ -42,7 +42,7 @@ public class WorkStation : Interactable
         if(BasketSlotsChanged != null) BasketSlotsChanged();
     }
 
-    public override void Interact() {
+    protected override void Interaction() {
         //if player is carrying a basket, attempt to input it to the workstation
         //if input fails, cancel interaction
         if(RequestCarriedBasket != null) RequestCarriedBasket();
@@ -71,7 +71,7 @@ public class WorkStation : Interactable
             int basketIndex = 0;
             Basket basket = null;
             for(int i = 0; i < basketSlots.Length; i++) {
-                if(basketSlots[i].laundryBasket != null) {
+                if(basketSlots[i].laundryBasket != null && !basketSlots[i].Locked) {
                     basketIndex = i;
                     basket = basketSlots[i].laundryBasket.basket;
                 }
@@ -114,7 +114,7 @@ public class WorkStation : Interactable
     //Returns true if successful, false otherwise
     protected virtual bool AddBasket(LaundryBasket laundryBasket) {
         for(int i = 0; i < basketSlots.Length; i++) {
-            if (basketSlots[i].laundryBasket == null) {
+            if (basketSlots[i].laundryBasket == null && !basketSlots[i].Locked) {
                 basketSlots[i].laundryBasket = laundryBasket;
                 laundryBasket.transform.parent = laundryTaskArea.transform;
                 laundryBasket.transform.localPosition = basketSlots[i].spawnPoint;
@@ -129,7 +129,7 @@ public class WorkStation : Interactable
     //Returns true if successful, false otherwise
     protected virtual bool AddBasket(Basket basket) {
         for (int i = 0; i < basketSlots.Length; i++) {
-            if(basketSlots[i].laundryBasket == null) {
+            if(basketSlots[i].laundryBasket == null && !basketSlots[i].Locked) {
                 LaundryBasket laundryBasket = Instantiate(laundryBasketPrefab, 
                     laundryTaskArea.transform.position + basketSlots[i].spawnPoint, 
                     laundryTaskArea.transform.rotation, laundryTaskArea.transform).GetComponent<LaundryBasket>();
@@ -148,5 +148,58 @@ public class WorkStation : Interactable
             if (basketSlots[i].laundryBasket != null) count++;
         }
         return count;
+    }
+
+    public List<Garment> GetAllContainedGarments() {
+        List<Garment> containedGarments = new List<Garment>();
+
+        for (int i = 0; i < basketSlots.Length; i++) {
+            if(basketSlots[i].laundryBasket != null) {
+                Basket basket = basketSlots[i].laundryBasket.basket;
+                if(basket != null) {
+                    for(int j = 0; j < basket.contents.Count; j++) {
+                        containedGarments.Add(basket.contents[j]);
+                    }
+                }
+            }
+        }
+
+        LaundryGarment[] laundryGarments = GetComponentsInChildren<LaundryGarment>();
+        for(int i = 0; i < laundryGarments.Length; i++) {
+            if (!containedGarments.Contains(laundryGarments[i].garment)) {
+                containedGarments.Add(laundryGarments[i].garment);
+            }
+        }
+
+        List<Garment> garmentsInCustomContainers = GetCustomContainerGarments();
+
+        for(int i = 0; i < garmentsInCustomContainers.Count; i++) {
+            containedGarments.Add(garmentsInCustomContainers[i]);
+        }
+
+        return containedGarments;
+    }
+
+    //Override this to return a list of garments contained by machines, the workstation itself, etc.
+    protected virtual List<Garment> GetCustomContainerGarments() {
+        return new List<Garment>();
+    }
+
+    public bool ContainsAGarment(params Garment[] garments) {
+        List<Garment> containedGarments = GetAllContainedGarments();
+        for (int i = 0; i < garments.Length; i++) {
+            if (containedGarments.Contains(garments[i]))
+                return true;
+        }
+        return false;
+    }
+
+    public bool ContainsAllGarments(params Garment[] garments) {
+        List<Garment> containedGarments = GetAllContainedGarments();
+        for (int i = 0; i < garments.Length; i++) {
+            if (!containedGarments.Contains(garments[i]))
+                return false;
+        }
+        return true;
     }
 }

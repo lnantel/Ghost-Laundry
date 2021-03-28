@@ -11,4 +11,10 @@ public class IroningBoard : WorkStation
         areaPrefab = (GameObject)Resources.Load("IroningBoardArea");
         base.Start();
     }
+
+    protected override List<Garment> GetCustomContainerGarments() {
+        List<Garment> result = new List<Garment>();
+        result.Add(garmentOnBoard);
+        return result;
+    }
 }

@@ -18,6 +18,8 @@ public class LaundryTaskController : MonoBehaviour
     public Camera LaundryCamera;
     public GameObject LaundryGarmentPrefab;
 
+    public bool Locked;
+
     [HideInInspector]
     public WorkStation activeWorkStation;
 
@@ -76,7 +78,7 @@ public class LaundryTaskController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TimeManager.instance.timeScale != 0 && Time.timeScale != 0) {
+        if (!Locked && TimeManager.instance.timeScale != 0 && Time.timeScale != 0) {
             //Inputs
             interactInput = Input.GetButtonDown("TaskInteract");
             interactInputHeld = Input.GetButton("TaskInteract");

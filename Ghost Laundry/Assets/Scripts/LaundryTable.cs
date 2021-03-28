@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class LaundryTable : MonoBehaviour
 {
+    private TableWorkstation table;
+
     private IEnumerator soundCoroutine;
+
+    private void Start() {
+        table = GetComponentInParent<TableWorkstation>();
+    }
 
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
@@ -14,8 +20,8 @@ public class LaundryTable : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 rb.gravityScale = 0.0f;
 
-                if (!laundryGarment.OnFoldingSurface) {
-                    laundryGarment.OnFoldingSurface = true;
+                if (laundryGarment.OnFoldingSurface == table.FoldingLocked) {
+                    laundryGarment.OnFoldingSurface = !table.FoldingLocked;
                     if(soundCoroutine == null) {
                         soundCoroutine = DropSound(laundryGarment.garment.fabric.dropSound);
                         StartCoroutine(soundCoroutine);
