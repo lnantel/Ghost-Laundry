@@ -61,4 +61,10 @@ public class SewingMachine : WorkStation
         }
         return null;
     }
+
+    protected override List<Garment> GetCustomContainerGarments() {
+        List<Garment> result = new List<Garment>();
+        result.Add(garmentOnMachine);
+        return result;
+    }
 }

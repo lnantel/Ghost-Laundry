@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
     private void Interact() {
         Interactable interactable = interactableDetector.GetNearestInteractable();
         if(interactable != null) {
-            interactable.Interact();
+            interactable.OnInteract();
         }
     }
 

@@ -174,6 +174,10 @@ public class Dryer : WorkStation
             Debug.Log("Lint trap already clean");
 
     }
+
+    protected override List<Garment> GetCustomContainerGarments() {
+        return contents;
+    }
 }
 
 public enum DryerState {

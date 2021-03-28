@@ -115,4 +115,12 @@ public class Clothesline : WorkStation
             }
         }
     }
+
+    protected override List<Garment> GetCustomContainerGarments() {
+        List<Garment> list = new List<Garment>();
+        for(int i = 0; i < hungGarments.Length; i++) {
+            list.Add(hungGarments[i]);
+        }
+        return list;
+    }
 }

@@ -19,15 +19,23 @@ public class InteractableDetector : MonoBehaviour
     }
 
     public Interactable GetNearestInteractable() {
-        if (interactablesInRange.Count > 0)
-            return interactablesInRange[0];
-        else return null;
+        if (interactablesInRange.Count > 0) {
+            for(int i = 0; i < interactablesInRange.Count; i++) {
+                if (!interactablesInRange[i].Locked) return interactablesInRange[i];
+            }
+        }
+        return null;
     }
 
     private void Update() {
         if(interactablesInRange.Count > 0) {
             interactablesInRange.Sort((x, y) => Vector2.Distance(x.transform.position, transform.position).CompareTo(Vector2.Distance(y.transform.position, transform.position)));
-            if(NearestInteractable != null) NearestInteractable(interactablesInRange[0].GetInstanceID());
+            for(int i = 0; i < interactablesInRange.Count; i++) {
+                if (!interactablesInRange[i].Locked) {
+                    if (NearestInteractable != null) NearestInteractable(interactablesInRange[i].GetInstanceID());
+                    break;
+                }
+            }
         }
         else if(lastCount > 0) {
             if(NoInteractablesInRange != null) NoInteractablesInRange();

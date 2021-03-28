@@ -153,6 +153,32 @@ public class TutorialManager : MonoBehaviour
         if (GameManager.FadeIn != null) GameManager.FadeIn();
 
         //TODO: Disable literally everything
+        //Washing Machine
+        washingMachine.Lock();
+        washingMachine.DoorLocked = true;
+        washingMachine.StartButtonLocked = true;
+        washingMachine.DetergentSlotLocked = true;
+        washingMachine.SettingsLocked = true;
+
+        //Dryer
+        dryer.Lock();
+
+        //Table
+        table.Lock();
+        table.FoldingLocked = true;
+
+        //Ironing Board
+        ironingBoard.Lock();
+
+        //Bagger
+        bagger.Lock();
+
+        //Shop
+        if(ShopInteractable.LockShop != null) ShopInteractable.LockShop();
+
+        //Player
+        PlayerStateManager.instance.LockMove();
+        PlayerStateManager.instance.LockDash();
 
         DetergentManager.instance.CurrentAmount = 2;
 
@@ -210,10 +236,15 @@ public class TutorialManager : MonoBehaviour
         laundromatBasket.basket = basket;
     }
 
+    private bool moveUnlocked;
     private bool playerHasMoved;
     private float timeSinceMoved;
-    private void Step1A() {        
-        //TODO: Allow movement but not dash
+    private void Step1A() {
+        //Allow movement but not dash
+        if (!moveUnlocked) {
+            PlayerStateManager.instance.UnlockMove();
+            moveUnlocked = true;
+        }
 
         //Wait a bit after the player starts moving around
         if (PlayerStateManager.instance.Walking) playerHasMoved = true;
@@ -224,12 +255,12 @@ public class TutorialManager : MonoBehaviour
         if(timeSinceMoved > 3.0f) {
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            //Enable dash
+            PlayerStateManager.instance.UnlockDash();
         }
     }
 
     private void Step1B() {
-        //TODO: Enable dash
-
         //When the player goes through the counter into the laundromat, trigger step 2
         if(PlayerStateManager.instance.CurrentRoomIndex == 0 && !PlayerStateManager.instance.Dashing) {
             tutorialStep = 2;
@@ -247,7 +278,8 @@ public class TutorialManager : MonoBehaviour
             firstBasketSpawned = true;
         }
 
-        //Allow placing it in the washing machine with either space or E, but don't enable the Laundry View just yet
+        //Allow placing it in the washing machine with space
+        washingMachine.Unlock();
 
         //When the player places the basket into the washing machine, trigger step 3
         if (washingMachine.ContainsBasket()) {
@@ -271,6 +303,9 @@ public class TutorialManager : MonoBehaviour
         if(timeSinceLaundryViewOpened > 1.0f) {
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+
+            //Unlock WM door
+            washingMachine.DoorLocked = false;
         }
     }
 
@@ -285,27 +320,30 @@ public class TutorialManager : MonoBehaviour
         if(washingMachine.state == WashingMachineState.DoorClosed && (int)washingMachine.CurrentLoad() == washingMachine.Capacity) {
             tutorialSubStep = 4;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            washingMachine.DoorLocked = true;
+            washingMachine.DetergentSlotLocked = false;
         }
     }
 
     private void Step3D() {
         if (washingMachine.Detergent) {
             //Enable start button
+            washingMachine.StartButtonLocked = false;
         }
 
-        //TODO: Auto-complete the wash cycle
         washingMachine.SetAutoCompleteFlag();
 
         if (washingMachine.state == WashingMachineState.Running) {
             tutorialSubStep = 5;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            washingMachine.DetergentSlotLocked = true;
+            washingMachine.DoorLocked = false;
         }
     }
 
     private IEnumerator step3ECR;
 
     private void Step3E() {
-
         //Wait for player to take out ruined garment
     }
 
@@ -319,9 +357,15 @@ public class TutorialManager : MonoBehaviour
     }
 
     private IEnumerator Step3ECoroutine() {
+        //Freeze cursor
+        LaundryTaskController.instance.Locked = true;
         yield return new WaitForLaundromatSeconds(1.0f);
+
         tutorialSubStep = 6;
         TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+
+        yield return new WaitForLaundromatSeconds(0.1f);
+        LaundryTaskController.instance.Locked = false;
         step3ECR = null;
     }
 
@@ -329,8 +373,10 @@ public class TutorialManager : MonoBehaviour
 
     private bool secondBasketSpawned;
     private void Step3F() {
-        //Spawn a new basket
-        if (!secondBasketSpawned) {
+        //Close washing machine, spawn a new basket
+        if (step3ECR == null && !secondBasketSpawned) {
+            LaundryTaskController.instance.BackOut();
+
             SpawnSecondBasket();
             
             //Destroy the old one, as well as all its current and former contents
@@ -345,10 +391,12 @@ public class TutorialManager : MonoBehaviour
                 Destroy(laundryGarments[i].gameObject);
             }
 
+            washingMachine.Lock();
+            washingMachine.DetergentSlotLocked = false;
+            table.Unlock();
+
             secondBasketSpawned = true;
         }
-
-        //TODO: Enable putting baskets into the Table
 
         //When the new basket is input to the table, move on to step 4
         if (table.basketSlots[0].laundryBasket.basket.contents.Count > 0) {
@@ -362,7 +410,6 @@ public class TutorialManager : MonoBehaviour
     int coloredBasketIndex = -1;
 
     private void Step4A() {
-        //TODO: Disable folding clothes
         //Detect when one basket of the table contains X colored garments and another contains Y white garments
 
         for(int i = 0; i < table.basketSlots.Length; i++) {
@@ -417,6 +464,9 @@ public class TutorialManager : MonoBehaviour
             table.basketSlots[whiteBasketIndex].laundryBasket.basket.RemoveAll();
             if (WorkStation.BasketSlotsChanged != null) WorkStation.BasketSlotsChanged();
 
+            table.Lock();
+            washingMachine.Unlock();
+
             whiteBasketSpawned = true;
         }
         //Then, detect when the clothes in the basket have been washed
@@ -426,7 +476,13 @@ public class TutorialManager : MonoBehaviour
             if (!garmentsToWash[i].Clean) allGarmentsWashed = false;
         }
 
-        //Then, trigger step 5
+        //If the player is out of detergent, the machine is done, and not all clothes are clean,
+        //replenish a single dose of detergent so they don't run out
+        if (DetergentManager.instance.CurrentAmount == 0 && washingMachine.state == WashingMachineState.Done && !allGarmentsWashed) {
+            DetergentManager.instance.CurrentAmount = 1;
+        }
+
+        //Then, if all clothes are clean, trigger step 5
         if (allGarmentsWashed) {
             tutorialStep = 5;
             tutorialSubStep = 0;
@@ -436,7 +492,14 @@ public class TutorialManager : MonoBehaviour
 
     public Dryer dryer;
     private void Step5() {
-        //TODO: Enable the dryer 
+        //When all clothes are removed from the WM, disable it
+        bool washingMachineContainsGarments = washingMachine.ContainsAGarment(garmentsToWash.ToArray());
+        if (!washingMachineContainsGarments) {
+            washingMachine.Lock();
+            //and enable the dryer
+            dryer.Unlock();
+        }
+
         //Detect when the basket is input to the dryer
         if (dryer.ContainsBasket()) {
             tutorialStep = 6;
@@ -446,11 +509,15 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void Step6A() {
-        //TODO: Activate start button when dryer is full and door is closed
-        //TODO: Auto-complete the dryer cycle
         dryer.SetAutoCompleteFlag();
-        //Detect when the dryer is running
-        if (dryer.state == DryerState.Running) {
+
+        //Detect when all garments are dry
+        bool allGarmentsDry = true;
+        for (int i = 0; i < garmentsToWash.Count; i++) {
+            if (!garmentsToWash[i].Dry) allGarmentsDry = false;
+        }
+
+        if (allGarmentsDry) {
             //Then, trigger step 6B
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -459,8 +526,14 @@ public class TutorialManager : MonoBehaviour
 
     public IroningBoard ironingBoard;
     private void Step6B() {
-        //TODO: Enable the ironing board
-        //TODO: When all clothes are removed from the dryer, disable it
+        //When all clothes are removed from the dryer, disable it
+        bool dryerContainsGarments = dryer.ContainsAGarment(garmentsToWash.ToArray());
+        if (!dryerContainsGarments) {
+            dryer.Lock();
+            //Enable the ironing board
+            ironingBoard.Unlock();
+        }
+
         //When the basket is input to the ironing board, trigger step 7
         if (ironingBoard.ContainsBasket()) {
             tutorialStep = 7;
@@ -471,7 +544,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Step7A() {
         //Wait for the player to iron all the clothes and remove them from the board
-        //TODO: Check that all garments are ironed or burned
+        //Check that all garments are ironed or burned
         bool allGarmentsPressedOrBurned = true;
 
         for(int i = 0; i < garmentsToWash.Count; i++) {
@@ -492,16 +565,26 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void Step7B() {
+
+        //When all garments are removed from the ironingBoard, lock it and unlock the table
+        bool ironingBoardContainsGarments = ironingBoard.ContainsAGarment(garmentsToWash.ToArray());
+        if (!ironingBoardContainsGarments) {
+            ironingBoard.Lock();
+            //Enable the table
+            table.Unlock();
+        }
+
         //If the table contains all the garments, proceed to step 8
-        if (table.basketSlots[0].laundryBasket.basket.contents.Count == garmentsToWash.Count) {
+        if (table.ContainsAllGarments(garmentsToWash.ToArray())) {
             tutorialStep = 8;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            table.FoldingLocked = false;
         }
     }
 
     private void Step7C() {
-        //TODO: Reset to the start of Step 7
+        //Reset to the start of Step 7
         for(int i = 0; i < garmentsToWash.Count; i++) {
             garmentsToWash[i].Burned = false;
             garmentsToWash[i].Pressed = false;
@@ -530,11 +613,17 @@ public class TutorialManager : MonoBehaviour
 
     public Bagger bagger;
     private void Step8B() {
-        //Wait for the player to approach the bagger with the basket
+        //When all clothes are removed from the table, disable it
+        bool tableContainsGarments = table.ContainsAGarment(garmentsToWash.ToArray());
+        if (!tableContainsGarments) {
+            table.Lock();
+            //Unlock the bagger
+            bagger.Unlock();
+        }
     }
 
     private void OnPlayerNearBagger() {
-        if (tutorialStep == 8 && tutorialSubStep == 2 && PlayerStateManager.instance.Carrying) {
+        if (!bagger.Locked && tutorialStep == 8 && tutorialSubStep == 2 && PlayerStateManager.instance.Carrying) {
             tutorialStep = 9;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -549,6 +638,8 @@ public class TutorialManager : MonoBehaviour
         if(tutorialStep == 9 && tutorialSubStep == 1) {
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+            //Enable shop
+            if (ShopInteractable.UnlockShop != null) ShopInteractable.UnlockShop();
         }
     }
 
@@ -577,11 +668,23 @@ public class TutorialManager : MonoBehaviour
     private void Step10() {
         //Free practice
         //Enable everything, make baskets appear at the counter whenever a bag is produced
+        washingMachine.Unlock();
+        washingMachine.DoorLocked = false;
+        washingMachine.StartButtonLocked = false;
+        washingMachine.DetergentSlotLocked = false;
+        washingMachine.SettingsLocked = false;
+
+        dryer.Unlock();
+        ironingBoard.Unlock();
+        table.Unlock();
+        table.FoldingLocked = false;
+
         //Spawn the Boss
         tutorialBoss.gameObject.SetActive(true);
     }
 
     public void OnReady() {
+        MoneyManager.instance.CurrentAmount = 0;
         TimeManager.instance.EndDay();
     }
 }

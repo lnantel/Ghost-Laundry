@@ -313,6 +313,7 @@ public class GameManager : MonoBehaviour {
     public void LaunchNewGame() {
         SaveManager.CreateNewSave();
         SaveManager.LoadSaveData();
+        TimeManager.instance.CurrentDay = 0;
         LaunchGame();
     }
     

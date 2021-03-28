@@ -21,7 +21,7 @@ public class WashingMachineDetergentSlot : LaundryObject
     }
 
     public override void OnInteract() {
-        if (washingMachine.state != WashingMachineState.Running) {
+        if (!washingMachine.DetergentSlotLocked && washingMachine.state != WashingMachineState.Running) {
             if (!open) {
                 Open();
             }else if (open) {

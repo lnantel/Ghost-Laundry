@@ -32,7 +32,7 @@ public class Bagger : WorkStation
         if (TimeManager.instance.CurrentDay == 0) tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
-    public override void Interact() {
+    protected override void Interaction() {
         if(RequestCarriedBasket != null) RequestCarriedBasket();
     }
 

@@ -62,9 +62,11 @@ public class CameraSwitch : MonoBehaviour
     }
 
     public void SetOffset(Vector2 vector) {
-        lastOffset = offset;
-        offset = vector;
-        offsetTimer = 0.0f;
+        if (!vector.Equals(offset)) {
+            lastOffset = offset;
+            offset = vector;
+            offsetTimer = 0.0f;
+        }
     }
 
     public void ResetOffset() {

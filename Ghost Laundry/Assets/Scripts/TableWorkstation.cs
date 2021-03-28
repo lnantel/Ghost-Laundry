@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TableWorkstation : WorkStation
 {
+    [HideInInspector]
+    public bool FoldingLocked;
+
     protected override void Start() {
         areaPrefab = (GameObject)Resources.Load("TableArea");
         HasGravity = true;

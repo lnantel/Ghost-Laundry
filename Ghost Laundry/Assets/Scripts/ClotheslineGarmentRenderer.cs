@@ -6,30 +6,18 @@ public class ClotheslineGarmentRenderer : MonoBehaviour
 {
     public Garment garment;
 
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
-    [SerializeField]
-    private SpriteRenderer fabricRenderer;
-    [SerializeField]
-    private SpriteRenderer dirtyRenderer;
-    [SerializeField]
-    private SpriteRenderer wetRenderer;
+    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer fabricRenderer;
+    public SpriteRenderer dirtyRenderer;
+    public SpriteRenderer wetRenderer;
 
-    //[SerializeField]
-    //private ParticleSystem flies;
-    [SerializeField]
-    private ParticleSystem drops;
-    [SerializeField]
-    private ParticleSystem sparkles;
-    [SerializeField]
-    private ParticleSystem ruin;
+    public ParticleSystem drops;
+    public ParticleSystem sparkles;
+    public ParticleSystem ruin;
 
-    [SerializeField]
-    private Sprite tornPattern;
-    [SerializeField]
-    private Sprite meltedPattern;
-    [SerializeField]
-    private Sprite burnedPattern;
+    public Sprite tornPattern;
+    public Sprite meltedPattern;
+    public Sprite burnedPattern;
 
     private void Update() {
         if(garment != null) {

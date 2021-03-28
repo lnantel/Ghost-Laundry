@@ -13,22 +13,23 @@ public class RecurringCustomerInteractable : Interactable
         popUpPrefab = (GameObject)Resources.Load("DialogPopUp");
         popUpInstance = Instantiate(popUpPrefab, transform.position, transform.rotation, transform);
         popUpInstance.SetActive(false);
-        locked = true;
+        popUpAnimator = popUpInstance.GetComponentInChildren<Animator>();
+        Locked = true;
         recurringCustomer = GetComponent<RecurringCustomer>();
     }
 
-    public override void Interact() {
-        if (!locked) {
+    protected override void Interaction() {
+        if (!Locked) {
             StartDialog(recurringCustomer.EventTreeIndex);
         }
     }
 
     private void Update() {
         if(recurringCustomer.state == CustomerState.WaitingForService) {
-            locked = false;
+            Locked = false;
         }
         else {
-            locked = true;
+            Locked = true;
         }
     }
 }

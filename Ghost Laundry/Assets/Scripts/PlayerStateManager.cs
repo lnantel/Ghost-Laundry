@@ -88,4 +88,20 @@ public class PlayerStateManager : MonoBehaviour
     public void EndWalk() {
         Walking = false;
     }
+
+    public void LockMove() {
+        Lock(ref moveLocks);
+    }
+
+    public void UnlockMove() {
+        Unlock(ref moveLocks);
+    }
+
+    public void LockDash() {
+        Lock(ref dashLocks);
+    }
+
+    public void UnlockDash() {
+        Unlock(ref dashLocks);
+    }
 }
