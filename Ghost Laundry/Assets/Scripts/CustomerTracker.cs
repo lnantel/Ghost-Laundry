@@ -7,11 +7,10 @@ using TMPro;
 public class CustomerTracker : MonoBehaviour
 {
     public static Action<Customer> CustomerTracked;
-    public static Action<Customer> CustomerUntracked;
 
     public CustomerUI[] CustomerUIs;
 
-    public List<Customer> TrackedCustomers;
+    public Customer TrackedCustomer;
 
     public TextMeshProUGUI TXT_PageTracker;
 
@@ -36,9 +35,9 @@ public class CustomerTracker : MonoBehaviour
     }
 
     private void OnCustomerLeft(Customer customer) {
-        if (TrackedCustomers.Contains(customer)) {
-            TrackedCustomers.Remove(customer);
-            if (CustomerUntracked != null) CustomerUntracked(customer);
+        if (TrackedCustomer.Equals(customer)) {
+            TrackedCustomer = null;
+            if (CustomerTracked != null) CustomerTracked(null);
         }
     }
 
@@ -86,13 +85,13 @@ public class CustomerTracker : MonoBehaviour
 
     public void TrackCustomer(int uiIndex) {
         Customer target = CustomerUIs[uiIndex].targetCustomer;
-        if (target != null && !TrackedCustomers.Contains(target)) {
-            TrackedCustomers.Add(target);
+        if (target != null && (TrackedCustomer == null || !TrackedCustomer.Equals(target))) {
+            TrackedCustomer = target;
             if (CustomerTracked != null) CustomerTracked(target);
         }
-        else if (target != null && TrackedCustomers.Contains(target)) {
-            TrackedCustomers.Remove(target);
-            if (CustomerUntracked != null) CustomerUntracked(target);
+        else if(target != null && TrackedCustomer != null && TrackedCustomer.Equals(target)) {
+            TrackedCustomer = null;
+            if (CustomerTracked != null) CustomerTracked(null);
         }
     }
 }
