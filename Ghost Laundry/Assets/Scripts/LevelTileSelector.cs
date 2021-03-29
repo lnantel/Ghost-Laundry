@@ -22,7 +22,6 @@ public class LevelTileSelector : MonoBehaviour
     public SpriteRenderer EventIcon2;
     public SpriteRenderer EventIcon3;
 
-    public Sprite[] characterEventIcons;
     public Sprite plusEventIcon;
     public Sprite unknownEventIcon;
 
@@ -55,7 +54,7 @@ public class LevelTileSelector : MonoBehaviour
                         EventIcon1.sprite = unknownEventIcon;
                     }
                     else {
-                        EventIcon1.sprite = characterEventIcons[characters[0]];
+                        EventIcon1.sprite = EventManager.instance.customerPortraits[characters[0]];
                     }
                     break;
                 case 2:
@@ -69,8 +68,8 @@ public class LevelTileSelector : MonoBehaviour
                         EventIcon2.sprite = unknownEventIcon;
                     }
                     else {
-                        EventIcon1.sprite = characterEventIcons[characters[0]];
-                        EventIcon2.sprite = characterEventIcons[characters[1]];
+                        EventIcon1.sprite = EventManager.instance.customerPortraits[characters[0]];
+                        EventIcon2.sprite = EventManager.instance.customerPortraits[characters[1]];
                     }
                     break;
                 case 3:
@@ -85,9 +84,9 @@ public class LevelTileSelector : MonoBehaviour
                         EventIcon3.sprite = unknownEventIcon;
                     }
                     else {
-                        EventIcon1.sprite = characterEventIcons[characters[1]];
-                        EventIcon2.sprite = characterEventIcons[characters[0]];
-                        EventIcon3.sprite = characterEventIcons[characters[2]];
+                        EventIcon1.sprite = EventManager.instance.customerPortraits[characters[1]];
+                        EventIcon2.sprite = EventManager.instance.customerPortraits[characters[0]];
+                        EventIcon3.sprite = EventManager.instance.customerPortraits[characters[2]];
                     }
                     break;
                 default:
@@ -101,8 +100,8 @@ public class LevelTileSelector : MonoBehaviour
                         EventIcon2.sprite = unknownEventIcon;
                     }
                     else {
-                        EventIcon1.sprite = characterEventIcons[characters[1]];
-                        EventIcon2.sprite = characterEventIcons[characters[0]];
+                        EventIcon1.sprite = EventManager.instance.customerPortraits[characters[1]];
+                        EventIcon2.sprite = EventManager.instance.customerPortraits[characters[0]];
                     }
                     EventIcon3.sprite = plusEventIcon;
                     break;

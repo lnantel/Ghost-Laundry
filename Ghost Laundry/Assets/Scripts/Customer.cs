@@ -18,6 +18,9 @@ public class Customer : MonoBehaviour
     protected float waitTimer;
 
     public Sprite[] silhouettes;
+    public Sprite[] portraits;
+
+    public int silhouetteIndex;
 
     public CustomerState state;
 
@@ -40,7 +43,8 @@ public class Customer : MonoBehaviour
 
         //Generate random customer
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = silhouettes[UnityEngine.Random.Range(0, silhouettes.Length)];
+        silhouetteIndex = UnityEngine.Random.Range(0, silhouettes.Length);
+        spriteRenderer.sprite = silhouettes[silhouetteIndex];
 
         ticketNumber = CustomerManager.instance.GetTicketNumber();
 

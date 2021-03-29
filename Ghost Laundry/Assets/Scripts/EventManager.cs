@@ -14,6 +14,7 @@ public class EventManager : MonoBehaviour
 
     //Each character has a tree at a given index in this array
     public string[] customerNames;
+    public Sprite[] customerPortraits;
     public NarrativeEventTree[] EventTrees;
 
     [HideInInspector]
