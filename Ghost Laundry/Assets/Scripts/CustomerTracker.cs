@@ -27,6 +27,21 @@ public class CustomerTracker : MonoBehaviour
         bagger = GetComponentInParent<Bagger>();
     }
 
+    private void OnEnable() {
+        CustomerManager.CustomerLeft += OnCustomerLeft;
+    }
+
+    private void OnDisable() {
+        CustomerManager.CustomerLeft -= OnCustomerLeft;
+    }
+
+    private void OnCustomerLeft(Customer customer) {
+        if (TrackedCustomers.Contains(customer)) {
+            TrackedCustomers.Remove(customer);
+            if (CustomerUntracked != null) CustomerUntracked(customer);
+        }
+    }
+
     private void Update() {
         UpdateTrackerGUI();
     }

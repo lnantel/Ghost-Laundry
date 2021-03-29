@@ -35,21 +35,22 @@ public class LaundryButton : LaundryObject
     }
 
     public override void OnInteract() {
-        if (ToggleSwitch) {
+        if (ToggleSwitch && springsBack) {
             if (pressed) Unpress();
             else Press();
         }
-
-        if (!pressed) {
-            Press();
-        }
         else {
-            OnButtonPressFailed.Invoke();
+            if (!pressed) {
+                Press();
+            }
+            else {
+                OnButtonPressFailed.Invoke();
+            }
         }
     }
 
     private void Update() {
-        if(pressed && springsBack && springBackCoroutine == null) {
+        if(!ToggleSwitch && pressed && springsBack && springBackCoroutine == null) {
             springBackCoroutine = springBack();
             StartCoroutine(springBackCoroutine);
         }
