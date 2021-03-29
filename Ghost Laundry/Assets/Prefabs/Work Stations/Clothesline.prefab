@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 7586722502219313342}
   - component: {fileID: 8017829730995099117}
   - component: {fileID: -4864772540401113867}
+  - component: {fileID: 6819634980049013147}
   m_Layer: 0
   m_Name: Clothesline
   m_TagString: Untagged
@@ -987,6 +988,19 @@ MonoBehaviour:
   laundryTaskArea: {fileID: 0}
   TimeToDry: 30
   Pegs: 10
+--- !u!114 &6819634980049013147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748218137804147326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7860526909041456461}
 --- !u!1 &5894426879917920524
 GameObject:
   m_ObjectHideFlags: 0

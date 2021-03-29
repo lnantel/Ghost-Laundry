@@ -99,7 +99,7 @@ public class CustomerUI : MonoBehaviour
             if (targetCustomer.state == CustomerState.WaitingForClothes) {
                 //Enable button
                 FindButton.springsBack = true;
-                if (tracker.TrackedCustomer != null && tracker.TrackedCustomer.Equals(targetCustomer))
+                if (CustomerTracker.TrackedCustomer != null && CustomerTracker.TrackedCustomer.Equals(targetCustomer))
                     FindButton.pressed = true;
                 else
                     FindButton.pressed = false;

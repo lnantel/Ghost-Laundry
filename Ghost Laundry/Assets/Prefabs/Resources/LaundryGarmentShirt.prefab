@@ -861,6 +861,7 @@ GameObject:
   - component: {fileID: 8682779000148993899}
   - component: {fileID: 8682779000148993893}
   - component: {fileID: 521135793235647566}
+  - component: {fileID: 5984786465939232065}
   m_Layer: 15
   m_Name: LaundryGarmentShirt
   m_TagString: Untagged
@@ -946,6 +947,7 @@ MonoBehaviour:
   - {fileID: 7010120793966347987}
   - {fileID: 6745694933251659041}
   OnFoldingSurface: 0
+  sortingGroup: {fileID: 0}
   spriteRenderer: {fileID: 8885172094115719463}
   spriteMask: {fileID: 1623760727306448834}
   fabricRenderer: {fileID: 1534250448251100898}
@@ -969,6 +971,19 @@ SortingGroup:
   m_SortingLayerID: -2139956593
   m_SortingLayer: 5
   m_SortingOrder: 0
+--- !u!114 &5984786465939232065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682779000148993894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8885172094115719463}
 --- !u!1 &8878185284748667747
 GameObject:
   m_ObjectHideFlags: 0

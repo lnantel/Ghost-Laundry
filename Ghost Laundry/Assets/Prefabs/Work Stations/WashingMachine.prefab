@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 215208541947208637}
   - component: {fileID: 4322162168073278408}
   - component: {fileID: 7665077967033655913}
+  - component: {fileID: 4785608055680704502}
   m_Layer: 0
   m_Name: WashingMachine
   m_TagString: Untagged
@@ -104,8 +105,25 @@ MonoBehaviour:
   WashCycleTime: 20
   Capacity: 10
   Detergent: 0
+  SettingsLocked: 0
+  DoorLocked: 0
+  StartButtonLocked: 0
+  DetergentSlotLocked: 0
   washSetting: 0
   state: 0
+--- !u!114 &4785608055680704502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4301830416146534457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4369677803977339226}
 --- !u!1 &5273376438584171268
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 353800278245677212}
+  CanBePlacedOnThings: 0
+  forceToFront: 0
 --- !u!1001 &339062280870205579
 PrefabInstance:
   m_ObjectHideFlags: 0

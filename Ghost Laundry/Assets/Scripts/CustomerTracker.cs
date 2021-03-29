@@ -6,11 +6,9 @@ using TMPro;
 
 public class CustomerTracker : MonoBehaviour
 {
-    public static Action<Customer> CustomerTracked;
+    public static Customer TrackedCustomer;
 
     public CustomerUI[] CustomerUIs;
-
-    public Customer TrackedCustomer;
 
     public TextMeshProUGUI TXT_PageTracker;
 
@@ -37,7 +35,6 @@ public class CustomerTracker : MonoBehaviour
     private void OnCustomerLeft(Customer customer) {
         if (TrackedCustomer.Equals(customer)) {
             TrackedCustomer = null;
-            if (CustomerTracked != null) CustomerTracked(null);
         }
     }
 
@@ -87,11 +84,9 @@ public class CustomerTracker : MonoBehaviour
         Customer target = CustomerUIs[uiIndex].targetCustomer;
         if (target != null && (TrackedCustomer == null || !TrackedCustomer.Equals(target))) {
             TrackedCustomer = target;
-            if (CustomerTracked != null) CustomerTracked(target);
         }
         else if(target != null && TrackedCustomer != null && TrackedCustomer.Equals(target)) {
             TrackedCustomer = null;
-            if (CustomerTracked != null) CustomerTracked(null);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Rendering;
 
-public class LaundryGarment : LaundryObject
+public class LaundryGarment : LaundryObject, ITrackable
 {
     public static Action<LaundryGarment> Created;
     public static Action<LaundryGarment> Released;
@@ -246,5 +246,12 @@ public class LaundryGarment : LaundryObject
 
     private void OnCollisionEnter2D(Collision2D collision) {
         AudioManager.instance.PlaySound(garment.fabric.dropSound);
+    }
+
+    public bool ContainsTrackedGarment() {
+        if(garment != null && CustomerTracker.TrackedCustomer != null) {
+            return CustomerTracker.TrackedCustomer.garments.Contains(garment);
+        }
+        return false;
     }
 }
