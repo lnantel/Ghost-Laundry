@@ -226,6 +226,7 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: -6, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
   SoapLevel: 0
   MaxSoapLevel: 10
   ScrubbingStrength: 0.02

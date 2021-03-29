@@ -18,7 +18,7 @@ public class TrackedHalo : MonoBehaviour
         }
 
         defaultMaterial = spriteRenderer.material;
-        haloMaterial = (Material)Resources.Load("MAT_TrackedMaterial");
+        haloMaterial = (Material)Resources.Load("MAT_TrackedHalo");
     }
 
     private void Update() {

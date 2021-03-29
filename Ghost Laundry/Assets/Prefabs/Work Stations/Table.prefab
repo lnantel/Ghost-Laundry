@@ -191,6 +191,7 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: 2.8, y: -3.4, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
   FoldingLocked: 0
 --- !u!114 &6428524364057495572
 MonoBehaviour:

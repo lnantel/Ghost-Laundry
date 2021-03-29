@@ -154,6 +154,7 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: -6, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
 --- !u!210 &7586722502219313342
 SortingGroup:
   m_ObjectHideFlags: 0

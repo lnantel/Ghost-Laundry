@@ -986,6 +986,7 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: -6, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
   TimeToDry: 30
   Pegs: 10
 --- !u!114 &6819634980049013147

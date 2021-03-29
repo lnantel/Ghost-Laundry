@@ -261,6 +261,7 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: -4.78, y: -1.31, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
   DryerCycleTime_High: 10
   DryerCycleTime_Low: 20
   Capacity: 10
