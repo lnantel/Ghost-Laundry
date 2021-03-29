@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +133,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 8682779000148993899}
   - component: {fileID: 8682779000148993893}
   - component: {fileID: 806944476626522672}
+  - component: {fileID: 1491789213635528919}
   m_Layer: 15
   m_Name: LaundryGarmentSock
   m_TagString: Untagged
@@ -526,6 +527,7 @@ MonoBehaviour:
   - {fileID: 4064771008452778329}
   - {fileID: 3511840941654357431}
   OnFoldingSurface: 0
+  sortingGroup: {fileID: 0}
   spriteRenderer: {fileID: 4411068959411544623}
   spriteMask: {fileID: 4697573739947410070}
   fabricRenderer: {fileID: 2257905961198730683}
@@ -549,6 +551,19 @@ SortingGroup:
   m_SortingLayerID: -2139956593
   m_SortingLayer: 5
   m_SortingOrder: 0
+--- !u!114 &1491789213635528919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682779000148993894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4411068959411544623}
 --- !u!1 &8794051537431695809
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +614,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

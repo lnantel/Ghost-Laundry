@@ -191,6 +191,7 @@ MonoBehaviour:
   HasGravity: 0
   basketSlots: []
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
   bagSpawnPoint: {fileID: 6719572106153379940}
 --- !u!61 &6719572107285502663
 BoxCollider2D:
@@ -272,7 +273,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -358,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundContact: {fileID: 8639962789242471038}
+  CanBePlacedOnThings: 0
   forceToFront: 0
 --- !u!1 &6719572108037502839
 GameObject:

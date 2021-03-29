@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
-public class WorkStation : Interactable
+public class WorkStation : Interactable, ITrackable
 {
     public static Action<LaundryGarment> LaundryGarmentReleased;
     public static Action BasketSlotsChanged;
@@ -15,6 +15,9 @@ public class WorkStation : Interactable
 
     [HideInInspector]
     public GameObject laundryTaskArea;
+
+    public List<LaundryGarment> containedLaundryGarments;
+
     protected GameObject areaPrefab;
 
     protected int basketCapacity;
@@ -27,7 +30,9 @@ public class WorkStation : Interactable
         laundryBasketPrefab = (GameObject)Resources.Load("LaundryBasket");
         basketCapacity = basketSlots.Length;
 
-        if(areaPrefab == null) areaPrefab = (GameObject)Resources.Load("LaundryTaskArea");
+        containedLaundryGarments = new List<LaundryGarment>();
+
+        if (areaPrefab == null) areaPrefab = (GameObject)Resources.Load("LaundryTaskArea");
         laundryTaskArea = Instantiate(areaPrefab, new Vector3(300.0f, 0.0f, 0.0f), Quaternion.identity, transform);
 
         laundryTaskArea.SetActive(false);
@@ -56,12 +61,23 @@ public class WorkStation : Interactable
         LaundryGarment.Released += OnLaundryGarmentReleased;
     }
 
+    protected void UpdateContainedLaundryGarments() {
+        containedLaundryGarments = new List<LaundryGarment>();
+        LaundryGarment[] laundryGarments = GetComponentsInChildren<LaundryGarment>();
+        for (int i = 0; i < laundryGarments.Length; i++) {
+            if (!containedLaundryGarments.Contains(laundryGarments[i])) {
+                containedLaundryGarments.Add(laundryGarments[i]);
+            }
+        }
+    }
+
     protected virtual void OnTaskExit() {
         LaundryTaskController.exitedTask -= OnTaskExit;
         LaundryGarment.Released -= OnLaundryGarmentReleased;
 
         PlayerController.instance.enabled = true;
         TaskView.instance.Minimize(transform.position, laundryTaskArea);
+        UpdateContainedLaundryGarments();
     }
 
     public virtual Basket OutputBasket() {
@@ -164,10 +180,9 @@ public class WorkStation : Interactable
             }
         }
 
-        LaundryGarment[] laundryGarments = GetComponentsInChildren<LaundryGarment>();
-        for(int i = 0; i < laundryGarments.Length; i++) {
-            if (!containedGarments.Contains(laundryGarments[i].garment)) {
-                containedGarments.Add(laundryGarments[i].garment);
+        for(int i = 0; i < containedLaundryGarments.Count; i++) {
+            if (!containedGarments.Contains(containedLaundryGarments[i].garment)) {
+                containedGarments.Add(containedLaundryGarments[i].garment);
             }
         }
 
@@ -201,5 +216,12 @@ public class WorkStation : Interactable
                 return false;
         }
         return true;
+    }
+
+    public bool ContainsTrackedGarment() {
+        if(CustomerTracker.TrackedCustomer != null) {
+            return ContainsAGarment(CustomerTracker.TrackedCustomer.garments.ToArray());
+        }
+        return false;
     }
 }

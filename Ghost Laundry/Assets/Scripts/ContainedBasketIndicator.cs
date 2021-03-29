@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainedBasketIndicator : MonoBehaviour
+public class ContainedBasketIndicator : MonoBehaviour, ITrackable
 {
     private WorkStation workStation;
     public int basketSlotIndex;
@@ -41,5 +41,12 @@ public class ContainedBasketIndicator : MonoBehaviour
             if(laundryBasket.basket != null)
                 tagSpriteRenderer.sprite = tagSprites[laundryBasket.basket.tag];
         }
+    }
+
+    public bool ContainsTrackedGarment() {
+        if(workStation.basketSlots[basketSlotIndex].laundryBasket != null) {
+            return workStation.basketSlots[basketSlotIndex].laundryBasket.ContainsTrackedGarment();
+        }
+        return false;
     }
 }

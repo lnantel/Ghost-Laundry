@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class LaundryBasket : LaundryObject
+public class LaundryBasket : LaundryObject, ITrackable
 {
     public static Action<Garment> TakeOutGarment;
     public static Action<LaundryBasket> OpenBasketView;
@@ -218,5 +218,9 @@ public class LaundryBasket : LaundryObject
         basket.tag = (basket.tag + 1) % tags.Length;
         tagSprite.sprite = tags[basket.tag];
         if(TagChanged != null) TagChanged();
+    }
+
+    public bool ContainsTrackedGarment() {
+        return basket.ContainsTrackedGarment();
     }
 }

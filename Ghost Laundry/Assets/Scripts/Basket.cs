@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Basket
+public class Basket : ITrackable
 {
     public List<Garment> contents;
     public List<Vector3> positions;
@@ -76,5 +76,14 @@ public class Basket
             value += garment.size;
         }
         return value;
+    }
+
+    public bool ContainsTrackedGarment() {
+        if(CustomerTracker.TrackedCustomer != null) {
+            for(int i = 0; i < CustomerTracker.TrackedCustomer.garments.Count; i++) {
+                if (contents.Contains(CustomerTracker.TrackedCustomer.garments[i])) return true;
+            }
+        }
+        return false;
     }
 }

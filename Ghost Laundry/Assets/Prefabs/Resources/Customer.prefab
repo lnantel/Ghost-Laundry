@@ -84,6 +84,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d21463db5bf2c645bc4a9f32f3fbd7d, type: 3}
   - {fileID: 21300000, guid: 11b333d536c6a5c4b86bfdb905500691, type: 3}
   - {fileID: 21300000, guid: e7fce796e01e1e440a79709fa1adc00e, type: 3}
+  portraits:
+  - {fileID: 21300000, guid: 1358fddf519a42242815a1919adebd1d, type: 3}
+  - {fileID: 21300000, guid: e5be9d8af50a572408b29252a0fdb3c4, type: 3}
+  - {fileID: 21300000, guid: 84a03023d25e4d74fbe013dc2751a377, type: 3}
+  - {fileID: 21300000, guid: 6c6df33626a47e043b74544f04501605, type: 3}
+  - {fileID: 21300000, guid: adf7f129c3e198e449994f79cd084480, type: 3}
+  silhouetteIndex: 0
   state: 0
   spot:
     ID: 0
@@ -145,7 +152,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

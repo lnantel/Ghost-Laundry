@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 8541777147079965178}
   - component: {fileID: 5732389220405168527}
   - component: {fileID: 3316548992882617396}
+  - component: {fileID: 7383561136892758664}
   m_Layer: 0
   m_Name: WashTub
   m_TagString: Untagged
@@ -225,9 +226,23 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: -6, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
   SoapLevel: 0
   MaxSoapLevel: 10
   ScrubbingStrength: 0.02
+--- !u!114 &7383561136892758664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748218137804147326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2319552660437674752}
 --- !u!1 &6941626731885804409
 GameObject:
   m_ObjectHideFlags: 0

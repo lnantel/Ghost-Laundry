@@ -9720,6 +9720,8 @@ MonoBehaviour:
   dialogCanvas: {fileID: 1562529447}
   customerNames:
   - Ollie
+  customerPortraits:
+  - {fileID: 21300000, guid: 8904dae930db48b44949b09039bd2f9c, type: 3}
   EventTrees:
   - tree:
     - Day: 1

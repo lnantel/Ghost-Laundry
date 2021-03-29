@@ -11,10 +11,14 @@ public class LaundryButton : LaundryObject
     public UnityEvent OnButtonUnpressed;
 
     //Behaviour
+    //Is this button a toggleable switch?
+    public bool ToggleSwitch;
     //Does the button spring back when pressed, or does it stay pressed until something else happens?
     public bool springsBack;
     //How long does it take to spring back?
     public float springBackDelay = 0.15f;
+
+    private IEnumerator springBackCoroutine;
 
     //Sprites
     public Sprite pressedSprite;
@@ -31,21 +35,37 @@ public class LaundryButton : LaundryObject
     }
 
     public override void OnInteract() {
-        if (!pressed) {
-            Press();
+        if (ToggleSwitch && springsBack) {
+            if (pressed) Unpress();
+            else Press();
         }
         else {
-            OnButtonPressFailed.Invoke();
+            if (!pressed) {
+                Press();
+            }
+            else {
+                OnButtonPressFailed.Invoke();
+            }
         }
     }
 
-    public virtual void Press() {
-        OnButtonPressed.Invoke();
-        pressed = true;
-        if(pressedSprite != null)
+    private void Update() {
+        if(!ToggleSwitch && pressed && springsBack && springBackCoroutine == null) {
+            springBackCoroutine = springBack();
+            StartCoroutine(springBackCoroutine);
+        }
+
+        if (pressed && pressedSprite != null)
             spriteRenderer.sprite = pressedSprite;
-        if (springsBack) {
-            StartCoroutine(springBack());
+
+        if (!pressed && unpressedSprite != null)
+            spriteRenderer.sprite = unpressedSprite;
+    }
+
+    public virtual void Press() {
+        if (!pressed) {
+            OnButtonPressed.Invoke();
+            pressed = true;
         }
     }
 
@@ -53,14 +73,13 @@ public class LaundryButton : LaundryObject
         if (pressed) {
             pressed = false;
             OnButtonUnpressed.Invoke();
-            if(unpressedSprite != null)
-                spriteRenderer.sprite = unpressedSprite;
         }
     }
 
     private IEnumerator springBack() {
         yield return new WaitForLaundromatSeconds(springBackDelay);
         Unpress();
+        springBackCoroutine = null;
     }
 
 }

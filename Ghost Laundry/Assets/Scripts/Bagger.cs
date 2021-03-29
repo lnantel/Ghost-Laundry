@@ -11,7 +11,7 @@ public class Bagger : WorkStation
     public Transform bagSpawnPoint;
 
     private GameObject laundromatBagPrefab;
-    private List<Garment> contents;
+    public List<Garment> contents;
 
     private IEnumerator OutputCoroutine;
 
@@ -25,6 +25,7 @@ public class Bagger : WorkStation
     private List<OutputData> OutputQueue;
 
     protected override void Start() {
+        areaPrefab = (GameObject)Resources.Load("BaggerArea"); 
         base.Start();
         contents = new List<Garment>();
         laundromatBagPrefab = (GameObject)Resources.Load("LaundromatBag");
@@ -32,9 +33,9 @@ public class Bagger : WorkStation
         if (TimeManager.instance.CurrentDay == 0) tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
-    protected override void Interaction() {
-        if(RequestCarriedBasket != null) RequestCarriedBasket();
-    }
+    //protected override void Interaction() {
+    //    if(RequestCarriedBasket != null) RequestCarriedBasket();
+    //}
 
     public override bool InputBasket(Basket basket) {
         AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);

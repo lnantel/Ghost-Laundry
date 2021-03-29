@@ -94,8 +94,9 @@ GameObject:
   - component: {fileID: 426098068226769358}
   - component: {fileID: 4390509907491975611}
   - component: {fileID: 8314683814791598572}
+  - component: {fileID: 6428524364057495572}
   m_Layer: 0
-  m_Name: TableWorkStation
+  m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,6 +191,21 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: 2.8, y: -3.4, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
+  FoldingLocked: 0
+--- !u!114 &6428524364057495572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4370309202223379018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6309780424309096432}
 --- !u!1001 &1630444105131022738
 PrefabInstance:
   m_ObjectHideFlags: 0

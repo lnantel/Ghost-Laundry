@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClotheslineGarmentRenderer : MonoBehaviour
+public class ClotheslineGarmentRenderer : MonoBehaviour, ITrackable
 {
     public Garment garment;
 
@@ -81,5 +81,12 @@ public class ClotheslineGarmentRenderer : MonoBehaviour
             if (garment.Melted) fabricRenderer.sprite = meltedPattern;
             if (garment.Burned) fabricRenderer.sprite = burnedPattern;
         }
+    }
+
+    public bool ContainsTrackedGarment() {
+        if (garment != null && CustomerTracker.TrackedCustomer != null) {
+            return CustomerTracker.TrackedCustomer.garments.Contains(garment);
+        }
+        return false;
     }
 }

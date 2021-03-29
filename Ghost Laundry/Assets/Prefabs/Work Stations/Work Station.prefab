@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3534737646775619916}
   - component: {fileID: 7586722502219313342}
   - component: {fileID: 8017829730995099117}
+  - component: {fileID: 3164257905111626130}
   m_Layer: 0
   m_Name: Work Station
   m_TagString: Untagged
@@ -153,6 +154,7 @@ MonoBehaviour:
   - laundryBasket: {fileID: 0}
     spawnPoint: {x: -6, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
+  containedLaundryGarments: []
 --- !u!210 &7586722502219313342
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -179,6 +181,19 @@ MonoBehaviour:
   groundContact: {fileID: 5848748377562005193}
   CanBePlacedOnThings: 0
   forceToFront: 0
+--- !u!114 &3164257905111626130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748218137804147326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6978c0720679947963f2fbda6f4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7486751134092905245}
 --- !u!1 &7276995426998019625
 GameObject:
   m_ObjectHideFlags: 0
