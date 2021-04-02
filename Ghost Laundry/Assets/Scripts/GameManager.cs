@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour {
         HideCursor();
         loadedScenes = new List<string>();
         keepLoaded = new List<string>();
-        keepLoaded.Add("HUD");
-        keepLoaded.Add("Dialog");
-        keepLoaded.Add("Options");
+        //keepLoaded.Add("HUD");
+        //keepLoaded.Add("Dialog");
+        //keepLoaded.Add("Options");
     }
 
     private void OnEnable() {
@@ -164,6 +164,8 @@ public class GameManager : MonoBehaviour {
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
         while (scenesLoading != null) yield return null;
 
+        SaveManager.LoadSaveData();
+
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
         TimeManager.instance.ResetTimeManager();
@@ -237,6 +239,8 @@ public class GameManager : MonoBehaviour {
         LoadScenes("NextDay", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
 
+        SaveManager.LoadSaveData();
+
         state = GameStates.Transition;
 
         if (HideHUD != null) HideHUD();
@@ -263,6 +267,8 @@ public class GameManager : MonoBehaviour {
 
         LoadScenes("SelectionScreen", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
+
+        SaveManager.LoadSaveData();
 
         if (HideHUD != null) HideHUD();
         if (FadeIn != null) FadeIn();

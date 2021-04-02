@@ -29,9 +29,11 @@ public class TutorialArrow : MonoBehaviour
     }
 
     public void SetTarget(Transform newTarget) {
-        if (!Target.Equals(newTarget)) {
-            Target = newTarget;
-            Activate();
+        if(Target != null && newTarget != null) {
+            if (!Target.Equals(newTarget)) {
+                Target = newTarget;
+                Activate();
+            }
         }
     }
 

@@ -820,6 +820,7 @@ MonoBehaviour:
   RagequitRep: -2
   NotDoneRep: -3
   RuinedGarmentRep: -5
+  LaunderedGarmentRep: 1
   fillImage: {fileID: 1050713892}
 --- !u!1 &802693926
 GameObject:
@@ -1214,8 +1215,9 @@ MonoBehaviour:
   WorldSpaceCanvas: {fileID: 692046746}
   CurrentAmount: 0
   Rent: 5000
-  LaunderedGarmentFee: 200
+  LaunderedGarmentFee: 100
   PerfectGarmentTip: 50
+  RuinedGarmentPenalty: 100
   TXT_CurrentAmount: {fileID: 802693928}
   PositiveAmountColor: {r: 0, g: 0.49019608, b: 0.1764706, a: 1}
   NegativeAmountColor: {r: 0.7372549, g: 0, b: 0.043137256, a: 1}

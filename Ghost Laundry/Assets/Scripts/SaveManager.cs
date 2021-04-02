@@ -55,7 +55,7 @@ public class SaveManager : MonoBehaviour
             //Debug.Log("Save successful");
         }
         else {
-            Debug.LogError("Failed to save");
+            Debug.LogError("Failed to save!");
         }
     }
 
@@ -75,11 +75,11 @@ public class SaveManager : MonoBehaviour
         }
         else {
             CreateNewSave();
-            Debug.LogError("Failed to load SaveData.dat");
         }
     }
 
     public static void LoadDay(int dayToLoad) {
+        PurgeDaysFollowing(dayToLoad);
         for(int i = 0; i < Data.Days.Count; i++) {
             if(Data.Days[i].CurrentDay == dayToLoad) {
                 SaveData.DayData day = Data.Days[i];
@@ -95,6 +95,7 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
+        Save();
     }
 
     public static void CreateNewSave() {
@@ -128,7 +129,11 @@ public class SaveManager : MonoBehaviour
             //Debug.Log("New save file created successfully");
         }
         else {
-            Debug.LogError("Failed to save");
+            Debug.LogError("Failed to save!");
         }
+    }
+
+    public static void PurgeDaysFollowing(int day) {
+        Data.Days.RemoveAll(d => d.CurrentDay > day);
     }
 }

@@ -15,7 +15,7 @@ public class Bagger : WorkStation
 
     private IEnumerator OutputCoroutine;
 
-    private TutorialManager tutorialManager;
+    public TutorialManager tutorialManager;
 
     private struct OutputData {
         public Customer customer;
@@ -30,7 +30,6 @@ public class Bagger : WorkStation
         contents = new List<Garment>();
         laundromatBagPrefab = (GameObject)Resources.Load("LaundromatBag");
         OutputQueue = new List<OutputData>();
-        if (TimeManager.instance.CurrentDay == 0) tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
     //protected override void Interaction() {
@@ -46,7 +45,7 @@ public class Bagger : WorkStation
             }
         }
         if (BasketInput != null) BasketInput();
-        if (TimeManager.instance.CurrentDay == 0) TutorialCheckContentsForOutput();
+        if (tutorialManager != null) TutorialCheckContentsForOutput();
         else CheckContentsForOutput();
         return true;
     }

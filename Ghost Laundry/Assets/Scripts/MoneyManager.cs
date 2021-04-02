@@ -13,6 +13,7 @@ public class MoneyManager : MonoBehaviour
 
     public int LaunderedGarmentFee;
     public int PerfectGarmentTip;
+    public int RuinedGarmentPenalty;
 
     public TextMeshProUGUI TXT_CurrentAmount;
     public Color PositiveAmountColor;
@@ -48,25 +49,29 @@ public class MoneyManager : MonoBehaviour
         fee += bag.launderedGarments * LaunderedGarmentFee;
         tip += bag.perfectGarments * PerfectGarmentTip;
 
-        if(bag.ruinedGarments > 0) {
-            fee = 0;
-            tip = 0;
-        }
+        fee -= bag.ruinedGarments * RuinedGarmentPenalty;
+
+        if (bag.ruinedGarments > 0) tip = 0;
 
         //Spawn a pop-up
-        if (fee > 0) {
-            //Money pop-up
-            GameObject popUp = Instantiate(moneyPopUpPrefab, bag.transform.position + Vector3.up, bag.transform.rotation, WorldSpaceCanvas.transform);
-            if (tip > 0)
-                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + (fee / 100.0f).ToString("N2") + " + " + (tip / 100.0f).ToString("N2");
-            else
-                popUp.GetComponentInChildren<TextMeshProUGUI>().text = "$" + (fee / 100.0f).ToString("N2");
-            AudioManager.instance.PlaySoundAtPosition(Sounds.MoneyGain, bag.transform.position);
+        GameObject popUp = Instantiate(moneyPopUpPrefab, bag.transform.position + Vector3.up, bag.transform.rotation, WorldSpaceCanvas.transform);
+        TextMeshProUGUI TXT_PopUp = popUp.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (tip > 0) {
+            TXT_PopUp.text = "$" + (fee / 100.0f).ToString("N2") + " + " + (tip / 100.0f).ToString("N2");
+            TXT_PopUp.color = PositiveAmountColor;
+        }
+        else if(fee >= 0) {
+            TXT_PopUp.text = "$" + (fee / 100.0f).ToString("N2");
+            TXT_PopUp.color = PositiveAmountColor;
         }
         else {
-            //TODO: Dissatisfied customer pop-up?
-
+            TXT_PopUp.text = "-$" + Mathf.Abs((fee / 100.0f)).ToString("N2");
+            TXT_PopUp.color = NegativeAmountColor;
         }
+
+        AudioManager.instance.PlaySoundAtPosition(Sounds.MoneyGain, bag.transform.position);
+
         Customer.Pay(fee, tip, null);
         ModifyCurrentAmount(fee + tip);
     }

@@ -19,6 +19,7 @@ public class ReputationManager : MonoBehaviour
     public int RagequitRep;
     public int NotDoneRep;
     public int RuinedGarmentRep;
+    public int LaunderedGarmentRep;
 
     public Image fillImage;
 
@@ -38,8 +39,9 @@ public class ReputationManager : MonoBehaviour
 
     private void OnBagPickedUp(LaundromatBag bag) {
         int value = 0;
-        if(bag.ruinedGarments == 0) value += bag.perfectGarments * PerfectGarmentRep;
-        else value += bag.ruinedGarments * RuinedGarmentRep;
+        value += bag.perfectGarments * PerfectGarmentRep;
+        value += (bag.launderedGarments - bag.perfectGarments) * LaunderedGarmentRep;
+        value += bag.ruinedGarments * RuinedGarmentRep;
         value += (bag.totalGarments - bag.launderedGarments - bag.ruinedGarments) * NotDoneRep;
         ModifyCurrentAmount(value);
     }
