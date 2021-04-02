@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour {
     private List<string> keepLoaded;
     private IEnumerator scenesLoading;
 
+    private bool inSettings;
+    private bool inDialog;
+
     private void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
@@ -56,6 +59,10 @@ public class GameManager : MonoBehaviour {
         TransitionManager.TransitionDone += OnTransitionEnd;
         EventManager.StartDialog += OnDialogStart;
         EventManager.EndDialog += OnDialogEnd;
+        ShowSettings += OnShowSettings;
+        HideSettings += OnHideSettings;
+        ShowDialog += OnShowDialog;
+        HideDialog += OnHideDialog;
     }
 
     private void OnDisable() {
@@ -65,6 +72,10 @@ public class GameManager : MonoBehaviour {
         TransitionManager.TransitionDone -= OnTransitionEnd;
         EventManager.StartDialog -= OnDialogStart;
         EventManager.EndDialog -= OnDialogEnd;
+        ShowSettings -= OnShowSettings;
+        HideSettings -= OnHideSettings;
+        ShowDialog -= OnShowDialog;
+        HideDialog -= OnHideDialog;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
@@ -338,9 +349,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Resume() {
-        if(ResumeGame != null) ResumeGame();
-        state = GameStates.Laundromat;
-        HideCursor();
+        if (inSettings && HideSettings != null) HideSettings();
+        else if (!inSettings) {
+            if (ResumeGame != null) ResumeGame();
+            state = GameStates.Laundromat;
+            if(!inDialog) HideCursor();
+        }
     }
 
     public void GoToMainMenu() {
@@ -373,6 +387,22 @@ public class GameManager : MonoBehaviour {
     public void OnDialogEnd(int i) {
         if (HideDialog != null) HideDialog();
         HideCursor();
+    }
+
+    private void OnShowSettings() {
+        inSettings = true;
+    }
+
+    private void OnHideSettings() {
+        inSettings = false;
+    }
+
+    private void OnShowDialog() {
+        inDialog = true;
+    }
+
+    private void OnHideDialog() {
+        inDialog = false;
     }
 
     public void ShowCursor() {
