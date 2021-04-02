@@ -47,9 +47,7 @@ public class GameManager : MonoBehaviour {
         HideCursor();
         loadedScenes = new List<string>();
         keepLoaded = new List<string>();
-        //keepLoaded.Add("HUD");
-        //keepLoaded.Add("Dialog");
-        //keepLoaded.Add("Options");
+        keepLoaded.Add("DebugTools");
     }
 
     private void OnEnable() {
@@ -79,7 +77,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
-        if (scene.buildIndex != 0)
+        if (scene.buildIndex != 0 && loadedScenes != null)
             loadedScenes.Add(scene.name);
     }
 
@@ -142,7 +140,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToTitleScreen() {
         if(SceneManager.sceneCount > 1) {
-            FadeOut();
+            if(FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
         }
@@ -165,7 +163,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToGame() {
         if (SceneManager.sceneCount > 1) {
-            FadeOut();
+            if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
         }
@@ -242,7 +240,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToTransition() {
         if (SceneManager.sceneCount > 1) {
-            FadeOut();
+            if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
         }
@@ -271,7 +269,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToSelectionScreen() {
         if (SceneManager.sceneCount > 1) {
-            FadeOut();
+            if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
         }

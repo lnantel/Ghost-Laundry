@@ -44,9 +44,18 @@ public class SaveManager : MonoBehaviour
 
         //Add new DayData to existing SaveData
         //Erase pre-existing DayData corresponding to current or future days, if applicable
-        for(int i = 0; i < Data.Days.Count; i++) {
+        for (int i = 0; i < Data.Days.Count; i++) {
             if (Data.Days[i].CurrentDay >= day.CurrentDay)
                 Data.Days.RemoveAt(i--);
+        }
+
+        //If past days are missing, create saves for them using current data
+        for(int i = 0; i < day.CurrentDay; i++) {
+            if (i >= Data.Days.Count) {
+                SaveData.DayData pastDay = SaveData.CloneDayData(day);
+                pastDay.CurrentDay = i;
+                Data.Days.Insert(i, pastDay);
+            }
         }
 
         Data.Days.Add(day);
