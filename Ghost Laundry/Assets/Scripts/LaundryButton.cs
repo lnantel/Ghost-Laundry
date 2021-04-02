@@ -10,6 +10,8 @@ public class LaundryButton : LaundryObject
     public UnityEvent OnButtonPressFailed;
     public UnityEvent OnButtonUnpressed;
 
+    public bool locked;
+
     //Behaviour
     //Is this button a toggleable switch?
     public bool ToggleSwitch;
@@ -23,6 +25,7 @@ public class LaundryButton : LaundryObject
     //Sprites
     public Sprite pressedSprite;
     public Sprite unpressedSprite;
+    public Sprite lockedSprite;
 
     //Buttons is unpressed by default
     [HideInInspector]
@@ -35,7 +38,7 @@ public class LaundryButton : LaundryObject
     }
 
     public override void OnInteract() {
-        if (ToggleSwitch && springsBack) {
+        if (ToggleSwitch) {
             if (pressed) Unpress();
             else Press();
         }
@@ -60,17 +63,20 @@ public class LaundryButton : LaundryObject
 
         if (!pressed && unpressedSprite != null)
             spriteRenderer.sprite = unpressedSprite;
+
+        if (locked && lockedSprite != null)
+            spriteRenderer.sprite = lockedSprite;
     }
 
     public virtual void Press() {
-        if (!pressed) {
+        if (!pressed && !locked) {
             OnButtonPressed.Invoke();
             pressed = true;
         }
     }
 
     public virtual void Unpress() {
-        if (pressed) {
+        if (pressed && !locked) {
             pressed = false;
             OnButtonUnpressed.Invoke();
         }
@@ -81,5 +87,4 @@ public class LaundryButton : LaundryObject
         Unpress();
         springBackCoroutine = null;
     }
-
 }
