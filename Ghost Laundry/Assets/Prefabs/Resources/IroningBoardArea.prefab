@@ -714,7 +714,6 @@ Transform:
   m_Children:
   - {fileID: 8112019562928569400}
   - {fileID: 557101231238666981}
-  - {fileID: 1257331044679748527}
   m_Father: {fileID: 1037721697902524373}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2079,135 +2078,13 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4873204261300163329, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
   m_PrefabInstance: {fileID: 6245405185218118512}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &557101231238666981 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5843168123173656981, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
-  m_PrefabInstance: {fileID: 6245405185218118512}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &557101232067378831 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5843168124203040255, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
   m_PrefabInstance: {fileID: 6245405185218118512}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8311745281774353163
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4191437461436822534}
-    m_Modifications:
-    - target: {fileID: 6007210683204030437, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_Name
-      value: LaundryButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7943684975984812427}
-    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePower
-      objectReference: {fileID: 0}
-    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Iron, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: pressedSprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: unpressedSprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.1790499
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.20257005
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.0059385635
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_Size.x
-      value: 0.18410116
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_SortingOrder
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219803803665627872, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
---- !u!4 &1257331044679748527 stripped
+--- !u!4 &557101231238666981 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
-  m_PrefabInstance: {fileID: 8311745281774353163}
+  m_CorrespondingSourceObject: {fileID: 5843168123173656981, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+  m_PrefabInstance: {fileID: 6245405185218118512}
   m_PrefabAsset: {fileID: 0}
