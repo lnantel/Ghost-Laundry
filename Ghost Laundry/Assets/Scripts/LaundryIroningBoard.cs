@@ -8,10 +8,8 @@ public class LaundryIroningBoard : LaundryObject
     public static Action<Garment> GarmentGrabbed;
 
     public Collider2D boardTriggerCollider;
-    public SpriteRenderer garmentSpriteRenderer;
-    public Sprite unpressedGarmentSprite;
-    public Sprite pressedGarmentSprite;
-    public Sprite ruinedGarmentSprite;
+
+    public IroningBoardGarmentRenderer garmentRenderer;
 
     private float pressingProgress;
 
@@ -66,7 +64,7 @@ public class LaundryIroningBoard : LaundryObject
         if (pressingProgress >= 1.0f && !ironingBoard.garmentOnBoard.Pressed) {
             AudioManager.instance.PlaySound(Sounds.ShiningGarment);
             ironingBoard.garmentOnBoard.Pressed = true;
-            garmentSpriteRenderer.sprite = pressedGarmentSprite;
+            garmentRenderer.UpdateAppearance();
         }
 
         //If the garment was burned too much, it becomes ruined
@@ -75,7 +73,7 @@ public class LaundryIroningBoard : LaundryObject
                 ironingBoard.garmentOnBoard.Melted = true;
             else
                 ironingBoard.garmentOnBoard.Burned = true;
-            garmentSpriteRenderer.sprite = ruinedGarmentSprite;
+            garmentRenderer.UpdateAppearance();
         }
 
         lastIronPos = ironPosition;
@@ -123,23 +121,21 @@ public class LaundryIroningBoard : LaundryObject
         ironingBoard.garmentOnBoard = laundryGarment.garment;
         AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
         Destroy(laundryGarment.gameObject);
-        garmentSpriteRenderer.enabled = true;
-        if (ironingBoard.garmentOnBoard.Ruined)
-            garmentSpriteRenderer.sprite = ruinedGarmentSprite;
-        else if (ironingBoard.garmentOnBoard.Pressed)
-            garmentSpriteRenderer.sprite = pressedGarmentSprite;
-        else
-            garmentSpriteRenderer.sprite = unpressedGarmentSprite;
+        garmentRenderer.UpdateAppearance();
         pressingProgress = 0.0f;
         burnTimer = 0.0f;
         graceTimer = 0.0f;
     }
 
+    private void RemoveGarmentFromBoard() {
+        ironingBoard.garmentOnBoard = null;
+        garmentRenderer.UpdateAppearance();
+    }
+
     public override void OnGrab() {
         if (ironingBoard.garmentOnBoard != null) {
             if(GarmentGrabbed != null) GarmentGrabbed(ironingBoard.garmentOnBoard);
-            ironingBoard.garmentOnBoard = null;
-            garmentSpriteRenderer.enabled = false;
+            RemoveGarmentFromBoard();
         }
     }
 
