@@ -18,6 +18,8 @@ public class TutorialManager : MonoBehaviour
 
     public List<List<Garment>> tutorialCustomers;
 
+    public Transform pickUpCounter;
+
     void Start()
     {
         tutorialStep = 1;
@@ -31,6 +33,7 @@ public class TutorialManager : MonoBehaviour
         BaggerAnimator.PlayerNearby += OnPlayerNearBagger;
         Bagger.BasketInput += OnBaggerInput;
         Bagger.BagOutput += OnBagOutput;
+        PickUpCounter.BagReadyForPickUp += OnBagReadyForPickUp;
     }
 
     private void OnDisable() {
@@ -38,6 +41,7 @@ public class TutorialManager : MonoBehaviour
         BaggerAnimator.PlayerNearby -= OnPlayerNearBagger;
         Bagger.BasketInput -= OnBaggerInput;
         Bagger.BagOutput -= OnBagOutput;
+        PickUpCounter.BagReadyForPickUp -= OnBagReadyForPickUp;
     }
 
     void Update()
@@ -139,7 +143,14 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
                 case 10:
-                    Step10();
+                    switch (tutorialSubStep) {
+                        case 1:
+                            Step10A();
+                            break;
+                        case 2:
+                            Step10B();
+                            break;
+                    }
                     break;
             }
         }
@@ -251,8 +262,6 @@ public class TutorialManager : MonoBehaviour
     }
 
     private bool moveUnlocked;
-    private bool playerHasMoved;
-    private float timeSinceMoved;
     private void Step1A() {
         //Allow movement but not dash
         if (!moveUnlocked) {
@@ -260,18 +269,26 @@ public class TutorialManager : MonoBehaviour
             moveUnlocked = true;
         }
 
-        //Wait a bit after the player starts moving around
-        if (PlayerStateManager.instance.Walking) playerHasMoved = true;
-        if (playerHasMoved) {
-            timeSinceMoved += TimeManager.instance.deltaTime;
-        }
+    }
 
-        if(timeSinceMoved > 3.0f) {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (tutorialStep == 1 && tutorialSubStep == 1 && collision.gameObject.tag.Equals("Player")) {
             tutorialSubStep = 2;
-            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
-            //Enable dash
             PlayerStateManager.instance.UnlockDash();
+            StartCoroutine(WaitForCameraToPanUp());
         }
+    }
+
+    private IEnumerator WaitForCameraToPanUp() {
+        PlayerStateManager.instance.LockMove();
+        PlayerStateManager.instance.LockDash();
+
+        yield return new WaitForLaundromatSeconds(1.0f);
+
+        TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+
+        PlayerStateManager.instance.UnlockMove();
+        PlayerStateManager.instance.UnlockDash();
     }
 
     private void Step1B() {
@@ -279,7 +296,7 @@ public class TutorialManager : MonoBehaviour
         if(PlayerStateManager.instance.CurrentRoomIndex == 0 && !PlayerStateManager.instance.Dashing) {
             tutorialStep = 2;
             tutorialSubStep = 0;
-            TutorialFlowchartManager.instance.StartDialog(tutorialStep);
+            StartCoroutine(WaitForCameraToPanUp());
         }
     }
 
@@ -317,9 +334,17 @@ public class TutorialManager : MonoBehaviour
 
     private bool laundryViewOpened;
     private float timeSinceLaundryViewOpened;
+
+    private WashingMachineDoor washingMachineDoor;
+    private WashingMachineDetergentSlot washingMachineDetergentSlot;
+    private LaundryButton washingMachineStartButton;
+
     private void Step3A() {
         if (TaskView.instance.open) {
             laundryViewOpened = true;
+            washingMachineDoor = washingMachine.GetComponentInChildren<WashingMachineDoor>();
+            washingMachineDetergentSlot = washingMachine.GetComponentInChildren<WashingMachineDetergentSlot>();
+            washingMachineStartButton = washingMachine.GetComponentInChildren<LaundryButton>();
         }
 
         if (laundryViewOpened) {
@@ -336,6 +361,11 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void Step3B() {
+
+        if(washingMachineDoor != null) {
+            arrow.SetTarget(washingMachineDoor.transform);
+        }
+
         if(washingMachine.state == WashingMachineState.DoorOpen) {
             tutorialSubStep = 3;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -343,7 +373,19 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void Step3C() {
-        if(washingMachine.state == WashingMachineState.DoorClosed && (int)washingMachine.CurrentLoad() == washingMachine.Capacity) {
+
+        if(washingMachine.state == WashingMachineState.DoorClosed && (int)washingMachine.CurrentLoad() < washingMachine.Capacity) {
+            arrow.SetTarget(washingMachineDoor.transform);
+        }else if (LaundryTaskController.instance.grabbedObject != null && washingMachine.state == WashingMachineState.DoorOpen) {
+            arrow.SetTarget(washingMachineDoor.transform);
+        }else if ((int)washingMachine.CurrentLoad() == washingMachine.Capacity && washingMachine.state == WashingMachineState.DoorOpen) {
+            arrow.SetTarget(washingMachineDoor.transform);
+        }
+        else if (washingMachine.state == WashingMachineState.DoorOpen && LaundryTaskController.instance.grabbedObject == null) {
+            arrow.SetTarget(washingMachine.basketSlots[0].laundryBasket.transform);
+        }
+
+        if (washingMachine.state == WashingMachineState.DoorClosed && (int)washingMachine.CurrentLoad() == washingMachine.Capacity) {
             tutorialSubStep = 4;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
             washingMachine.DoorLocked = true;
@@ -355,7 +397,11 @@ public class TutorialManager : MonoBehaviour
         if (washingMachine.Detergent) {
             //Enable start button
             washingMachine.StartButtonLocked = false;
+            arrow.SetTarget(washingMachineStartButton.transform);
         }
+        
+        if(!washingMachine.Detergent || washingMachineDetergentSlot.open)
+            arrow.SetTarget(washingMachineDetergentSlot.transform);
 
         washingMachine.SetAutoCompleteFlag();
 
@@ -371,6 +417,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Step3E() {
         //Wait for player to take out ruined garment
+        arrow.SetTarget(washingMachineDoor.transform);
     }
 
     private void OnRuinedGarmentGrabbed(Garment garment) {
@@ -737,22 +784,54 @@ public class TutorialManager : MonoBehaviour
         //Wait for the bagger to produce a bag
     }
 
+    private LaundromatBag laundromatBag;
+
     private void OnBagOutput() {
         if (tutorialStep == 9 && tutorialSubStep == 3) {
             tutorialStep = 10;
-            tutorialSubStep = 0;
-            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
-        }
+            tutorialSubStep = 1;
 
-        //Make baskets appear at the counter whenever a bag is produced during Step 10
-        if (tutorialStep == 10) {
-            SpawnRandomBasket();
+            laundromatBag = FindObjectOfType<LaundromatBag>();
+
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }
     }
 
     public TutorialBoss tutorialBoss;
 
-    private void Step10() {
+    private void Step10A() {
+        //Wait for the player to place the bag on the counter
+        if (PlayerStateManager.instance.Carrying) {
+            arrow.SetTarget(pickUpCounter);
+        }
+        else if(laundromatBag != null && !laundromatBag.ReadyForPickUp) {
+            arrow.SetTarget(laundromatBag.transform);
+        }
+        else {
+            arrow.Deactivate();
+        }
+    }
+
+    private void OnBagReadyForPickUp(LaundromatBag bag) {
+        if(tutorialStep == 10 && tutorialSubStep == 1) {
+            tutorialSubStep = 2;
+            TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        }
+
+        //Make baskets appear at the counter whenever a bag is produced during Step 10B
+        if (tutorialStep == 10 && tutorialSubStep == 2) {
+            SpawnRandomBasket();
+        }
+
+        StartCoroutine(DestroyBagAfterDelay(bag));
+    }
+
+    private IEnumerator DestroyBagAfterDelay(LaundromatBag bag) {
+        yield return new WaitForLaundromatSeconds(3.0f);
+        Destroy(bag.gameObject);
+    }
+
+    private void Step10B() {
         //Free practice
 
         //Spawn the Boss

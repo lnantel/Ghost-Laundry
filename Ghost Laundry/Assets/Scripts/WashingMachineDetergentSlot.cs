@@ -13,7 +13,7 @@ public class WashingMachineDetergentSlot : LaundryObject
     private SpriteRenderer spriteRenderer;
 
     private WashingMachine washingMachine;
-    private bool open;
+    public bool open;
 
     private void Start() {
         washingMachine = GetComponentInParent<WashingMachine>();
