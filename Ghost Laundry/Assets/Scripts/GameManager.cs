@@ -86,16 +86,33 @@ public class GameManager : MonoBehaviour {
             loadedScenes.Remove(scene.name);
     }
 
-    private void UnloadAllScenes() {
+    private bool UnloadAllScenes() {
+        if (scenesLoading == null) {
+            scenesLoading = UnloadScenesCoroutine();
+            StartCoroutine(scenesLoading);
+            return true;
+        }
+        else return false;
+    }
+
+    private IEnumerator UnloadScenesCoroutine() {
+        List<string> scenesToUnload = new List<string>();
         foreach (string sceneName in loadedScenes) {
             bool keepSceneLoaded = false;
-            foreach(string s in keepLoaded) {
+            foreach (string s in keepLoaded) {
                 if (s.Equals(sceneName)) keepSceneLoaded = true;
             }
             if (!keepSceneLoaded) {
-                SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(sceneName));
+                scenesToUnload.Add(sceneName);
             }
         }
+
+        foreach(string sceneName in scenesToUnload) {
+            AsyncOperation op = SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(sceneName));
+            while (!op.isDone) yield return null;
+        }
+
+        scenesLoading = null;
     }
 
     private bool LoadScenes(params string[] sceneNames) {
@@ -143,6 +160,7 @@ public class GameManager : MonoBehaviour {
             if(FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
 
         LoadScenes("Title", "Options", "HUD", "Dialog");
@@ -166,12 +184,13 @@ public class GameManager : MonoBehaviour {
             if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
-
-        if (ShowHUD != null) ShowHUD();
 
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
         while (scenesLoading != null) yield return null;
+
+        //if (ShowHUD != null) ShowHUD();
 
         SaveManager.LoadSaveData();
 
@@ -243,6 +262,7 @@ public class GameManager : MonoBehaviour {
             if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
 
         LoadScenes("NextDay", "Options", "HUD", "Dialog");
@@ -272,6 +292,7 @@ public class GameManager : MonoBehaviour {
             if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
 
         LoadScenes("SelectionScreen", "Options", "HUD", "Dialog");

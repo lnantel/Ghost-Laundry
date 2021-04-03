@@ -7,7 +7,7 @@ public class DebugTools : MonoBehaviour
     private void Update() {
         //Press M to gain 10$
         if(Input.GetKeyDown(KeyCode.M) && MoneyManager.instance != null) {
-            MoneyManager.instance.CurrentAmount += 1000;
+            MoneyManager.instance.ModifyCurrentAmount(1000);
         }
 
         //Press R to gain 200 Rep

@@ -16,10 +16,14 @@ public class MoneyManager : MonoBehaviour
     public int RuinedGarmentPenalty;
 
     public TextMeshProUGUI TXT_CurrentAmount;
+    public TextMeshProUGUI TXT_ChangeAmount;
     public Color PositiveAmountColor;
     public Color NegativeAmountColor;
 
     private GameObject moneyPopUpPrefab;
+    private int displayedAmount;
+    private int displayedChangeAmount;
+    private bool updateDisplayedAmount;
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -28,6 +32,7 @@ public class MoneyManager : MonoBehaviour
 
     private void Start() {
         moneyPopUpPrefab = (GameObject)Resources.Load("MoneyPopUp");
+        updateDisplayedAmount = true;
     }
 
     private void OnEnable() {
@@ -40,6 +45,13 @@ public class MoneyManager : MonoBehaviour
         ShopInteractable.BoughtItem -= OnItemBought;
         Customer.BagPickedUp -= OnBagPickedUp;
         TimeManager.StartOfDay -= OnStartOfDay;
+    }
+
+    private void Update() {
+        if (updateDisplayedAmount) {
+            displayedAmount = (int)Mathf.MoveTowards(displayedAmount, CurrentAmount, 5 / Time.deltaTime);
+            displayedChangeAmount = CurrentAmount - displayedAmount;
+        }
     }
 
     private void OnBagPickedUp(LaundromatBag bag) {
@@ -80,18 +92,44 @@ public class MoneyManager : MonoBehaviour
         ModifyCurrentAmount(-price);
     }
 
-    private void ModifyCurrentAmount(int amount) {
+    private IEnumerator displayCoroutine;
+
+    public void ModifyCurrentAmount(int amount) {
+        updateDisplayedAmount = false;
+        displayedChangeAmount += amount;
         CurrentAmount += amount;
+        if(displayCoroutine != null) {
+            StopCoroutine(displayCoroutine);
+        }
+        displayCoroutine = DelayDisplayedAmountUpdate();
+        StartCoroutine(displayCoroutine);
+    }
+
+    private IEnumerator DelayDisplayedAmountUpdate() {
+        yield return new WaitForLaundromatSeconds(1.0f);
+        updateDisplayedAmount = true;
     }
 
     private void OnGUI() {
-        if(CurrentAmount >= 0) {
-            TXT_CurrentAmount.text = "$" + (CurrentAmount / 100.0f).ToString("N2");
+        if(displayedAmount >= 0) {
+            TXT_CurrentAmount.text = "$" + (displayedAmount / 100.0f).ToString("N2");
             TXT_CurrentAmount.color = PositiveAmountColor;
         }
         else {
-            TXT_CurrentAmount.text = "-$" + Mathf.Abs((CurrentAmount / 100.0f)).ToString("N2");
+            TXT_CurrentAmount.text = "-$" + Mathf.Abs((displayedAmount / 100.0f)).ToString("N2");
             TXT_CurrentAmount.color = NegativeAmountColor;
+        }
+
+        if (displayedChangeAmount > 0) {
+            TXT_ChangeAmount.text = "+$" + (displayedChangeAmount / 100.0f).ToString("N2");
+            TXT_ChangeAmount.color = PositiveAmountColor;
+        }
+        else if(displayedChangeAmount < 0){
+            TXT_ChangeAmount.text = "-$" + Mathf.Abs((displayedChangeAmount / 100.0f)).ToString("N2");
+            TXT_ChangeAmount.color = NegativeAmountColor;
+        }
+        else {
+            TXT_ChangeAmount.text = "";
         }
     }
 
