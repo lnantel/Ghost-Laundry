@@ -18,13 +18,9 @@ public class WashingMachine : WorkStation
     [HideInInspector]
     public bool Detergent;
 
-    [HideInInspector]
     public bool SettingsLocked;
-    [HideInInspector]
     public bool DoorLocked;
-    [HideInInspector]
     public bool StartButtonLocked;
-    [HideInInspector]
     public bool DetergentSlotLocked;
 
     private List<Garment> contents;

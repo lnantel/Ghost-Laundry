@@ -17,6 +17,8 @@ public class Bagger : WorkStation
 
     public TutorialManager tutorialManager;
 
+    private bool CustomerUIEnabled;
+
     private struct OutputData {
         public Customer customer;
         public List<Garment> customersGarments;
@@ -30,11 +32,22 @@ public class Bagger : WorkStation
         contents = new List<Garment>();
         laundromatBagPrefab = (GameObject)Resources.Load("LaundromatBag");
         OutputQueue = new List<OutputData>();
+        CustomerUIEnabled = tutorialManager == null;
     }
 
-    //protected override void Interaction() {
-    //    if(RequestCarriedBasket != null) RequestCarriedBasket();
-    //}
+    protected override void Interaction() {
+        if (RequestCarriedBasket != null) RequestCarriedBasket();
+
+        if (CustomerUIEnabled) {
+            PlayerController.instance.enabled = false;
+            laundryTaskArea.SetActive(true);
+            LaundryTaskController.instance.gameObject.SetActive(true);
+            LaundryTaskController.instance.activeWorkStation = this;
+            TaskView.instance.PopUp(transform.position);
+            LaundryTaskController.exitedTask += OnTaskExit;
+            LaundryGarment.Released += OnLaundryGarmentReleased;
+        }
+    }
 
     public override bool InputBasket(Basket basket) {
         AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
