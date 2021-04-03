@@ -132,7 +132,7 @@ public class LaundryBasket : LaundryObject, ITrackable
         yield return new WaitForSeconds(0);
         if(laundryGarment != null) {
             if (!(placedInBasketView && laundryGarment.GetInstanceID() == placedInBasketViewID)) {
-                if (GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
+                if (basketCollider.bounds.Contains(laundryGarment.transform.position)) {
                     if (basket.AddGarment(laundryGarment.garment)) {
                         AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                         Destroy(laundryGarment.gameObject);
@@ -180,8 +180,8 @@ public class LaundryBasket : LaundryObject, ITrackable
     }
 
     private void EnableBasketView() {
-        basketView.SetActive(true);
         basketCollider.enabled = false;
+        basketView.SetActive(true);
         OpenBasketView(this);
         //Instantiate all Garments on top of it in their given positions on the Basket object. 
         laundryGarments = new List<LaundryGarment>();
@@ -223,4 +223,5 @@ public class LaundryBasket : LaundryObject, ITrackable
     public bool ContainsTrackedGarment() {
         return basket.ContainsTrackedGarment();
     }
+
 }

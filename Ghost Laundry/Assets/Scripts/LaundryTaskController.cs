@@ -151,7 +151,7 @@ public class LaundryTaskController : MonoBehaviour
             int maxSortingOrder = -10000; //arbitrarily large value
             for(int i = 0; i < cols.Length; i++) {
                 SortingGroup sortingGroup = cols[i].GetComponentInParent<SortingGroup>();
-                if (sortingGroup.sortingOrder >= maxSortingOrder) {
+                if (sortingGroup != null && sortingGroup.sortingOrder >= maxSortingOrder) {
                     maxSortingOrder = sortingGroup.sortingOrder;
                     col = cols[i];
                 }

@@ -44,26 +44,22 @@ public class LaundryIroningBoard : LaundryObject
         SteamState steam = SteamState.Off;
 
         float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
-        Debug.Log("Iron speed: " + ironSpeed);
 
         if(ironingBoard.garmentOnBoard.fabric.pressingRestrictions != PressingRestrictions.NoIroning && ironSpeed > minIronSpeed && pressingProgress < 1.0f && !ironingBoard.garmentOnBoard.Pressed && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted) && ironingBoard.garmentOnBoard.Clean && ironingBoard.garmentOnBoard.Dry) {
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
             pressingProgress += Time.fixedDeltaTime / ironingBoard.garmentOnBoard.fabric.ironingTime;
-            Debug.Log("Ironing progress: " + pressingProgress);
         }
         else if (graceTimer < gracePeriod && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted)) {
             //Grace period
             steam = SteamState.Off;
             graceTimer += Time.fixedDeltaTime;
-            Debug.Log("Grace");
         }
         else if(!(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted) && ironingBoard.garmentOnBoard.Dry) {
             //Burn
             steam = SteamState.Burn;
             burnTimer += Time.fixedDeltaTime;
-            Debug.Log("Burning!");
         }
 
         //If the garment was steamed long enough, it becomes pressed
@@ -71,7 +67,6 @@ public class LaundryIroningBoard : LaundryObject
             AudioManager.instance.PlaySound(Sounds.ShiningGarment);
             ironingBoard.garmentOnBoard.Pressed = true;
             garmentSpriteRenderer.sprite = pressedGarmentSprite;
-            Debug.Log("Ironing done!");
         }
 
         //If the garment was burned too much, it becomes ruined
@@ -81,7 +76,6 @@ public class LaundryIroningBoard : LaundryObject
             else
                 ironingBoard.garmentOnBoard.Burned = true;
             garmentSpriteRenderer.sprite = ruinedGarmentSprite;
-            Debug.Log("Garment ruined!");
         }
 
         lastIronPos = ironPosition;
@@ -112,30 +106,33 @@ public class LaundryIroningBoard : LaundryObject
 
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {
         if (ironingBoard.garmentOnBoard == null && boardTriggerCollider.bounds.Contains(laundryGarment.transform.position)) {
-
-            //Unfold garment if folded
-            //If pair of socks, separate them, then spawn the extra sock as a LaundryGarment
-            if (laundryGarment.garment is GarmentSock && laundryGarment.garment.Folded) {
-                GarmentSock sock = (GarmentSock)laundryGarment.garment;
-                GarmentSock other = sock.SeparatePair();
-                other.CreateLaundryGarment(laundryGarment.transform.position, laundryGarment.transform.rotation, laundryGarment.transform.parent);
-            }
-            laundryGarment.garment.currentFoldingStep = 0;
-
-            ironingBoard.garmentOnBoard = laundryGarment.garment;
-            AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-            Destroy(laundryGarment.gameObject);
-            garmentSpriteRenderer.enabled = true;
-            if (ironingBoard.garmentOnBoard.Ruined)
-                garmentSpriteRenderer.sprite = ruinedGarmentSprite;
-            else if (ironingBoard.garmentOnBoard.Pressed)
-                garmentSpriteRenderer.sprite = pressedGarmentSprite;
-            else
-                garmentSpriteRenderer.sprite = unpressedGarmentSprite;
-            pressingProgress = 0.0f;
-            burnTimer = 0.0f;
-            graceTimer = 0.0f;
+            PlaceGarmentOnBoard(laundryGarment);
         }
+    }
+
+    private void PlaceGarmentOnBoard(LaundryGarment laundryGarment) {
+        //Unfold garment if folded
+        //If pair of socks, separate them, then spawn the extra sock as a LaundryGarment
+        if (laundryGarment.garment is GarmentSock && laundryGarment.garment.Folded) {
+            GarmentSock sock = (GarmentSock)laundryGarment.garment;
+            GarmentSock other = sock.SeparatePair();
+            other.CreateLaundryGarment(laundryGarment.transform.position, laundryGarment.transform.rotation, laundryGarment.transform.parent);
+        }
+        laundryGarment.garment.currentFoldingStep = 0;
+
+        ironingBoard.garmentOnBoard = laundryGarment.garment;
+        AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
+        Destroy(laundryGarment.gameObject);
+        garmentSpriteRenderer.enabled = true;
+        if (ironingBoard.garmentOnBoard.Ruined)
+            garmentSpriteRenderer.sprite = ruinedGarmentSprite;
+        else if (ironingBoard.garmentOnBoard.Pressed)
+            garmentSpriteRenderer.sprite = pressedGarmentSprite;
+        else
+            garmentSpriteRenderer.sprite = unpressedGarmentSprite;
+        pressingProgress = 0.0f;
+        burnTimer = 0.0f;
+        graceTimer = 0.0f;
     }
 
     public override void OnGrab() {
@@ -150,6 +147,15 @@ public class LaundryIroningBoard : LaundryObject
         Iron iron = collision.GetComponent<Iron>();
         if(iron != null) {
             iron.PlaceOnIroningBoard();
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
+            LaundryGarment laundryGarment = collision.GetComponentInParent<LaundryGarment>();
+            if (laundryGarment != null && !laundryGarment.IsHeld && laundryGarment.GetComponent<Rigidbody2D>().gravityScale != 0.0f) {
+                if (ironingBoard.garmentOnBoard == null) {
+                    PlaceGarmentOnBoard(laundryGarment);
+                }
+            }
         }
     }
 

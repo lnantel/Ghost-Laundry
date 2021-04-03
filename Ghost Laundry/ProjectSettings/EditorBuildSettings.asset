@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Days/Day12.unity
     guid: 67a95c15acf21f44a856208b638239d5
+  - enabled: 1
+    path: Assets/Scenes/DebugTools.unity
+    guid: 7c6aeac736169d14fb2fdb6210d2388c
   m_configObjects: {}
