@@ -16193,9 +16193,14 @@ MonoBehaviour:
   nameColor: {r: 0, g: 0, b: 0, a: 1}
   soundEffect: {fileID: 0}
   portraits:
+  - {fileID: 21300000, guid: f8ea48cf1dd11d04a83eef33bd7547f4, type: 3}
+  - {fileID: 21300000, guid: ea2a3b4a792903342a2db69d5c17f028, type: 3}
+  - {fileID: 21300000, guid: 1ab1821a7548b214287e267945f1bac1, type: 3}
+  - {fileID: 21300000, guid: d2c778f52a86ee04d9655e3c44d159a6, type: 3}
+  - {fileID: 21300000, guid: 0b48423949e08cb438dd1e2c93c60aed, type: 3}
   - {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
-  - {fileID: 21300000, guid: 12ec0331d68acd542a7afec5d50cc2db, type: 3}
   - {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
+  - {fileID: 21300000, guid: 12ec0331d68acd542a7afec5d50cc2db, type: 3}
   portraitsFace: 0
   setSayDialog: {fileID: 1603958713}
   description: 
