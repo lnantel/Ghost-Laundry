@@ -13,7 +13,7 @@ public class WashingMachineDetergentSlot : LaundryObject
     private SpriteRenderer spriteRenderer;
 
     private WashingMachine washingMachine;
-    private bool open;
+    public bool open;
 
     private void Start() {
         washingMachine = GetComponentInParent<WashingMachine>();
@@ -40,7 +40,7 @@ public class WashingMachineDetergentSlot : LaundryObject
         else
             spriteRenderer.sprite = openSprite;
         open = true;
-        startButton.pressed = true;
+        startButton.locked = true;
         AudioManager.instance.PlaySound(Sounds.OpenDetergentWM);
         
 
@@ -55,7 +55,7 @@ public class WashingMachineDetergentSlot : LaundryObject
     private void Close() {
         spriteRenderer.sprite = closedSprite;
         open = false;
-        startButton.pressed = false;
+        startButton.locked = false;
         AudioManager.instance.PlaySound(Sounds.CloseDetergentWM);
 
     }

@@ -1844,11 +1844,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  locked: 0
   ToggleSwitch: 1
   springsBack: 0
   springBackDelay: 0.15
   pressedSprite: {fileID: 21300000, guid: e462aaca2b0ad6f42b9792aedda8b758, type: 3}
   unpressedSprite: {fileID: 21300000, guid: f8a6d7d98f0946e4ab83d9689bc2d1a7, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 41a9413bee4b5f34a9ef20b8312ce559, type: 3}
   pressed: 0
 --- !u!212 &8610347377230574071
 SpriteRenderer:
@@ -2005,11 +2007,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  locked: 0
   ToggleSwitch: 1
   springsBack: 0
   springBackDelay: 0.15
   pressedSprite: {fileID: 21300000, guid: e462aaca2b0ad6f42b9792aedda8b758, type: 3}
   unpressedSprite: {fileID: 21300000, guid: f8a6d7d98f0946e4ab83d9689bc2d1a7, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 41a9413bee4b5f34a9ef20b8312ce559, type: 3}
   pressed: 0
 --- !u!212 &4483277202026278610
 SpriteRenderer:
@@ -2051,7 +2055,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8a6d7d98f0946e4ab83d9689bc2d1a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41a9413bee4b5f34a9ef20b8312ce559, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2363,11 +2367,13 @@ MonoBehaviour:
   OnButtonUnpressed:
     m_PersistentCalls:
       m_Calls: []
+  locked: 0
   ToggleSwitch: 0
   springsBack: 0
   springBackDelay: 0.15
   pressedSprite: {fileID: 21300000, guid: 63278aaaf7980a84a8f5d261daafafce, type: 3}
   unpressedSprite: {fileID: 21300000, guid: beb7e4a38f5a5a647910dd105f8b4fbb, type: 3}
+  lockedSprite: {fileID: 0}
   pressed: 0
 --- !u!212 &4663919908819346300
 SpriteRenderer:
@@ -2588,11 +2594,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  locked: 0
   ToggleSwitch: 1
   springsBack: 0
   springBackDelay: 0.15
   pressedSprite: {fileID: 21300000, guid: e462aaca2b0ad6f42b9792aedda8b758, type: 3}
   unpressedSprite: {fileID: 21300000, guid: f8a6d7d98f0946e4ab83d9689bc2d1a7, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 41a9413bee4b5f34a9ef20b8312ce559, type: 3}
   pressed: 0
 --- !u!212 &2999561198924536977
 SpriteRenderer:
@@ -3557,11 +3565,13 @@ MonoBehaviour:
   OnButtonUnpressed:
     m_PersistentCalls:
       m_Calls: []
+  locked: 0
   ToggleSwitch: 0
   springsBack: 0
   springBackDelay: 0.15
   pressedSprite: {fileID: 21300000, guid: 63278aaaf7980a84a8f5d261daafafce, type: 3}
   unpressedSprite: {fileID: 21300000, guid: beb7e4a38f5a5a647910dd105f8b4fbb, type: 3}
+  lockedSprite: {fileID: 0}
   pressed: 0
 --- !u!212 &9212291738993092874
 SpriteRenderer:

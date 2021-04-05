@@ -29,15 +29,15 @@ public class TutorialArrow : MonoBehaviour
     }
 
     public void SetTarget(Transform newTarget) {
-        if (!Target.Equals(newTarget)) {
-            Target = newTarget;
-            Activate();
-        }
+        Target = newTarget;
+        Activate();
     }
 
     public void Activate() {
-        Active = true;
-        arrow.SetActive(true);
+        if(Target != null) {
+            Active = true;
+            arrow.SetActive(true);
+        }
     }
 
     public void Deactivate() {

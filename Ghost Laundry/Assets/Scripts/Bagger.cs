@@ -15,7 +15,9 @@ public class Bagger : WorkStation
 
     private IEnumerator OutputCoroutine;
 
-    private TutorialManager tutorialManager;
+    public TutorialManager tutorialManager;
+
+    private bool CustomerUIEnabled;
 
     private struct OutputData {
         public Customer customer;
@@ -30,12 +32,22 @@ public class Bagger : WorkStation
         contents = new List<Garment>();
         laundromatBagPrefab = (GameObject)Resources.Load("LaundromatBag");
         OutputQueue = new List<OutputData>();
-        if (TimeManager.instance.CurrentDay == 0) tutorialManager = FindObjectOfType<TutorialManager>();
+        CustomerUIEnabled = tutorialManager == null;
     }
 
-    //protected override void Interaction() {
-    //    if(RequestCarriedBasket != null) RequestCarriedBasket();
-    //}
+    protected override void Interaction() {
+        if (RequestCarriedBasket != null) RequestCarriedBasket();
+
+        if (CustomerUIEnabled) {
+            PlayerController.instance.enabled = false;
+            laundryTaskArea.SetActive(true);
+            LaundryTaskController.instance.gameObject.SetActive(true);
+            LaundryTaskController.instance.activeWorkStation = this;
+            TaskView.instance.PopUp(transform.position);
+            LaundryTaskController.exitedTask += OnTaskExit;
+            LaundryGarment.Released += OnLaundryGarmentReleased;
+        }
+    }
 
     public override bool InputBasket(Basket basket) {
         AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
@@ -46,7 +58,7 @@ public class Bagger : WorkStation
             }
         }
         if (BasketInput != null) BasketInput();
-        if (TimeManager.instance.CurrentDay == 0) TutorialCheckContentsForOutput();
+        if (tutorialManager != null) TutorialCheckContentsForOutput();
         else CheckContentsForOutput();
         return true;
     }

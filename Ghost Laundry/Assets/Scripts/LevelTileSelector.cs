@@ -38,7 +38,7 @@ public class LevelTileSelector : MonoBehaviour
 
             //Event Icons
             int[] characters = EventManager.instance.CharactersWithEventsOnDay(index);
-            bool lastDay = SaveManager.Data.Days.Count == index;
+            bool lastDay = SaveManager.Data.Days.Count - 1 == index;
 
             switch (characters.Length) {
                 case 0:

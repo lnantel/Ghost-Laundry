@@ -44,9 +44,18 @@ public class SaveManager : MonoBehaviour
 
         //Add new DayData to existing SaveData
         //Erase pre-existing DayData corresponding to current or future days, if applicable
-        for(int i = 0; i < Data.Days.Count; i++) {
+        for (int i = 0; i < Data.Days.Count; i++) {
             if (Data.Days[i].CurrentDay >= day.CurrentDay)
                 Data.Days.RemoveAt(i--);
+        }
+
+        //If past days are missing, create saves for them using current data
+        for(int i = 0; i < day.CurrentDay; i++) {
+            if (i >= Data.Days.Count) {
+                SaveData.DayData pastDay = SaveData.CloneDayData(day);
+                pastDay.CurrentDay = i;
+                Data.Days.Insert(i, pastDay);
+            }
         }
 
         Data.Days.Add(day);
@@ -55,7 +64,7 @@ public class SaveManager : MonoBehaviour
             //Debug.Log("Save successful");
         }
         else {
-            Debug.LogError("Failed to save");
+            Debug.LogError("Failed to save!");
         }
     }
 
@@ -75,11 +84,11 @@ public class SaveManager : MonoBehaviour
         }
         else {
             CreateNewSave();
-            Debug.LogError("Failed to load SaveData.dat");
         }
     }
 
     public static void LoadDay(int dayToLoad) {
+        PurgeDaysFollowing(dayToLoad);
         for(int i = 0; i < Data.Days.Count; i++) {
             if(Data.Days[i].CurrentDay == dayToLoad) {
                 SaveData.DayData day = Data.Days[i];
@@ -95,6 +104,7 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
+        Save();
     }
 
     public static void CreateNewSave() {
@@ -128,7 +138,11 @@ public class SaveManager : MonoBehaviour
             //Debug.Log("New save file created successfully");
         }
         else {
-            Debug.LogError("Failed to save");
+            Debug.LogError("Failed to save!");
         }
+    }
+
+    public static void PurgeDaysFollowing(int day) {
+        Data.Days.RemoveAll(d => d.CurrentDay > day);
     }
 }

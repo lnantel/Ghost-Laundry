@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour {
     private List<string> keepLoaded;
     private IEnumerator scenesLoading;
 
+    private bool inSettings;
+    private bool inDialog;
+
     private void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
@@ -44,9 +47,7 @@ public class GameManager : MonoBehaviour {
         HideCursor();
         loadedScenes = new List<string>();
         keepLoaded = new List<string>();
-        keepLoaded.Add("HUD");
-        keepLoaded.Add("Dialog");
-        keepLoaded.Add("Options");
+        keepLoaded.Add("DebugTools");
     }
 
     private void OnEnable() {
@@ -56,6 +57,10 @@ public class GameManager : MonoBehaviour {
         TransitionManager.TransitionDone += OnTransitionEnd;
         EventManager.StartDialog += OnDialogStart;
         EventManager.EndDialog += OnDialogEnd;
+        ShowSettings += OnShowSettings;
+        HideSettings += OnHideSettings;
+        ShowDialog += OnShowDialog;
+        HideDialog += OnHideDialog;
     }
 
     private void OnDisable() {
@@ -65,10 +70,14 @@ public class GameManager : MonoBehaviour {
         TransitionManager.TransitionDone -= OnTransitionEnd;
         EventManager.StartDialog -= OnDialogStart;
         EventManager.EndDialog -= OnDialogEnd;
+        ShowSettings -= OnShowSettings;
+        HideSettings -= OnHideSettings;
+        ShowDialog -= OnShowDialog;
+        HideDialog -= OnHideDialog;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
-        if (scene.buildIndex != 0)
+        if (scene.buildIndex != 0 && loadedScenes != null)
             loadedScenes.Add(scene.name);
     }
 
@@ -77,16 +86,33 @@ public class GameManager : MonoBehaviour {
             loadedScenes.Remove(scene.name);
     }
 
-    private void UnloadAllScenes() {
+    private bool UnloadAllScenes() {
+        if (scenesLoading == null) {
+            scenesLoading = UnloadScenesCoroutine();
+            StartCoroutine(scenesLoading);
+            return true;
+        }
+        else return false;
+    }
+
+    private IEnumerator UnloadScenesCoroutine() {
+        List<string> scenesToUnload = new List<string>();
         foreach (string sceneName in loadedScenes) {
             bool keepSceneLoaded = false;
-            foreach(string s in keepLoaded) {
+            foreach (string s in keepLoaded) {
                 if (s.Equals(sceneName)) keepSceneLoaded = true;
             }
             if (!keepSceneLoaded) {
-                SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(sceneName));
+                scenesToUnload.Add(sceneName);
             }
         }
+
+        foreach(string sceneName in scenesToUnload) {
+            AsyncOperation op = SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(sceneName));
+            while (!op.isDone) yield return null;
+        }
+
+        scenesLoading = null;
     }
 
     private bool LoadScenes(params string[] sceneNames) {
@@ -131,9 +157,10 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToTitleScreen() {
         if(SceneManager.sceneCount > 1) {
-            FadeOut();
+            if(FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
 
         LoadScenes("Title", "Options", "HUD", "Dialog");
@@ -154,15 +181,18 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToGame() {
         if (SceneManager.sceneCount > 1) {
-            FadeOut();
+            if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
-
-        if (ShowHUD != null) ShowHUD();
 
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
         while (scenesLoading != null) yield return null;
+
+        //if (ShowHUD != null) ShowHUD();
+
+        SaveManager.LoadSaveData();
 
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
@@ -229,13 +259,16 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToTransition() {
         if (SceneManager.sceneCount > 1) {
-            FadeOut();
+            if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
 
         LoadScenes("NextDay", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
+
+        SaveManager.LoadSaveData();
 
         state = GameStates.Transition;
 
@@ -256,13 +289,16 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToSelectionScreen() {
         if (SceneManager.sceneCount > 1) {
-            FadeOut();
+            if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
         }
 
         LoadScenes("SelectionScreen", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
+
+        SaveManager.LoadSaveData();
 
         if (HideHUD != null) HideHUD();
         if (FadeIn != null) FadeIn();
@@ -332,9 +368,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Resume() {
-        if(ResumeGame != null) ResumeGame();
-        state = GameStates.Laundromat;
-        HideCursor();
+        if (inSettings && HideSettings != null) HideSettings();
+        else if (!inSettings) {
+            if (ResumeGame != null) ResumeGame();
+            state = GameStates.Laundromat;
+            if(!inDialog) HideCursor();
+        }
     }
 
     public void GoToMainMenu() {
@@ -367,6 +406,22 @@ public class GameManager : MonoBehaviour {
     public void OnDialogEnd(int i) {
         if (HideDialog != null) HideDialog();
         HideCursor();
+    }
+
+    private void OnShowSettings() {
+        inSettings = true;
+    }
+
+    private void OnHideSettings() {
+        inSettings = false;
+    }
+
+    private void OnShowDialog() {
+        inDialog = true;
+    }
+
+    private void OnHideDialog() {
+        inDialog = false;
     }
 
     public void ShowCursor() {

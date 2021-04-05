@@ -18,7 +18,6 @@ public class Iron : LaundryObject
     public ParticleSystem smoke;
 
     private Rigidbody2D rb;
-    private IronState state;
     private SteamState steamState;
     private bool onIroningBoard;
 
@@ -39,43 +38,23 @@ public class Iron : LaundryObject
         rb.velocity = Vector3.zero; //Stop gravity from accumulating while the object is grabbed
     }
 
-    public void TogglePower() {
-        if (state == IronState.Off) {
-            state = IronState.On;
-            ironSpriteRenderer.sprite = spriteIronStandingOn;
-            AudioManager.instance.PlaySound(Sounds.IronIsOn);
-
-        }
-        else if(state == IronState.On) {
-            state = IronState.Off;
-            ironSpriteRenderer.sprite = spriteIronStandingOff;
-
-        }
-    }
-
     public void PlaceOnIroningBoard() {
         onIroningBoard = true;
         transform.position = new Vector3(transform.position.x, boardHeight);
         //rb.rotation = 90.0f;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-        if (state == IronState.On)
-            ironSpriteRenderer.sprite = spriteIronFlatOn;
-        else
-            ironSpriteRenderer.sprite = spriteIronFlatOff;
+        ironSpriteRenderer.sprite = spriteIronFlatOn;
     }
 
     public void TakeOffIroningBoard() {
         onIroningBoard = false;
         //rb.rotation = 0.0f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        if (state == IronState.On)
-            ironSpriteRenderer.sprite = spriteIronStandingOn;
-        else
-            ironSpriteRenderer.sprite = spriteIronStandingOff;
+        ironSpriteRenderer.sprite = spriteIronStandingOn;
     }
 
     private void FixedUpdate() {
-        if(state == IronState.On && onIroningBoard && ironingBoard.garmentOnBoard != null) {
+        if(onIroningBoard && ironingBoard.garmentOnBoard != null) {
             steamState = laundryIroningBoard.Press(transform.position.x);
         }
         else {
@@ -95,11 +74,6 @@ public class Iron : LaundryObject
             smoke.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
     }
-}
-
-public enum IronState {
-    Off,
-    On
 }
 
 public enum SteamState {

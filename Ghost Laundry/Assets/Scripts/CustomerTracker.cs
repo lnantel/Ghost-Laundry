@@ -56,19 +56,19 @@ public class CustomerTracker : MonoBehaviour
         TXT_PageTracker.text = currentPage + " / " + numberOfPages;
 
         if(currentPage < numberOfPages) {
-            NextPageButton.springsBack = true;
+            NextPageButton.locked = false;
         }
         else {
             NextPageButton.pressed = true;
-            NextPageButton.springsBack = false;
+            NextPageButton.locked = true;
         }
 
         if(currentPage > 1) {
-            PreviousPageButton.springsBack = true;
+            PreviousPageButton.locked = false;
         }
         else {
             PreviousPageButton.pressed = true;
-            PreviousPageButton.springsBack = false;
+            PreviousPageButton.locked = true;
         }
     }
 

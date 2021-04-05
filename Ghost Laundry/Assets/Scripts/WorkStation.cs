@@ -180,11 +180,16 @@ public class WorkStation : Interactable, ITrackable
             }
         }
 
-        for(int i = 0; i < containedLaundryGarments.Count; i++) {
+        if (laundryTaskArea.activeSelf) {
+            UpdateContainedLaundryGarments();
+        }
+
+        for (int i = 0; i < containedLaundryGarments.Count; i++) {
             if (!containedGarments.Contains(containedLaundryGarments[i].garment)) {
                 containedGarments.Add(containedLaundryGarments[i].garment);
             }
         }
+
 
         List<Garment> garmentsInCustomContainers = GetCustomContainerGarments();
 

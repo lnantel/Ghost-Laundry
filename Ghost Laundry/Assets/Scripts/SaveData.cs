@@ -24,6 +24,23 @@ public class SaveData
         public List<EventData> narrativeData;
     }
 
+    public static DayData CloneDayData(DayData day) {
+        DayData clone = new DayData();
+        clone.CurrentDay = day.CurrentDay;
+        clone.Money = day.Money;
+        clone.Detergent = day.Detergent;
+        clone.Reputation = day.Reputation;
+        clone.narrativeData = new List<EventData>();
+        for(int i = 0; i < day.narrativeData.Count; i++) {
+            EventData clonedEvent = new EventData();
+            clonedEvent.TreeIndex = day.narrativeData[i].TreeIndex;
+            clonedEvent.Index = day.narrativeData[i].Index;
+            clonedEvent.NextIndex = day.narrativeData[i].NextIndex;
+            clonedEvent.Completed = day.narrativeData[i].Completed;
+        }
+        return clone;
+    }
+
     public string ToJson() {
         return JsonUtility.ToJson(this);
     }

@@ -78,6 +78,5 @@ public class WashingMachineDoor : LaundryObject
     public void StartWashCycle() {
         washingMachine.StartWashCycle();
         AudioManager.instance.PlaySound(Sounds.StartButtonWM);
-
     }
 }

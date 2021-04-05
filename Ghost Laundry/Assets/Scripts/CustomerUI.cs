@@ -98,7 +98,7 @@ public class CustomerUI : MonoBehaviour
             //Find Button status
             if (targetCustomer.state == CustomerState.WaitingForClothes) {
                 //Enable button
-                FindButton.springsBack = true;
+                FindButton.locked = false;
                 if (CustomerTracker.TrackedCustomer != null && CustomerTracker.TrackedCustomer.Equals(targetCustomer))
                     FindButton.pressed = true;
                 else
@@ -106,8 +106,7 @@ public class CustomerUI : MonoBehaviour
             }
             else {
                 //Disable button
-                FindButton.springsBack = false;
-                FindButton.pressed = true;
+                FindButton.locked = true;
             }
         }
         else {
