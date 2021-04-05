@@ -11159,6 +11159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f754aa07cc46a46a89abe49380cd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flowchart: {fileID: 1263988394}
 --- !u!1 &1155114718
 GameObject:
   m_ObjectHideFlags: 0
@@ -11168,6 +11169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155114719}
+  - component: {fileID: 1155114720}
   m_Layer: 0
   m_Name: OllieEvents
   m_TagString: Untagged
@@ -11193,6 +11195,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155114720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155114718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91330b8eba9e16944b5f36fec6980261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SafetyPoints: 0
+  SafetyEnding: {fileID: 0}
+  DangerEnding: {fileID: 0}
+  NeutralEnding: {fileID: 0}
 --- !u!1 &1180454662
 GameObject:
   m_ObjectHideFlags: 0
@@ -11400,33 +11418,29 @@ MonoBehaviour:
       hour: 13
       minute: 0
       EventTreeIndex: 0
-      flowchart: {fileID: 972488737}
-      ListenerPrefab: {fileID: 2740070270142239915, guid: ebc96d017fd45f94a817dcd0eb09b39b, type: 3}
+      EventObject: {fileID: 76009506}
       NextEventIndex: 1
       Completed: 0
     - Day: 2
-      hour: 14
+      hour: 13
       minute: 0
       EventTreeIndex: 0
-      flowchart: {fileID: 28830972}
-      ListenerPrefab: {fileID: 2740070270142239915, guid: 40433bcc47a3d484b86a16d99fe50ca8, type: 3}
+      EventObject: {fileID: 1567338305}
+      NextEventIndex: 2
+      Completed: 0
+    - Day: 2
+      hour: 13
+      minute: 0
+      EventTreeIndex: 0
+      EventObject: {fileID: 1574113702}
       NextEventIndex: 3
       Completed: 0
     - Day: 2
       hour: 15
       minute: 0
       EventTreeIndex: 0
-      flowchart: {fileID: 1415840277}
-      ListenerPrefab: {fileID: 2740070270142239915, guid: 4121a34dd658e3242bf659efb8e14d12, type: 3}
-      NextEventIndex: 3
-      Completed: 0
-    - Day: 2
-      hour: 15
-      minute: 0
-      EventTreeIndex: 0
-      flowchart: {fileID: 1415840277}
-      ListenerPrefab: {fileID: 2740070270142239915, guid: 4121a34dd658e3242bf659efb8e14d12, type: 3}
-      NextEventIndex: 3
+      EventObject: {fileID: 733188717}
+      NextEventIndex: 4
       Completed: 0
   EventsToday: []
 --- !u!4 &1225033085
@@ -11460,6 +11474,8 @@ GameObject:
   - component: {fileID: 1263988389}
   - component: {fileID: 1263988388}
   - component: {fileID: 1263988387}
+  - component: {fileID: 1263988396}
+  - component: {fileID: 1263988395}
   m_Layer: 0
   m_Name: Event 1 Flowchart
   m_TagString: Untagged
@@ -11483,18 +11499,31 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1263988387
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263988385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff5d850a887844fe87ae7d366d3ab5e, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentBlock: {fileID: 1263988393}
-  suppressBlockAutoSelect: 0
+  itemId: 6
+  indentLevel: 0
+  storyText: Placeholder
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1263988388
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -11509,8 +11538,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  targetObject: {fileID: 1225033083}
-  methodName: EventEnd
+  targetObject: {fileID: 1136966460}
+  methodName: OnEventEnd
   delay: 0
 --- !u!114 &1263988389
 MonoBehaviour:
@@ -11526,8 +11555,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  targetObject: {fileID: 1225033083}
-  methodName: EventEnd
+  targetObject: {fileID: 1136966460}
+  methodName: OnEventEnd
   delay: 0
 --- !u!114 &1263988390
 MonoBehaviour:
@@ -11543,8 +11572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  targetObject: {fileID: 1225033083}
-  methodName: EventEnd
+  targetObject: {fileID: 1136966460}
+  methodName: OnDialogEnd
   delay: 0
 --- !u!114 &1263988391
 MonoBehaviour:
@@ -11571,6 +11600,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1263988395}
   - {fileID: 1263988388}
   suppressAllAutoSelections: 0
 --- !u!114 &1263988392
@@ -11598,6 +11628,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1263988396}
   - {fileID: 1263988389}
   suppressAllAutoSelections: 0
 --- !u!114 &1263988393
@@ -11623,8 +11654,9 @@ MonoBehaviour:
   itemId: 0
   blockName: Event 1
   description: 
-  eventHandler: {fileID: 1263988387}
+  eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1263988387}
   - {fileID: 1263988390}
   suppressAllAutoSelections: 0
 --- !u!114 &1263988394
@@ -11651,8 +11683,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 1263988391}
+  selectedCommands:
+  - {fileID: 1263988395}
   variables: []
   description: 
   stepPause: 0
@@ -11664,6 +11698,60 @@ MonoBehaviour:
   hideCommands: []
   luaEnvironment: {fileID: 0}
   luaBindingName: flowchart
+--- !u!114 &1263988395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263988385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 8
+  indentLevel: 0
+  storyText: Placeholder
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1263988396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263988385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 7
+  indentLevel: 0
+  storyText: Placeholder
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1309999559
 GameObject:
   m_ObjectHideFlags: 0
@@ -20988,7 +21076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 823566174}
+  selectedFlowchart: {fileID: 1263988394}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1

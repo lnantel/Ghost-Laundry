@@ -41,7 +41,7 @@ public class EventManager : MonoBehaviour
         TimeManager.EndOfDay += OnDayEnd;
         TimeManager.TimeOfDay += OnTime;
 
-        RecurringCustomerInteractable.StartDialog += OnDialogStart;
+        RecurringCustomerInteractable.StartDialog += OnEventStart;
     }
 
     private void OnDisable() {
@@ -49,7 +49,7 @@ public class EventManager : MonoBehaviour
         TimeManager.EndOfDay -= OnDayEnd;
         TimeManager.TimeOfDay -= OnTime;
 
-        RecurringCustomerInteractable.StartDialog -= OnDialogStart;
+        RecurringCustomerInteractable.StartDialog -= OnEventStart;
     }
 
     private void OnDayStart(int day) {
@@ -93,26 +93,26 @@ public class EventManager : MonoBehaviour
         EventsToday.Clear();
     }
 
-    public void OnDialogStart(int characterIndex) {
+    public void OnEventStart(int characterIndex) {
         //Find customer's next event
         NarrativeEvent nextEvent = EventTrees[characterIndex].GetNextEvent();
 
         //Enable flowchart
         if(nextEvent != null) {
-            nextEvent.flowchart.gameObject.SetActive(true);
-            dialogCanvas.gameObject.SetActive(true);
+            nextEvent.EventObject.SetActive(true);
+            //dialogCanvas.gameObject.SetActive(true);
 
             //Spawn NarrativeEventListener
-            NarrativeEventListener listener = Instantiate(nextEvent.ListenerPrefab).GetComponent<NarrativeEventListener>();
+            //NarrativeEventListener listener = Instantiate(nextEvent.ListenerPrefab).GetComponent<NarrativeEventListener>();
 
             //Link it to the correct NarrativeEvent
-            listener.characterIndex = characterIndex;
-            listener.customerID = CustomerManager.instance.GetRecurringCustomer(characterIndex).ticketNumber;
-            listener.narrativeEvent = nextEvent;
+            //listener.characterIndex = characterIndex;
+            //listener.customerID = CustomerManager.instance.GetRecurringCustomer(characterIndex).ticketNumber;
+            //listener.narrativeEvent = nextEvent;
             currentEvent = nextEvent;
-            listener.NextEvent(); //sets default NextEventIndex on the narrativeEvent
+            //listener.NextEvent(); //sets default NextEventIndex on the narrativeEvent
 
-            if (StartDialog != null) StartDialog();
+            //if (StartDialog != null) StartDialog();
         }
     }
 
@@ -120,13 +120,8 @@ public class EventManager : MonoBehaviour
         //Mark the event as completed
         if (currentEvent != null) {
             currentEvent.Completed = true;
-            currentEvent.flowchart.gameObject.SetActive(false);
+            currentEvent.EventObject.SetActive(false);
         }
-
-        //Wait one frame before disabling the dialog canvas to allow for Fungus block end signals to go through to the custom buttons
-        StartCoroutine(DisableDialogCanvas());
-
-        if (EndDialog != null) EndDialog(currentEvent.EventTreeIndex);
     }
 
     private IEnumerator DisableDialogCanvas() {

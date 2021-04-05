@@ -99,34 +99,32 @@ public class Bagger : WorkStation
 
     private void CheckContentsForOutput() {
         List<Customer> customers = CustomerManager.instance.customersInLaundromat;
-        foreach(Customer customer in customers) {
-            List<Garment> customersGarments = new List<Garment>();
-            int garmentCount = 0;
-            foreach(Garment garment in contents) {
-                if(garment.customerID == customer.ticketNumber) {
-                    customersGarments.Add(garment);
-                    garmentCount++;
+        for(int i = 0; i < customers.Count; i++) {
+            bool baggerContainsAll = true;
+            if(customers[i].garments != null && customers[i].garments.Count > 0) {
+                for (int j = 0; j < customers[i].garments.Count; j++) {
+                    if (!contents.Contains(customers[i].garments[j])) baggerContainsAll = false;
                 }
-            }
-            if(garmentCount != 0 && garmentCount == customer.garments.Count) {
-                if(OutputCoroutine == null) {
-                    OutputCoroutine = OutputBag(customer, customersGarments);
-                    StartCoroutine(OutputCoroutine);
-                }
-                else {
-                    //Add output to queue if it isn't already there
-                    bool alreadyInQueue = false;
-                    for(int i = 0; i < OutputQueue.Count; i++) {
-                        if(OutputQueue[i].customer.ticketNumber == customer.ticketNumber) {
-                            alreadyInQueue = true;
-                            break;
-                        }
+                if (baggerContainsAll) {
+                    if (OutputCoroutine == null) {
+                        OutputCoroutine = OutputBag(customers[i], customers[i].garments);
+                        StartCoroutine(OutputCoroutine);
                     }
-                    if (!alreadyInQueue) {
-                        OutputData output = new OutputData();
-                        output.customer = customer;
-                        output.customersGarments = customersGarments;
-                        OutputQueue.Add(output);
+                    else {
+                        //Add output to queue if it isn't already there
+                        bool alreadyInQueue = false;
+                        for (int k = 0; k < OutputQueue.Count; k++) {
+                            if (OutputQueue[k].customer.ticketNumber == customers[i].ticketNumber) {
+                                alreadyInQueue = true;
+                                break;
+                            }
+                        }
+                        if (!alreadyInQueue) {
+                            OutputData output = new OutputData();
+                            output.customer = customers[i];
+                            output.customersGarments = customers[i].garments;
+                            OutputQueue.Add(output);
+                        }
                     }
                 }
             }

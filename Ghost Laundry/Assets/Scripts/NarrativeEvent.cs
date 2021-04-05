@@ -22,11 +22,8 @@ public class NarrativeEvent
     [HideInInspector]
     public int EventTreeIndex;
 
-    //The flowchart (dialogue tree) associated with the event
-    public GameObject flowchart;
-
-    //NarrativeEventListener
-    public GameObject ListenerPrefab;
+    //The object to activate when the event starts
+    public GameObject EventObject;
 
     //NextEvent is the index of the next event in the NarrativeEventTree array
     public int NextEventIndex;
