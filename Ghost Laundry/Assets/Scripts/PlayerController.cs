@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartCarrying(GameObject obj) {
         state.StartCarry();
+        AudioManager.instance.PlaySound(Sounds.PickUpBasket,0.5f);
         carriedObject = obj;
         carriedObject.GetComponent<Collider2D>().enabled = false;
         LaundromatSpriteSort spriteSort = obj.GetComponentInChildren<LaundromatSpriteSort>();
@@ -187,6 +188,7 @@ public class PlayerController : MonoBehaviour
 
     private void DropCarriedObject() {
         state.EndCarry();
+        AudioManager.instance.PlaySound(Sounds.DropBasket,0.5f);
         carriedObject.GetComponent<Collider2D>().enabled = true;
         carriedObject.transform.position = placedPos.position;
         LaundromatSpriteSort spriteSort = carriedObject.GetComponentInChildren<LaundromatSpriteSort>();
@@ -224,6 +226,7 @@ public class PlayerController : MonoBehaviour
                             basketObject.GetComponent<LaundromatBasket>().basket = basket;
 
                             StartCarrying(basketObject);
+                            
                         }
                     }
                 }
@@ -234,6 +237,8 @@ public class PlayerController : MonoBehaviour
     public void Take(GameObject obj) {
         if (carriedObject != null) DropCarriedObject();
         StartCarrying(obj);
+        AudioManager.instance.PlaySound(Sounds.PickUpBasket,0.5f);
+
         LaundromatBasket laundromatBasket = obj.GetComponent<LaundromatBasket>();
         if (laundromatBasket != null) {
             if (CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
@@ -249,6 +254,8 @@ public class PlayerController : MonoBehaviour
                     WorkStation workStation = (WorkStation)interactable;
                     if (workStation.InputBasket(laundromatBasket.basket)) {
                         DestroyCarriedObject();
+                        AudioManager.instance.PlaySound(Sounds.DropBasket,0.5f);
+
                     }
                     else {
                         DropCarriedObject();
