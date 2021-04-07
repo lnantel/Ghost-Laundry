@@ -1707,7 +1707,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 320410797}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 320410846}
   variables: []
   description: 
   stepPause: 0
@@ -3027,7 +3028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: '*Is that the helmet I bought on his head? How is it possible? Where
+  storyText: '*He''s wearing the helmet I bought for him! I''m so happy but ..hmm..where
     did his cap go?*'
   description: 
   character: {fileID: 1084785472}
@@ -6604,7 +6605,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &326744850
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7977,7 +7978,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 789936417}
   selectedCommands:
-  - {fileID: 789936461}
+  - {fileID: 789936488}
   variables: []
   description: 
   stepPause: 0
@@ -9802,7 +9803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  storyText: and YES! it's a helmet!
+  storyText: and YES! it's the helmet that you bought for me.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
