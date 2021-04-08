@@ -81,7 +81,10 @@ public enum Sounds
     DropGarmentEmb, 
     OpenEmbDoor,
     CloseEmbDoor,
-    ProcessingEmb
+    ProcessingEmb,
+
+    DropBasket,
+    PickUpBasket
 
 
 }
