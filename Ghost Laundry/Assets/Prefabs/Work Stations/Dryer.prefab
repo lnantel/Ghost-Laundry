@@ -259,7 +259,7 @@ MonoBehaviour:
   HasGravity: 1
   basketSlots:
   - laundryBasket: {fileID: 0}
-    spawnPoint: {x: -4.78, y: -1.31, z: 0}
+    spawnPoint: {x: -4.779999, y: -3, z: 0}
   laundryTaskArea: {fileID: 0}
   containedLaundryGarments: []
   DryerCycleTime_High: 10
