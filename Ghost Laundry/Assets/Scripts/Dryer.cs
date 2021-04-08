@@ -165,16 +165,10 @@ public class Dryer : WorkStation
         if(contents.Count > 0)
             lintTrapClean = false;
         state = DryerState.Done;
-
-      
-
     }
 
     public void CleanLintTrap() {
         if (!lintTrapClean) lintTrapClean = true;
-        else
-            Debug.Log("Lint trap already clean");
-
     }
 
     protected override List<Garment> GetCustomContainerGarments() {

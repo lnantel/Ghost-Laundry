@@ -37,6 +37,13 @@ public class LaundryButton : LaundryObject
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void OnDisable() {
+        if(springBackCoroutine != null) {
+            StopCoroutine(springBackCoroutine);
+            springBackCoroutine = null;
+        }
+    }
+
     public override void OnInteract() {
         if (ToggleSwitch) {
             if (pressed) Unpress();

@@ -71,8 +71,8 @@ public class OllieEvent1 : MonoBehaviour
         GameManager.instance.OnDialogStart();
     }
 
-    //TODO: End block Event 1 with call to OnDialogEnd
-    //TODO: End blocks Event 1 A + Event 1 B with a call to OnEventEnd
+    //End block Event 1 with call to OnDialogEnd
+    //End blocks Event 1 A + Event 1 B with a call to OnEventEnd
     public void OnDialogEnd() {
         flowchart.gameObject.SetActive(false);
         StartCoroutine(DisableDialogCanvas());

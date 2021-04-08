@@ -149,7 +149,7 @@ public class CustomerManager : MonoBehaviour
         for (int i = 0; i < WaitingSpots.Length; i++) {
             if (!WaitingSpots[i].Claimed && SpotAssigned != null) {
                 SpotAssigned(WaitingSpots[i], customer);
-                Debug.Log("Spot assigned: " + WaitingSpots[i].position);
+                //Debug.Log("Spot assigned: " + WaitingSpots[i].position);
                 break;
             }
         }

@@ -14,6 +14,26 @@ public class PlayerAnimationController : MonoBehaviour
         state = PlayerStateManager.instance;
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        StartCoroutine(Initialize());
+    }
+
+    private IEnumerator Initialize() {
+        yield return null;
+        SetCap();
+    }
+
+    private void OnEnable() {
+        GameManager.HideDialog += SetCap;
+    }
+
+    private void OnDisable() {
+        GameManager.HideDialog -= SetCap;
+    }
+
+    private void SetCap() {
+        bool cap = EventManager.instance.OlliesCap();
+        float layerWeight = cap ? 1.0f : 0.0f;
+        animator.SetLayerWeight(animator.GetLayerIndex("CapLayer"), layerWeight);
     }
 
     // Update is called once per frame

@@ -22,6 +22,7 @@ public class SaveData
         public int Detergent;
         public int Reputation;
         public List<EventData> narrativeData;
+        public int OllieSafetyPoints;
     }
 
     public static DayData CloneDayData(DayData day) {
@@ -31,6 +32,7 @@ public class SaveData
         clone.Detergent = day.Detergent;
         clone.Reputation = day.Reputation;
         clone.narrativeData = new List<EventData>();
+        clone.OllieSafetyPoints = day.OllieSafetyPoints;
         for(int i = 0; i < day.narrativeData.Count; i++) {
             EventData clonedEvent = new EventData();
             clonedEvent.TreeIndex = day.narrativeData[i].TreeIndex;

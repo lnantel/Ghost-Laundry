@@ -31,6 +31,7 @@ public class SaveManager : MonoBehaviour
         day.Money = MoneyManager.instance.CurrentAmount;
         day.Reputation = ReputationManager.instance.CurrentAmount;
         day.narrativeData = new List<SaveData.EventData>();
+        day.OllieSafetyPoints = EventManager.instance.ollieEventManager.SafetyPoints;
         for(int i = 0; i < EventManager.instance.EventTrees.Length; i++) {
             for(int j = 0; j < EventManager.instance.EventTrees[i].tree.Length; j++) {
                 SaveData.EventData eventData = new SaveData.EventData();
@@ -96,6 +97,7 @@ public class SaveManager : MonoBehaviour
                 DetergentManager.instance.CurrentAmount = day.Detergent;
                 MoneyManager.instance.CurrentAmount = day.Money;
                 ReputationManager.instance.CurrentAmount = day.Reputation;
+                EventManager.instance.ollieEventManager.SafetyPoints = day.OllieSafetyPoints;
                 for(int j = 0; j < day.narrativeData.Count; j++) {
                     SaveData.EventData eventData = day.narrativeData[j];
                     EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].Completed = eventData.Completed;
@@ -119,6 +121,7 @@ public class SaveManager : MonoBehaviour
         day.Reputation = 0;
         day.Detergent = DetergentManager.instance.MaxAmount;
         day.narrativeData = new List<SaveData.EventData>();
+        day.OllieSafetyPoints = 0;
 
         Data.Days = new List<SaveData.DayData>();
         Data.Days.Add(day);

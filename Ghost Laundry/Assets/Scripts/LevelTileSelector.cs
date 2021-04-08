@@ -25,12 +25,22 @@ public class LevelTileSelector : MonoBehaviour
     public Sprite plusEventIcon;
     public Sprite unknownEventIcon;
 
+    private bool initialized;
+
     private void OnEnable() {
         DaySelected += OnDaySelected;
-        selectable = TimeManager.instance.CurrentDay >= index;
         SelectionManager.ShowConfirmationWindow += OnShowConfirmationWindow;
         SelectionManager.HideConfirmationWindow += OnHideConfirmationWindow;
 
+        StartCoroutine(Initialize());
+    }
+
+    private IEnumerator Initialize() {
+        while (TimeManager.instance == null)
+            yield return null;
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        selectable = TimeManager.instance.CurrentDay >= index;
         if (selectable) {
             TXT_Day.text = "Day " + index;
             TXT_Money.text = (SaveManager.Data.Days[index].Money / 100.0f).ToString("N2");
@@ -61,8 +71,8 @@ public class LevelTileSelector : MonoBehaviour
                     EventIcon1.enabled = true;
                     EventIcon2.enabled = true;
                     EventIcon3.enabled = false;
-                    EventIcon1.transform.position = new Vector3(EventIcon1.transform.position.x - 0.234f, EventIcon1.transform.position.y,EventIcon1.transform.position.z);
-                    EventIcon2.transform.position = new Vector3(EventIcon1.transform.position.x + 0.234f, EventIcon1.transform.position.y,EventIcon1.transform.position.z);
+                    EventIcon1.transform.position = new Vector3(EventIcon1.transform.position.x - 0.234f, EventIcon1.transform.position.y, EventIcon1.transform.position.z);
+                    EventIcon2.transform.position = new Vector3(EventIcon1.transform.position.x + 0.234f, EventIcon1.transform.position.y, EventIcon1.transform.position.z);
                     if (lastDay) {
                         EventIcon1.sprite = unknownEventIcon;
                         EventIcon2.sprite = unknownEventIcon;
@@ -107,6 +117,8 @@ public class LevelTileSelector : MonoBehaviour
                     break;
             }
         }
+
+        initialized = true;
     }
 
     private void OnDisable() {
@@ -116,23 +128,29 @@ public class LevelTileSelector : MonoBehaviour
     }
 
     private void OnDaySelected(int day) {
-        if(day == index) {
-            popUp.SetActive(true);
-        }
-        else {
-            Animator animator = popUp.GetComponentInChildren<Animator>();
-            if(animator != null && animator.isActiveAndEnabled) animator.SetTrigger("HidePopUp");
+        if (initialized) {
+            if (day == index) {
+                popUp.SetActive(true);
+            }
+            else {
+                Animator animator = popUp.GetComponentInChildren<Animator>();
+                if (animator != null && animator.isActiveAndEnabled) {
+                    animator.SetTrigger("HidePopUp");
+                }
+            }
         }
     }
 
     private void OnMouseEnter() {
-        if(selectable && !confirming)
+        if(initialized && selectable && !confirming)
             if(DaySelected != null) DaySelected(index);
     }
 
     private void OnMouseDown() {
-        if(selectable && !confirming)
+        if(initialized && selectable && !confirming) {
             if (DayClicked != null) DayClicked(index);
+            Debug.Log("Day clicked: " + index);
+        }
     }
 
     private void OnShowConfirmationWindow() {

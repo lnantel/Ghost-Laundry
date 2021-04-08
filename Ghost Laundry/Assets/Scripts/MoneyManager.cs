@@ -37,12 +37,14 @@ public class MoneyManager : MonoBehaviour
 
     private void OnEnable() {
         ShopInteractable.BoughtItem += OnItemBought;
+        HelmetInteractable.BoughtItem += OnItemBought;
         Customer.BagPickedUp += OnBagPickedUp;
         TimeManager.StartOfDay += OnStartOfDay;
     }
 
     private void OnDisable() {
         ShopInteractable.BoughtItem -= OnItemBought;
+        HelmetInteractable.BoughtItem -= OnItemBought;
         Customer.BagPickedUp -= OnBagPickedUp;
         TimeManager.StartOfDay -= OnStartOfDay;
     }

@@ -12,6 +12,8 @@ public class EventManager : MonoBehaviour
 
     public Canvas dialogCanvas;
 
+    public OllieEventManager ollieEventManager;
+
     //Each character has a tree at a given index in this array
     public string[] customerNames;
     public Sprite[] customerPortraits;
@@ -20,7 +22,7 @@ public class EventManager : MonoBehaviour
     [HideInInspector]
     public List<NarrativeEvent> EventsToday;
 
-    private NarrativeEvent currentEvent;
+    public NarrativeEvent currentEvent;
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -100,19 +102,7 @@ public class EventManager : MonoBehaviour
         //Enable flowchart
         if(nextEvent != null) {
             nextEvent.EventObject.SetActive(true);
-            //dialogCanvas.gameObject.SetActive(true);
-
-            //Spawn NarrativeEventListener
-            //NarrativeEventListener listener = Instantiate(nextEvent.ListenerPrefab).GetComponent<NarrativeEventListener>();
-
-            //Link it to the correct NarrativeEvent
-            //listener.characterIndex = characterIndex;
-            //listener.customerID = CustomerManager.instance.GetRecurringCustomer(characterIndex).ticketNumber;
-            //listener.narrativeEvent = nextEvent;
             currentEvent = nextEvent;
-            //listener.NextEvent(); //sets default NextEventIndex on the narrativeEvent
-
-            //if (StartDialog != null) StartDialog();
         }
     }
 
@@ -121,11 +111,24 @@ public class EventManager : MonoBehaviour
         if (currentEvent != null) {
             currentEvent.Completed = true;
             currentEvent.EventObject.SetActive(false);
+            if (EndDialog != null) EndDialog(currentEvent.EventTreeIndex);
         }
     }
 
     private IEnumerator DisableDialogCanvas() {
         yield return null;
         dialogCanvas.gameObject.SetActive(false);
+    }
+
+    public bool OlliesCap() {
+        return EventTrees[0].IsCompleted() && EventTrees[0].EndingObtained() == 1;
+    }
+
+    public bool OlliesSkateboard() {
+        return EventTrees[0].IsCompleted() && EventTrees[0].EndingObtained() == 2;
+    }
+
+    public bool OlliesSkull() {
+        return EventTrees[0].IsCompleted() && EventTrees[0].EndingObtained() == 3;
     }
 }

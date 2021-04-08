@@ -9,24 +9,26 @@ public class NarrativeEventTree
 
     public NarrativeEvent GetNextEvent() {
         for(int i = 0; i < tree.Length;) {
-            if (tree[i].Completed) {
+            if (tree[i].Completed && i < tree.Length - 1) {
                 i = tree[i].NextEventIndex;
             }
-            else
+            else if(!tree[i].Completed)
                 return tree[i];
         }
         return null;
     }
 
     public bool HasEventOnDay(int day) {
-        for(int i = 0; i < tree.Length;) {
-            if (tree[i].Day == day) return true;
-            if (tree[i].Completed) {
-                i = tree[i].NextEventIndex;
-            }
-            else
-                return false;
-        }
-        return false;
+        NarrativeEvent e = GetNextEvent();
+        if (e.Day == day) return true;
+        else return false;
+    }
+
+    public bool IsCompleted() {
+        return tree[tree.Length - 1].Completed;
+    }
+
+    public int EndingObtained() {
+        return tree[tree.Length - 1].NextEventIndex;
     }
 }
