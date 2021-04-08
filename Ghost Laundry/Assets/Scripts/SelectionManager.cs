@@ -21,6 +21,8 @@ public class SelectionManager : MonoBehaviour
     private int selectedDay;
     private int ghostDestination;
 
+    private bool initialized;
+
     private void OnEnable() {
         LevelTileSelector.DaySelected += OnDaySelected;
         LevelTileSelector.DayClicked += OnDayClicked;
@@ -33,6 +35,13 @@ public class SelectionManager : MonoBehaviour
 
     private void Start() {
         ghostAnimator = ghost.GetComponentInChildren<Animator>();
+        StartCoroutine(Initialize());
+    }
+
+    private IEnumerator Initialize() {
+        while (TimeManager.instance == null)
+            yield return null;
+        yield return new WaitForSecondsRealtime(0.1f);
 
         int CurrentDay = TimeManager.instance.CurrentDay;
 
@@ -43,10 +52,11 @@ public class SelectionManager : MonoBehaviour
         selectedDay = CurrentDay;
         ghostDestination = CurrentDay;
         ghost.transform.position = Levels[ghostDestination].position;
+        initialized = true;
     }
 
     private void Update() {
-        if (MoveTowards(ghostDestination)) {
+        if (initialized && MoveTowards(ghostDestination)) {
             if (ghostDestination < selectedDay) ghostDestination++;
             if (ghostDestination > selectedDay) ghostDestination--;
         }

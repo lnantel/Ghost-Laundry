@@ -27,6 +27,7 @@ public class TransitionManager : MonoBehaviour
 
         while (TimeManager.instance == null)
             yield return null;
+        yield return new WaitForSecondsRealtime(0.1f);
 
         int CurrentDay = TimeManager.instance.CurrentDay;
 
