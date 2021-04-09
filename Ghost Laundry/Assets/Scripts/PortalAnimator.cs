@@ -16,7 +16,6 @@ public class PortalAnimator : MonoBehaviour
     }
 
     private void Update() {
-        Debug.Log(Vector3.Distance(PlayerStateManager.instance.transform.position, transform.position));
         if (Vector3.Distance(PlayerStateManager.instance.transform.position, transform.position) < 4.0f) {
             targetOpacity = 1.0f;
         }

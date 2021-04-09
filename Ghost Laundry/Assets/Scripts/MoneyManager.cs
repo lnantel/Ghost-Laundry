@@ -21,9 +21,11 @@ public class MoneyManager : MonoBehaviour
     public Color NegativeAmountColor;
 
     private GameObject moneyPopUpPrefab;
-    private int displayedAmount;
-    private int displayedChangeAmount;
+    private float displayedAmount;
+    private float displayedChangeAmount;
     private bool updateDisplayedAmount;
+
+    private float updateRate;
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -51,7 +53,7 @@ public class MoneyManager : MonoBehaviour
 
     private void Update() {
         if (updateDisplayedAmount) {
-            displayedAmount = (int)Mathf.MoveTowards(displayedAmount, CurrentAmount, 5 / Time.deltaTime);
+            displayedAmount = Mathf.MoveTowards(displayedAmount, CurrentAmount, updateRate * TimeManager.instance.deltaTime);
             displayedChangeAmount = CurrentAmount - displayedAmount;
         }
     }
@@ -109,6 +111,7 @@ public class MoneyManager : MonoBehaviour
 
     private IEnumerator DelayDisplayedAmountUpdate() {
         yield return new WaitForLaundromatSeconds(1.0f);
+        updateRate = Mathf.Max(1500f, Mathf.Abs(displayedChangeAmount));
         updateDisplayedAmount = true;
     }
 
