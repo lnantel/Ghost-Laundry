@@ -84,7 +84,8 @@ public enum Sounds
     ProcessingEmb,
 
     DropBasket,
-    PickUpBasket
+    PickUpBasket,
 
-
+    MoneyTallyLoss,
+    MoneyTallyGain
 }

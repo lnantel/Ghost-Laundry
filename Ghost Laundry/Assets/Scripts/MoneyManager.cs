@@ -55,7 +55,23 @@ public class MoneyManager : MonoBehaviour
         if (updateDisplayedAmount) {
             displayedAmount = Mathf.MoveTowards(displayedAmount, CurrentAmount, updateRate * TimeManager.instance.deltaTime);
             displayedChangeAmount = CurrentAmount - displayedAmount;
+
+            if (displayedAmount != CurrentAmount && tallySoundCoroutine == null) {
+                tallySoundCoroutine = TallySound();
+                StartCoroutine(tallySoundCoroutine);
+            }
         }
+    }
+
+    private IEnumerator tallySoundCoroutine;
+
+    private IEnumerator TallySound() {
+        if(displayedChangeAmount < 0.0f)
+            AudioManager.instance.PlaySound(Sounds.MoneyTallyLoss, 0.7f);
+        else
+            AudioManager.instance.PlaySound(Sounds.MoneyTallyGain, 0.7f);
+        yield return new WaitForLaundromatSeconds(0.05f);
+        tallySoundCoroutine = null;
     }
 
     private void OnBagPickedUp(LaundromatBag bag) {

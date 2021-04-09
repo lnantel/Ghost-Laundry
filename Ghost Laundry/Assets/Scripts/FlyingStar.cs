@@ -60,14 +60,17 @@ public class FlyingStar : MonoBehaviour
     }
 
     void FixedUpdate() {
+        Vector3 relativeDestination = Camera.main.ScreenToWorldPoint(reputationBar.transform.position);
+
         Vector2 acceleration = dir * force * Time.fixedDeltaTime;
         velocity += acceleration;
-        currentPos += velocity;
+        //currentPos += velocity;
+        currentPos = Vector2.MoveTowards(currentPos, destination, velocity.magnitude);
         currentDistance = Vector2.Distance(currentPos, destination);
-        offset = maxOffset * offsetCurve.Evaluate((totalDistance - currentDistance) / totalDistance);
-        transform.position = currentPos + offset;
+        float ratio = (totalDistance - currentDistance) / totalDistance;
+        offset = maxOffset * offsetCurve.Evaluate(ratio);
+        transform.position = new Vector3(initialPos.x, initialPos.y, 0.0f) + (relativeDestination - new Vector3(initialPos.x, initialPos.y, 0.0f)) * ratio + new Vector3(offset.x, offset.y, 0.0f);
 
-        Debug.Log(currentDistance);
         if(currentDistance < 0.2f) {
             if (ReachedDestination != null) ReachedDestination(sign);
             PositiveTrail.Clear();

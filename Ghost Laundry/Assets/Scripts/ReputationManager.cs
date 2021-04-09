@@ -90,13 +90,15 @@ public class ReputationManager : MonoBehaviour {
 
     private void OnStarReachedReputationBar(bool sign) {
         displayedAmount += sign ? 1 : -1;
+        Sounds sound = sign ? Sounds.MoneyTallyGain : Sounds.MoneyTallyLoss;
+        AudioManager.instance.PlaySound(sound, 0.7f);
     }
 
     private IEnumerator SpawnFlyingStars(StarData starData) {
         for(int i = 0; i < starData.amount; i++) {
             FlyingStar star = starPool.SpawnObject(starData.position).GetComponent<FlyingStar>();
             star.SetSign(starData.positive);
-            yield return new WaitForLaundromatSeconds(0.1f);
+            yield return new WaitForLaundromatSeconds(0.05f);
         }
 
         spawnStarCoroutine = null;
