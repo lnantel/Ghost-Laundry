@@ -17,6 +17,7 @@ public class HelmetInteractable : Interactable
         base.OnEnable();
         LockShop += Lock;
         UnlockShop += Unlock;
+        LockShop();
 
         OllieEvent3.EventStarted += EnableHelmetShop;
     }
@@ -30,10 +31,12 @@ public class HelmetInteractable : Interactable
     }
 
     private void EnableHelmetShop() {
+        UnlockShop();
         HelmetContainer.SetActive(true);
     }
 
     private void DisableHelmetShop() {
+        LockShop();
         HelmetContainer.SetActive(false);
     }
 

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SaveManager : MonoBehaviour
 {
+    public static Action LoadingComplete;
+
     public static SaveManager instance;
 
     public static SaveData Data;
@@ -95,8 +98,8 @@ public class SaveManager : MonoBehaviour
                 SaveData.DayData day = Data.Days[i];
                 TimeManager.instance.CurrentDay = day.CurrentDay;
                 DetergentManager.instance.CurrentAmount = day.Detergent;
-                MoneyManager.instance.CurrentAmount = day.Money;
-                ReputationManager.instance.CurrentAmount = day.Reputation;
+                MoneyManager.instance.SetCurrentAmount(day.Money);
+                ReputationManager.instance.SetCurrentAmount(day.Reputation);
                 EventManager.instance.ollieEventManager.SafetyPoints = day.OllieSafetyPoints;
                 for(int j = 0; j < day.narrativeData.Count; j++) {
                     SaveData.EventData eventData = day.narrativeData[j];
@@ -106,6 +109,7 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
+        if (LoadingComplete != null) LoadingComplete();
         Save();
     }
 

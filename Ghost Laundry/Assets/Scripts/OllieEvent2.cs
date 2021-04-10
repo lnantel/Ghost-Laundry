@@ -19,14 +19,21 @@ public class OllieEvent2 : MonoBehaviour
 
     private void OnEnable() {
         Customer.BagPickedUp += OnBagPickedUp;
-        ollie = CustomerManager.instance.GetRecurringCustomer(0);
-        GenerateLaundry();
-        StartDialog("Event 2");
-        ollie.GiveBasketToPlayer();
+        RecurringCustomerInteractable.StartDialog += OnInteract;
+        CustomerManager.instance.SpawnRecurringCustomer();
     }
 
     private void OnDisable() {
         Customer.BagPickedUp -= OnBagPickedUp;
+        RecurringCustomerInteractable.StartDialog -= OnInteract;
+    }
+
+    private void OnInteract(int treeIndex) {
+        if (treeIndex == 0) {
+            ollie = CustomerManager.instance.GetRecurringCustomer(0);
+            GenerateLaundry();
+            StartDialog("Event 2");
+        }
     }
 
     private void GenerateLaundry() {
@@ -64,6 +71,10 @@ public class OllieEvent2 : MonoBehaviour
         StartDialog("Event 2 B");
     }
 
+    private void NeutralResult() {
+        OnEventEnd();
+    }
+
     public void StartDialog(string blockName) {
         flowchart.gameObject.SetActive(true);
         flowchart.ExecuteBlock(blockName);
@@ -77,22 +88,26 @@ public class OllieEvent2 : MonoBehaviour
         flowchart.gameObject.SetActive(false);
         StartCoroutine(DisableDialogCanvas());
         GameManager.instance.OnDialogEnd(0);
+        ollie.OnEndDialog(0);
     }
 
     public void OnEventEnd() {
-        OnDialogEnd();
-        EventManager.instance.EventEnd();
+        flowchart.gameObject.SetActive(false);
+        StartCoroutine(DisableDialogCanvas(true));
+        GameManager.instance.OnDialogEnd(0);
     }
 
-    private IEnumerator DisableDialogCanvas() {
+    private IEnumerator DisableDialogCanvas(bool endEvent = false) {
         yield return null;
         EventManager.instance.dialogCanvas.gameObject.SetActive(false);
+        if (endEvent) EventManager.instance.EventEnd();
     }
 
     private void OnBagPickedUp(LaundromatBag bag) {
         if (bag.customerID == ollie.ticketNumber) {
             if (bone.Ruined) SafetyResult();
-            else if(bone.Clean && bone.Dry) DangerResult();
+            else if (bone.Clean && bone.Dry) DangerResult();
+            else NeutralResult();
         }
     }
 }

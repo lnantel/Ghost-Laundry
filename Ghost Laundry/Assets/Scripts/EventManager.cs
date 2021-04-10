@@ -42,16 +42,12 @@ public class EventManager : MonoBehaviour
         TimeManager.StartOfDay += OnDayStart;
         TimeManager.EndOfDay += OnDayEnd;
         TimeManager.TimeOfDay += OnTime;
-
-        RecurringCustomerInteractable.StartDialog += OnEventStart;
     }
 
     private void OnDisable() {
         TimeManager.StartOfDay -= OnDayStart;
         TimeManager.EndOfDay -= OnDayEnd;
         TimeManager.TimeOfDay -= OnTime;
-
-        RecurringCustomerInteractable.StartDialog -= OnEventStart;
     }
 
     private void OnDayStart(int day) {
@@ -77,10 +73,10 @@ public class EventManager : MonoBehaviour
         //Check today's events. If it is time for one of them,
         foreach(NarrativeEvent eventToday in EventsToday) {
             if(eventToday.Time[0] == currentTime[0] && eventToday.Time[1] == currentTime[1]) {
-                //TODO:
-                //spawn the correct customer through CustomerManager
-                //(ignoring reputation and laundromat capacity)
-                CustomerManager.instance.SpawnRecurringCustomer();
+                //Enable event object
+                eventToday.EventObject.SetActive(true);
+                currentEvent = eventToday;
+                break;
             }
         }
     }
@@ -95,40 +91,23 @@ public class EventManager : MonoBehaviour
         EventsToday.Clear();
     }
 
-    public void OnEventStart(int characterIndex) {
-        //Find customer's next event
-        NarrativeEvent nextEvent = EventTrees[characterIndex].GetNextEvent();
-
-        //Enable flowchart
-        if(nextEvent != null) {
-            nextEvent.EventObject.SetActive(true);
-            currentEvent = nextEvent;
-        }
-    }
-
     public void EventEnd() {
         //Mark the event as completed
         if (currentEvent != null) {
             currentEvent.Completed = true;
             currentEvent.EventObject.SetActive(false);
-            if (EndDialog != null) EndDialog(currentEvent.EventTreeIndex);
         }
     }
 
-    private IEnumerator DisableDialogCanvas() {
-        yield return null;
-        dialogCanvas.gameObject.SetActive(false);
-    }
-
     public bool OlliesCap() {
-        return EventTrees[0].IsCompleted() && EventTrees[0].EndingObtained() == 1;
+        return EventTrees[0].EndingObtained() == 1;
     }
 
     public bool OlliesSkateboard() {
-        return EventTrees[0].IsCompleted() && EventTrees[0].EndingObtained() == 2;
+        return EventTrees[0].EndingObtained() == 2;
     }
 
     public bool OlliesSkull() {
-        return EventTrees[0].IsCompleted() && EventTrees[0].EndingObtained() == 3;
+        return EventTrees[0].EndingObtained() == 3;
     }
 }

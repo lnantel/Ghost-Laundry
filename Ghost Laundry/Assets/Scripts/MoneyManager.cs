@@ -158,4 +158,9 @@ public class MoneyManager : MonoBehaviour
         if(day != 0)
             ModifyCurrentAmount(-Rent);
     }
+
+    public void SetCurrentAmount(int amount) {
+        CurrentAmount = amount;
+        displayedAmount = amount;
+    }
 }

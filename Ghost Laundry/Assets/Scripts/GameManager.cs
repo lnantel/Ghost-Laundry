@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour {
         TimeManager.EndOfDay += OnEndOfDay;
         TransitionManager.TransitionDone += OnTransitionEnd;
         EventManager.StartDialog += OnDialogStart;
-        EventManager.EndDialog += OnDialogEnd;
         ShowSettings += OnShowSettings;
         HideSettings += OnHideSettings;
         ShowDialog += OnShowDialog;
@@ -69,7 +68,6 @@ public class GameManager : MonoBehaviour {
         TimeManager.EndOfDay -= OnEndOfDay;
         TransitionManager.TransitionDone -= OnTransitionEnd;
         EventManager.StartDialog -= OnDialogStart;
-        EventManager.EndDialog -= OnDialogEnd;
         ShowSettings -= OnShowSettings;
         HideSettings -= OnHideSettings;
         ShowDialog -= OnShowDialog;

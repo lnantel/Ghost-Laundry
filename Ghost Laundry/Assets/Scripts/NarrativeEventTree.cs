@@ -12,15 +12,17 @@ public class NarrativeEventTree
             if (tree[i].Completed && i < tree.Length - 1) {
                 i = tree[i].NextEventIndex;
             }
-            else if(!tree[i].Completed)
+            else if (!tree[i].Completed)
                 return tree[i];
+            else
+                return null;
         }
         return null;
     }
 
     public bool HasEventOnDay(int day) {
         NarrativeEvent e = GetNextEvent();
-        if (e.Day == day) return true;
+        if (e != null && e.Day == day) return true;
         else return false;
     }
 

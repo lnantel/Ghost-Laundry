@@ -22,14 +22,23 @@ public class OllieEvent3 : MonoBehaviour
 
     private void OnEnable() {
         Customer.BagPickedUp += OnBagPickedUp;
-        ollie = CustomerManager.instance.GetRecurringCustomer(0);
-        GenerateLaundry();
-        StartDialog("Event 3");
-        ollie.GiveBasketToPlayer();
+        RecurringCustomerInteractable.StartDialog += OnInteract;
+        CustomerManager.instance.SpawnRecurringCustomer();
+        HelmetInteractable.BoughtItem += OnHelmetBought;
     }
 
     private void OnDisable() {
         Customer.BagPickedUp -= OnBagPickedUp;
+        RecurringCustomerInteractable.StartDialog -= OnInteract;
+        HelmetInteractable.BoughtItem -= OnHelmetBought;
+    }
+
+    private void OnInteract(int treeIndex) {
+        if (treeIndex == 0) {
+            ollie = CustomerManager.instance.GetRecurringCustomer(0);
+            GenerateLaundry();
+            StartDialog("Event 3");
+        }
     }
 
     private void GenerateLaundry() {
@@ -71,7 +80,7 @@ public class OllieEvent3 : MonoBehaviour
         if (EventStarted != null) EventStarted();
     }
 
-    private void OnHelmetBought() {
+    private void OnHelmetBought(int price) {
         helmetBought = true;
     }
 
@@ -81,16 +90,19 @@ public class OllieEvent3 : MonoBehaviour
         flowchart.gameObject.SetActive(false);
         StartCoroutine(DisableDialogCanvas());
         GameManager.instance.OnDialogEnd(0);
+        ollie.OnEndDialog(0);
     }
 
     public void OnEventEnd() {
-        OnDialogEnd();
-        EventManager.instance.EventEnd();
+        flowchart.gameObject.SetActive(false);
+        StartCoroutine(DisableDialogCanvas(true));
+        GameManager.instance.OnDialogEnd(0);
     }
 
-    private IEnumerator DisableDialogCanvas() {
+    private IEnumerator DisableDialogCanvas(bool endEvent = false) {
         yield return null;
         EventManager.instance.dialogCanvas.gameObject.SetActive(false);
+        if (endEvent) EventManager.instance.EventEnd();
     }
 
     private void OnBagPickedUp(LaundromatBag bag) {

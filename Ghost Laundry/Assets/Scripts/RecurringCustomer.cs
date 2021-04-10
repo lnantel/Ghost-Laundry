@@ -16,12 +16,10 @@ public class RecurringCustomer : Customer
 
     protected override void OnEnable() {
         base.OnEnable();
-        EventManager.EndDialog += OnEndDialog;
     }
 
     protected override void OnDisable() {
         base.OnDisable();
-        EventManager.EndDialog -= OnEndDialog;
     }
 
     protected override void Start() {
@@ -68,9 +66,7 @@ public class RecurringCustomer : Customer
          whistleCoroutine = null;
     }
     
-
-   
-    private void OnEndDialog(int eventTreeIndex) {
+    public void OnEndDialog(int eventTreeIndex) {
         if(EventTreeIndex == eventTreeIndex) {
             if(basket.contents.Count > 0) {
                 GiveBasketToPlayer();

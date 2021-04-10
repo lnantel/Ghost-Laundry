@@ -107,4 +107,9 @@ public class ReputationManager : MonoBehaviour {
     private void OnGUI() {
         fillImage.fillAmount = (float) displayedAmount / MaxAmount;
     }
+
+    public void SetCurrentAmount(int amount) {
+        CurrentAmount = amount;
+        displayedAmount = amount;
+    }
 }

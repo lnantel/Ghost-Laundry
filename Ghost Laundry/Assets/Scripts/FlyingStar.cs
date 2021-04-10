@@ -64,7 +64,6 @@ public class FlyingStar : MonoBehaviour
 
         Vector2 acceleration = dir * force * Time.fixedDeltaTime;
         velocity += acceleration;
-        //currentPos += velocity;
         currentPos = Vector2.MoveTowards(currentPos, destination, velocity.magnitude);
         currentDistance = Vector2.Distance(currentPos, destination);
         float ratio = (totalDistance - currentDistance) / totalDistance;

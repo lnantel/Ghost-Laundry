@@ -7,17 +7,6 @@ public class NarrativeDecoration : MonoBehaviour
     public GameObject OllieSkull;
     public GameObject OllieSkateboard;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(Initialize()); 
-    }
-
-    private IEnumerator Initialize() {
-        yield return null;
-        UpdateDecorations();
-    }
-
     private void UpdateDecorations() {
         if (EventManager.instance != null) {
             OllieSkull.SetActive(EventManager.instance.OlliesSkull());
@@ -26,10 +15,12 @@ public class NarrativeDecoration : MonoBehaviour
     }
 
     private void OnEnable() {
-        GameManager.HideDialog += UpdateDecorations;
+        OllieEndings.UpdateDecorations += UpdateDecorations;
+        SaveManager.LoadingComplete += UpdateDecorations;
     }
 
     private void OnDisable() {
-        GameManager.HideDialog -= UpdateDecorations;
+        OllieEndings.UpdateDecorations -= UpdateDecorations;
+        SaveManager.LoadingComplete -= UpdateDecorations;
     }
 }

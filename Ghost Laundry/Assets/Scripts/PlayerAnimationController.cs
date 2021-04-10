@@ -14,20 +14,16 @@ public class PlayerAnimationController : MonoBehaviour
         state = PlayerStateManager.instance;
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        StartCoroutine(Initialize());
-    }
-
-    private IEnumerator Initialize() {
-        yield return null;
-        SetCap();
     }
 
     private void OnEnable() {
-        GameManager.HideDialog += SetCap;
+        SaveManager.LoadingComplete += SetCap;
+        OllieEndings.UpdateDecorations += SetCap;
     }
 
     private void OnDisable() {
-        GameManager.HideDialog -= SetCap;
+        SaveManager.LoadingComplete -= SetCap;
+        OllieEndings.UpdateDecorations -= SetCap;
     }
 
     private void SetCap() {

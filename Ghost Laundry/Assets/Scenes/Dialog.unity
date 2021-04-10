@@ -1709,8 +1709,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 320410797}
-  selectedCommands:
-  - {fileID: 320410858}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -3430,13 +3429,15 @@ GameObject:
   - component: {fileID: 323640107}
   - component: {fileID: 323640102}
   - component: {fileID: 323640149}
+  - component: {fileID: 323640151}
+  - component: {fileID: 323640150}
   m_Layer: 0
   m_Name: 'Ending B: Danger'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &323640077
 Transform:
   m_ObjectHideFlags: 0
@@ -3467,7 +3468,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 66
     y: 70
-    width: 100.4
+    width: 99
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3476,6 +3477,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 323640080}
   commandList:
+  - {fileID: 323640150}
   - {fileID: 323640105}
   - {fileID: 323640104}
   - {fileID: 323640145}
@@ -3545,6 +3547,7 @@ MonoBehaviour:
   - {fileID: 323640102}
   - {fileID: 323640081}
   - {fileID: 323640111}
+  - {fileID: 323640151}
   suppressAllAutoSelections: 0
 --- !u!114 &323640079
 MonoBehaviour:
@@ -3573,7 +3576,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 323640078}
   selectedCommands:
-  - {fileID: 323640081}
+  - {fileID: 323640150}
   variables: []
   description: 
   stepPause: 0
@@ -5494,6 +5497,40 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 1
+--- !u!114 &323640150
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323640076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 73
+  indentLevel: 0
+  targetObject: {fileID: 751460247}
+  methodName: GetSkull
+  delay: 0
+--- !u!114 &323640151
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323640076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 72
+  indentLevel: 0
+  targetObject: {fileID: 751460247}
+  methodName: OnEventEnd
+  delay: 0
 --- !u!1 &325327783
 GameObject:
   m_ObjectHideFlags: 0
@@ -10949,7 +10986,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &789936453
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13638,7 +13675,6 @@ GameObject:
   - component: {fileID: 964384247}
   - component: {fileID: 964384246}
   - component: {fileID: 964384245}
-  - component: {fileID: 964384277}
   m_Layer: 0
   m_Name: Event 3 Flowchart
   m_TagString: Untagged
@@ -13701,8 +13737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  targetObject: {fileID: 1225033083}
-  methodName: EventEnd
+  targetObject: {fileID: 2007468478}
+  methodName: OnEventEnd
   delay: 0
 --- !u!114 &964384169
 MonoBehaviour:
@@ -13718,8 +13754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  targetObject: {fileID: 1225033083}
-  methodName: EventEnd
+  targetObject: {fileID: 2007468478}
+  methodName: OnEventEnd
   delay: 0
 --- !u!114 &964384170
 MonoBehaviour:
@@ -13735,8 +13771,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  targetObject: {fileID: 1225033083}
-  methodName: EventEnd
+  targetObject: {fileID: 2007468478}
+  methodName: OnDialogEnd
   delay: 0
 --- !u!114 &964384171
 MonoBehaviour:
@@ -13754,7 +13790,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 319
     y: 80
-    width: 64
+    width: 104
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -13813,7 +13849,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 188
     y: 79
-    width: 64
+    width: 104
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -13872,14 +13908,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 65
     y: 79
-    width: 60
+    width: 93
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 0
   blockName: Event 3
   description: 
-  eventHandler: {fileID: 964384277}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 964384214}
   - {fileID: 964384213}
@@ -13947,8 +13983,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 964384173}
-  selectedCommands: []
+  - {fileID: 964384171}
+  selectedCommands:
+  - {fileID: 964384168}
   variables: []
   description: 
   stepPause: 0
@@ -16738,20 +16775,6 @@ MonoBehaviour:
   useDefaultSettings: 1
   fadeDuration: 0
   waitUntilFinished: 0
---- !u!114 &964384277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff5d850a887844fe87ae7d366d3ab5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 964384173}
-  suppressBlockAutoSelect: 0
 --- !u!1 &972488737
 GameObject:
   m_ObjectHideFlags: 0
@@ -23036,29 +23059,29 @@ MonoBehaviour:
   EventTrees:
   - tree:
     - Day: 1
-      hour: 13
-      minute: 0
+      hour: 12
+      minute: 10
       EventTreeIndex: 0
       EventObject: {fileID: 76009506}
       NextEventIndex: 1
       Completed: 0
     - Day: 2
-      hour: 13
-      minute: 0
+      hour: 12
+      minute: 10
       EventTreeIndex: 0
       EventObject: {fileID: 1567338305}
       NextEventIndex: 2
       Completed: 0
     - Day: 3
-      hour: 13
-      minute: 0
+      hour: 12
+      minute: 10
       EventTreeIndex: 0
       EventObject: {fileID: 1574113702}
       NextEventIndex: 3
       Completed: 0
     - Day: 4
-      hour: 13
-      minute: 0
+      hour: 12
+      minute: 1
       EventTreeIndex: 0
       EventObject: {fileID: 733188717}
       NextEventIndex: 4
