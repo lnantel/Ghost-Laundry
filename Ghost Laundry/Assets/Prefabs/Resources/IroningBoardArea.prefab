@@ -2170,7 +2170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3348921496598229235}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 0.28, z: 0}
+  m_LocalPosition: {x: 3.6, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8112019562928569400}
@@ -2190,7 +2190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83d96a72e9466e419430db41d95f507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardHeight: 0.8
+  boardHeight: 0.14
   laundryIroningBoard: {fileID: 2958301954908851898}
   ironSpriteRenderer: {fileID: 6315757417917438521}
   spriteIronStandingOn: {fileID: 21300000, guid: 6e6d91e517e1d504d9a32428a0eafe3a, type: 3}
@@ -6931,6 +6931,10 @@ PrefabInstance:
       propertyPath: InitialModule.startSpeed.scalar
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 4873204261300163329, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5843168123173656981, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55999994
@@ -7046,6 +7050,10 @@ PrefabInstance:
     - target: {fileID: 5843168124203040255, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
       propertyPath: RotationModule.curve.scalar
       value: 0.5235988
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843168124203040255, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b99d42b9c3c714d42be475ac27e24792, type: 3}

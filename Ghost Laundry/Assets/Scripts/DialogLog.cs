@@ -10,6 +10,7 @@ public class DialogLog : MonoBehaviour
     public Scrollbar scrollbar;
     public Text logText;
     public Fungus.DialogInput dialogInput;
+    public Fungus.DialogInput dialogInput2;
 
     private bool LogVisible;
 
@@ -34,9 +35,11 @@ public class DialogLog : MonoBehaviour
             if (LogVisible) {
                 scrollbar.value = 0;
                 dialogInput.SetIgnoreClicksFlag();
+                dialogInput2.SetIgnoreClicksFlag();
             }
             else {
                 dialogInput.ResetIgnoreClicksFlag();
+                dialogInput2.ResetIgnoreClicksFlag();
             }
         }
     }
