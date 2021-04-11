@@ -106,7 +106,7 @@ public class OllieEvent3 : MonoBehaviour
     }
 
     private void OnBagPickedUp(LaundromatBag bag) {
-        if (bag.customerID == ollie.ticketNumber) {
+        if (ollie != null && bag.customerID == ollie.ticketNumber) {
             if (helmetBought) SafetyResult();
             else DangerResult();
         }
