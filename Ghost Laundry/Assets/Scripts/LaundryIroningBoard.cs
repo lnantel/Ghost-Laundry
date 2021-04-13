@@ -62,7 +62,7 @@ public class LaundryIroningBoard : LaundryObject
 
         //If the garment was steamed long enough, it becomes pressed
         if (pressingProgress >= 1.0f && !ironingBoard.garmentOnBoard.Pressed) {
-            AudioManager.instance.PlaySound(Sounds.ShiningGarment);
+            AudioManager.instance.PlaySound(SoundName.ShiningGarment);
             ironingBoard.garmentOnBoard.Pressed = true;
             garmentRenderer.UpdateAppearance();
         }
@@ -90,11 +90,11 @@ public class LaundryIroningBoard : LaundryObject
 
         if(steam == SteamState.Steam){
 
-            AudioManager.instance.PlaySound(Sounds.IronIsWorking);
+            AudioManager.instance.PlaySound(SoundName.IronIsWorking);
 
         } else if(steam == SteamState.Burn) {
 
-            AudioManager.instance.PlaySound(Sounds.IronisBurning);
+            AudioManager.instance.PlaySound(SoundName.IronisBurning);
 
         }
 

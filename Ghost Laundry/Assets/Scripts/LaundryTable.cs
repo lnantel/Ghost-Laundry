@@ -50,7 +50,7 @@ public class LaundryTable : MonoBehaviour
         }
     }
 
-    private IEnumerator DropSound(Sounds sound) {
+    private IEnumerator DropSound(SoundName sound) {
         AudioManager.instance.PlaySound(sound);
         yield return null;
         soundCoroutine = null;

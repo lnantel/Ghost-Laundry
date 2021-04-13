@@ -21,10 +21,10 @@ public class ClockAnimator : MonoBehaviour
         if(timeRemaining < 60.0f) {
             if((int)timeRemaining != lastTimeRemaining) {
                 if (tick) {
-                    AudioManager.instance.PlaySound(Sounds.Tick);
+                    AudioManager.instance.PlaySound(SoundName.Tick);
                 }
                 else {
-                    AudioManager.instance.PlaySound(Sounds.Tock);
+                    AudioManager.instance.PlaySound(SoundName.Tock);
                 }
                 tick = !tick;
             }

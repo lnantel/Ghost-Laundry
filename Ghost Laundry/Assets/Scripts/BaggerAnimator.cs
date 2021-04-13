@@ -21,14 +21,14 @@ public class BaggerAnimator : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
             spriteRenderer.sprite = Open;
             if (PlayerNearby != null) PlayerNearby();
-            AudioManager.instance.PlaySound(Sounds.OpenEmbDoor,0.4f);
+            AudioManager.instance.PlaySound(SoundName.OpenEmbDoor,0.4f);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
             spriteRenderer.sprite = Closed;
-            AudioManager.instance.PlaySound(Sounds.CloseEmbDoor,0.4f);
+            AudioManager.instance.PlaySound(SoundName.CloseEmbDoor,0.4f);
         }
     }
 }

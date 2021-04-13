@@ -90,7 +90,7 @@ public class ReputationManager : MonoBehaviour {
 
     private void OnStarReachedReputationBar(bool sign) {
         displayedAmount += sign ? 1 : -1;
-        Sounds sound = sign ? Sounds.MoneyTallyGain : Sounds.MoneyTallyLoss;
+        SoundName sound = sign ? SoundName.MoneyTallyGain : SoundName.MoneyTallyLoss;
         AudioManager.instance.PlaySound(sound, 0.7f);
     }
 

@@ -28,6 +28,6 @@ public class FloatZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
        LaundryObject laundryObject = collision.GetComponentInParent<LaundryObject>();
-       AudioManager.instance.PlaySound(Sounds.SplashGarment);
+       AudioManager.instance.PlaySound(SoundName.SplashGarment);
     }
 }

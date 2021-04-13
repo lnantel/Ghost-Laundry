@@ -67,9 +67,9 @@ public class MoneyManager : MonoBehaviour
 
     private IEnumerator TallySound() {
         if(displayedChangeAmount < 0.0f)
-            AudioManager.instance.PlaySound(Sounds.MoneyTallyLoss, 0.7f);
+            AudioManager.instance.PlaySound(SoundName.MoneyTallyLoss, 0.7f);
         else
-            AudioManager.instance.PlaySound(Sounds.MoneyTallyGain, 0.7f);
+            AudioManager.instance.PlaySound(SoundName.MoneyTallyGain, 0.7f);
         yield return new WaitForLaundromatSeconds(0.05f);
         tallySoundCoroutine = null;
     }
@@ -102,7 +102,7 @@ public class MoneyManager : MonoBehaviour
             TXT_PopUp.color = NegativeAmountColor;
         }
 
-        AudioManager.instance.PlaySoundAtPosition(Sounds.MoneyGain, bag.transform.position);
+        AudioManager.instance.PlaySoundAtPosition(SoundName.MoneyGain, bag.transform.position);
 
         Customer.Pay(fee, tip, null);
         ModifyCurrentAmount(fee + tip);

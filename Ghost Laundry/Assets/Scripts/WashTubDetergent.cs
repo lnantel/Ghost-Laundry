@@ -12,7 +12,7 @@ public class WashTubDetergent : LaundryObject
 
     public override void OnInteract() {
         washTub.RefillSoap();
-        AudioManager.instance.PlaySound(Sounds.PourSoap);
+        AudioManager.instance.PlaySound(SoundName.PourSoap);
 
     }
 }

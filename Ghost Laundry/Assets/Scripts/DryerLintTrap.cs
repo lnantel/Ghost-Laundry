@@ -42,20 +42,20 @@ public class DryerLintTrap : LaundryObject
         }
         open = true;
         startButton.locked = true;
-        AudioManager.instance.PlaySound(Sounds.OpenLintTrap);
+        AudioManager.instance.PlaySound(SoundName.OpenLintTrap);
     }
 
     private void Clean() {
         dryer.CleanLintTrap();
         lintTrapSpriteRenderer.sprite = openCleanSprite;
-        AudioManager.instance.PlaySound(Sounds.CleanLintTrap);
+        AudioManager.instance.PlaySound(SoundName.CleanLintTrap);
     }
 
     private void Close() {
         lintTrapSpriteRenderer.sprite = closedSprite;
         open = false;
         startButton.locked = false;
-        AudioManager.instance.PlaySound(Sounds.CloseLintTrap);
+        AudioManager.instance.PlaySound(SoundName.CloseLintTrap);
 
     }
 }

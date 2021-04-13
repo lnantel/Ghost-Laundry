@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public AudioClip[] sounds;
+    public Sound[] Sounds;
 
     private AudioSource source;
 
@@ -18,13 +18,23 @@ public class AudioManager : MonoBehaviour
         else instance = this;
     }
 
-    public void PlaySound(Sounds sound, float volume = 1.0f) {
-        source.clip = sounds[(int) sound];
-        source.volume = SettingsManager.instance.SFXVolume * volume * 0.5f;
-        source.PlayOneShot(sounds[(int)sound], SettingsManager.instance.SFXVolume * volume * 0.5f);
+    public void PlaySound(SoundName soundName, float volume = 1.0f) {
+        Sound sound = FindSoundByName(soundName);
+
+        source.pitch = sound.Pitch;
+        source.PlayOneShot(sound.Clip, SettingsManager.instance.SFXVolume * sound.Volume * 0.5f);
     }
 
-    public void PlaySoundAtPosition(Sounds sound, Vector2 position, float volume = 1.0f) {
-        AudioSource.PlayClipAtPoint(sounds[(int)sound], position, SettingsManager.instance.SFXVolume * volume);
+    public void PlaySoundAtPosition(SoundName soundName, Vector2 position, float volume = 1.0f) {
+        Sound sound = FindSoundByName(soundName);
+
+        AudioSource.PlayClipAtPoint(sound.Clip, position, SettingsManager.instance.SFXVolume * volume);
+    }
+
+    private Sound FindSoundByName(SoundName name) {
+        for(int i = 0; i < Sounds.Length; i++) {
+            if (Sounds[i].Name == name) return Sounds[i];
+        }
+        return null;
     }
 }

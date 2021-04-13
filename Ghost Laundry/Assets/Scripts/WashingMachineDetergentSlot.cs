@@ -41,7 +41,7 @@ public class WashingMachineDetergentSlot : LaundryObject
             spriteRenderer.sprite = openSprite;
         open = true;
         startButton.locked = true;
-        AudioManager.instance.PlaySound(Sounds.OpenDetergentWM);
+        AudioManager.instance.PlaySound(SoundName.OpenDetergentWM);
         
 
     }
@@ -49,14 +49,14 @@ public class WashingMachineDetergentSlot : LaundryObject
     private void Fill() {
         washingMachine.Detergent = true;
         spriteRenderer.sprite = filledSprite;
-        AudioManager.instance.PlaySound(Sounds.PourDetergent);
+        AudioManager.instance.PlaySound(SoundName.PourDetergent);
     }
 
     private void Close() {
         spriteRenderer.sprite = closedSprite;
         open = false;
         startButton.locked = false;
-        AudioManager.instance.PlaySound(Sounds.CloseDetergentWM);
+        AudioManager.instance.PlaySound(SoundName.CloseDetergentWM);
 
     }
 }

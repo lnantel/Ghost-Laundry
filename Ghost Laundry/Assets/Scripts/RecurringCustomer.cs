@@ -61,7 +61,7 @@ public class RecurringCustomer : Customer
     }
 
     private IEnumerator WhistleCoroutine(){
-         AudioManager.instance.PlaySound(Sounds.OllieWhistle);
+         AudioManager.instance.PlaySound(SoundName.OllieWhistle);
          yield return new WaitForLaundromatSeconds(15); 
          whistleCoroutine = null;
     }

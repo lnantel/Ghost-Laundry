@@ -6,8 +6,8 @@ public class Fabric
 {
     public string name;
     public Sprite pattern;
-    public Sounds grabSound;
-    public Sounds dropSound;
+    public SoundName grabSound;
+    public SoundName dropSound;
     public WashingRestrictions washingRestrictions;
     public DryingRestrictions dryingRestrictions;
     public PressingRestrictions pressingRestrictions;
@@ -20,8 +20,8 @@ public class Fabric
                 name = "Cotton";
                 ironingTime = 3.0f;
                 pattern = null;
-                grabSound = Sounds.CottonGrab;
-                dropSound = Sounds.CottonDrop;
+                grabSound = SoundName.CottonGrab;
+                dropSound = SoundName.CottonDrop;
                 washingRestrictions = WashingRestrictions.None;
                 dryingRestrictions = DryingRestrictions.None;
                 pressingRestrictions = PressingRestrictions.None;
@@ -30,8 +30,8 @@ public class Fabric
                 name = "Wool";
                 ironingTime = 3.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Laine_v1");
-                grabSound = Sounds.WoolGrab;
-                dropSound = Sounds.WoolDrop;
+                grabSound = SoundName.WoolGrab;
+                dropSound = SoundName.WoolDrop;
                 washingRestrictions = WashingRestrictions.HotOnly;
                 dryingRestrictions = DryingRestrictions.LowOnly;
                 pressingRestrictions = PressingRestrictions.None;
@@ -40,8 +40,8 @@ public class Fabric
                 name = "Synthetic";
                 ironingTime = 3.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2");
-                grabSound = Sounds.SyntheticGrab;
-                dropSound = Sounds.SyntheticDrop;
+                grabSound = SoundName.SyntheticGrab;
+                dropSound = SoundName.SyntheticDrop;
                 washingRestrictions = WashingRestrictions.ColdOnly;
                 dryingRestrictions = DryingRestrictions.None;
                 pressingRestrictions = PressingRestrictions.NoIroning;
@@ -50,8 +50,8 @@ public class Fabric
                 name = "Bone";
                 ironingTime = 10.0f;
                 pattern = null;
-                grabSound = Sounds.BoneGrab;
-                dropSound = Sounds.BoneDrop;
+                grabSound = SoundName.BoneGrab;
+                dropSound = SoundName.BoneDrop;
                 washingRestrictions = WashingRestrictions.NoDetergent;
                 dryingRestrictions = DryingRestrictions.None;
                 pressingRestrictions = PressingRestrictions.NoIroning;
@@ -61,8 +61,8 @@ public class Fabric
                 name = "Linen";
                 ironingTime = 3.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Linen_material"); ;
-                grabSound = Sounds.LinenGrab;
-                dropSound = Sounds.LinenDrop;
+                grabSound = SoundName.LinenGrab;
+                dropSound = SoundName.LinenDrop;
                 washingRestrictions = WashingRestrictions.None;
                 dryingRestrictions = DryingRestrictions.HangDryOnly;
                 pressingRestrictions = PressingRestrictions.None;
@@ -71,8 +71,8 @@ public class Fabric
                 name = "Silk";
                 ironingTime = 3.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Silk_material"); ;
-                grabSound = Sounds.SilkGrab;
-                dropSound = Sounds.SilkDrop;
+                grabSound = SoundName.SilkGrab;
+                dropSound = SoundName.SilkDrop;
                 washingRestrictions = WashingRestrictions.HandWashOnly;
                 dryingRestrictions = DryingRestrictions.HangDryOnly;
                 pressingRestrictions = PressingRestrictions.NoIroning;
@@ -81,8 +81,8 @@ public class Fabric
                 name = "Denim";
                 ironingTime = 3.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Denim_material"); ;
-                grabSound = Sounds.DenimGrab;
-                dropSound = Sounds.DenimDrop;
+                grabSound = SoundName.DenimGrab;
+                dropSound = SoundName.DenimDrop;
                 washingRestrictions = WashingRestrictions.None;
                 dryingRestrictions = DryingRestrictions.LowOnly;
                 pressingRestrictions = PressingRestrictions.None;

@@ -31,7 +31,7 @@ public class DryerSettingDial : LaundryButton
 
     public void ToggleDryerSetting() {
         dryer.ToggleDryerSetting();
-        AudioManager.instance.PlaySound(Sounds.SettingButtonDryer);
+        AudioManager.instance.PlaySound(SoundName.SettingButtonDryer);
 
     }
 }

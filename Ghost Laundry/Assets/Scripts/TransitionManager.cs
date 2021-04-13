@@ -56,7 +56,7 @@ public class TransitionManager : MonoBehaviour
         }
         else {
             ghostAnimator.SetBool("Dashing", true);
-            AudioManager.instance.PlaySound(Sounds.Dash);
+            AudioManager.instance.PlaySound(SoundName.Dash);
             //Dash over to the next level
             bool arrived = false;
             while (!arrived) {

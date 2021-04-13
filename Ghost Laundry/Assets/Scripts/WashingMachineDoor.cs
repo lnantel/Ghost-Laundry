@@ -67,16 +67,16 @@ public class WashingMachineDoor : LaundryObject
 
     private void OpenDoor() {
         spriteRenderer.sprite = openDoorSprite;
-        AudioManager.instance.PlaySound(Sounds.OpenWMDoor);
+        AudioManager.instance.PlaySound(SoundName.OpenWMDoor);
     }
 
     private void CloseDoor() {
         spriteRenderer.sprite = closedDoorSprite;
-        AudioManager.instance.PlaySound(Sounds.CloseWMDoor);
+        AudioManager.instance.PlaySound(SoundName.CloseWMDoor);
     }
 
     public void StartWashCycle() {
         washingMachine.StartWashCycle();
-        AudioManager.instance.PlaySound(Sounds.StartButtonWM);
+        AudioManager.instance.PlaySound(SoundName.StartButtonWM);
     }
 }

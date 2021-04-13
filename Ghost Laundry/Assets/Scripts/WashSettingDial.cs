@@ -29,7 +29,7 @@ public class WashSettingDial : LaundryButton
 
     public void ToggleWashSetting() {
         washingMachine.ToggleWashSetting();
-        AudioManager.instance.PlaySound(Sounds.SettingButtonWM);
+        AudioManager.instance.PlaySound(SoundName.SettingButtonWM);
 
     }
 }

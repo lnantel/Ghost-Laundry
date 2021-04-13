@@ -40,7 +40,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void StartDash() {
         Dashing = true;
-        AudioManager.instance.PlaySoundAtPosition(Sounds.Dash, transform.position, 1.0f);
+        AudioManager.instance.PlaySoundAtPosition(SoundName.Dash, transform.position, 1.0f);
         Lock(ref moveLocks);
         Lock(ref dashLocks);
     }

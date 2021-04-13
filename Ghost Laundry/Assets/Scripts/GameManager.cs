@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour {
 
             yield return new WaitForSecondsRealtime(1.0f);
 
-            AudioManager.instance.PlaySound(Sounds.LaundromatOpening);
+            AudioManager.instance.PlaySound(SoundName.LaundromatOpening);
 
             yield return new WaitForSecondsRealtime(1.0f);
         }
@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator EndOfDay() {
         if(TimeManager.instance.CurrentDay != 0) {
             //Announce End of Day
-            AudioManager.instance.PlaySound(Sounds.LaundromatClosing);
+            AudioManager.instance.PlaySound(SoundName.LaundromatClosing);
             state = GameStates.EndOfDay;
         }
 

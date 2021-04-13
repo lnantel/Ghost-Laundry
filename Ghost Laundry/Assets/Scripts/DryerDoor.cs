@@ -63,18 +63,18 @@ public class DryerDoor : LaundryObject
 
     private void OpenDoor() {
         spriteRenderer.sprite = openDoorSprite;
-        AudioManager.instance.PlaySound(Sounds.OpenDryerDoor);
+        AudioManager.instance.PlaySound(SoundName.OpenDryerDoor);
     }
 
     private void CloseDoor() {
         spriteRenderer.sprite = closedDoorSprite;
-        AudioManager.instance.PlaySound(Sounds.CloseDryerDoor);
+        AudioManager.instance.PlaySound(SoundName.CloseDryerDoor);
 
     }
 
     public void StartDryerCycle() {
         dryer.StartDryerCycle();
-        AudioManager.instance.PlaySound(Sounds.StartButtonDryer);
+        AudioManager.instance.PlaySound(SoundName.StartButtonDryer);
 
     }
 

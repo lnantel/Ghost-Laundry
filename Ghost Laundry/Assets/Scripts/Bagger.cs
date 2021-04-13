@@ -50,7 +50,7 @@ public class Bagger : WorkStation
     }
 
     public override bool InputBasket(Basket basket) {
-        AudioManager.instance.PlaySound(Sounds.DropGarmentEmb);
+        AudioManager.instance.PlaySound(SoundName.DropGarmentEmb);
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);
             if(garment is GarmentSock garmentSock && garment.Folded) {
@@ -135,7 +135,7 @@ public class Bagger : WorkStation
 
         yield return new WaitForLaundromatSeconds(0.2f);
 
-        AudioManager.instance.PlaySound(Sounds.ProcessingEmb,0.4f);
+        AudioManager.instance.PlaySound(SoundName.ProcessingEmb,0.4f);
 
         yield return new WaitForLaundromatSeconds(1.0f);
         

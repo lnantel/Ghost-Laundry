@@ -169,7 +169,7 @@ public class GarmentSock : Garment {
 
     public void PairUp(GarmentSock other) {
         pairedSock = other;
-        AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
+        AudioManager.instance.PlaySound(SoundName.Fold1 + currentFoldingStep);
         currentFoldingStep = 1;
         other.currentFoldingStep = 1;
     }
@@ -177,7 +177,7 @@ public class GarmentSock : Garment {
     public GarmentSock SeparatePair() {
         GarmentSock sock = pairedSock;
         pairedSock = null;
-        AudioManager.instance.PlaySound(Sounds.Fold1 + currentFoldingStep);
+        AudioManager.instance.PlaySound(SoundName.Fold1 + currentFoldingStep);
         currentFoldingStep = 0;
         sock.currentFoldingStep = 0;
         return sock;

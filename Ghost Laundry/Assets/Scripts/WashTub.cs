@@ -55,9 +55,9 @@ public class WashTub : WorkStation
 
     IEnumerator ScrubbingSounds(){
 
-        AudioManager.instance.PlaySound(Sounds.ScratchGarment);
+        AudioManager.instance.PlaySound(SoundName.ScratchGarment);
         if(IsSoapy){
-            AudioManager.instance.PlaySound(Sounds.BubbleFoam);
+            AudioManager.instance.PlaySound(SoundName.BubbleFoam);
         }
         yield return new WaitForLaundromatSeconds(0.5f);
         SoundCoroutine = null; 
