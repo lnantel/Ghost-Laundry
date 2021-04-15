@@ -50,16 +50,18 @@ public class MusicController : MonoBehaviour
     }
 
     private IEnumerator TransitionToTrackCoroutine(MusicTrack track) {
-        //Fade out currently playing track
-        while(source.isPlaying && source.volume > 0.0f) {
-            source.volume = Mathf.MoveTowards(source.volume, 0.0f, Time.deltaTime / 2.0f);
-            yield return null;
-        }
-        source.Stop();
+        if(track.Type != m_Track.Type) {
+            //Fade out currently playing track
+            while (source.isPlaying && source.volume > 0.0f) {
+                source.volume = Mathf.MoveTowards(source.volume, 0.0f, Time.deltaTime / 2.0f);
+                yield return null;
+            }
+            source.Stop();
 
-        //If transitioning to a non null track, start it
-        SetMusicTrack(track);
-        transitionCoroutine = null;
+            //If transitioning to a non null track, start it
+            SetMusicTrack(track);
+            transitionCoroutine = null;
+        }
     }
 
     // Update is called once per frame
