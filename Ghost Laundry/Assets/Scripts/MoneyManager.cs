@@ -102,7 +102,7 @@ public class MoneyManager : MonoBehaviour
             TXT_PopUp.color = NegativeAmountColor;
         }
 
-        AudioManager.instance.PlaySoundAtPosition(SoundName.MoneyGain, bag.transform.position);
+        AudioManager.instance.PlaySound(SoundName.MoneyGain);
 
         Customer.Pay(fee, tip, null);
         ModifyCurrentAmount(fee + tip);

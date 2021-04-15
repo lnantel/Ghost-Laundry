@@ -271,9 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 5bc2af6eee7563a468a7d43e7acab7a6, type: 2}
-  MouseSensitivity: 0
-  MusicVolume: 0
-  SFXVolume: 0
 --- !u!1 &1447574065
 GameObject:
   m_ObjectHideFlags: 1

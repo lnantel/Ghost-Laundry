@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (collision) {
-            AudioManager.instance.PlaySoundAtPosition(SoundName.Collision, collisionPoint, 1.0f);
+            AudioManager.instance.PlaySound(SoundName.Collision);
             Vector2 reflected = Vector2.Reflect(dashDir, hit.normal);
             dashEndPos = collisionPoint + reflected * m_DashReboundDistance;
             float reboundTimer = 0.0f;

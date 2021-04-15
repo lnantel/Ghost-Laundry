@@ -838,7 +838,7 @@ namespace Fungus
             {
                 return null;
             }
-            
+
             return go.GetComponent<AudioSource>();
         }
 

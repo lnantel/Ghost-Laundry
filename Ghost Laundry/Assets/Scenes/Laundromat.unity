@@ -10629,6 +10629,10 @@ PrefabInstance:
       propertyPath: m_VolumeLayerMask.m_Bits
       value: 4194103
       objectReference: {fileID: 0}
+    - target: {fileID: 8455859076272486490, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8455859076272486491, guid: 0faf655e0cf2adf40baa82dee3098039, type: 3}
       propertyPath: m_Name
       value: Laundromat Camera

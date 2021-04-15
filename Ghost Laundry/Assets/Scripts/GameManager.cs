@@ -164,6 +164,8 @@ public class GameManager : MonoBehaviour {
         LoadScenes("Title", "Options", "HUD", "Dialog");
         while (scenesLoading != null) yield return null;
 
+        AudioManager.instance.PlayMusic(MusicTrackType.MenuTrack);
+
         SaveManager.LoadSaveData();
 
         state = GameStates.TitleScreen;
@@ -188,8 +190,6 @@ public class GameManager : MonoBehaviour {
         LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
         while (scenesLoading != null) yield return null;
 
-        //if (ShowHUD != null) ShowHUD();
-
         SaveManager.LoadSaveData();
 
         state = GameStates.StartOfDay;
@@ -201,6 +201,8 @@ public class GameManager : MonoBehaviour {
         if (ResumeGame != null) ResumeGame();
 
         if(TimeManager.instance.CurrentDay != 0) {
+            AudioManager.instance.PlayMusic(MusicTrackType.GameplayTrack);
+
             HideCursor();
 
             if (FadeIn != null) FadeIn();
@@ -210,6 +212,9 @@ public class GameManager : MonoBehaviour {
             AudioManager.instance.PlaySound(SoundName.LaundromatOpening);
 
             yield return new WaitForSecondsRealtime(1.0f);
+        }
+        else {
+            AudioManager.instance.PlayMusic(MusicTrackType.TutorialTrack);
         }
 
         TimeManager.instance.StartDay();

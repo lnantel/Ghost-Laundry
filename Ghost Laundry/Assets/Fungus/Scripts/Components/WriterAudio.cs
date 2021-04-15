@@ -33,6 +33,9 @@ namespace Fungus
         [Tooltip("AudioSource to use for playing sound effects. If none is selected then one will be created.")]
         [SerializeField] protected AudioSource targetAudioSource;
 
+        [Tooltip("AudioSource to use for playing the input sound effect.")]
+        [SerializeField] protected AudioSource inputAudioSource;
+
         [Tooltip("Type of sound effect to play when writing text")]
         [SerializeField] protected AudioMode audioMode = AudioMode.Beeps;
 
@@ -176,7 +179,8 @@ namespace Fungus
             if (inputSound != null)
             {
                 // Assumes we're playing a 2D sound
-                AudioSource.PlayClipAtPoint(inputSound, Vector3.zero);
+                inputAudioSource.clip = inputSound;
+                inputAudioSource.Play();
             }
         }
 
