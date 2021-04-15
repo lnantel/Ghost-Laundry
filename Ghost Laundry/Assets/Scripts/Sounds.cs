@@ -87,5 +87,14 @@ public enum Sounds
     PickUpBasket,
 
     MoneyTallyLoss,
-    MoneyTallyGain
+    MoneyTallyGain,
+
+    //machine à coudre 
+
+    SewingMachine1,
+    SewingMachine2
+
+
+
+
 }

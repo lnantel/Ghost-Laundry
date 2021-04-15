@@ -39,6 +39,8 @@ public class SewingMachine : WorkStation
         return false;
     }
 
+   
+
     //Called when a garment is placed on the machine.
     public bool PlaceGarment(Garment garment) {
         if(garmentOnMachine == null) {

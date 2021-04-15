@@ -52,12 +52,19 @@ public class LaundrySewingMachine : LaundryObject
 
     private void OnProgress() {
         if(sewingMachine.progress % 0.1f < 0.05f) {
-            tableRenderer.sprite = tableOff;
-            machineRenderer.sprite = machineUp;
+            if(machineRenderer.sprite == machineDown){
+                tableRenderer.sprite = tableOff;
+                machineRenderer.sprite = machineUp;
+                AudioManager.instance.PlaySound(Sounds.SewingMachine1,0.5f);
+            }
+            
         }
         else {
+            if(machineRenderer.sprite == machineUp){
             tableRenderer.sprite = tableOn;
             machineRenderer.sprite = machineDown;
+            AudioManager.instance.PlaySound(Sounds.SewingMachine2,0.5f);
         }
     }
+}
 }
