@@ -24386,23 +24386,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Music:
   - Type: 0
-    Clip: {fileID: 8300000, guid: f892c0884a75ad24a8082036d7251905, type: 3}
+    Clip: {fileID: 8300000, guid: 52e534b4a36829f4895f98305c888249, type: 3}
     Volume: 1
     Pitch: 1
   - Type: 1
-    Clip: {fileID: 8300000, guid: 84c02f281383df04ba687d9678979b05, type: 3}
+    Clip: {fileID: 8300000, guid: 5cea4617e943db046b4b00b6313f8d1f, type: 3}
     Volume: 1
     Pitch: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 329f31bfbe871d44b93d08fe6cda7a27, type: 3}
+    Clip: {fileID: 8300000, guid: 52e534b4a36829f4895f98305c888249, type: 3}
     Volume: 1
     Pitch: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 08c8194270d2ba14fb946b79d38bc772, type: 3}
+    Clip: {fileID: 8300000, guid: 5cea4617e943db046b4b00b6313f8d1f, type: 3}
     Volume: 1
     Pitch: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 3e7762c658acf9e43845ca2fd7115603, type: 3}
+    Clip: {fileID: 8300000, guid: 52e534b4a36829f4895f98305c888249, type: 3}
     Volume: 1
     Pitch: 1
   Sounds:
