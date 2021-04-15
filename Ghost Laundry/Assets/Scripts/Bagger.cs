@@ -135,7 +135,7 @@ public class Bagger : WorkStation
 
         yield return new WaitForLaundromatSeconds(0.2f);
 
-        AudioManager.instance.PlaySound(SoundName.ProcessingEmb,0.4f);
+        AudioManager.instance.PlaySound(SoundName.ProcessingEmb);
 
         yield return new WaitForLaundromatSeconds(1.0f);
         

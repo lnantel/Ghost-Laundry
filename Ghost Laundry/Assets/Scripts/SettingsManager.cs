@@ -1,20 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SettingsManager : MonoBehaviour {
     public static SettingsManager instance;
 
-    public float MouseSensitivity;
-    public float MusicVolume;
-    public float SFXVolume;
+    public AudioMixer audioMixer;
+
+    public float MouseSensitivity { get => m_MouseSensitivity; set => SetMouseSensitivity(value); }
+    public float MusicVolume { get => m_MusicVolume; set => SetMusicVolume(value); }
+    public float SFXVolume { get => m_SFXVolume; set => SetSFXVolume(value); }
+
+    private float m_MouseSensitivity;
+    private float m_MusicVolume;
+    private float m_SFXVolume;
 
     private void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
     }
 
-    private void OnEnable() {
+    private void Start() {
         if (PlayerPrefs.HasKey(Settings.MouseSensitivity.ToString()))
             MouseSensitivity = PlayerPrefs.GetFloat(Settings.MouseSensitivity.ToString());
         else
@@ -39,15 +46,17 @@ public class SettingsManager : MonoBehaviour {
     }
 
     public void SetMouseSensitivity(float value) {
-        MouseSensitivity = value;
+        m_MouseSensitivity = value;
     }
 
     public void SetMusicVolume(float value) {
-        MusicVolume = value;
+        m_MusicVolume = value;
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(value) * 20);
     }
 
     public void SetSFXVolume(float value) {
-        SFXVolume = value;
+        m_SFXVolume = value;
+        audioMixer.SetFloat("EffectsVol", Mathf.Log10(value) * 20);
     }
 }
 

@@ -5,14 +5,14 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         for (int i = 0; i < transform.childCount; i++) {
             transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
-    public GameObject SpawnObject(Vector3 position) {
+    public virtual GameObject SpawnObject(Vector3 position) {
         //Return the first inactive object
         for (int i = 0; i < transform.childCount; i++) {
             if (!transform.GetChild(i).gameObject.activeSelf) {

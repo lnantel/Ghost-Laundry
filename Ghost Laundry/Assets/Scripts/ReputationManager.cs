@@ -91,7 +91,7 @@ public class ReputationManager : MonoBehaviour {
     private void OnStarReachedReputationBar(bool sign) {
         displayedAmount += sign ? 1 : -1;
         SoundName sound = sign ? SoundName.MoneyTallyGain : SoundName.MoneyTallyLoss;
-        AudioManager.instance.PlaySound(sound, 0.7f);
+        AudioManager.instance.PlaySound(sound);
     }
 
     private IEnumerator SpawnFlyingStars(StarData starData) {

@@ -48,10 +48,10 @@ public class WashingMachine : WorkStation
     private void Update() {
         animator.SetInteger("WashingMachineState", (int)state);
 
-       if(state == WashingMachineState.Running && WMCoroutine == null){           
-        WMCoroutine = WashingMachineRunningCoroutineSound();
-        StartCoroutine(WMCoroutine);   
-       }
+       //if(state == WashingMachineState.Running && WMCoroutine == null){           
+       // WMCoroutine = WashingMachineRunningCoroutineSound();
+       // StartCoroutine(WMCoroutine);   
+       //}
 
        if(state == WashingMachineState.Done && WMDoneCoroutine == null){           
         WMDoneCoroutine = WashingMachineDoneCoroutineSound();
@@ -59,14 +59,14 @@ public class WashingMachine : WorkStation
        }        
     }
 
-     IEnumerator WashingMachineRunningCoroutineSound(){
-         AudioManager.instance.PlaySound(SoundName.RunningWM,0.4f);
-         yield return new WaitForLaundromatSeconds(1); 
-         WMCoroutine = null;
-        }
+     //IEnumerator WashingMachineRunningCoroutineSound(){
+     //    AudioManager.instance.PlaySound(SoundName.RunningWM);
+     //    yield return new WaitForLaundromatSeconds(1); 
+     //    WMCoroutine = null;
+     //   }
 
     IEnumerator WashingMachineDoneCoroutineSound(){
-         AudioManager.instance.PlaySound(SoundName.EndWMBeep,0.4f);;
+         AudioManager.instance.PlaySound(SoundName.EndWMBeep);;
          yield return new WaitForLaundromatSeconds(20); 
          WMDoneCoroutine = null;
         }
@@ -127,6 +127,7 @@ public class WashingMachine : WorkStation
     private IEnumerator WashCycle() {
         bool containsColoredGarments = false;
 
+        AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, WashCycleTime);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
@@ -183,7 +184,6 @@ public class WashingMachine : WorkStation
         }
         Detergent = false;
         state = WashingMachineState.Done;
-
     }
 
     protected override List<Garment> GetCustomContainerGarments() {

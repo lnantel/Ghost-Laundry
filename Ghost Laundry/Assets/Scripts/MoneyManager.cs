@@ -67,9 +67,9 @@ public class MoneyManager : MonoBehaviour
 
     private IEnumerator TallySound() {
         if(displayedChangeAmount < 0.0f)
-            AudioManager.instance.PlaySound(SoundName.MoneyTallyLoss, 0.7f);
+            AudioManager.instance.PlaySound(SoundName.MoneyTallyLoss);
         else
-            AudioManager.instance.PlaySound(SoundName.MoneyTallyGain, 0.7f);
+            AudioManager.instance.PlaySound(SoundName.MoneyTallyGain);
         yield return new WaitForLaundromatSeconds(0.05f);
         tallySoundCoroutine = null;
     }

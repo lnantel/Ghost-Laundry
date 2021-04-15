@@ -23,6 +23,9 @@ public class Iron : LaundryObject
 
     private IroningBoard ironingBoard;
 
+    private AudioSourceController steamLoop;
+    private AudioSourceController burnLoop;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         ironingBoard = GetComponentInParent<IroningBoard>();
@@ -41,14 +44,12 @@ public class Iron : LaundryObject
     public void PlaceOnIroningBoard() {
         onIroningBoard = true;
         transform.position = new Vector3(transform.position.x, boardHeight);
-        //rb.rotation = 90.0f;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         ironSpriteRenderer.sprite = spriteIronFlatOn;
     }
 
     public void TakeOffIroningBoard() {
         onIroningBoard = false;
-        //rb.rotation = 0.0f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         ironSpriteRenderer.sprite = spriteIronStandingOn;
     }
@@ -72,6 +73,36 @@ public class Iron : LaundryObject
         if (steamState == SteamState.Off && (steam.isEmitting || smoke.isEmitting)) {
             steam.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             smoke.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+
+        if (steamState == SteamState.Steam) {
+            if (burnLoop != null) {
+                burnLoop.Stop();
+                burnLoop = null;
+            }
+            if (steamLoop == null) {
+                steamLoop = AudioManager.instance.PlaySoundLoop(SoundName.IronIsWorking);
+            }
+        }
+        else if (steamState == SteamState.Burn) {
+            if (steamLoop != null) {
+                steamLoop.Stop();
+                steamLoop = null;
+            }
+            if (burnLoop == null) {
+                burnLoop = AudioManager.instance.PlaySoundLoop(SoundName.IronisBurning);
+            }
+        }
+        else {
+            if (steamLoop != null) {
+                steamLoop.Stop();
+                steamLoop = null;
+            }
+
+            if (burnLoop != null) {
+                burnLoop.Stop();
+                burnLoop = null;
+            }
         }
     }
 }

@@ -78,28 +78,7 @@ public class LaundryIroningBoard : LaundryObject
 
         lastIronPos = ironPosition;
 
-        if(SoundCoroutine == null){
-
-            SoundCoroutine = SteamSound(steam); 
-            StartCoroutine(SoundCoroutine); 
-        }
         return steam;
-    }
-
-    private IEnumerator SteamSound(SteamState steam){
-
-        if(steam == SteamState.Steam){
-
-            AudioManager.instance.PlaySound(SoundName.IronIsWorking);
-
-        } else if(steam == SteamState.Burn) {
-
-            AudioManager.instance.PlaySound(SoundName.IronisBurning);
-
-        }
-
-        yield return new WaitForLaundromatSeconds(1);
-        SoundCoroutine = null; 
     }
 
     private void LaundryGarmentReleased(LaundryGarment laundryGarment) {

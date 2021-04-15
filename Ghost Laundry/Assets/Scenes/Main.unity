@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258a45c3f7e230048875306309a8eaa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 5bc2af6eee7563a468a7d43e7acab7a6, type: 2}
   MouseSensitivity: 0
   MusicVolume: 0
   SFXVolume: 0

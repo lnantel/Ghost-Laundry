@@ -46,11 +46,6 @@ public class Dryer : WorkStation
     private void Update() {
         animator.SetInteger("DryerState", (int)state);
 
-        if(state == DryerState.Running && DryerRunningCoroutine == null){           
-        DryerRunningCoroutine = DryerRunningCoroutineSound();
-        StartCoroutine(DryerRunningCoroutine);   
-       }
-
        if(state == DryerState.Done && DryerDoneCoroutine == null){           
         DryerDoneCoroutine = DryerDoneCoroutineSound();
         StartCoroutine(DryerDoneCoroutine);   
@@ -62,17 +57,11 @@ public class Dryer : WorkStation
         autoCompleteFlag = true;
     }
 
-    IEnumerator DryerRunningCoroutineSound(){
-         AudioManager.instance.PlaySound(SoundName.RunningDryer,0.4f);
-         yield return new WaitForLaundromatSeconds(1); 
-         DryerRunningCoroutine = null;
-        }
-
-         IEnumerator DryerDoneCoroutineSound(){
-         AudioManager.instance.PlaySound(SoundName.EndDryerBeep,0.4f);
+    IEnumerator DryerDoneCoroutineSound(){
+         AudioManager.instance.PlaySound(SoundName.EndDryerBeep);
          yield return new WaitForLaundromatSeconds(20); 
          DryerDoneCoroutine = null;
-        }
+    }
 
     public float CurrentLoad() {
         float value = 0.0f;
@@ -127,6 +116,8 @@ public class Dryer : WorkStation
         float cycleTime = 0.0f;
         if (dryerSetting == DryerSetting.High) cycleTime = 10.0f;
         else if (dryerSetting == DryerSetting.Low) cycleTime = 20.0f;
+
+        AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, cycleTime);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {

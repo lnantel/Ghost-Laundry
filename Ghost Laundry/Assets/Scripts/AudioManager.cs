@@ -2,33 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : MonoBehaviour {
     public static AudioManager instance;
     public Sound[] Sounds;
 
-    private AudioSource source;
+    private AudioPoolManager pool;
 
-    private void Start() {
-        source = GetComponent<AudioSource>();
-    }
+    private AudioSource source;
 
     private void Awake() {
         if (instance != null) Destroy(gameObject);
         else instance = this;
     }
 
-    public void PlaySound(SoundName soundName, float volume = 1.0f) {
-        Sound sound = FindSoundByName(soundName);
-
-        source.pitch = sound.Pitch;
-        source.PlayOneShot(sound.Clip, SettingsManager.instance.SFXVolume * sound.Volume * 0.5f);
+    private void Start() {
+        source = GetComponent<AudioSource>();
+        pool = GetComponentInChildren<AudioPoolManager>();
     }
 
-    public void PlaySoundAtPosition(SoundName soundName, Vector2 position, float volume = 1.0f) {
+    public void PlaySound(SoundName soundName) {
         Sound sound = FindSoundByName(soundName);
 
-        AudioSource.PlayClipAtPoint(sound.Clip, position, SettingsManager.instance.SFXVolume * volume);
+        pool.ActivateAudioSource(sound);
+    }
+
+    public AudioSourceController PlaySoundLoop(SoundName soundName, float duration = 0.0f) {
+        Sound sound = FindSoundByName(soundName);
+        if(duration == 0.0f) {
+            //Loop until Stop() is called
+            return pool.ActivateAudioSource(sound, true);
+        }
+        else {
+            //Play for given duration
+            return pool.ActivateAudioSource(sound, true, duration);
+        }
+    }
+
+    //TODO: Remove
+    public void PlaySoundAtPosition(SoundName soundName, Vector2 position, float volume = 1.0f) {
+        Sound sound = FindSoundByName(soundName);
     }
 
     private Sound FindSoundByName(SoundName name) {

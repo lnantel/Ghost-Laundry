@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartCarrying(GameObject obj) {
         state.StartCarry();
-        AudioManager.instance.PlaySound(SoundName.PickUpBasket,0.5f);
+        AudioManager.instance.PlaySound(SoundName.PickUpBasket);
         carriedObject = obj;
         carriedObject.GetComponent<Collider2D>().enabled = false;
         LaundromatSpriteSort spriteSort = obj.GetComponentInChildren<LaundromatSpriteSort>();
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 
     private void DropCarriedObject() {
         state.EndCarry();
-        AudioManager.instance.PlaySound(SoundName.DropBasket,0.5f);
+        AudioManager.instance.PlaySound(SoundName.DropBasket);
         carriedObject.GetComponent<Collider2D>().enabled = true;
         carriedObject.transform.position = placedPos.position;
         LaundromatSpriteSort spriteSort = carriedObject.GetComponentInChildren<LaundromatSpriteSort>();
@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
     public void Take(GameObject obj) {
         if (carriedObject != null) DropCarriedObject();
         StartCarrying(obj);
-        AudioManager.instance.PlaySound(SoundName.PickUpBasket,0.5f);
+        AudioManager.instance.PlaySound(SoundName.PickUpBasket);
 
         LaundromatBasket laundromatBasket = obj.GetComponent<LaundromatBasket>();
         if (laundromatBasket != null) {
@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour
                     WorkStation workStation = (WorkStation)interactable;
                     if (workStation.InputBasket(laundromatBasket.basket)) {
                         DestroyCarriedObject();
-                        AudioManager.instance.PlaySound(SoundName.DropBasket,0.5f);
+                        AudioManager.instance.PlaySound(SoundName.DropBasket);
 
                     }
                     else {
