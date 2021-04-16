@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 66636481}
   - component: {fileID: 66636480}
   - component: {fileID: 66636479}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_empty2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 99003203}
   - component: {fileID: 99003202}
   - component: {fileID: 99003201}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_with_stuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 123841684}
   - component: {fileID: 123841683}
   - component: {fileID: 123841682}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_empty1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 317213778}
   - component: {fileID: 317213777}
   - component: {fileID: 317213776}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_empty1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1661,7 +1661,7 @@ GameObject:
   - component: {fileID: 365397477}
   - component: {fileID: 365397476}
   - component: {fileID: 365397475}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_with_stuff 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4347,7 +4347,7 @@ GameObject:
   - component: {fileID: 876631104}
   - component: {fileID: 876631103}
   - component: {fileID: 876631102}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Detecteur_anti_vol (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6326,7 +6326,7 @@ GameObject:
   - component: {fileID: 1344092572}
   - component: {fileID: 1344092571}
   - component: {fileID: 1344092570}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_empty3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7200,7 +7200,7 @@ GameObject:
   - component: {fileID: 1545412498}
   - component: {fileID: 1545412497}
   - component: {fileID: 1545412496}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Detecteur_anti_vol (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8212,7 +8212,7 @@ GameObject:
   - component: {fileID: 1758785769}
   - component: {fileID: 1758785768}
   - component: {fileID: 1758785767}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_empty2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9210,7 +9210,7 @@ GameObject:
   - component: {fileID: 1946029944}
   - component: {fileID: 1946029943}
   - component: {fileID: 1946029942}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Etagere_empty3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
