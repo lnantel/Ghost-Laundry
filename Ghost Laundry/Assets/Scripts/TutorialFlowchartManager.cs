@@ -18,6 +18,13 @@ public class TutorialFlowchartManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    public void StartIntroduction() {
+        flowcharts[0].gameObject.SetActive(true);
+        flowcharts[0].ExecuteBlock("Introduction");
+        dialogCanvas.gameObject.SetActive(true);
+        GameManager.instance.OnDialogStart();
+    }
+
     public void StartDialog(int step, int substep = 0) {
         flowcharts[step - 1].gameObject.SetActive(true);
         flowcharts[step - 1].ExecuteBlock("Step " + step + letters[substep]);

@@ -163,6 +163,8 @@ public class TutorialManager : MonoBehaviour
     }
 
     private IEnumerator StartTutorialCoroutine() {
+        TutorialFlowchartManager.instance.StartIntroduction();
+
         if (GameManager.FadeIn != null) GameManager.FadeIn();
 
         //Disable literally everything
@@ -199,8 +201,9 @@ public class TutorialManager : MonoBehaviour
         tutorialStarted = true;
 
         //Start the first dialog
-        yield return new WaitForSecondsRealtime(1.0f);
-        TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        //yield return new WaitForSecondsRealtime(1.0f);
+        //TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
+        yield return null;
     }
 
     private void CreateTutorialCustomer(Basket basket) {
