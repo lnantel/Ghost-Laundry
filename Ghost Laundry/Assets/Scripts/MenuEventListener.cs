@@ -49,4 +49,8 @@ public class MenuEventListener : MonoBehaviour
     public void OnNextDay() {
         GameManager.instance.OnNextDay();
     }
+
+    public void OnCredits() {
+        GameManager.instance.OnCredits();
+    }
 }

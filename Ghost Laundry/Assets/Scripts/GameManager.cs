@@ -224,6 +224,52 @@ public class GameManager : MonoBehaviour {
         stateTransition = null;
     }
 
+    private IEnumerator GoToEpilogue() {
+        if (SceneManager.sceneCount > 1) {
+            if (FadeOut != null) FadeOut();
+            yield return new WaitForSecondsRealtime(2.0f);
+            UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
+        }
+
+        LoadScenes( "Epilogue", "Pause", "Options", "Dialog");
+        while (scenesLoading != null) yield return null;
+
+        SaveManager.LoadSaveData();
+
+        if (HideHUD != null) HideHUD();
+        if (HideSettings != null) HideSettings();
+        if (ResumeGame != null) ResumeGame();
+        if (FadeIn != null) FadeIn();
+
+        state = GameStates.Laundromat;
+
+        stateTransition = null;
+    }
+
+    private IEnumerator GoToCredits() {
+        if (SceneManager.sceneCount > 1) {
+            if (FadeOut != null) FadeOut();
+            yield return new WaitForSecondsRealtime(2.0f);
+            UnloadAllScenes();
+            while (scenesLoading != null) yield return null;
+        }
+
+        LoadScenes("Credits", "HUD", "Dialog");
+        while (scenesLoading != null) yield return null;
+
+        SaveManager.LoadSaveData();
+
+        if (HideHUD != null) HideHUD();
+        if (HideSettings != null) HideSettings();
+        if (ResumeGame != null) ResumeGame();
+        if (FadeIn != null) FadeIn();
+
+        state = GameStates.TitleScreen;
+
+        stateTransition = null;
+    }
+
     private void OnEndOfDay(int day) {
         if (stateTransition == null) {
             stateTransition = EndOfDay();
@@ -244,7 +290,7 @@ public class GameManager : MonoBehaviour {
             SaveManager.Save();
         }
 
-        if(TimeManager.instance.CurrentDay > 1) {
+        else if(TimeManager.instance.CurrentDay > 1) {
             //Wait a couple seconds
             yield return new WaitForSecondsRealtime(2.0f);
 
@@ -261,26 +307,32 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator GoToTransition() {
-        if (SceneManager.sceneCount > 1) {
-            if (FadeOut != null) FadeOut();
-            yield return new WaitForSecondsRealtime(2.0f);
-            UnloadAllScenes();
-            while (scenesLoading != null) yield return null;
+        if(TimeManager.instance.CurrentDay > 12) {
+            stateTransition = GoToEpilogue();
+            StartCoroutine(stateTransition);
         }
+        else {
+            if (SceneManager.sceneCount > 1) {
+                if (FadeOut != null) FadeOut();
+                yield return new WaitForSecondsRealtime(2.0f);
+                UnloadAllScenes();
+                while (scenesLoading != null) yield return null;
+            }
 
-        LoadScenes("NextDay", "Options", "HUD", "Dialog");
-        while (scenesLoading != null) yield return null;
+            LoadScenes("NextDay", "Options", "HUD", "Dialog");
+            while (scenesLoading != null) yield return null;
 
-        SaveManager.LoadSaveData();
+            SaveManager.LoadSaveData();
 
-        state = GameStates.Transition;
+            state = GameStates.Transition;
 
-        if (HideHUD != null) HideHUD();
-        if (FadeIn != null) FadeIn();
+            if (HideHUD != null) HideHUD();
+            if (FadeIn != null) FadeIn();
 
-        HideCursor();
+            HideCursor();
 
-        stateTransition = null;
+            stateTransition = null;
+        }
     }
 
     private void OnTransitionEnd() {
@@ -409,6 +461,20 @@ public class GameManager : MonoBehaviour {
     public void OnDialogEnd(int i) {
         if (HideDialog != null) HideDialog();
         HideCursor();
+    }
+
+    public void OnEpilogueEnd() {
+        if (stateTransition == null) {
+            stateTransition = GoToCredits();
+            StartCoroutine(stateTransition);
+        }
+    }
+
+    public void OnCredits() {
+        if (stateTransition == null) {
+            stateTransition = GoToCredits();
+            StartCoroutine(stateTransition);
+        }
     }
 
     private void OnShowSettings() {
