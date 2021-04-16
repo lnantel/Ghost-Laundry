@@ -86,4 +86,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DebugTools.unity
     guid: 7c6aeac736169d14fb2fdb6210d2388c
+  - enabled: 1
+    path: Assets/Scenes/Epilogue.unity
+    guid: a20fc3c684acaeb4a880249d57cc5774
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: e17452c610c9a3e48b4c605589944bbe
   m_configObjects: {}

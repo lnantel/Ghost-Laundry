@@ -105,5 +105,12 @@ public class DebugTools : MonoBehaviour
             SaveManager.Save();
             GameManager.instance.OnNextDay();
         }
+
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
+            TimeManager.instance.CurrentDay = 13;
+            SaveManager.Save();
+            GameManager.instance.OnNextDay();
+
+        }
     }
 }
