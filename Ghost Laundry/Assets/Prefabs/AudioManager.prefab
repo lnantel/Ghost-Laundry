@@ -24394,15 +24394,35 @@ MonoBehaviour:
     Volume: 1
     Pitch: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 52e534b4a36829f4895f98305c888249, type: 3}
+    Clip: {fileID: 8300000, guid: 662c402f00d7a6b4984222269d5a8981, type: 3}
     Volume: 1
     Pitch: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 5cea4617e943db046b4b00b6313f8d1f, type: 3}
+    Clip: {fileID: 8300000, guid: 480c5a8b2a944174981c637053b52d13, type: 3}
     Volume: 1
     Pitch: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 52e534b4a36829f4895f98305c888249, type: 3}
+    Clip: {fileID: 8300000, guid: 60172b42ceca3bb4e98755d7378d35f7, type: 3}
+    Volume: 1
+    Pitch: 1
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 7df1674988cd1d3469f194e5764595b8, type: 3}
+    Volume: 1
+    Pitch: 1
+  - Type: 2
+    Clip: {fileID: 8300000, guid: d33e90486e5e68d4da1ea79595ca6211, type: 3}
+    Volume: 1
+    Pitch: 1
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 06be170455d0d7a4cbe15f6f3947ca8c, type: 3}
+    Volume: 1
+    Pitch: 1
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 2e8ec203be5be4d4eb7196c9aaf79f5d, type: 3}
+    Volume: 1
+    Pitch: 1
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 123a28ee8bf3b864bbe45fdcfb947594, type: 3}
     Volume: 1
     Pitch: 1
   Sounds:
