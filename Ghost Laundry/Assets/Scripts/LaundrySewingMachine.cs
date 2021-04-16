@@ -55,7 +55,7 @@ public class LaundrySewingMachine : LaundryObject
             if(machineRenderer.sprite == machineDown){
                 tableRenderer.sprite = tableOff;
                 machineRenderer.sprite = machineUp;
-                AudioManager.instance.PlaySound(Sounds.SewingMachine1,0.5f);
+                AudioManager.instance.PlaySound(SoundName.SewingMachineUp);
             }
             
         }
@@ -63,7 +63,7 @@ public class LaundrySewingMachine : LaundryObject
             if(machineRenderer.sprite == machineUp){
             tableRenderer.sprite = tableOn;
             machineRenderer.sprite = machineDown;
-            AudioManager.instance.PlaySound(Sounds.SewingMachine2,0.5f);
+            AudioManager.instance.PlaySound(SoundName.SewingMachineDown);
         }
     }
 }

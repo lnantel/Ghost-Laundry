@@ -105,5 +105,8 @@ public enum SoundName
     PickUpBasket,
 
     MoneyTallyLoss,
-    MoneyTallyGain
+    MoneyTallyGain,
+
+    SewingMachineUp,
+    SewingMachineDown
 }
