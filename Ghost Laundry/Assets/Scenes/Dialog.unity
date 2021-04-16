@@ -12183,6 +12183,7 @@ GameObject:
   - component: {fileID: 823566229}
   - component: {fileID: 823566228}
   - component: {fileID: 823566227}
+  - component: {fileID: 823566232}
   m_Layer: 0
   m_Name: Step 1 Flowchart
   m_TagString: Untagged
@@ -12282,7 +12283,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 823566222}
   selectedCommands:
-  - {fileID: 823566227}
+  - {fileID: 823566232}
   variables: []
   description: 
   stepPause: 0
@@ -13610,6 +13611,7 @@ MonoBehaviour:
   - {fileID: 823566230}
   - {fileID: 823566229}
   - {fileID: 823566228}
+  - {fileID: 823566232}
   - {fileID: 823566227}
   - {fileID: 823566219}
   suppressAllAutoSelections: 0
@@ -13693,7 +13695,7 @@ MonoBehaviour:
     integerVal: 1
 --- !u!114 &823566227
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13711,7 +13713,7 @@ MonoBehaviour:
   durationOLD: 0
 --- !u!114 &823566228
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13738,7 +13740,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &823566229
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13755,7 +13757,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &823566230
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13782,7 +13784,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &823566231
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13807,6 +13809,23 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &823566232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823566170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 61
+  indentLevel: 0
+  targetObject: {fileID: 1890519997}
+  methodName: FadeOutCG
+  delay: 0
 --- !u!1 &888533104
 GameObject:
   m_ObjectHideFlags: 0
