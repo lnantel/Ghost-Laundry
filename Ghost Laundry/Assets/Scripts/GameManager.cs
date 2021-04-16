@@ -265,6 +265,8 @@ public class GameManager : MonoBehaviour {
         if (ResumeGame != null) ResumeGame();
         if (FadeIn != null) FadeIn();
 
+        ShowCursor();
+
         state = GameStates.TitleScreen;
 
         stateTransition = null;
