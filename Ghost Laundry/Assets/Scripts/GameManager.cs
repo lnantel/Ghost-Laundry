@@ -288,11 +288,16 @@ public class GameManager : MonoBehaviour {
 
         //Save progress
         TimeManager.instance.NextDay();
-        if (TimeManager.instance.CurrentDay == 1 || MoneyManager.instance.CurrentAmount >= 0) {
+        //If tutorial, go straight to next day
+        if (TimeManager.instance.CurrentDay == 1) {
             SaveManager.Save();
+            stateTransition = GoToTransition();
+            StartCoroutine(stateTransition);
         }
+        //Otherwise, show Eval screen first
+        else if(MoneyManager.instance.CurrentAmount >= 0 && TimeManager.instance.CurrentDay > 1) {
+            SaveManager.Save();
 
-        else if(TimeManager.instance.CurrentDay > 1) {
             //Wait a couple seconds
             yield return new WaitForSecondsRealtime(2.0f);
 
@@ -302,13 +307,11 @@ public class GameManager : MonoBehaviour {
             ShowCursor();
             stateTransition = null;
         }
-        else {
-            stateTransition = GoToTransition();
-            StartCoroutine(stateTransition);
-        }
+
     }
 
     private IEnumerator GoToTransition() {
+        Debug.Log("Transition");
         if(TimeManager.instance.CurrentDay > 12) {
             stateTransition = GoToEpilogue();
             StartCoroutine(stateTransition);
