@@ -14,5 +14,6 @@ public class HelpOverlay : MonoBehaviour
     public void ToggleOverlay() {
         visible = !visible;
         overlay.SetActive(visible);
+        AudioManager.instance.PlaySound(SoundName.MenuItemConfirmed);
     }
 }

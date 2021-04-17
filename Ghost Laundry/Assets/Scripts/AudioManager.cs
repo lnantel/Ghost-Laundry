@@ -93,14 +93,5 @@ public class AudioManager : MonoBehaviour {
         MusicTrack track = m_Playlist[0];
         m_Playlist.RemoveAt(0);
         return track;
-
-        //for (int i = 0; i < Music.Length; i++) {
-        //    if (Music[(lastTrackIndex + 1 + i) % Music.Length].Type == type) {
-        //        int trackIndex = (lastTrackIndex + 1 + i) % Music.Length;
-        //        lastTrackIndex = trackIndex;
-        //        return Music[trackIndex];
-        //    }
-        //}
-        //return null;
     }
 }

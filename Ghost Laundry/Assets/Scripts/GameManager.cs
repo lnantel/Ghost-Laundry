@@ -425,6 +425,7 @@ public class GameManager : MonoBehaviour {
         if(PauseGame != null) PauseGame();
         state = GameStates.GamePaused;
         ShowCursor();
+        AudioManager.instance.PlaySound(SoundName.MenuOpen);
     }
 
     public void Resume() {
@@ -433,6 +434,7 @@ public class GameManager : MonoBehaviour {
             if (ResumeGame != null) ResumeGame();
             state = GameStates.Laundromat;
             if(!inDialog) HideCursor();
+            AudioManager.instance.PlaySound(SoundName.MenuClose);
         }
     }
 
@@ -483,10 +485,12 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnShowSettings() {
+        if(!inSettings) AudioManager.instance.PlaySound(SoundName.MenuOpen);
         inSettings = true;
     }
 
     private void OnHideSettings() {
+        if(inSettings) AudioManager.instance.PlaySound(SoundName.MenuClose);
         inSettings = false;
     }
 

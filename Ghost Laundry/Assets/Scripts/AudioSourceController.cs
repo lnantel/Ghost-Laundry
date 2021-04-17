@@ -75,7 +75,7 @@ public class AudioSourceController : MonoBehaviour
     {
         if (stopping) {
             //Lerp volume to 0 over 1 second
-            stopTimer += Time.deltaTime;
+            stopTimer += Time.unscaledDeltaTime * 6.0f;
             for (int i = 0; i < sources.Length; i++) {
                 if (sources[i].time >= sources[i].clip.length - tailDuration) {
                     sources[i].volume = Mathf.SmoothStep(maxVolume, 0.0f, stopTimer);
