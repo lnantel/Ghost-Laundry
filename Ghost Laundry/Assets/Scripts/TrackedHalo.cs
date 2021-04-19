@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class TrackedHalo : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    public HaloRenderer Halo;
 
-    private Material defaultMaterial;
-    private Material haloMaterial;
     private ITrackable Trackable;
 
     private void Start() {
@@ -16,17 +14,14 @@ public class TrackedHalo : MonoBehaviour
             Debug.LogError("No ITrackable found on this GameObject");
             Destroy(this);
         }
-
-        defaultMaterial = spriteRenderer.material;
-        haloMaterial = (Material)Resources.Load("MAT_TrackedHalo");
     }
 
     private void Update() {
         if (Trackable.ContainsTrackedGarment()) {
-            spriteRenderer.material = haloMaterial;
+            if(!Halo.Visible) Halo.ShowHalo();
         }
         else {
-            spriteRenderer.material = defaultMaterial;
+            if(Halo.Visible) Halo.HideHalo();
         }
     }
 }

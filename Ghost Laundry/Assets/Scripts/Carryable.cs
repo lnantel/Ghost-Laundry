@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Carryable : MonoBehaviour
 {
+    public SpriteRenderer outlineRenderer;
     protected GameObject popUpPrefab;
     protected GameObject popUpInstance;
     protected bool popUpVisible;
@@ -13,6 +14,7 @@ public class Carryable : MonoBehaviour
         popUpPrefab = (GameObject)Resources.Load("CarryablePopUp");
         popUpInstance = Instantiate(popUpPrefab, transform.position + Vector3.up * 0.3f, transform.rotation, transform);
         popUpInstance.SetActive(false);
+        outlineRenderer.enabled = false;
     }
 
     protected virtual void OnEnable() {
@@ -29,9 +31,11 @@ public class Carryable : MonoBehaviour
         if(popUpInstance != null) {
             if (instanceID == gameObject.GetInstanceID() && !PlayerStateManager.instance.Carrying) {
                 popUpInstance.SetActive(true);
+                outlineRenderer.enabled = true;
             }
             else {
                 popUpInstance.SetActive(false);
+                outlineRenderer.enabled = false;
             }
         }
     }
@@ -39,6 +43,7 @@ public class Carryable : MonoBehaviour
     protected void HidePopUp() {
         if(popUpInstance != null) {
             popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
+            outlineRenderer.enabled = false;
         }
     }
 }
