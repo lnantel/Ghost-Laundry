@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8978c7c556f6d4aa12ecd5af23955b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MAT_Outline: {fileID: 2100000, guid: 0da6438bdfc4f4942892309626365409, type: 2}
+  spriteRenderer: {fileID: 8764029210004258439}
 --- !u!1001 &5432172948010457609
 PrefabInstance:
   m_ObjectHideFlags: 0

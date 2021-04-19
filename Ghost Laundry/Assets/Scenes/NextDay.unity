@@ -3362,6 +3362,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1703182987342082295, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 3762727942355126171, guid: a945e911ac6e10041b144f99a0a1fa2e, type: 3}
       propertyPath: m_IsActive
       value: 0

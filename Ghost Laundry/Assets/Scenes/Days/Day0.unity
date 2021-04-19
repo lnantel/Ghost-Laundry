@@ -1240,6 +1240,14 @@ PrefabInstance:
       propertyPath: basketSlots.Array.data[0].y
       value: -2.83
       objectReference: {fileID: 0}
+    - target: {fileID: 3527858881035877785, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988207481924449964, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5748218137804147326, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: m_Name
       value: Dryer (1)
@@ -1275,6 +1283,14 @@ PrefabInstance:
     - target: {fileID: 7502809973228414755, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882220051491316737, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882220051491316737, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a94ea50ad950094480cd4accaafc133, type: 3}
