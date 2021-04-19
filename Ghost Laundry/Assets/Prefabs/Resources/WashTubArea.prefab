@@ -604,7 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6810780444986009958}
   - component: {fileID: 4558415895435784031}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: VWall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1689,7 +1689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6217093173622390942}
   - component: {fileID: 7104994043127705564}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: HWall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 1009189910271251987}
   - component: {fileID: 807642885170865993}
   - component: {fileID: 5699732534563914676}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: TubWall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2106,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.7474446}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2117,7 +2117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2.4948893}
   m_EdgeRadius: 0
 --- !u!50 &5699732534563914676
 Rigidbody2D:
@@ -2393,7 +2393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 877590313149271539}
   - component: {fileID: 6699277933030634066}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: VWall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3109,7 +3109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319247880126789606}
   - component: {fileID: 4549137592577139294}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: HWall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
