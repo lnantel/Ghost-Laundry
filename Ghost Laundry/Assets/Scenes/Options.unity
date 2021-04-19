@@ -760,6 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568245336}
   - component: {fileID: 568245337}
+  - component: {fileID: 568245338}
   m_Layer: 5
   m_Name: Slider_sfx
   m_TagString: Untagged
@@ -851,6 +852,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &568245338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568245335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467f23064f7b23346859fd76393ee4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &612325801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,6 +2995,7 @@ GameObject:
   - component: {fileID: 1911243630}
   - component: {fileID: 1911243629}
   - component: {fileID: 1911243628}
+  - component: {fileID: 1911243631}
   m_Layer: 5
   m_Name: QuitCross
   m_TagString: Untagged
@@ -3101,6 +3116,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911243626}
   m_CullTransparentMesh: 0
+--- !u!114 &1911243631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911243626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffcac52ea7ac844f8dacd11b6490e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1925329188
 GameObject:
   m_ObjectHideFlags: 0

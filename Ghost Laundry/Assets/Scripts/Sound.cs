@@ -20,8 +20,7 @@ public class Sound {
     }
 }
 
-public enum SoundName
-{
+public enum SoundName {
     Dash,
     Collision,
     MoneyGain,
@@ -89,14 +88,14 @@ public enum SoundName
     ShiningGarment,
 
     //Bassine 4 sons
-    ScratchGarment, 
+    ScratchGarment,
     BubbleFoam,
     PourSoap,
     SplashGarment,
 
 
     //Emballeur 4 sons
-    DropGarmentEmb, 
+    DropGarmentEmb,
     OpenEmbDoor,
     CloseEmbDoor,
     ProcessingEmb,
@@ -108,5 +107,13 @@ public enum SoundName
     MoneyTallyGain,
 
     SewingMachineUp,
-    SewingMachineDown
+    SewingMachineDown,
+
+    //UI
+    MenuOpen,
+    MenuClose,
+    MenuItemSelected,
+    MenuItemHighlighted,
+    MenuItemConfirmed,
+    MenuItemDeselected
 }

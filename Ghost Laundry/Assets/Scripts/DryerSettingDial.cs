@@ -21,7 +21,7 @@ public class DryerSettingDial : LaundryButton
 
     private void Rotate() {
         if (dryer.dryerSetting == DryerSetting.High) {
-            transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+            transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
             
         }
         else if (dryer.dryerSetting == DryerSetting.Low) {

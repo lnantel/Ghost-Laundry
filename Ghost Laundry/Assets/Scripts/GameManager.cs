@@ -265,6 +265,8 @@ public class GameManager : MonoBehaviour {
         if (ResumeGame != null) ResumeGame();
         if (FadeIn != null) FadeIn();
 
+        ShowCursor();
+
         state = GameStates.TitleScreen;
 
         stateTransition = null;
@@ -286,11 +288,16 @@ public class GameManager : MonoBehaviour {
 
         //Save progress
         TimeManager.instance.NextDay();
-        if (TimeManager.instance.CurrentDay == 1 || MoneyManager.instance.CurrentAmount >= 0) {
+        //If tutorial, go straight to next day
+        if (TimeManager.instance.CurrentDay == 1) {
             SaveManager.Save();
+            stateTransition = GoToTransition();
+            StartCoroutine(stateTransition);
         }
+        //Otherwise, show Eval screen first
+        else if(MoneyManager.instance.CurrentAmount >= 0 && TimeManager.instance.CurrentDay > 1) {
+            SaveManager.Save();
 
-        else if(TimeManager.instance.CurrentDay > 1) {
             //Wait a couple seconds
             yield return new WaitForSecondsRealtime(2.0f);
 
@@ -300,13 +307,11 @@ public class GameManager : MonoBehaviour {
             ShowCursor();
             stateTransition = null;
         }
-        else {
-            stateTransition = GoToTransition();
-            StartCoroutine(stateTransition);
-        }
+
     }
 
     private IEnumerator GoToTransition() {
+        Debug.Log("Transition");
         if(TimeManager.instance.CurrentDay > 12) {
             stateTransition = GoToEpilogue();
             StartCoroutine(stateTransition);
@@ -420,6 +425,7 @@ public class GameManager : MonoBehaviour {
         if(PauseGame != null) PauseGame();
         state = GameStates.GamePaused;
         ShowCursor();
+        AudioManager.instance.PlaySound(SoundName.MenuOpen);
     }
 
     public void Resume() {
@@ -428,6 +434,7 @@ public class GameManager : MonoBehaviour {
             if (ResumeGame != null) ResumeGame();
             state = GameStates.Laundromat;
             if(!inDialog) HideCursor();
+            AudioManager.instance.PlaySound(SoundName.MenuClose);
         }
     }
 
@@ -478,10 +485,12 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnShowSettings() {
+        if(!inSettings) AudioManager.instance.PlaySound(SoundName.MenuOpen);
         inSettings = true;
     }
 
     private void OnHideSettings() {
+        if(inSettings) AudioManager.instance.PlaySound(SoundName.MenuClose);
         inSettings = false;
     }
 

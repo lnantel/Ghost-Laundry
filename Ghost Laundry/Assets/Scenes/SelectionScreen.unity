@@ -3747,6 +3747,7 @@ GameObject:
   - component: {fileID: 1022136295}
   - component: {fileID: 1022136294}
   - component: {fileID: 1022136293}
+  - component: {fileID: 1022136296}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -3867,6 +3868,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022136291}
   m_CullTransparentMesh: 0
+--- !u!114 &1022136296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022136291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffcac52ea7ac844f8dacd11b6490e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!114 &1074191470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6763058147893118914, guid: fdcdb0d2badfe8945ac25017674229c1, type: 3}
@@ -6705,6 +6719,7 @@ GameObject:
   - component: {fileID: 6063206123372646145}
   - component: {fileID: 6063206123372646144}
   - component: {fileID: 6063206123372646147}
+  - component: {fileID: 6063206123372646174}
   m_Layer: 5
   m_Name: Confirm
   m_TagString: Untagged
@@ -6712,6 +6727,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6063206123372646174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6063206123372646173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffcac52ea7ac844f8dacd11b6490e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!114 &6063206123808164716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6895,6 +6923,7 @@ GameObject:
   - component: {fileID: 6063206124028296530}
   - component: {fileID: 6063206124028296621}
   - component: {fileID: 6063206124028296620}
+  - component: {fileID: 6063206124028296624}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -6921,6 +6950,19 @@ RectTransform:
   m_AnchoredPosition: {x: 91.99996, y: -69.00006}
   m_SizeDelta: {x: 89, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6063206124028296624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6063206124028296622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffcac52ea7ac844f8dacd11b6490e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &6063206124117868497
 GameObject:
   m_ObjectHideFlags: 0
