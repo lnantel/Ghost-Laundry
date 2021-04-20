@@ -8,6 +8,9 @@ public class DryerLintTrap : LaundryObject
     public Sprite openDirtySprite;
     public Sprite closedSprite;
 
+    public GameObject OpenLintTrap;
+    public GameObject ClosedLintTrap;
+
     public LaundryButton startButton;
 
     public SpriteRenderer lintTrapSpriteRenderer;
@@ -34,6 +37,8 @@ public class DryerLintTrap : LaundryObject
     }
 
     private void Open() {
+        ClosedLintTrap.SetActive(false);
+        OpenLintTrap.SetActive(true);
         if (dryer.lintTrapClean) {
             lintTrapSpriteRenderer.sprite = openCleanSprite;
         }
@@ -52,7 +57,9 @@ public class DryerLintTrap : LaundryObject
     }
 
     private void Close() {
-        lintTrapSpriteRenderer.sprite = closedSprite;
+        //lintTrapSpriteRenderer.sprite = closedSprite;
+        OpenLintTrap.SetActive(false);
+        ClosedLintTrap.SetActive(true);
         open = false;
         startButton.locked = false;
         AudioManager.instance.PlaySound(SoundName.CloseLintTrap);
