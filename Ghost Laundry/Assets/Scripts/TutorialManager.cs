@@ -457,7 +457,7 @@ public class TutorialManager : MonoBehaviour
             secondBasket = SpawnSecondBasket();
             
             //Destroy the old one, as well as all its current and former contents
-            washingMachine.OutputBasket();
+            washingMachine.OutputBasket(0);
             while (true) {
                 Garment g = washingMachine.RemoveTopGarment();
                 if (g == null) break;

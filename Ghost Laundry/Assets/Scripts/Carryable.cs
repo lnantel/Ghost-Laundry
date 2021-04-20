@@ -46,4 +46,8 @@ public class Carryable : MonoBehaviour
             outlineRenderer.enabled = false;
         }
     }
+
+    public virtual GameObject GetCarryableObject() {
+        return gameObject;
+    }
 }

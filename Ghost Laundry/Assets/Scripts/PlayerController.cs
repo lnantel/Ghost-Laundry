@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private SortingGroup playerSortingGroup;
     public Transform carriedPos;
     public Transform placedPos;
-    private GameObject laundromatBasketPrefab;
 
     //Interact
     private InteractableDetector interactableDetector;
@@ -58,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
         moveDir = new Vector2(1.0f, 0.0f);
 
-        laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
         playerSortingGroup = GetComponentInChildren<SortingGroup>();
     }
 
@@ -206,29 +204,17 @@ public class PlayerController : MonoBehaviour
 
     public void PickUp() {
         if(state.CurrentRoomIndex == 0) {
-            GameObject targetedCarryable = carryableDetector.GetNearestCarryable();
-            if (targetedCarryable != null) {
-                StartCarrying(targetedCarryable);
-                LaundromatBasket laundromatBasket = targetedCarryable.GetComponent<LaundromatBasket>();
+            GameObject targetedObject = carryableDetector.GetNearestCarryable();
+            if (targetedObject != null) {
+                Carryable carryable = targetedObject.GetComponent<Carryable>();
+                if (carryable != null) {
+                    GameObject carryableObject = carryable.GetCarryableObject();
+                    if(carryableObject != null)
+                        StartCarrying(carryableObject);
+                }
+                LaundromatBasket laundromatBasket = targetedObject.GetComponent<LaundromatBasket>();
                 if (laundromatBasket != null) {
                     if (CustomerManager.CustomerServed != null) CustomerManager.CustomerServed(laundromatBasket);
-                }
-            }
-            else {
-                //Pick up a basket from a work station
-                Interactable interactable = interactableDetector.GetNearestInteractable();
-                if (interactable != null) {
-                    if (interactable is WorkStation) {
-                        WorkStation workStation = (WorkStation)interactable;
-                        if (workStation.ContainsBasket()) {
-                            Basket basket = workStation.OutputBasket();
-                            GameObject basketObject = Instantiate(laundromatBasketPrefab, transform.position, transform.rotation);
-                            basketObject.GetComponent<LaundromatBasket>().basket = basket;
-
-                            StartCarrying(basketObject);
-                            
-                        }
-                    }
                 }
             }
         }

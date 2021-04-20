@@ -80,22 +80,27 @@ public class WorkStation : Interactable, ITrackable
         UpdateContainedLaundryGarments();
     }
 
-    public virtual Basket OutputBasket() {
+    public virtual Basket OutputBasket(int basketSlotIndex) {
         //if the workstation contains at least one basket
-        if (BasketCount() > 0) {
+        if (BasketCount() > basketSlotIndex) {
             //Get the last non-null LaundryBasket in BasketSlots
-            int basketIndex = 0;
+            //int basketIndex = 0;
+            //Basket basket = null;
+            //for(int i = 0; i < basketSlots.Length; i++) {
+            //    if(basketSlots[i].laundryBasket != null && !basketSlots[i].Locked) {
+            //        basketIndex = i;
+            //        basket = basketSlots[i].laundryBasket.basket;
+            //    }
+            //}
+
             Basket basket = null;
-            for(int i = 0; i < basketSlots.Length; i++) {
-                if(basketSlots[i].laundryBasket != null && !basketSlots[i].Locked) {
-                    basketIndex = i;
-                    basket = basketSlots[i].laundryBasket.basket;
-                }
+            if (basketSlots[basketSlotIndex].laundryBasket != null && !basketSlots[basketSlotIndex].Locked) {
+                basket = basketSlots[basketSlotIndex].laundryBasket.basket;
             }
 
             //Destroy it
-            Destroy(basketSlots[basketIndex].laundryBasket.gameObject);
-            basketSlots[basketIndex].laundryBasket = null;
+            Destroy(basketSlots[basketSlotIndex].laundryBasket.gameObject);
+            basketSlots[basketSlotIndex].laundryBasket = null;
 
             //return the basket
             if (BasketSlotsChanged != null) BasketSlotsChanged();

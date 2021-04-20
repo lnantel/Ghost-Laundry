@@ -458,7 +458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Halo: {fileID: 6491867806261904251}
-  spriteRenderer: {fileID: 6309780424309096432}
 --- !u!1 &5043220378124225755
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +689,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5368893895353217956, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7988908957871433684, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -849,6 +852,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5368893895353217956, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7988908957871433684, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -927,6 +934,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5368893895353217956, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7988908957871433684, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -996,6 +1007,10 @@ PrefabInstance:
     - target: {fileID: 4618077861524966387, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368893895353217956, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7988908957871433684, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
       propertyPath: m_Sprite

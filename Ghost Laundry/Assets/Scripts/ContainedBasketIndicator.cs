@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainedBasketIndicator : MonoBehaviour, ITrackable
+public class ContainedBasketIndicator : Carryable, ITrackable
 {
     private WorkStation workStation;
     public int basketSlotIndex;
@@ -12,20 +12,36 @@ public class ContainedBasketIndicator : MonoBehaviour, ITrackable
 
     public Sprite[] tagSprites;
 
-    void Start()
+    private GameObject laundromatBasketPrefab;
+
+    protected override void Start()
     {
+        base.Start();
         workStation = GetComponentInParent<WorkStation>();
         if (basketSlotIndex >= workStation.basketSlots.Length) gameObject.SetActive(false);
+        laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
     }
 
-    private void OnEnable() {
+    protected override void OnEnable() {
+        base.OnEnable();
         WorkStation.BasketSlotsChanged += BasketUpdate;
         LaundryBasket.TagChanged += BasketUpdate;
     }
 
-    private void OnDisable() {
+    protected override void OnDisable() {
+        base.OnDisable();
         WorkStation.BasketSlotsChanged -= BasketUpdate;
         LaundryBasket.TagChanged -= BasketUpdate;
+    }
+
+    public override GameObject GetCarryableObject() {
+        Basket basket = workStation.OutputBasket(basketSlotIndex);
+        if(basket != null) {
+            GameObject basketObject = Instantiate(laundromatBasketPrefab, transform.position, transform.rotation);
+            basketObject.GetComponent<LaundromatBasket>().basket = basket;
+            return basketObject;
+        }
+        return null;
     }
 
     void BasketUpdate()
