@@ -80,22 +80,17 @@ public class WorkStation : Interactable, ITrackable
         UpdateContainedLaundryGarments();
     }
 
-    public virtual Basket OutputBasket() {
-        //if the workstation contains at least one basket
-        if (BasketCount() > 0) {
-            //Get the last non-null LaundryBasket in BasketSlots
-            int basketIndex = 0;
+    public virtual Basket OutputBasket(int basketSlotIndex) {
+        if (BasketCount() > basketSlotIndex) {
+            //Get basket
             Basket basket = null;
-            for(int i = 0; i < basketSlots.Length; i++) {
-                if(basketSlots[i].laundryBasket != null && !basketSlots[i].Locked) {
-                    basketIndex = i;
-                    basket = basketSlots[i].laundryBasket.basket;
-                }
+            if (basketSlots[basketSlotIndex].laundryBasket != null && !basketSlots[basketSlotIndex].Locked) {
+                basket = basketSlots[basketSlotIndex].laundryBasket.basket;
             }
 
             //Destroy it
-            Destroy(basketSlots[basketIndex].laundryBasket.gameObject);
-            basketSlots[basketIndex].laundryBasket = null;
+            Destroy(basketSlots[basketSlotIndex].laundryBasket.gameObject);
+            basketSlots[basketSlotIndex].laundryBasket = null;
 
             //return the basket
             if (BasketSlotsChanged != null) BasketSlotsChanged();
@@ -104,10 +99,10 @@ public class WorkStation : Interactable, ITrackable
         return null;
     }
 
-    public virtual bool InputBasket(Basket basket) {
+    public virtual bool InputBasket(Basket basket, int index) {
         //if the workstation has space for a basket
         if (BasketCount() < basketCapacity) {
-            return AddBasket(basket);
+            return AddBasket(basket, index);
         }
         return false;
     }
@@ -143,8 +138,8 @@ public class WorkStation : Interactable, ITrackable
 
     //Adds a Basket to the first free BasketSlot and Instantiates a new LaundryBasket
     //Returns true if successful, false otherwise
-    protected virtual bool AddBasket(Basket basket) {
-        for (int i = 0; i < basketSlots.Length; i++) {
+    protected virtual bool AddBasket(Basket basket, int i) {
+        //for (int i = 0; i < basketSlots.Length; i++) {
             if(basketSlots[i].laundryBasket == null && !basketSlots[i].Locked) {
                 LaundryBasket laundryBasket = Instantiate(laundryBasketPrefab, 
                     laundryTaskArea.transform.position + basketSlots[i].spawnPoint, 
@@ -154,7 +149,7 @@ public class WorkStation : Interactable, ITrackable
                 if (BasketSlotsChanged != null) BasketSlotsChanged();
                 return true;
             }
-        }
+        //}
         return false;
     }
 

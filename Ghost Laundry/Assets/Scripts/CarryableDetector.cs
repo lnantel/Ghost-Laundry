@@ -8,13 +8,13 @@ public class CarryableDetector : MonoBehaviour
     public static Action<int> NearestCarryable;
     public static Action NoCarryablesInRange;
 
-    private PlayerController player;
+    public float OffsetX;
+
     private List<GameObject> carryablesInRange;
 
     private int lastCount;
 
     private void Start() {
-        player = GetComponentInParent<PlayerController>();
         carryablesInRange = new List<GameObject>();
     }
 
@@ -24,7 +24,20 @@ public class CarryableDetector : MonoBehaviour
         else return null;
     }
 
+    public ContainedBasketIndicator GetNearestBasketIndicator() {
+        for (int i = 0; i < carryablesInRange.Count; i++) {
+            if(carryablesInRange[i] != null) {
+                ContainedBasketIndicator indicator = carryablesInRange[i].GetComponent<ContainedBasketIndicator>();
+                if (indicator != null) return indicator;
+            }
+        }
+        return null;
+    }
+
     private void Update() {
+        float facingOffset = PlayerController.instance.facingRight ? OffsetX : -OffsetX;
+        transform.localPosition = new Vector3(facingOffset, transform.localPosition.y, transform.localPosition.z);
+
         if (carryablesInRange.Count > 0) {
             carryablesInRange.Sort((x, y) => Vector2.Distance(x.transform.position, transform.position).CompareTo(Vector2.Distance(y.transform.position, transform.position)));
             if (NearestCarryable != null) NearestCarryable(carryablesInRange[0].GetInstanceID());

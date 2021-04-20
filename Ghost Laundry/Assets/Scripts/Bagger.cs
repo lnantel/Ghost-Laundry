@@ -49,7 +49,7 @@ public class Bagger : WorkStation
         }
     }
 
-    public override bool InputBasket(Basket basket) {
+    public override bool InputBasket(Basket basket, int i) {
         AudioManager.instance.PlaySound(SoundName.DropGarmentEmb);
         foreach (Garment garment in basket.contents) {
             contents.Add(garment);

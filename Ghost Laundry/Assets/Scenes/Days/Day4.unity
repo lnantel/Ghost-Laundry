@@ -455,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8656006711862061569, guid: 780f8256798413549bae2fc3c359a555, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.22
+      value: -1.055
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 780f8256798413549bae2fc3c359a555, type: 3}
@@ -466,6 +466,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.82849455
+      objectReference: {fileID: 0}
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9489455
+      objectReference: {fileID: 0}
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.20790184
+      objectReference: {fileID: 0}
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Size.y
+      value: 0.36948538
+      objectReference: {fileID: 0}
     - target: {fileID: 5748218137804147326, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_Name
       value: IroningBoard
@@ -516,11 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8740354792171504188, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.64
+      value: -0.817
       objectReference: {fileID: 0}
     - target: {fileID: 8740354792171504188, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.04
+      value: -0.685
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7486751134092905245, guid: 838a7ea112cdfc042942089337804545, type: 3}

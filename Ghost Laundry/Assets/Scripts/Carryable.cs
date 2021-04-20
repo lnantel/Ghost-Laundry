@@ -27,7 +27,7 @@ public class Carryable : MonoBehaviour
         CarryableDetector.NoCarryablesInRange -= HidePopUp;
     }
 
-    protected void ShowPopUp(int instanceID) {
+    protected virtual void ShowPopUp(int instanceID) {
         if(popUpInstance != null) {
             if (instanceID == gameObject.GetInstanceID() && !PlayerStateManager.instance.Carrying) {
                 popUpInstance.SetActive(true);
@@ -40,10 +40,14 @@ public class Carryable : MonoBehaviour
         }
     }
 
-    protected void HidePopUp() {
+    protected virtual void HidePopUp() {
         if(popUpInstance != null) {
             popUpInstance.GetComponentInChildren<Animator>().SetTrigger("HidePopUp");
             outlineRenderer.enabled = false;
         }
+    }
+
+    public virtual GameObject GetCarryableObject() {
+        return gameObject;
     }
 }

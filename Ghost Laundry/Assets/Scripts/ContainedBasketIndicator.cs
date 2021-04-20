@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainedBasketIndicator : MonoBehaviour, ITrackable
+public class ContainedBasketIndicator : Carryable, ITrackable
 {
     private WorkStation workStation;
     public int basketSlotIndex;
@@ -12,20 +12,41 @@ public class ContainedBasketIndicator : MonoBehaviour, ITrackable
 
     public Sprite[] tagSprites;
 
-    void Start()
+    public Collider2D InputCollider;
+
+    private GameObject laundromatBasketPrefab;
+
+    private bool isBasketPile;
+
+    protected override void Start()
     {
+        base.Start();
         workStation = GetComponentInParent<WorkStation>();
+        isBasketPile = workStation is TableWorkstation;
         if (basketSlotIndex >= workStation.basketSlots.Length) gameObject.SetActive(false);
+        laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
     }
 
-    private void OnEnable() {
+    protected override void OnEnable() {
+        base.OnEnable();
         WorkStation.BasketSlotsChanged += BasketUpdate;
         LaundryBasket.TagChanged += BasketUpdate;
     }
 
-    private void OnDisable() {
+    protected override void OnDisable() {
+        base.OnDisable();
         WorkStation.BasketSlotsChanged -= BasketUpdate;
         LaundryBasket.TagChanged -= BasketUpdate;
+    }
+
+    public override GameObject GetCarryableObject() {
+        Basket basket = workStation.OutputBasket(basketSlotIndex);
+        if(basket != null) {
+            GameObject basketObject = Instantiate(laundromatBasketPrefab, transform.position, transform.rotation);
+            basketObject.GetComponent<LaundromatBasket>().basket = basket;
+            return basketObject;
+        }
+        return null;
     }
 
     void BasketUpdate()
@@ -34,11 +55,13 @@ public class ContainedBasketIndicator : MonoBehaviour, ITrackable
         if(laundryBasket == null) {
             tagSpriteRenderer.enabled = false;
             basketSprite.enabled = false;
+            if(InputCollider != null) InputCollider.enabled = true;
         }
         else {
             tagSpriteRenderer.enabled = true;
             basketSprite.enabled = true;
-            if(laundryBasket.basket != null)
+            if (InputCollider != null) InputCollider.enabled = true;
+            if (laundryBasket.basket != null)
                 tagSpriteRenderer.sprite = tagSprites[laundryBasket.basket.tag];
         }
     }
@@ -48,5 +71,39 @@ public class ContainedBasketIndicator : MonoBehaviour, ITrackable
             return workStation.basketSlots[basketSlotIndex].laundryBasket.ContainsTrackedGarment();
         }
         return false;
+    }
+
+    public bool ReceiveBasket(Basket basket) {
+        return workStation.InputBasket(basket, basketSlotIndex);
+    }
+
+    protected override void ShowPopUp(int instanceID) {
+        if (!isBasketPile && basketSprite.enabled) {
+            base.ShowPopUp(instanceID);
+        }
+        else if (isBasketPile && basketSprite.enabled) {
+            if (popUpInstance != null) {
+                if (instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0))) {
+                    popUpInstance.SetActive(true);
+                    outlineRenderer.enabled = true;
+                }
+                else {
+                    popUpInstance.SetActive(false);
+                    outlineRenderer.enabled = false;
+                }
+            }
+        }
+        else{
+            if (popUpInstance != null) {
+                if (instanceID == gameObject.GetInstanceID() && PlayerStateManager.instance.Carrying) {
+                    popUpInstance.SetActive(true);
+                    outlineRenderer.enabled = true;
+                }
+                else {
+                    popUpInstance.SetActive(false);
+                    outlineRenderer.enabled = false;
+                }
+            }
+        }
     }
 }

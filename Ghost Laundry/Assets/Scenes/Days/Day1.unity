@@ -378,6 +378,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.0477754
+      objectReference: {fileID: 0}
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7894046
+      objectReference: {fileID: 0}
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.12997931
+      objectReference: {fileID: 0}
+    - target: {fileID: 130948085790934381, guid: 838a7ea112cdfc042942089337804545, type: 3}
+      propertyPath: m_Size.y
+      value: 0.35955083
+      objectReference: {fileID: 0}
     - target: {fileID: 5748218137804147326, guid: 838a7ea112cdfc042942089337804545, type: 3}
       propertyPath: m_Name
       value: IroningBoard
