@@ -12,6 +12,8 @@ public class ContainedBasketIndicator : Carryable, ITrackable
 
     public Sprite[] tagSprites;
 
+    public Collider2D InputCollider;
+
     private GameObject laundromatBasketPrefab;
 
     protected override void Start()
@@ -50,11 +52,13 @@ public class ContainedBasketIndicator : Carryable, ITrackable
         if(laundryBasket == null) {
             tagSpriteRenderer.enabled = false;
             basketSprite.enabled = false;
+            if(InputCollider != null) InputCollider.enabled = true;
         }
         else {
             tagSpriteRenderer.enabled = true;
             basketSprite.enabled = true;
-            if(laundryBasket.basket != null)
+            if (InputCollider != null) InputCollider.enabled = true;
+            if (laundryBasket.basket != null)
                 tagSpriteRenderer.sprite = tagSprites[laundryBasket.basket.tag];
         }
     }
@@ -64,5 +68,27 @@ public class ContainedBasketIndicator : Carryable, ITrackable
             return workStation.basketSlots[basketSlotIndex].laundryBasket.ContainsTrackedGarment();
         }
         return false;
+    }
+
+    public bool ReceiveBasket(Basket basket) {
+        return workStation.InputBasket(basket, basketSlotIndex);
+    }
+
+    protected override void ShowPopUp(int instanceID) {
+        if(basketSprite.enabled) {
+            base.ShowPopUp(instanceID);
+        }
+        else {
+            if (popUpInstance != null) {
+                if (instanceID == gameObject.GetInstanceID() && PlayerStateManager.instance.Carrying) {
+                    popUpInstance.SetActive(true);
+                    outlineRenderer.enabled = true;
+                }
+                else {
+                    popUpInstance.SetActive(false);
+                    outlineRenderer.enabled = false;
+                }
+            }
+        }
     }
 }

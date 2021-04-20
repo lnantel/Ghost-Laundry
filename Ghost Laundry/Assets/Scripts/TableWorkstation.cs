@@ -16,16 +16,16 @@ public class TableWorkstation : WorkStation
     public override IEnumerator Initialize() {
         yield return base.Initialize();
         for (int i = 0; i < basketCapacity; i++) {
-            AddBasket(new Basket());
+            AddBasket(new Basket(), i);
         }
     }
 
-    public override bool InputBasket(Basket basket) {
+    public override bool InputBasket(Basket basket, int i) {
         //Returns true if the input basket is empty, and replaces it with 'basket'
         //If the input basket is not empty, returns false
-        if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0 && !basketSlots[0].Locked) return false;
+        if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > i && !basketSlots[i].Locked) return false;
         else {
-            if (basketSlots[0].laundryBasket != null) basketSlots[0].laundryBasket.basket = basket;
+            if (basketSlots[i].laundryBasket != null) basketSlots[i].laundryBasket.basket = basket;
             if (BasketSlotsChanged != null) BasketSlotsChanged();
             return true;
         }

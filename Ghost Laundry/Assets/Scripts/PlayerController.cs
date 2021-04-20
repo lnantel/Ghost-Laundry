@@ -233,19 +233,16 @@ public class PlayerController : MonoBehaviour
 
     private void PutDown() {
         if(carriedObject != null) {
-            Interactable interactable = interactableDetector.GetNearestInteractable();
-            if (interactable != null) {
+            ContainedBasketIndicator indicator = carryableDetector.GetNearestBasketIndicator();
+            if(indicator != null) {
                 LaundromatBasket laundromatBasket = carriedObject.GetComponent<LaundromatBasket>();
-                if (laundromatBasket != null && interactable is WorkStation) {
-                    WorkStation workStation = (WorkStation)interactable;
-                    if (workStation.InputBasket(laundromatBasket.basket)) {
+                if(laundromatBasket != null) {
+                    if (indicator.ReceiveBasket(laundromatBasket.basket)) {
                         DestroyCarriedObject();
                         AudioManager.instance.PlaySound(SoundName.DropBasket);
-
                     }
                     else {
                         DropCarriedObject();
-                        Debug.Log("Could not input basket");
                     }
                 }
                 else {
