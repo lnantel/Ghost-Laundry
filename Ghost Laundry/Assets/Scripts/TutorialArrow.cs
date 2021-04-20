@@ -19,8 +19,8 @@ public class TutorialArrow : MonoBehaviour
 
     private void Update() {
         if (Target != null) {
-            transform.position = Target.position + Vector3.up * 1.5f;
             transform.rotation = Target.rotation;
+            transform.position = Target.position + transform.up * 1.5f;
         }
 
         if(Target == null && Active) {
