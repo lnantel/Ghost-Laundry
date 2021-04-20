@@ -35,7 +35,7 @@ public class CarryableDetector : MonoBehaviour
     }
 
     private void Update() {
-        float facingOffset = PlayerController.instance.facingRight ? OffsetX : 0 - OffsetX;
+        float facingOffset = PlayerController.instance.facingRight ? OffsetX : -OffsetX;
         transform.localPosition = new Vector3(facingOffset, transform.localPosition.y, transform.localPosition.z);
 
         if (carryablesInRange.Count > 0) {
