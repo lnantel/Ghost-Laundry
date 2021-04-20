@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6323312744086211181}
   - component: {fileID: 6438233201496443865}
+  - component: {fileID: 4483297854270302902}
   m_Layer: 0
   m_Name: shadow
   m_TagString: Untagged
@@ -242,6 +243,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4483297854270302902
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373044004663946482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef24d2316366bd84089daa6bcb7656ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5748218137804147326
 GameObject:
   m_ObjectHideFlags: 0
