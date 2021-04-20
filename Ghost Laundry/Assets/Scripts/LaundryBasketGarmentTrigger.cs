@@ -11,12 +11,8 @@ public class LaundryBasketGarmentTrigger : MonoBehaviour
         laundryBasket = GetComponentInParent<LaundryBasket>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        
-    }
-
     private void OnTriggerStay2D(Collider2D collision) {
-        if (!laundryBasket.basketView.activeSelf) {
+        if (!laundryBasket.Locked && !laundryBasket.basketView.activeSelf) {
             if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
                 LaundryGarment laundryGarment = collision.GetComponentInParent<LaundryGarment>();
                 if (laundryGarment != null && !laundryGarment.IsHeld && laundryGarment.GetComponent<Rigidbody2D>().gravityScale != 0.0f) {
