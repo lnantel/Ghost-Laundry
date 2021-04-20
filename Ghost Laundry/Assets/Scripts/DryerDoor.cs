@@ -10,6 +10,9 @@ public class DryerDoor : LaundryObject
     public Sprite openDoorSprite;
     public Sprite closedDoorSprite;
 
+    public BoxCollider2D openDoorCollider;
+    public BoxCollider2D closedDoorCollider;
+
     private Dryer dryer;
     private SpriteRenderer spriteRenderer;
 
@@ -63,11 +66,15 @@ public class DryerDoor : LaundryObject
 
     private void OpenDoor() {
         spriteRenderer.sprite = openDoorSprite;
+        openDoorCollider.enabled = true;
+        closedDoorCollider.enabled = true;
         AudioManager.instance.PlaySound(SoundName.OpenDryerDoor);
     }
 
     private void CloseDoor() {
         spriteRenderer.sprite = closedDoorSprite;
+        openDoorCollider.enabled = false;
+        closedDoorCollider.enabled = true;
         AudioManager.instance.PlaySound(SoundName.CloseDryerDoor);
 
     }
