@@ -941,7 +941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333996576799654660}
   - component: {fileID: 3959960976835614695}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: VWall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1862,7 +1862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068067701452568922}
   - component: {fileID: 221588375067274272}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: VWall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2327,7 +2327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5916452608148824292}
   - component: {fileID: 195175047650371810}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: HWall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2384,7 +2384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7902210767890239241}
   - component: {fileID: 8435470736867089623}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: HWall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
