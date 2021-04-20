@@ -311,7 +311,6 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator GoToTransition() {
-        Debug.Log("Transition");
         if(TimeManager.instance.CurrentDay > 12) {
             stateTransition = GoToEpilogue();
             StartCoroutine(stateTransition);
