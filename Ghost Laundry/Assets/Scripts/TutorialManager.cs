@@ -500,7 +500,6 @@ public class TutorialManager : MonoBehaviour
 
     private void Step4A() {
         //Detect when one basket of the table contains X colored garments and another contains Y white garments
-
         for(int i = 0; i < table.basketSlots.Length; i++) {
             if(table.basketSlots[i].laundryBasket.basket.contents.Count == 3) {
                 whiteBasketIndex = i;
@@ -551,7 +550,7 @@ public class TutorialManager : MonoBehaviour
 
             PlayerController.instance.Take(laundromatBasket.gameObject);
 
-            table.basketSlots[whiteBasketIndex].laundryBasket.basket.RemoveAll();
+            table.OutputBasket(whiteBasketIndex);
             if (WorkStation.BasketSlotsChanged != null) WorkStation.BasketSlotsChanged();
 
             table.Lock();
@@ -586,7 +585,7 @@ public class TutorialManager : MonoBehaviour
     public Dryer dryer;
     private void Step5() {
         //When all clothes are removed from the WM, disable it
-        bool washingMachineContainsGarments = washingMachine.ContainsAGarment(garmentsToWash.ToArray());
+        bool washingMachineContainsGarments = washingMachine.ContainsAGarmentInBasket(garmentsToWash.ToArray());
         if (!washingMachineContainsGarments) {
             washingMachine.Lock();
             //and enable the dryer
@@ -624,7 +623,7 @@ public class TutorialManager : MonoBehaviour
     public IroningBoard ironingBoard;
     private void Step6B() {
         //When all clothes are removed from the dryer, disable it
-        bool dryerContainsGarments = dryer.ContainsAGarment(garmentsToWash.ToArray());
+        bool dryerContainsGarments = dryer.ContainsAGarmentInBasket(garmentsToWash.ToArray());
         if (!dryerContainsGarments) {
             dryer.Lock();
             //Enable the ironing board
@@ -668,7 +667,7 @@ public class TutorialManager : MonoBehaviour
     private void Step7B() {
 
         //When all garments are removed from the ironingBoard, lock it and unlock the table
-        bool ironingBoardContainsGarments = ironingBoard.ContainsAGarment(garmentsToWash.ToArray());
+        bool ironingBoardContainsGarments = ironingBoard.ContainsAGarmentInBasket(garmentsToWash.ToArray());
         if (!ironingBoardContainsGarments) {
             ironingBoard.Lock();
             //Enable the table
@@ -680,7 +679,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //If the table contains all the garments, proceed to step 8
-        if (table.ContainsAllGarments(garmentsToWash.ToArray())) {
+        if (table.ContainsAllGarmentsInBasket(garmentsToWash.ToArray())) {
             tutorialStep = 8;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -719,7 +718,7 @@ public class TutorialManager : MonoBehaviour
     public Bagger bagger;
     private void Step8B() {
         //When all clothes are removed from the table, disable it
-        bool tableContainsGarments = table.ContainsAGarment(garmentsToWash.ToArray());
+        bool tableContainsGarments = table.ContainsAGarmentInBasket(garmentsToWash.ToArray());
         if (!tableContainsGarments) {
             table.Lock();
             //Unlock the bagger
@@ -810,13 +809,11 @@ public class TutorialManager : MonoBehaviour
         else if(laundromatBag != null && !laundromatBag.ReadyForPickUp) {
             arrow.SetTarget(laundromatBag.transform);
         }
-        else {
-            arrow.Deactivate();
-        }
     }
 
     private void OnBagReadyForPickUp(LaundromatBag bag) {
         if(tutorialStep == 10 && tutorialSubStep == 1) {
+            arrow.Deactivate();
             tutorialSubStep = 2;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
         }

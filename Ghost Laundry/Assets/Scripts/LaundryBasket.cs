@@ -224,4 +224,10 @@ public class LaundryBasket : LaundryObject, ITrackable
         return basket.ContainsTrackedGarment();
     }
 
+    public bool ContainsAGarment(params Garment[] garments) {
+        for(int i = 0; i < garments.Length; i++) {
+            if (basket.contents.Contains(garments[i])) return true;
+        }
+        return false;
+    }
 }

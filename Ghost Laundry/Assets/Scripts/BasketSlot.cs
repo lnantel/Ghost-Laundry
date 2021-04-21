@@ -19,11 +19,11 @@ public class BasketSlot
 
     public void Lock() {
         Locked = true;
-        laundryBasket.Lock();
+        if(laundryBasket != null) laundryBasket.Lock();
     }
 
     public void Unlock() {
         Locked = false;
-        laundryBasket.Unlock();
+        if (laundryBasket != null) laundryBasket.Unlock();
     }
 }
