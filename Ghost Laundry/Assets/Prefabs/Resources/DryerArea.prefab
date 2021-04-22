@@ -2013,6 +2013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3725370591102585833}
   - component: {fileID: 3909609103581541141}
+  - component: {fileID: 5445391092173842860}
   m_Layer: 0
   m_Name: DoorSprite
   m_TagString: Untagged
@@ -2085,6 +2086,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5445391092173842860
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435536220808803130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6488742918306134947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2117,7 @@ GameObject:
   - component: {fileID: 939415653300157876}
   - component: {fileID: 23119210963359431}
   - component: {fileID: 8721356770625636537}
+  - component: {fileID: 640342884123917025}
   m_Layer: 11
   m_Name: DryerDoor
   m_TagString: Untagged
@@ -2188,6 +2209,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9470925, y: 4.855951}
   m_EdgeRadius: 0
+--- !u!95 &640342884123917025
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6488742918306134947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0be7506ca1089e45a389ccb9da28f00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6594175747942187414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,6 +2965,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7717485927999293818, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+--- !u!1 &616540435706531129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6007210683204030437, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+  m_PrefabInstance: {fileID: 6616775263789056732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4177138871818547832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+  m_PrefabInstance: {fileID: 6616775263789056732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4387379114330128718 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
