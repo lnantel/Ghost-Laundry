@@ -164,17 +164,6 @@ public class WorkStation : Interactable, ITrackable
     public List<Garment> GetAllContainedGarments() {
         List<Garment> containedGarments = new List<Garment>();
 
-        for (int i = 0; i < basketSlots.Length; i++) {
-            if(basketSlots[i].laundryBasket != null) {
-                Basket basket = basketSlots[i].laundryBasket.basket;
-                if(basket != null) {
-                    for(int j = 0; j < basket.contents.Count; j++) {
-                        containedGarments.Add(basket.contents[j]);
-                    }
-                }
-            }
-        }
-
         if (laundryTaskArea.activeSelf) {
             UpdateContainedLaundryGarments();
         }
@@ -198,6 +187,23 @@ public class WorkStation : Interactable, ITrackable
     //Override this to return a list of garments contained by machines, the workstation itself, etc.
     protected virtual List<Garment> GetCustomContainerGarments() {
         return new List<Garment>();
+    }
+
+    public bool ContainsAGarmentInBasket(params Garment[] garments) {
+        if (ContainsAGarment(garments)) return true;
+        for (int i = 0; i < basketSlots.Length; i++) {
+            if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.ContainsAGarment(garments)) return true;
+        }
+        return false;
+    }
+
+    public bool ContainsAllGarmentsInBasket(params Garment[] garments) {
+        for (int i = 0; i < garments.Length; i++) {
+            if (!ContainsAGarmentInBasket(garments[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public bool ContainsAGarment(params Garment[] garments) {
@@ -224,4 +230,18 @@ public class WorkStation : Interactable, ITrackable
         }
         return false;
     }
+
+    //public override void Lock() {
+    //    base.Lock();
+    //    for(int i = 0; i < basketSlots.Length; i++) {
+    //        if (basketSlots[i] != null) basketSlots[i].Lock();
+    //    }
+    //}
+
+    //public override void Unlock() {
+    //    base.Unlock();
+    //    for (int i = 0; i < basketSlots.Length; i++) {
+    //        if(basketSlots[i] != null) basketSlots[i].Unlock();
+    //    }
+    //}
 }

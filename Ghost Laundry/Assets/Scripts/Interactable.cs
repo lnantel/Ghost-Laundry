@@ -39,12 +39,12 @@ public abstract class Interactable : MonoBehaviour
 
     protected abstract void Interaction();
 
-    public void Lock() {
+    public virtual void Lock() {
         HidePopUp();
         Locked = true;
     }
 
-    public void Unlock() {
+    public virtual void Unlock() {
         Locked = false;
     }
 

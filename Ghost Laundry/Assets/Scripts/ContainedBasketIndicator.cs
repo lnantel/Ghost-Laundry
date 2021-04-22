@@ -74,16 +74,18 @@ public class ContainedBasketIndicator : Carryable, ITrackable
     }
 
     public bool ReceiveBasket(Basket basket) {
+        if (workStation.Locked || workStation.basketSlots[basketSlotIndex].Locked) return false;
         return workStation.InputBasket(basket, basketSlotIndex);
     }
 
     protected override void ShowPopUp(int instanceID) {
-        if (!isBasketPile && basketSprite.enabled) {
+        bool locked = workStation.Locked || workStation.basketSlots[basketSlotIndex].Locked;
+        if (!locked && !isBasketPile && basketSprite.enabled) {
             base.ShowPopUp(instanceID);
         }
         else if (isBasketPile && basketSprite.enabled) {
             if (popUpInstance != null) {
-                if (instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0))) {
+                if (!locked && instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0))) {
                     popUpInstance.SetActive(true);
                     outlineRenderer.enabled = true;
                 }
@@ -95,7 +97,7 @@ public class ContainedBasketIndicator : Carryable, ITrackable
         }
         else{
             if (popUpInstance != null) {
-                if (instanceID == gameObject.GetInstanceID() && PlayerStateManager.instance.Carrying) {
+                if (!locked && instanceID == gameObject.GetInstanceID() && PlayerStateManager.instance.Carrying) {
                     popUpInstance.SetActive(true);
                     outlineRenderer.enabled = true;
                 }
