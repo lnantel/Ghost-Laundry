@@ -19,7 +19,7 @@ public class Iron : LaundryObject
 
     private Rigidbody2D rb;
     private SteamState steamState;
-    private bool onIroningBoard;
+    public bool onIroningBoard;
 
     private IroningBoard ironingBoard;
 
@@ -56,7 +56,7 @@ public class Iron : LaundryObject
 
     private void FixedUpdate() {
         if(onIroningBoard && ironingBoard.garmentOnBoard != null) {
-            steamState = laundryIroningBoard.Press(transform.position.x);
+            if(TimeManager.instance.timeScale != 0.0f) steamState = laundryIroningBoard.Press(transform.position.x);
         }
         else {
             steamState = SteamState.Off;

@@ -40,14 +40,24 @@ public class LaundryIroningBoard : LaundryObject
     //If the garment is being pressed, returns true; if it is being burned, returns false
     public SteamState Press(float ironPosition) {
         SteamState steam = SteamState.Off;
+        if (TimeManager.instance.timeScale == 0.0f) return SteamState.Off;
 
-        float ironSpeed = Mathf.Abs((ironPosition - lastIronPos) / Time.fixedDeltaTime);
+        //ironPosition has to be offset by an arbitrary value > 0.5 because the board overlaps with the 0 position on the X axis.
+        //This ensures that we can distinguish between an uninitialized lastIronPos and a lastIronPos of value 0.
+        ironPosition += 5.0f;
 
+        if(lastIronPos == 0.0f) {
+            lastIronPos = ironPosition;
+            return SteamState.Off;
+        }
+
+        float ironSpeed = Mathf.Abs(ironPosition - lastIronPos) / Time.fixedDeltaTime;
+        //Debug.Log("Current speed: " + ironSpeed + " Minimum: " + minIronSpeed);
         if(ironingBoard.garmentOnBoard.fabric.pressingRestrictions != PressingRestrictions.NoIroning && ironSpeed > minIronSpeed && pressingProgress < 1.0f && !ironingBoard.garmentOnBoard.Pressed && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted) && ironingBoard.garmentOnBoard.Clean && ironingBoard.garmentOnBoard.Dry) {
             graceTimer = 0;
             //Press
             steam = SteamState.Steam;
-            pressingProgress += Time.fixedDeltaTime / ironingBoard.garmentOnBoard.fabric.ironingTime;
+            pressingProgress += (ironSpeed * Time.fixedDeltaTime) / ironingBoard.garmentOnBoard.fabric.ironingDistance;
         }
         else if (graceTimer < gracePeriod && !(ironingBoard.garmentOnBoard.Burned || ironingBoard.garmentOnBoard.Melted)) {
             //Grace period
@@ -118,9 +128,9 @@ public class LaundryIroningBoard : LaundryObject
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerStay2D(Collider2D collision) {
         Iron iron = collision.GetComponent<Iron>();
-        if(iron != null) {
+        if(iron != null && !iron.onIroningBoard) {
             iron.PlaceOnIroningBoard();
         }
 

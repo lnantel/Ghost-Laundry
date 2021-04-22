@@ -12,13 +12,13 @@ public class Fabric
     public DryingRestrictions dryingRestrictions;
     public PressingRestrictions pressingRestrictions;
 
-    public float ironingTime;
+    public float ironingDistance;
 
     public Fabric(FabricType type) {
         switch (type) {
             case FabricType.Cotton:
                 name = "Cotton";
-                ironingTime = 3.0f;
+                ironingDistance = 15.0f;
                 pattern = null;
                 grabSound = SoundName.CottonGrab;
                 dropSound = SoundName.CottonDrop;
@@ -28,7 +28,7 @@ public class Fabric
                 break;
             case FabricType.Wool:
                 name = "Wool";
-                ironingTime = 3.0f;
+                ironingDistance = 15.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Laine_v1");
                 grabSound = SoundName.WoolGrab;
                 dropSound = SoundName.WoolDrop;
@@ -38,7 +38,7 @@ public class Fabric
                 break;
             case FabricType.Synthetic:
                 name = "Synthetic";
-                ironingTime = 3.0f;
+                ironingDistance = 15.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Synthetique_v2");
                 grabSound = SoundName.SyntheticGrab;
                 dropSound = SoundName.SyntheticDrop;
@@ -48,7 +48,7 @@ public class Fabric
                 break;
             case FabricType.Bone:
                 name = "Bone";
-                ironingTime = 10.0f;
+                ironingDistance = 15.0f;
                 pattern = null;
                 grabSound = SoundName.BoneGrab;
                 dropSound = SoundName.BoneDrop;
@@ -56,10 +56,9 @@ public class Fabric
                 dryingRestrictions = DryingRestrictions.None;
                 pressingRestrictions = PressingRestrictions.NoIroning;
                 break;
-            //TODO: Assets for new materials
             case FabricType.Linen:
                 name = "Linen";
-                ironingTime = 3.0f;
+                ironingDistance = 15.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Linen_material"); ;
                 grabSound = SoundName.LinenGrab;
                 dropSound = SoundName.LinenDrop;
@@ -69,7 +68,7 @@ public class Fabric
                 break;
             case FabricType.Silk:
                 name = "Silk";
-                ironingTime = 3.0f;
+                ironingDistance = 15.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Silk_material"); ;
                 grabSound = SoundName.SilkGrab;
                 dropSound = SoundName.SilkDrop;
@@ -79,7 +78,7 @@ public class Fabric
                 break;
             case FabricType.Denim:
                 name = "Denim";
-                ironingTime = 3.0f;
+                ironingDistance = 15.0f;
                 pattern = Resources.Load<Sprite>("Fabric Patterns/Denim_material"); ;
                 grabSound = SoundName.DenimGrab;
                 dropSound = SoundName.DenimDrop;
