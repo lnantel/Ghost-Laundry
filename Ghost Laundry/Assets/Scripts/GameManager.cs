@@ -295,7 +295,7 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(stateTransition);
         }
         //Otherwise, show Eval screen first
-        else if(MoneyManager.instance.CurrentAmount >= 0 && TimeManager.instance.CurrentDay > 1) {
+        else if(/*MoneyManager.instance.CurrentAmount >= 0 && */TimeManager.instance.CurrentDay > 1) {
             SaveManager.Save();
 
             //Wait a couple seconds
