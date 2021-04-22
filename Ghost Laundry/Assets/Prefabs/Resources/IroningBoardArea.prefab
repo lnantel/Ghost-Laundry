@@ -2200,6 +2200,7 @@ MonoBehaviour:
   spriteIronFlatOff: {fileID: 21300000, guid: d6c66e8ad0513704badaf361927c533e, type: 3}
   steam: {fileID: 557101232067378831}
   smoke: {fileID: 1516934181970006129}
+  onIroningBoard: 0
 --- !u!50 &8645926208055373308
 Rigidbody2D:
   serializedVersion: 4
