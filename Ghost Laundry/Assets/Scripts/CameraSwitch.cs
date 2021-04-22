@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-
     public GameObject ghost;
     public float lerpTime;
 
@@ -14,6 +13,7 @@ public class CameraSwitch : MonoBehaviour
 
     public float zPos;
 
+    private int lastRoomIndex;
     private Vector2 destination;
     private Vector2 lastDestination;
     private float timer;
@@ -22,6 +22,9 @@ public class CameraSwitch : MonoBehaviour
     private Vector2 lastOffset;
     private Vector2 currentOffset;
     private float offsetTimer;
+
+    private Vector3 lastPos;
+    private Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
@@ -36,23 +39,42 @@ public class CameraSwitch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        Vector2 currentRoomPos = PlayerStateManager.instance.Rooms[PlayerStateManager.instance.CurrentRoomIndex].transform.position;
-        if(currentRoomPos != destination) {
+        if (lastRoomIndex != PlayerStateManager.instance.CurrentRoomIndex) {
+            Vector2 currentRoomPos = PlayerStateManager.instance.Rooms[PlayerStateManager.instance.CurrentRoomIndex].transform.position;
             lastDestination = transform.position;
             destination = currentRoomPos;
             timer = 0.0f;
+            lastRoomIndex = PlayerStateManager.instance.CurrentRoomIndex;
+        }
+
+        if (PlayerStateManager.instance.CurrentRoomIndex == 1) {
+            destination = new Vector2(destination.x, Mathf.Max(PlayerStateManager.instance.transform.position.y, -10.0f));
         }
 
         offsetTimer = Mathf.Clamp(offsetTimer + Time.deltaTime, 0.0f, lerpTime);
-        currentOffset = Vector2.Lerp(lastOffset, offset, offsetTimer / lerpTime);
+
+        float t = offsetTimer / lerpTime;
+        t = t * t * (3f - 2f * t);
+        currentOffset = Vector2.Lerp(lastOffset, offset, t);
 
         Vector2 offsetDestination = destination + currentOffset;
 
         timer = Mathf.Clamp(timer + Time.deltaTime, 0.0f, lerpTime);
-        transform.position = Vector2.Lerp(lastDestination, offsetDestination, timer / lerpTime);
-        transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
+        t = timer / lerpTime;
+        t = t * t * (3f - 2f * t);
+        if(timer >= lerpTime) {
+            Vector3 offsetDestination3 = new Vector3(offsetDestination.x, offsetDestination.y, zPos);
+            //transform.position = Vector3.SmoothDamp(transform.position, offsetDestination3, ref velocity, 0.1f);
+            transform.position = offsetDestination3;
+        }
+        else {
+            transform.position = Vector2.Lerp(lastDestination, offsetDestination, t);
+            transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
+            velocity = transform.position - lastPos;
+        }
+        lastPos = transform.position;
     }
 
     public void SetDestination(Vector2 position) {

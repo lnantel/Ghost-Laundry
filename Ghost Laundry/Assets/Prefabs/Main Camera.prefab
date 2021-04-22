@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 0}
-  lerpTime: 0.5
+  lerpTime: 0.3
   mainRoom: {fileID: 0}
   shopRoom: {fileID: 0}
   waitingRoom: {fileID: 0}
