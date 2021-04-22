@@ -55,7 +55,7 @@ public class EvaluationManager : MonoBehaviour
     }
 
     private void OnShowEvaluation() {
-        if(MoneyManager.instance.CurrentAmount > 0) {
+        if(MoneyManager.instance.CurrentAmount >= 0) {
             UpdateSuccessText();
             success.SetActive(true);
         }
