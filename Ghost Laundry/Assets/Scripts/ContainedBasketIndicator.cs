@@ -55,11 +55,13 @@ public class ContainedBasketIndicator : Carryable, ITrackable
         if(laundryBasket == null) {
             tagSpriteRenderer.enabled = false;
             basketSprite.enabled = false;
+            ShadowRenderer.enabled = false;
             if(InputCollider != null) InputCollider.enabled = true;
         }
         else {
             tagSpriteRenderer.enabled = true;
             basketSprite.enabled = true;
+            ShadowRenderer.enabled = true;
             if (InputCollider != null) InputCollider.enabled = true;
             if (laundryBasket.basket != null)
                 tagSpriteRenderer.sprite = tagSprites[laundryBasket.basket.tag];
