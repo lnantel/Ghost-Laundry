@@ -13,6 +13,8 @@ public class WashingMachineDoor : LaundryObject
     private WashingMachine washingMachine;
     private SpriteRenderer spriteRenderer;
 
+    private Animator animator;
+
     private void OnEnable() {
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         WashingMachine.DoorCloses += CloseDoor;
@@ -32,13 +34,16 @@ public class WashingMachineDoor : LaundryObject
     private void Start() {
         washingMachine = GetComponentInParent<WashingMachine>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     public override void OnGrab() {
         if (washingMachine.state == WashingMachineState.DoorOpen) {
             Garment garment = washingMachine.RemoveTopGarment();
-            if (garment != null && GarmentGrabbed != null)
+            if (garment != null && GarmentGrabbed != null) {
                 GarmentGrabbed(garment);
+                animator.SetTrigger("BasketOutput");
+            }
             else
                 GrabEmpty();
         }
@@ -54,15 +59,16 @@ public class WashingMachineDoor : LaundryObject
             if (washingMachine.AddGarment(laundryGarment.garment)) {
                 AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                 Destroy(laundryGarment.gameObject);
+                animator.SetTrigger("BasketInput");
             }
             else {
-                Debug.Log("Washing machine is full");
+                animator.SetTrigger("BasketFull");
             }
         }
     }
 
     private void GrabEmpty() {
-        Debug.Log("Washing machine is empty");
+        animator.SetTrigger("BasketEmpty");
     }
 
     private void OpenDoor() {
