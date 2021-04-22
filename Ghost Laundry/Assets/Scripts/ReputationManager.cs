@@ -14,6 +14,8 @@ public class ReputationManager : MonoBehaviour {
     public int CurrentAmount;
     public int MaxAmount;
 
+    public float AmountPerStar { get => MaxAmount / 5.0f; }
+
     public int PerfectGarmentRep;
     public int RagequitRep;
     public int NotDoneRep;
