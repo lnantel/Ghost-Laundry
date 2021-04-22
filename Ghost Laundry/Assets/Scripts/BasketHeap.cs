@@ -7,21 +7,21 @@ public class BasketHeap : MonoBehaviour
     public float minY;
     public float maxY;
 
-    private Basket basket;
+    protected Basket basket;
 
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
-    private void OnEnable() {
+    protected virtual void OnEnable() {
         WorkStation.BasketSlotsChanged += BasketUpdate;
         BasketUpdate();
     }
 
-    private void OnDisable() {
+    protected virtual void OnDisable() {
         WorkStation.BasketSlotsChanged -= BasketUpdate;
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -37,7 +37,7 @@ public class BasketHeap : MonoBehaviour
         }
     }
 
-    private void BasketUpdate() {
+    protected virtual void BasketUpdate() {
         ContainedBasketIndicator basketIndicator = GetComponentInParent<ContainedBasketIndicator>();
         if (basketIndicator != null) {
             WorkStation workstation = basketIndicator.GetComponentInParent<WorkStation>();
@@ -56,7 +56,7 @@ public class BasketHeap : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (basket != null && basket.currentLoad > 0 && basket.capacity > 1) {
             spriteRenderer.enabled = true;
