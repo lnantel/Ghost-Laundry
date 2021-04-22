@@ -1800,6 +1800,7 @@ GameObject:
   - component: {fileID: 5227415334499047667}
   - component: {fileID: 8420562492419017736}
   - component: {fileID: 7561259429853558713}
+  - component: {fileID: 3713776994074422337}
   m_Layer: 11
   m_Name: WashingMachineDoor
   m_TagString: Untagged
@@ -1852,6 +1853,25 @@ CircleCollider2D:
   m_Offset: {x: -0.01024875, y: -0.5525247}
   serializedVersion: 2
   m_Radius: 1.4727411
+--- !u!95 &3713776994074422337
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6488742918306134947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0be7506ca1089e45a389ccb9da28f00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6499780562982530600
 GameObject:
   m_ObjectHideFlags: 0
