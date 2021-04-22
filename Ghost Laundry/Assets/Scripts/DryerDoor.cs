@@ -16,6 +16,8 @@ public class DryerDoor : LaundryObject
     private Dryer dryer;
     private SpriteRenderer spriteRenderer;
 
+    private Animator animator;
+
     private void OnEnable() {
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         Dryer.DoorCloses += CloseDoor;
@@ -31,13 +33,16 @@ public class DryerDoor : LaundryObject
     private void Start() {
         dryer = GetComponentInParent<Dryer>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     public override void OnGrab() {
         if (dryer.state == DryerState.DoorOpen) {
             Garment garment = dryer.RemoveTopGarment();
-            if (garment != null && GarmentGrabbed != null)
+            if (garment != null && GarmentGrabbed != null) {
                 GarmentGrabbed(garment);
+                animator.SetTrigger("BasketOutput");
+            }
             else
                 GrabEmpty();
         }
@@ -53,15 +58,16 @@ public class DryerDoor : LaundryObject
             if (dryer.AddGarment(laundryGarment.garment)) {
                 AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
                 Destroy(laundryGarment.gameObject);
+                animator.SetTrigger("BasketInput");
             }
             else {
-                Debug.Log("Dryer is full");
+                animator.SetTrigger("BasketFull");
             }
         }
     }
 
     private void GrabEmpty() {
-        Debug.Log("Dryer is empty");
+        animator.SetTrigger("BasketEmpty");
     }
 
     private void OpenDoor() {
