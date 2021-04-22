@@ -55,11 +55,13 @@ public class ContainedBasketIndicator : Carryable, ITrackable
         if(laundryBasket == null) {
             tagSpriteRenderer.enabled = false;
             basketSprite.enabled = false;
+            ShadowRenderer.enabled = false;
             if(InputCollider != null) InputCollider.enabled = true;
         }
         else {
             tagSpriteRenderer.enabled = true;
             basketSprite.enabled = true;
+            ShadowRenderer.enabled = true;
             if (InputCollider != null) InputCollider.enabled = true;
             if (laundryBasket.basket != null)
                 tagSpriteRenderer.sprite = tagSprites[laundryBasket.basket.tag];
@@ -87,11 +89,11 @@ public class ContainedBasketIndicator : Carryable, ITrackable
             if (popUpInstance != null) {
                 if (!locked && instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0))) {
                     popUpInstance.SetActive(true);
-                    outlineRenderer.enabled = true;
+                    OutlineRenderer.enabled = true;
                 }
                 else {
                     popUpInstance.SetActive(false);
-                    outlineRenderer.enabled = false;
+                    OutlineRenderer.enabled = false;
                 }
             }
         }
@@ -99,11 +101,11 @@ public class ContainedBasketIndicator : Carryable, ITrackable
             if (popUpInstance != null) {
                 if (!locked && instanceID == gameObject.GetInstanceID() && PlayerStateManager.instance.Carrying) {
                     popUpInstance.SetActive(true);
-                    outlineRenderer.enabled = true;
+                    OutlineRenderer.enabled = true;
                 }
                 else {
                     popUpInstance.SetActive(false);
-                    outlineRenderer.enabled = false;
+                    OutlineRenderer.enabled = false;
                 }
             }
         }

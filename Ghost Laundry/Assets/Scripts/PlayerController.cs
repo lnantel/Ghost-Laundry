@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private SortingGroup playerSortingGroup;
     public Transform carriedPos;
     public Transform placedPos;
+    public SpriteRenderer CarriedObjectShadow;
 
     //Interact
     private InteractableDetector interactableDetector;
@@ -80,7 +81,11 @@ public class PlayerController : MonoBehaviour
         if (state.Carrying) {
             if (carriedPos.localPosition.x > 0.0f != facingRight) {
                 carriedPos.localPosition = new Vector3(-carriedPos.localPosition.x, carriedPos.localPosition.y, carriedPos.localPosition.z);
+                CarriedObjectShadow.transform.localPosition = new Vector3(-carriedPos.localPosition.x, CarriedObjectShadow.transform.localPosition.y, CarriedObjectShadow.transform.localPosition.z);
                 placedPos.localPosition = new Vector3(-placedPos.localPosition.x, placedPos.localPosition.y, placedPos.localPosition.z);
+            }
+            else {
+                CarriedObjectShadow.transform.localPosition = new Vector3(carriedPos.localPosition.x, CarriedObjectShadow.transform.localPosition.y, CarriedObjectShadow.transform.localPosition.z);
             }
             carriedObject.transform.position = carriedPos.position;
             carriedObject.transform.rotation = carriedPos.rotation;
@@ -177,6 +182,9 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.PlaySound(SoundName.PickUpBasket);
         carriedObject = obj;
         carriedObject.GetComponent<Collider2D>().enabled = false;
+        Carryable carryable = carriedObject.GetComponent<Carryable>();
+        if (carryable != null) carryable.ShadowRenderer.enabled = false;
+        CarriedObjectShadow.enabled = true;
         LaundromatSpriteSort spriteSort = obj.GetComponentInChildren<LaundromatSpriteSort>();
         if (spriteSort != null) {
             spriteSort.enabled = false;
@@ -193,11 +201,15 @@ public class PlayerController : MonoBehaviour
         if (spriteSort != null) {
             spriteSort.enabled = true;
         }
+        Carryable carryable = carriedObject.GetComponent<Carryable>();
+        if (carryable != null) carryable.ShadowRenderer.enabled = true;
+        CarriedObjectShadow.enabled = false;
         carriedObject = null;
     }
 
     private void DestroyCarriedObject() {
         state.EndCarry();
+        CarriedObjectShadow.enabled = false;
         Destroy(carriedObject);
         carriedObject = null;
     }
