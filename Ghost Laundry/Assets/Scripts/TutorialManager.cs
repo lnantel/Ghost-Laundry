@@ -488,7 +488,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //When the new basket is input to the table, move on to step 4
-        if (table.basketSlots[0].laundryBasket.basket.contents.Count > 0) {
+        if (table.ContainsAllGarmentsInBasket(secondBasket.basket.contents.ToArray())) {
             tutorialStep = 4;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
