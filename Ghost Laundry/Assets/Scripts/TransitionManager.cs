@@ -35,7 +35,7 @@ public class TransitionManager : MonoBehaviour
             if (i < CurrentDay) Levels[i].gameObject.GetComponent<LevelTileAnimator>().Flip();
         }
 
-        ghost.position = Levels[CurrentDay - 1].position;
+        ghost.position = Levels[Mathf.Clamp(CurrentDay - 1, 0, Levels.Length - 1)].position;
 
         yield return new WaitForSecondsRealtime(1.0f);
 

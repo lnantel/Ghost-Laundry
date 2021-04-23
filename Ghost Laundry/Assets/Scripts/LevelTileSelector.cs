@@ -42,26 +42,36 @@ public class LevelTileSelector : MonoBehaviour
 
         selectable = TimeManager.instance.CurrentDay >= index;
         if (selectable) {
-            TXT_Day.text = "Day " + index;
-            TXT_Money.text = (SaveManager.Data.Days[index].Money / 100.0f).ToString("N2");
+            SaveData.DayData day = SaveManager.GetDayData(index);
+            bool lastDay = SaveManager.Data.Days.Count - 1 == index;
 
-            bool nextDayExists = false;
-            SaveData.DayData nextDay;
-            int repHighScore = 0;
-            if (index + 1 >= 0 && index + 1 < SaveManager.Data.Days.Count) {
-                nextDay = SaveManager.Data.Days[index + 1];
-                repHighScore = nextDay.ReputationHighScore;
-                nextDayExists = true;
+            if (lastDay) {
+                TXT_Day.text = "Day " + index;
+                TXT_Money.text = ("?");
+                TXT_Rep.text = ("?");
+            }
+            else {
+                TXT_Day.text = "Day " + index;
+                TXT_Money.text = (day.Money / 100.0f).ToString("N2");
+                TXT_Rep.text = (day.ReputationHighScore / ReputationManager.instance.AmountPerStar).ToString("N0");
             }
 
-            if(!nextDayExists)
-                TXT_Rep.text = ("?");
-            else
-                TXT_Rep.text = (repHighScore / ReputationManager.instance.AmountPerStar).ToString("N0");
+            //bool nextDayExists = false;
+            //SaveData.DayData nextDay;
+            //int repHighScore = 0;
+            //if (index + 1 >= 0 && index + 1 < SaveManager.Data.Days.Count) {
+            //    nextDay = SaveManager.Data.Days[index + 1];
+            //    repHighScore = nextDay.ReputationHighScore;
+            //    nextDayExists = true;
+            //}
+
+            //if(!nextDayExists)
+            //    TXT_Rep.text = ("?");
+            //else
+            //TXT_Rep.text = (day.ReputationHighScore / ReputationManager.instance.AmountPerStar).ToString("N0");
 
             //Event Icons
             int[] characters = EventManager.instance.CharactersWithEventsOnDay(index);
-            bool lastDay = SaveManager.Data.Days.Count - 1 == index;
 
             switch (characters.Length) {
                 case 0:
