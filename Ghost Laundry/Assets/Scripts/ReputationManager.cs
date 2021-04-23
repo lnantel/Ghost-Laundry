@@ -14,6 +14,8 @@ public class ReputationManager : MonoBehaviour {
     public int CurrentAmount;
     public int MaxAmount;
 
+    public float AmountPerStar { get => MaxAmount / 5.0f; }
+
     public int PerfectGarmentRep;
     public int RagequitRep;
     public int NotDoneRep;
@@ -23,6 +25,9 @@ public class ReputationManager : MonoBehaviour {
     public Image fillImage;
 
     public PoolManager starPool;
+
+    public int HighScore { get => Mathf.Max(m_HighScore, CurrentAmount); set => m_HighScore = value; }
+    private int m_HighScore;
 
     private int displayedAmount;
     private IEnumerator spawnStarCoroutine;

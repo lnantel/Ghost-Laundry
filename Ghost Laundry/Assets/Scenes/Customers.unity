@@ -278,9 +278,8 @@ MonoBehaviour:
   - ID: 0
     customer: {fileID: 0}
     position: {x: 0.92, y: -11.79, z: 0}
-  CustomerSpawnDelay: 10
-  MinCapacity: 2
-  MaxCapacity: 7
+  SpawnTime: 120
+  SpawnTimeReductionPerStar: 20
   customersInLaundromat: []
 --- !u!4 &798140544
 Transform:

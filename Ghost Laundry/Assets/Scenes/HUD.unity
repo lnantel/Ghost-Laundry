@@ -3056,7 +3056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentAmount: 0
-  MaxAmount: 1000
+  MaxAmount: 100
   PerfectGarmentRep: 5
   RagequitRep: -2
   NotDoneRep: -3
@@ -8049,7 +8049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentDay: 1
-  RealTimeMinutesPerDay: 15
+  RealTimeMinutesPerDay: 1
   timeScale: 0
   deltaTime: 0
   TimeIsPassing: 0

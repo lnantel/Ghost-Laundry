@@ -232,16 +232,15 @@ public static class GarmentColor {
     public static Color Mint = new Color(67f / 256f, 240f / 256f, 164f / 256f);
 
     public static Color RandomColor() {
-        int rand = Random.Range(0, 8);
+        int rand = Random.Range(0, 13);
         switch (rand) {
-            case 0: return White;
-            case 1: return Red;
-            case 2: return Pink;
-            case 3: return Sky;
-            case 4: return Salmon;
-            case 5: return Teal;
-            case 6: return Golden;
-            case 7: return Mint;
+            case 0: return Red;
+            case 1: return Pink;
+            case 2: return Sky;
+            case 3: return Salmon;
+            case 4: return Teal;
+            case 5: return Golden;
+            case 6: return Mint;
             default: return White;
         }
     }

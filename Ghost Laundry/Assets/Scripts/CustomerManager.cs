@@ -19,11 +19,9 @@ public class CustomerManager : MonoBehaviour
     public CustomerSpot[] WaitingSpots;
     public CustomerSpot[] QueueSpots;
 
-    public float CustomerSpawnDelay;
+    public float SpawnTime;
+    public float SpawnTimeReductionPerStar;
 
-    public int MinCapacity;
-    public int MaxCapacity;
-    private int CurrentCapacity;
     public List<Customer> customersInLaundromat;
 
     //TODO: One for each specific customer
@@ -72,8 +70,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void SpawnCustomer() {
-        CurrentCapacity = MinCapacity + Mathf.FloorToInt((MaxCapacity - MinCapacity) * ((float)ReputationManager.instance.CurrentAmount / ReputationManager.instance.MaxAmount));
-        if (customersInLaundromat.Count < CurrentCapacity) {
+        if(customersInLaundromat.Count < 10) {
             Customer customer = Instantiate(customerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
             customersInLaundromat.Add(customer);
             customerSpawningTimer = 0;
@@ -109,9 +106,14 @@ public class CustomerManager : MonoBehaviour
         Destroy(customer.gameObject);
     }
 
+    //Spawn timer formula: 1 customer every X seconds - Y seconds per star
+    private float CustomerSpawnRate() {
+        return SpawnTime - (ReputationManager.instance.CurrentAmount / ReputationManager.instance.AmountPerStar) * SpawnTimeReductionPerStar;
+    }
+
     private void Update() {
         customerSpawningTimer += TimeManager.instance.deltaTime;
-        if (customerSpawningTimer >= CustomerSpawnDelay) {
+        if (customerSpawningTimer >= CustomerSpawnRate()) {
             if(TimeManager.instance.CurrentDay != 0)
                 SpawnCustomer();
         }
@@ -149,7 +151,6 @@ public class CustomerManager : MonoBehaviour
         for (int i = 0; i < WaitingSpots.Length; i++) {
             if (!WaitingSpots[i].Claimed && SpotAssigned != null) {
                 SpotAssigned(WaitingSpots[i], customer);
-                //Debug.Log("Spot assigned: " + WaitingSpots[i].position);
                 break;
             }
         }
@@ -166,6 +167,11 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void OnStartOfDay(int day) {
-        if(day != 0) SpawnCustomer();
+        if (day != 0) {
+            int numberOfCustomers = 2 + Mathf.FloorToInt(ReputationManager.instance.CurrentAmount / 200.0f);
+            for(int i = 0; i < numberOfCustomers; i++) {
+                SpawnCustomer();
+            }
+        }
     }
 }
