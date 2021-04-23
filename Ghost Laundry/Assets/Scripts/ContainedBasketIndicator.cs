@@ -22,7 +22,8 @@ public class ContainedBasketIndicator : Carryable, ITrackable
     {
         base.Start();
         workStation = GetComponentInParent<WorkStation>();
-        isBasketPile = workStation is TableWorkstation;
+        //isBasketPile = workStation is TableWorkstation;
+        isBasketPile = true;
         if (basketSlotIndex >= workStation.basketSlots.Length) gameObject.SetActive(false);
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
     }
@@ -87,7 +88,7 @@ public class ContainedBasketIndicator : Carryable, ITrackable
         }
         else if (isBasketPile && basketSprite.enabled) {
             if (popUpInstance != null) {
-                if (!locked && instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying /*&& workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0*/))) {
+                if (!locked && instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0))) {
                     popUpInstance.SetActive(true);
                     OutlineRenderer.enabled = true;
                 }

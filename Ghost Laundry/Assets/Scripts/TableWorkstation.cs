@@ -15,15 +15,15 @@ public class TableWorkstation : WorkStation
 
     public override IEnumerator Initialize() {
         yield return base.Initialize();
-        for (int i = 0; i < basketCapacity; i++) {
-            AddBasket(new Basket(), i);
-        }
+        //for (int i = 0; i < basketCapacity; i++) {
+        //    AddBasket(new Basket(), i);
+        //}
     }
 
     public override bool InputBasket(Basket basket, int i) {
         //Returns true if the input basket is empty, and replaces it with 'basket'
         //If the input basket is not empty, returns false
-        if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > i && !basketSlots[i].Locked) return false;
+        if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > 0 && !basketSlots[i].Locked) return false;
         else {
             if (basketSlots[i].laundryBasket != null) basketSlots[i].laundryBasket.basket = basket;
             if (BasketSlotsChanged != null) BasketSlotsChanged();
@@ -34,7 +34,7 @@ public class TableWorkstation : WorkStation
     public override Basket OutputBasket(int basketSlotIndex) {
         //Returns an output basket
         //Empties the corresponding basket in the TableArea but does not destroy it
-        if (basketSlots[basketSlotIndex].laundryBasket != null /*&& basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0*/ && !basketSlots[basketSlotIndex].Locked) {
+        if (basketSlots[basketSlotIndex].laundryBasket != null && basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0 && !basketSlots[basketSlotIndex].Locked) {
             Basket outputBasket = new Basket();
             outputBasket.contents = basketSlots[basketSlotIndex].laundryBasket.basket.contents;
             outputBasket.positions = basketSlots[basketSlotIndex].laundryBasket.basket.positions;
