@@ -33,7 +33,7 @@ public class CustomerTracker : MonoBehaviour
     }
 
     private void OnCustomerLeft(Customer customer) {
-        if (TrackedCustomer.Equals(customer)) {
+        if (TrackedCustomer != null && TrackedCustomer.Equals(customer)) {
             TrackedCustomer = null;
         }
     }

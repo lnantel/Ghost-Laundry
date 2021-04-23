@@ -20,7 +20,7 @@ public class SaveData
         public int CurrentDay;
         public int Money;
         public int Detergent;
-        public int Reputation;
+        public int ReputationHighScore;
         public List<EventData> narrativeData;
         public int OllieSafetyPoints;
     }
@@ -30,7 +30,7 @@ public class SaveData
         clone.CurrentDay = day.CurrentDay;
         clone.Money = day.Money;
         clone.Detergent = day.Detergent;
-        clone.Reputation = day.Reputation;
+        clone.ReputationHighScore = day.ReputationHighScore;
         clone.narrativeData = new List<EventData>();
         clone.OllieSafetyPoints = day.OllieSafetyPoints;
         for(int i = 0; i < day.narrativeData.Count; i++) {

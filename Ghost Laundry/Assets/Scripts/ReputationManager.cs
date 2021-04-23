@@ -26,6 +26,9 @@ public class ReputationManager : MonoBehaviour {
 
     public PoolManager starPool;
 
+    public int HighScore { get => Mathf.Max(m_HighScore, CurrentAmount); set => m_HighScore = value; }
+    private int m_HighScore;
+
     private int displayedAmount;
     private IEnumerator spawnStarCoroutine;
 
