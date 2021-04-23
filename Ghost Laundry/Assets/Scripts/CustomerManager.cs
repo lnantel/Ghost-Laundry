@@ -113,9 +113,13 @@ public class CustomerManager : MonoBehaviour
 
     private void Update() {
         customerSpawningTimer += TimeManager.instance.deltaTime;
-        if (customerSpawningTimer >= CustomerSpawnRate()) {
-            if(TimeManager.instance.CurrentDay != 0)
+        if (customerSpawningTimer >= CustomerSpawnRate() && TimeManager.instance.CurrentTime()[0] < 22) {
+            if (TimeManager.instance.CurrentDay != 0)
                 SpawnCustomer();
+        }
+
+        if (TimeManager.instance.TimeIsPassing && TimeManager.instance.CurrentTime()[0] >= 22 && customersInLaundromat.Count == 0) {
+            TimeManager.instance.EndDay();
         }
 
         //If any counter spot is unclaimed, assign it to the first customer in the queue
