@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class DebugTools : MonoBehaviour
 {
+    private void GoToDay(int day) {
+        SaveManager.Save();
+        TimeManager.instance.CurrentDay = day - 1;
+        GameManager.instance.OnNextDay();
+    }
+
     private void Update() {
         //Press M to gain 10$
         if(Input.GetKeyDown(KeyCode.M) && MoneyManager.instance != null) {
@@ -12,105 +18,74 @@ public class DebugTools : MonoBehaviour
 
         //Press R to gain 200 Rep
         if(Input.GetKeyDown(KeyCode.R) && ReputationManager.instance != null) {
-            ReputationManager.instance.ModifyCurrentAmount(200, PlayerStateManager.instance.transform.position);
+            ReputationManager.instance.ModifyCurrentAmount((int) ReputationManager.instance.AmountPerStar, PlayerStateManager.instance.transform.position);
         }
 
         //Press T to lose 200 Rep
         if(Input.GetKeyDown(KeyCode.T) && ReputationManager.instance != null) {
-            ReputationManager.instance.ModifyCurrentAmount(-200, PlayerStateManager.instance.transform.position);
+            ReputationManager.instance.ModifyCurrentAmount(-(int)ReputationManager.instance.AmountPerStar, PlayerStateManager.instance.transform.position);
         }
 
         //Press Backspace to skip to the next day
         if (Input.GetKeyDown(KeyCode.Backspace)) {
-            TimeManager.instance.CurrentDay++;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(TimeManager.instance.CurrentDay + 1);
         }
 
         //Press a numpad number to go to that day. Slash = 10, * = 11, - = 12.
         if (Input.GetKeyDown(KeyCode.Keypad0)) {
-            TimeManager.instance.CurrentDay = 0;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
-            TimeManager.instance.CurrentDay = 1;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad2)) {
-            TimeManager.instance.CurrentDay = 2;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(2);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad3)) {
-            TimeManager.instance.CurrentDay = 3;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(3);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad4)) {
-            TimeManager.instance.CurrentDay = 4;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(4);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad5)) {
-            TimeManager.instance.CurrentDay = 5;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(5);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad6)) {
-            TimeManager.instance.CurrentDay = 6;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(6);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad7)) {
-            TimeManager.instance.CurrentDay = 7;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(7);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad8)) {
-            TimeManager.instance.CurrentDay = 8;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(8);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad9)) {
-            TimeManager.instance.CurrentDay = 9;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(9);
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) {
-            TimeManager.instance.CurrentDay = 10;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(10);
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadMultiply)) {
-            TimeManager.instance.CurrentDay = 11;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(11);
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) {
-            TimeManager.instance.CurrentDay = 12;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
+            GoToDay(12);
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
-            TimeManager.instance.CurrentDay = 13;
-            SaveManager.Save();
-            GameManager.instance.OnNextDay();
-
+            GoToDay(13);
         }
     }
 }

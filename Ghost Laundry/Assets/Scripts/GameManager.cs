@@ -286,16 +286,13 @@ public class GameManager : MonoBehaviour {
             state = GameStates.EndOfDay;
         }
 
-        //Save progress
-        TimeManager.instance.NextDay();
         //If tutorial, go straight to next day
-        if (TimeManager.instance.CurrentDay == 1) {
-            SaveManager.Save();
-            stateTransition = GoToTransition();
-            StartCoroutine(stateTransition);
+        if (TimeManager.instance.CurrentDay == 0) {
+            stateTransition = null;
+            OnNextDay();
         }
         //Otherwise, show Eval screen first
-        else if(TimeManager.instance.CurrentDay > 1) {
+        else if(TimeManager.instance.CurrentDay > 0) {
             SaveManager.Save();
 
             //Wait a couple seconds
@@ -311,6 +308,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator GoToTransition() {
+        int dayToLoad = TimeManager.instance.CurrentDay;
         if(TimeManager.instance.CurrentDay > 12) {
             stateTransition = GoToEpilogue();
             StartCoroutine(stateTransition);
@@ -326,7 +324,7 @@ public class GameManager : MonoBehaviour {
             LoadScenes("NextDay", "Options", "HUD", "Dialog");
             while (scenesLoading != null) yield return null;
 
-            SaveManager.LoadSaveData();
+            SaveManager.LoadDay(dayToLoad);
 
             state = GameStates.Transition;
 
@@ -454,6 +452,7 @@ public class GameManager : MonoBehaviour {
 
     public void OnNextDay() {
         if (stateTransition == null) {
+            TimeManager.instance.NextDay();
             stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }

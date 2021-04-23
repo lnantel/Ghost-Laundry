@@ -93,24 +93,42 @@ public class SaveManager : MonoBehaviour
 
     public static void LoadDay(int dayToLoad) {
         PurgeDaysFollowing(dayToLoad);
-        for(int i = 0; i < Data.Days.Count; i++) {
-            if(Data.Days[i].CurrentDay == dayToLoad) {
-                SaveData.DayData day = Data.Days[i];
-                TimeManager.instance.CurrentDay = day.CurrentDay;
-                DetergentManager.instance.CurrentAmount = day.Detergent;
-                MoneyManager.instance.SetCurrentAmount(day.Money);
-                ReputationManager.instance.HighScore = day.ReputationHighScore;
-                EventManager.instance.ollieEventManager.SafetyPoints = day.OllieSafetyPoints;
-                for(int j = 0; j < day.narrativeData.Count; j++) {
-                    SaveData.EventData eventData = day.narrativeData[j];
-                    EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].Completed = eventData.Completed;
-                    EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].NextEventIndex = eventData.NextIndex;
-                }
-                break;
+        SaveData.DayData dayData = Data.Days[0];
+        //Find the DayData of the day to load, or the latest one before that
+        for(int i = 1; i < Data.Days.Count; i++) {
+            if(Data.Days[i].CurrentDay <= dayToLoad && Data.Days[i].CurrentDay >= dayData.CurrentDay) {
+                dayData = Data.Days[i];
             }
         }
+        //for(int i = 0; i < Data.Days.Count; i++) {
+        //    if(Data.Days[i].CurrentDay == dayToLoad) {
+        //      SaveData.DayData day = Data.Days[i];
+        TimeManager.instance.CurrentDay = dayToLoad;
+        DetergentManager.instance.CurrentAmount = dayData.Detergent;
+        MoneyManager.instance.SetCurrentAmount(dayData.Money);
+        ReputationManager.instance.HighScore = dayData.ReputationHighScore;
+        EventManager.instance.ollieEventManager.SafetyPoints = dayData.OllieSafetyPoints;
+        for(int j = 0; j < dayData.narrativeData.Count; j++) {
+            SaveData.EventData eventData = dayData.narrativeData[j];
+            EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].Completed = eventData.Completed;
+            EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].NextEventIndex = eventData.NextIndex;
+        }
+        //      break;
+        //    }
+        //}
         if (LoadingComplete != null) LoadingComplete();
         Save();
+    }
+
+    public static SaveData.DayData GetDayData(int day) {
+        SaveData.DayData dayData = Data.Days[0];
+        //Find the DayData of the day to load, or the latest one before that
+        for (int i = 1; i < Data.Days.Count; i++) {
+            if (Data.Days[i].CurrentDay <= day && Data.Days[i].CurrentDay >= dayData.CurrentDay) {
+                dayData = Data.Days[i];
+            }
+        }
+        return dayData;
     }
 
     public static void CreateNewSave() {
