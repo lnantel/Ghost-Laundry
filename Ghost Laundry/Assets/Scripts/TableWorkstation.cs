@@ -34,31 +34,16 @@ public class TableWorkstation : WorkStation
     public override Basket OutputBasket(int basketSlotIndex) {
         //Returns an output basket
         //Empties the corresponding basket in the TableArea but does not destroy it
-        //for (int i = 1; i < basketCapacity; i++) {
-            if (basketSlots[basketSlotIndex].laundryBasket != null && basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0 && !basketSlots[basketSlotIndex].Locked) {
-                Basket outputBasket = new Basket();
-                outputBasket.contents = basketSlots[basketSlotIndex].laundryBasket.basket.contents;
-                outputBasket.positions = basketSlots[basketSlotIndex].laundryBasket.basket.positions;
-                outputBasket.tag = basketSlots[basketSlotIndex].laundryBasket.basket.tag;
+        if (basketSlots[basketSlotIndex].laundryBasket != null /*&& basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0*/ && !basketSlots[basketSlotIndex].Locked) {
+            Basket outputBasket = new Basket();
+            outputBasket.contents = basketSlots[basketSlotIndex].laundryBasket.basket.contents;
+            outputBasket.positions = basketSlots[basketSlotIndex].laundryBasket.basket.positions;
+            outputBasket.tag = basketSlots[basketSlotIndex].laundryBasket.basket.tag;
 
-                basketSlots[basketSlotIndex].laundryBasket.basket.RemoveAll();
-                if (BasketSlotsChanged != null) BasketSlotsChanged();
-                return outputBasket;
-            }
-        //}
-
-        //If no output baskets contain anything, check if the input basket does
-        //if (basketSlots[0].laundryBasket != null && basketSlots[0].laundryBasket.basket.contents.Count > 0 && !basketSlots[0].Locked) {
-        //    Basket outputBasket = new Basket();
-        //    outputBasket.contents = basketSlots[0].laundryBasket.basket.contents;
-        //    outputBasket.positions = basketSlots[0].laundryBasket.basket.positions;
-        //    outputBasket.tag = basketSlots[0].laundryBasket.basket.tag;
-
-        //    basketSlots[0].laundryBasket.basket.RemoveAll();
-        //    if (BasketSlotsChanged != null) BasketSlotsChanged();
-        //    return outputBasket;
-        //}
-
+            basketSlots[basketSlotIndex].laundryBasket.basket.RemoveAll();
+            if (BasketSlotsChanged != null) BasketSlotsChanged();
+            return outputBasket;
+        }
         return null;
     }
 
