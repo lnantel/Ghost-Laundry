@@ -22,7 +22,8 @@ public class ContainedBasketIndicator : Carryable, ITrackable
     {
         base.Start();
         workStation = GetComponentInParent<WorkStation>();
-        isBasketPile = workStation is TableWorkstation;
+        //isBasketPile = workStation is TableWorkstation;
+        isBasketPile = true;
         if (basketSlotIndex >= workStation.basketSlots.Length) gameObject.SetActive(false);
         laundromatBasketPrefab = (GameObject)Resources.Load("LaundromatBasket");
     }

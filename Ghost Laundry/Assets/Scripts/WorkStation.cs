@@ -45,6 +45,10 @@ public class WorkStation : Interactable, ITrackable
         foreach (LaundryBasket basket in laundryBaskets)
             AddBasket(basket);
         if(BasketSlotsChanged != null) BasketSlotsChanged();
+
+        for (int i = 0; i < basketCapacity; i++) {
+            AddBasket(new Basket(), i);
+        }
     }
 
     protected override void Interaction() {
@@ -81,30 +85,53 @@ public class WorkStation : Interactable, ITrackable
     }
 
     public virtual Basket OutputBasket(int basketSlotIndex) {
-        if (BasketCount() > basketSlotIndex) {
-            //Get basket
-            Basket basket = null;
-            if (basketSlots[basketSlotIndex].laundryBasket != null && !basketSlots[basketSlotIndex].Locked) {
-                basket = basketSlots[basketSlotIndex].laundryBasket.basket;
-            }
+        //if (BasketCount() > basketSlotIndex) {
+        //    //Get basket
+        //    Basket basket = null;
+        //    if (basketSlots[basketSlotIndex].laundryBasket != null && !basketSlots[basketSlotIndex].Locked) {
+        //        basket = basketSlots[basketSlotIndex].laundryBasket.basket;
+        //    }
 
-            //Destroy it
-            Destroy(basketSlots[basketSlotIndex].laundryBasket.gameObject);
-            basketSlots[basketSlotIndex].laundryBasket = null;
+        //    //Destroy it
+        //    Destroy(basketSlots[basketSlotIndex].laundryBasket.gameObject);
+        //    basketSlots[basketSlotIndex].laundryBasket = null;
 
-            //return the basket
+        //    //return the basket
+        //    if (BasketSlotsChanged != null) BasketSlotsChanged();
+        //    return basket;
+        //}
+        //return null;
+
+        //Returns an output basket
+        //Empties the corresponding basket in the TableArea but does not destroy it
+        if (basketSlots[basketSlotIndex].laundryBasket != null && basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0 && !basketSlots[basketSlotIndex].Locked) {
+            Basket outputBasket = new Basket();
+            outputBasket.contents = basketSlots[basketSlotIndex].laundryBasket.basket.contents;
+            outputBasket.positions = basketSlots[basketSlotIndex].laundryBasket.basket.positions;
+            outputBasket.tag = basketSlots[basketSlotIndex].laundryBasket.basket.tag;
+
+            basketSlots[basketSlotIndex].laundryBasket.basket.RemoveAll();
             if (BasketSlotsChanged != null) BasketSlotsChanged();
-            return basket;
+            return outputBasket;
         }
         return null;
     }
 
-    public virtual bool InputBasket(Basket basket, int index) {
-        //if the workstation has space for a basket
-        if (BasketCount() < basketCapacity) {
-            return AddBasket(basket, index);
+    public virtual bool InputBasket(Basket basket, int i) {
+        ////if the workstation has space for a basket
+        //if (BasketCount() < basketCapacity) {
+        //    return AddBasket(basket, index);
+        //}
+        //return false;
+
+        //Returns true if the input basket is empty, and replaces it with 'basket'
+        //If the input basket is not empty, returns false
+        if (basketSlots[i].laundryBasket != null && basketSlots[i].laundryBasket.basket.contents.Count > 0 && !basketSlots[i].Locked) return false;
+        else {
+            if (basketSlots[i].laundryBasket != null) basketSlots[i].laundryBasket.basket = basket;
+            if (BasketSlotsChanged != null) BasketSlotsChanged();
+            return true;
         }
-        return false;
     }
 
     protected virtual void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
