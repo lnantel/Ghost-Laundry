@@ -8049,7 +8049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentDay: 1
-  RealTimeMinutesPerDay: 1
+  RealTimeMinutesPerDay: 15
   timeScale: 0
   deltaTime: 0
   TimeIsPassing: 0
