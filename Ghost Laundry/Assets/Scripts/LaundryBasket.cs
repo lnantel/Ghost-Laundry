@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class LaundryBasket : LaundryObject, ITrackable
-{
+public class LaundryBasket : LaundryObject, ITrackable {
     public static Action<Garment> TakeOutGarment;
     public static Action<LaundryBasket> OpenBasketView;
     public static Action TagChanged;
@@ -35,7 +34,7 @@ public class LaundryBasket : LaundryObject, ITrackable
     }
 
     private void OnEnable() {
-        if(basket != null) tagSprite.sprite = tags[basket.tag];
+        if (basket != null) tagSprite.sprite = tags[basket.tag];
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         OpenBasketView += OnOtherOpenBasketView;
         PlacedInBasketView += OnPlacedInBasketView;
@@ -79,8 +78,8 @@ public class LaundryBasket : LaundryObject, ITrackable
 
     void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
         if (!Locked) {
+            //If BasketView is open
             if (basketView.activeSelf) {
-                //If BasketView is open
                 bool alreadyInBasket = laundryGarments.Contains(laundryGarment);
                 bool withinBasketView = basketView.GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position);
 
@@ -110,9 +109,9 @@ public class LaundryBasket : LaundryObject, ITrackable
                     laundryGarments.Remove(laundryGarment);
                 }
             }
+            //If BasketView is closed
+            //Wait for a frame, in case an overlapping BasketView captures the garment first
             else {
-                //If BasketView is closed
-                //Wait for a frame, in case an overlapping BasketView captures the garment first
                 StartCoroutine(DelayedAddToBasket(laundryGarment));
             }
         }
@@ -121,16 +120,17 @@ public class LaundryBasket : LaundryObject, ITrackable
     private bool placedInBasketView;
     private int placedInBasketViewID;
 
+    //When a LaundryGarment is placed in a BasketView, remember it
     private void OnPlacedInBasketView(LaundryGarment laundryGarment) {
         placedInBasketView = true;
         placedInBasketViewID = laundryGarment.GetInstanceID();
-        StartCoroutine(ResetPlacedInBasketViewFlag());
     }
 
     private IEnumerator DelayedAddToBasket(LaundryGarment laundryGarment) {
         //Wait for a frame, in case an overlapping BasketView captures the garment first
         yield return new WaitForSeconds(0);
-        if(laundryGarment != null && laundryGarment.gameObject.activeSelf) {
+        //If the garment was captured by a BasketView, ignore it; otherwise, add it to the basket
+        if (laundryGarment != null && laundryGarment.gameObject.activeSelf) {
             if (!(placedInBasketView && laundryGarment.GetInstanceID() == placedInBasketViewID)) {
                 if (basketCollider.bounds.Contains(laundryGarment.transform.position)) {
                     if (basket.AddGarment(laundryGarment.garment)) {
@@ -144,11 +144,8 @@ public class LaundryBasket : LaundryObject, ITrackable
                 }
             }
         }
-    }
 
-    private IEnumerator ResetPlacedInBasketViewFlag() {
-        yield return new WaitForSeconds(0);
-        yield return new WaitForSeconds(0);
+        //Reset 'placed in basket view' variables
         placedInBasketView = false;
         placedInBasketViewID = 0;
     }
@@ -193,6 +190,10 @@ public class LaundryBasket : LaundryObject, ITrackable
     }
 
     private void DisableBasketView() {
+        StartCoroutine(DisableBasketViewCoroutine());
+    }
+
+    private IEnumerator DisableBasketViewCoroutine() {
         basket.contents = new List<Garment>();
         basket.positions = new List<Vector3>();
         for (int i = 0; i < laundryGarments.Count; i++) {
@@ -204,8 +205,13 @@ public class LaundryBasket : LaundryObject, ITrackable
             obj.ReturnToPool();
         }
 
+        laundryGarments.Clear();
+
+        yield return new WaitForSeconds(0);
+
         basketView.SetActive(false);
         basketCollider.enabled = true;
+
     }
 
     private void OnOtherOpenBasketView(LaundryBasket other) {
