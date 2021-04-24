@@ -5256,7 +5256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorldSpaceCanvas: {fileID: 692046746}
   CurrentAmount: 0
-  Rent: 5000
+  DailyRentAmounts: 00000000c4090000b80b0000ac0d0000a00f0000941100008813000088130000881300008813000088130000881300008813000088130000
   LaunderedGarmentFee: 100
   PerfectGarmentTip: 50
   RuinedGarmentPenalty: 100
