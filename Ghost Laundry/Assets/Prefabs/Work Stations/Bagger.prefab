@@ -274,7 +274,7 @@ MonoBehaviour:
   HasGravity: 0
   basketSlots:
   - laundryBasket: {fileID: 0}
-    spawnPoint: {x: 0, y: 0, z: 0}
+    spawnPoint: {x: -100, y: 0, z: 0}
   laundryTaskArea: {fileID: 0}
   containedLaundryGarments: []
   bagSpawnPoint: {fileID: 6719572106153379940}
