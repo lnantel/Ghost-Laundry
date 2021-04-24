@@ -130,12 +130,12 @@ public class LaundryBasket : LaundryObject, ITrackable
     private IEnumerator DelayedAddToBasket(LaundryGarment laundryGarment) {
         //Wait for a frame, in case an overlapping BasketView captures the garment first
         yield return new WaitForSeconds(0);
-        if(laundryGarment != null) {
+        if(laundryGarment != null && laundryGarment.gameObject.activeSelf) {
             if (!(placedInBasketView && laundryGarment.GetInstanceID() == placedInBasketViewID)) {
                 if (basketCollider.bounds.Contains(laundryGarment.transform.position)) {
                     if (basket.AddGarment(laundryGarment.garment)) {
                         AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                        Destroy(laundryGarment.gameObject);
+                        laundryGarment.ReturnToPool();
                         animator.SetTrigger("BasketInput");
                     }
                     else {
@@ -201,7 +201,7 @@ public class LaundryBasket : LaundryObject, ITrackable
         }
 
         foreach (LaundryGarment obj in laundryGarments) {
-            Destroy(obj.gameObject);
+            obj.ReturnToPool();
         }
 
         basketView.SetActive(false);

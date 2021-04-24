@@ -6,6 +6,7 @@ public class GarmentSock : Garment {
     public GarmentSock pairedSock;
 
     public GarmentSock(Fabric fabric, Color color, float cleanliness = 0.0f, float humidity = 0.0f, bool pressed = false, bool folded = false, bool shrunk = false, bool burned = false, bool dyed = false, bool torn = false, bool melted = false) : base(fabric, color, cleanliness, humidity, pressed, folded, shrunk, burned, dyed, torn, melted) {
+        type = GarmentType.Sock;
         size = 1;
         foldingSteps = 1;
         clotheslinePegs = 1;
@@ -29,6 +30,7 @@ public class GarmentSock : Garment {
         this.size = other.size;
         this.foldingSteps = other.foldingSteps;
         this.laundryGarmentPrefab = other.laundryGarmentPrefab;
+        this.type = other.type;
     }
 
     //Custom accessors to manage paired socks

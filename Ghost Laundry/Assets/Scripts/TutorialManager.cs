@@ -465,7 +465,7 @@ public class TutorialManager : MonoBehaviour
 
             LaundryGarment[] laundryGarments = washingMachine.GetComponentsInChildren<LaundryGarment>();
             for (int i = 0; i < laundryGarments.Length; i++) {
-                Destroy(laundryGarments[i].gameObject);
+                laundryGarments[i].ReturnToPool();
             }
 
             washingMachine.Lock();

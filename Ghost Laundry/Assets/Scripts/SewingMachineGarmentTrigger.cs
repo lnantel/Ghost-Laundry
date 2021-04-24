@@ -16,7 +16,7 @@ public class SewingMachineGarmentTrigger : MonoBehaviour
             if (laundryGarment != null && !laundryGarment.IsHeld && laundryGarment.GetComponent<Rigidbody2D>().gravityScale != 0.0f) {
                 if (sewingMachine.PlaceGarment(laundryGarment.garment)) {
                     AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                    Destroy(laundryGarment.gameObject);
+                    laundryGarment.ReturnToPool();
                 }
             }
         }

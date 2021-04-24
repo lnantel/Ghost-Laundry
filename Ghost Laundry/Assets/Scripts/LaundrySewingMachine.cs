@@ -38,7 +38,7 @@ public class LaundrySewingMachine : LaundryObject
         if (col.bounds.Contains(laundryGarment.transform.position)) {
             if (sewingMachine.PlaceGarment(laundryGarment.garment)) {
                 AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                Destroy(laundryGarment.gameObject);
+                laundryGarment.ReturnToPool();
             }
         }
     }
