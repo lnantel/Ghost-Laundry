@@ -3056,7 +3056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentAmount: 0
-  MaxAmount: 100
+  MaxAmount: 200
   PerfectGarmentRep: 5
   RagequitRep: -2
   NotDoneRep: -3
