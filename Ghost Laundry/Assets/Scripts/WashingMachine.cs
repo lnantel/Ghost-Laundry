@@ -48,28 +48,17 @@ public class WashingMachine : WorkStation
     private void Update() {
         animator.SetInteger("WashingMachineState", (int)state);
 
-       //if(state == WashingMachineState.Running && WMCoroutine == null){           
-       // WMCoroutine = WashingMachineRunningCoroutineSound();
-       // StartCoroutine(WMCoroutine);   
-       //}
-
        if(state == WashingMachineState.Done && WMDoneCoroutine == null){           
         WMDoneCoroutine = WashingMachineDoneCoroutineSound();
         StartCoroutine(WMDoneCoroutine);   
        }        
     }
 
-     //IEnumerator WashingMachineRunningCoroutineSound(){
-     //    AudioManager.instance.PlaySound(SoundName.RunningWM);
-     //    yield return new WaitForLaundromatSeconds(1); 
-     //    WMCoroutine = null;
-     //   }
-
     IEnumerator WashingMachineDoneCoroutineSound(){
          AudioManager.instance.PlaySound(SoundName.EndWMBeep);;
          yield return new WaitForLaundromatSeconds(20); 
          WMDoneCoroutine = null;
-        }
+    }
 
     public void SetAutoCompleteFlag() {
         autoCompleteFlag = true;
@@ -127,7 +116,7 @@ public class WashingMachine : WorkStation
     private IEnumerator WashCycle() {
         bool containsColoredGarments = false;
 
-        AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, WashCycleTime);
+        AudioManager.instance.PlaySound(SoundName.MachineStart);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
@@ -148,10 +137,12 @@ public class WashingMachine : WorkStation
             contents.Add(garment);
 
         if (autoCompleteFlag) {
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, 2.0f);
             yield return new WaitForLaundromatSeconds(2.0f);
             autoCompleteFlag = false;
         }
         else {
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, WashCycleTime);
             yield return new WaitForLaundromatSeconds(WashCycleTime);
         }
 

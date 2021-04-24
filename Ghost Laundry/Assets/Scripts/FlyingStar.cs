@@ -33,7 +33,6 @@ public class FlyingStar : MonoBehaviour
 
     private bool sign;
 
-
     private void OnEnable() {
         if(Camera.main != null)
             SetStartingValues();

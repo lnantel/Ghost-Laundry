@@ -115,5 +115,9 @@ public enum SoundName {
     MenuItemSelected,
     MenuItemHighlighted,
     MenuItemConfirmed,
-    MenuItemDeselected
+    MenuItemDeselected,
+
+    DryerShake,
+    WashingMachineShake,
+    MachineStart
 }

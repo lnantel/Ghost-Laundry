@@ -41,4 +41,14 @@ public class AudioPoolManager : PoolManager
         Debug.LogError("Object pool is empty.");
         return null;
     }
+
+    public void StopAllLoopingSounds() {
+        for(int i = 0; i < transform.childCount; i++) {
+            Transform child = transform.GetChild(i);
+            if (child.gameObject.activeSelf) {
+                AudioSourceController controller = child.GetComponent<AudioSourceController>();
+                if (controller.Looping) controller.Stop();
+            }
+        }
+    }
 }

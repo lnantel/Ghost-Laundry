@@ -328,7 +328,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //When the player places the basket into the washing machine, trigger step 3
-        if (washingMachine.ContainsBasket()) {
+        if (washingMachine.basketSlots[0].laundryBasket.basket.contents.Count > 0) {
             tutorialStep = 3;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -488,7 +488,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //When the new basket is input to the table, move on to step 4
-        if (table.ContainsAllGarmentsInBasket(secondBasket.basket.contents.ToArray())) {
+        if (secondBasketSpawned && table.ContainsAllGarmentsInBasket(secondBasket.basket.contents.ToArray())) {
             tutorialStep = 4;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -597,7 +597,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //Detect when the basket is input to the dryer
-        if (dryer.ContainsBasket()) {
+        if (dryer.ContainsAllGarmentsInBasket(garmentsToWash.ToArray())) {
             tutorialStep = 6;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);
@@ -635,7 +635,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //When the basket is input to the ironing board, trigger step 7
-        if (ironingBoard.ContainsBasket()) {
+        if (ironingBoard.ContainsAllGarmentsInBasket(garmentsToWash.ToArray())) {
             tutorialStep = 7;
             tutorialSubStep = 1;
             TutorialFlowchartManager.instance.StartDialog(tutorialStep, tutorialSubStep);

@@ -33,7 +33,6 @@ public class WashTub : WorkStation
     //Scrub increases a given Garment's cleanliness based on the 'distance' argument, if the garment is wet and the tub is soapy. 
     //Returns true if the garment was successfully scrubbed.
     public bool Scrub(Garment garment, float distance) {
-        Debug.Log(distance * ScrubbingStrength);
         if(!garment.Dry && distance * ScrubbingStrength > 0.001f){
             if(SoundCoroutine == null){
                 SoundCoroutine = ScrubbingSounds();

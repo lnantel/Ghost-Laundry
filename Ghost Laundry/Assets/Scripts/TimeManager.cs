@@ -114,10 +114,14 @@ public class TimeManager : MonoBehaviour
     }
 
     private void OnPause() {
+        TimeIsPassing = false;
+        timeScale = 0;
         Time.timeScale = 0;
     }
 
     private void OnResume() {
+        TimeIsPassing = true;
+        timeScale = 1;
         Time.timeScale = 1;
     }
 

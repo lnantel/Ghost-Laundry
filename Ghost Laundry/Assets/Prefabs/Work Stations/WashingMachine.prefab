@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 3039890513266302425}
   - component: {fileID: 98862872540869689}
   - component: {fileID: 4597993850220200096}
+  - component: {fileID: 3239574678449588024}
   m_Layer: 0
   m_Name: WM renderer
   m_TagString: Untagged
@@ -395,6 +396,18 @@ MonoBehaviour:
   groundContact: {fileID: 353800278245677212}
   CanBePlacedOnThings: 0
   forceToFront: 0
+--- !u!114 &3239574678449588024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185785067327640203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5afdcbece2c214aa3c251032a4cb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &339062280870205579
 PrefabInstance:
   m_ObjectHideFlags: 0
