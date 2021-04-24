@@ -109,7 +109,7 @@ public class LaundryIroningBoard : LaundryObject
 
         ironingBoard.garmentOnBoard = laundryGarment.garment;
         AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-        Destroy(laundryGarment.gameObject);
+        laundryGarment.ReturnToPool();
         garmentRenderer.UpdateAppearance();
         pressingProgress = 0.0f;
         burnTimer = 0.0f;

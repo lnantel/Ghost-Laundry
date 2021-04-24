@@ -18,7 +18,7 @@ public class LaundryBasketGarmentTrigger : MonoBehaviour
                 if (laundryGarment != null && !laundryGarment.IsHeld && laundryGarment.GetComponent<Rigidbody2D>().gravityScale != 0.0f) {
                     if (laundryBasket.basket.AddGarment(laundryGarment.garment)) {
                         AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                        Destroy(laundryGarment.gameObject);
+                        laundryGarment.ReturnToPool();
                         animator.SetTrigger("BasketInput");
                     }
                     else {

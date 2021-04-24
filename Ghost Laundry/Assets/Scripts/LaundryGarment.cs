@@ -94,7 +94,7 @@ public class LaundryGarment : LaundryObject, ITrackable
                                    && laundryGarment.garment.currentFoldingStep == 0) {     //and not already paired
 
                                 ((GarmentSock)garment).PairUp((GarmentSock)laundryGarment.garment);
-                                Destroy(laundryGarment.gameObject);
+                                laundryGarment.ReturnToPool();
                                 break;
                             }
                         }
@@ -181,7 +181,7 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     public void UpdateAppearance() {
-        if (spriteRenderer != null && foldingSprites != null && spriteMask != null) {
+        if (garment != null && spriteRenderer != null && foldingSprites != null && spriteMask != null) {
             if (spriteRenderer != null) {
                 spriteRenderer.sprite = foldingSprites[garment.currentFoldingStep];
                 spriteRenderer.color = garment.color;
@@ -253,5 +253,13 @@ public class LaundryGarment : LaundryObject, ITrackable
             return CustomerTracker.TrackedCustomer.garments.Contains(garment);
         }
         return false;
+    }
+
+    public void ReturnToPool() {
+        LaundryGarmentPoolManager.instance.ReturnToPool(this);
+    }
+
+    private void OnDestroy() {
+        Debug.LogWarning("LaudryGarment destroyed");
     }
 }

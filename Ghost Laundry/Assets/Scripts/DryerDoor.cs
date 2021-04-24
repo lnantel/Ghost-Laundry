@@ -57,7 +57,7 @@ public class DryerDoor : LaundryObject
         if (dryer.state == DryerState.DoorOpen && GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {
             if (dryer.AddGarment(laundryGarment.garment)) {
                 AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                Destroy(laundryGarment.gameObject);
+                laundryGarment.ReturnToPool();
                 animator.SetTrigger("BasketInput");
             }
             else {

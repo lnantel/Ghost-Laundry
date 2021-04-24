@@ -12,6 +12,8 @@ public class Garment
     [HideInInspector]
     public int customerID;
 
+    public GarmentType type;
+
     //States
     protected float cleanliness;
     protected bool pressed;
@@ -27,7 +29,7 @@ public class Garment
     [HideInInspector]
     public int currentFoldingStep;
 
-    protected GameObject laundryGarmentPrefab;
+    public GameObject laundryGarmentPrefab;
 
     public bool Clean { get => GetClean(); set => SetClean(value); }
     public float Cleanliness { get => GetCleanliness(); set => SetCleanliness(value); }
@@ -155,6 +157,7 @@ public class Garment
         currentFoldingStep = 0;
 
         //Overridden by garment category
+        type = GarmentType.Dress;
         foldingSteps = 3;
         size = 1;
         clotheslinePegs = 1;
@@ -214,9 +217,10 @@ public class Garment
     }
 
     public virtual LaundryGarment CreateLaundryGarment(Vector3 position, Quaternion rotation, Transform parent) {
-        GameObject obj = GameObject.Instantiate(laundryGarmentPrefab, position, rotation, parent);
-        LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
-        laundryGarment.garment = this;
+        //GameObject obj = GameObject.Instantiate(laundryGarmentPrefab, position, rotation, parent);
+        //LaundryGarment laundryGarment = obj.GetComponent<LaundryGarment>();
+        //laundryGarment.garment = this;
+        LaundryGarment laundryGarment = LaundryGarmentPoolManager.instance.SpawnLaundryGarment(position, parent, this);
         return laundryGarment;
     }
 }
@@ -254,5 +258,6 @@ public enum GarmentType {
     Underwear,
     Dress,
     Skirt,
-    Shirt
+    Shirt,
+    Femur
 }

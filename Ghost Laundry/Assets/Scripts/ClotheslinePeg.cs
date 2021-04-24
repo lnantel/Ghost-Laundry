@@ -29,7 +29,7 @@ public class ClotheslinePeg : LaundryObject
         if (col.bounds.Contains(laundryGarment.transform.position)) {
             if (clothesline.HangGarment(index, laundryGarment.garment)) {
                 AudioManager.instance.PlaySound(laundryGarment.garment.fabric.dropSound);
-                Destroy(laundryGarment.gameObject);
+                laundryGarment.ReturnToPool();
             }
         }
     }
