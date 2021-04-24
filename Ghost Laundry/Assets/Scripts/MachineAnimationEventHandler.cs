@@ -5,10 +5,12 @@ using UnityEngine;
 public class MachineAnimationEventHandler : MonoBehaviour
 {
     public void DryerShake() {
-        AudioManager.instance.PlaySound(SoundName.DryerShake);
+        if(TimeManager.instance.TimeIsPassing)
+            AudioManager.instance.PlaySound(SoundName.DryerShake);
     }
 
     public void WashingMachineShake() {
-        AudioManager.instance.PlaySound(SoundName.WashingMachineShake);
+        if (TimeManager.instance.TimeIsPassing)
+            AudioManager.instance.PlaySound(SoundName.WashingMachineShake);
     }
 }

@@ -26,10 +26,12 @@ public class AudioManager : MonoBehaviour {
 
     private void OnEnable() {
         MusicController.TrackDone += SetNextTrack;
+        GameManager.FadeOut += StopAllLoopingSounds;
     }
 
     private void OnDisable() {
         MusicController.TrackDone -= SetNextTrack;
+        GameManager.FadeOut -= StopAllLoopingSounds;
     }
 
     public void PlaySound(SoundName soundName) {
@@ -65,6 +67,10 @@ public class AudioManager : MonoBehaviour {
 
     public void StopMusic() {
         musicController.Stop();
+    }
+
+    private void StopAllLoopingSounds() {
+        EffectsPool.StopAllLoopingSounds();
     }
 
     public AudioSourceController PlaySoundLoop(SoundName soundName, float duration = 0.0f) {

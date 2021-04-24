@@ -124,7 +124,6 @@ public class Dryer : WorkStation
         else if (dryerSetting == DryerSetting.Low) cycleTime = 20.0f;
 
         AudioManager.instance.PlaySound(SoundName.MachineStart);
-        AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, cycleTime);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
@@ -142,10 +141,12 @@ public class Dryer : WorkStation
             contents.Add(garment);
 
         if (autoCompleteFlag) {
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, 2.0f);
             yield return new WaitForLaundromatSeconds(2.0f);
             autoCompleteFlag = false;
         }
         else {
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, cycleTime);
             yield return new WaitForLaundromatSeconds(cycleTime);
         }
 

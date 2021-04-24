@@ -117,7 +117,6 @@ public class WashingMachine : WorkStation
         bool containsColoredGarments = false;
 
         AudioManager.instance.PlaySound(SoundName.MachineStart);
-        AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, WashCycleTime);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
         foreach (Garment garment in contents) {
@@ -138,10 +137,12 @@ public class WashingMachine : WorkStation
             contents.Add(garment);
 
         if (autoCompleteFlag) {
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, 2.0f);
             yield return new WaitForLaundromatSeconds(2.0f);
             autoCompleteFlag = false;
         }
         else {
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, WashCycleTime);
             yield return new WaitForLaundromatSeconds(WashCycleTime);
         }
 
