@@ -34,17 +34,19 @@ public class LaundryTable : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("LaundryGarment")) {
             LaundryGarment laundryGarment = collision.gameObject.GetComponentInParent<LaundryGarment>();
-            if (laundryGarment.IsHeld) {
-                laundryGarment.OnFoldingSurface = false;
-            }
-            else {
-                Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
-                //Does the laundryGarment's new collider touch the trigger?
-                if (laundryGarment.colliders[laundryGarment.garment.currentFoldingStep].bounds.Intersects(GetComponent<Collider2D>().bounds)) {
-                    rb.gravityScale = 0.0f;
+            if(laundryGarment != null && laundryGarment.gameObject.activeSelf) {
+                if (laundryGarment.IsHeld) {
+                    laundryGarment.OnFoldingSurface = false;
                 }
                 else {
-                    rb.gravityScale = 1.0f;
+                    Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+                    //Does the laundryGarment's new collider touch the trigger?
+                    if (laundryGarment.colliders[laundryGarment.garment.currentFoldingStep].bounds.Intersects(GetComponent<Collider2D>().bounds)) {
+                        rb.gravityScale = 0.0f;
+                    }
+                    else {
+                        rb.gravityScale = 1.0f;
+                    }
                 }
             }
         }

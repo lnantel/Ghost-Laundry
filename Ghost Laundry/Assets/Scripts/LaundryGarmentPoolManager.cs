@@ -16,7 +16,9 @@ public class LaundryGarmentPoolManager : PoolManager
     public LaundryGarment SpawnLaundryGarment(Vector3 position, Transform parent, Garment garment) {
         for(int i = 0; i < LaundryGarmentPools.Length; i++) {
             if(LaundryGarmentPools[i].GarmentPoolType == garment.type) {
-                return LaundryGarmentPools[i].GetLaundryGarment(position, parent, garment);
+                LaundryGarment laundryGarment = LaundryGarmentPools[i].GetLaundryGarment(position, parent, garment);
+                laundryGarment.UpdateAppearance();
+                return laundryGarment;
             }
         }
         return null;
@@ -24,6 +26,11 @@ public class LaundryGarmentPoolManager : PoolManager
 
     public void ReturnToPool(LaundryGarment laundryGarment) {
         GarmentType type = laundryGarment.garment.type;
+
+        Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0.0f;
+        rb.velocity = Vector3.zero;
+
         laundryGarment.garment = null;
         for (int i = 0; i < LaundryGarmentPools.Length; i++) {
             if (LaundryGarmentPools[i].GarmentPoolType == type) {
