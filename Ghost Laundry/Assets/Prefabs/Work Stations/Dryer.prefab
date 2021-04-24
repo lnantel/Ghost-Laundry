@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8266804777226854333}
   - component: {fileID: 161510964696944137}
   - component: {fileID: 208245152931346565}
+  - component: {fileID: 8131387614609912332}
   m_Layer: 0
   m_Name: Dryer_renderer
   m_TagString: Untagged
@@ -160,6 +161,18 @@ MonoBehaviour:
   groundContact: {fileID: 6143789841664930417}
   CanBePlacedOnThings: 0
   forceToFront: 0
+--- !u!114 &8131387614609912332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364480492718243017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5afdcbece2c214aa3c251032a4cb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1373044004663946482
 GameObject:
   m_ObjectHideFlags: 0

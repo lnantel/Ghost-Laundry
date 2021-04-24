@@ -123,6 +123,7 @@ public class Dryer : WorkStation
         if (dryerSetting == DryerSetting.High) cycleTime = 10.0f;
         else if (dryerSetting == DryerSetting.Low) cycleTime = 20.0f;
 
+        AudioManager.instance.PlaySound(SoundName.MachineStart);
         AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, cycleTime);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
