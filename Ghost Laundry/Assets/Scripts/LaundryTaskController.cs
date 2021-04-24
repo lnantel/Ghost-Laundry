@@ -39,6 +39,9 @@ public class LaundryTaskController : MonoBehaviour
     public LaundryObject grabbedObject;
     public float grabDelay;
 
+    public bool InspectableTarget;
+    public SpriteRenderer InspectableIcon;
+
     private IEnumerator DelayGrabCoroutine;
 
     private void Awake() {
@@ -129,6 +132,7 @@ public class LaundryTaskController : MonoBehaviour
             //Hover
             target = GetTarget();
             if (target != null) {
+                InspectableTarget = target.gameObject.layer == LayerMask.NameToLayer("LaundryGarment") || target.gameObject.layer == LayerMask.NameToLayer("Basket");
                 target.OnHover(cursor.position);
                 if(interactInputHeld || inspectInputHeld)
                     cursorSpriteRenderer.sprite = defaultCursorSprite;
@@ -136,8 +140,12 @@ public class LaundryTaskController : MonoBehaviour
                     cursorSpriteRenderer.sprite = targetCursorSprite;
             }
             else {
+                InspectableTarget = false;
                 cursorSpriteRenderer.sprite = defaultCursorSprite;
             }
+
+            //If the target is inspectable, show the magnifying glass icon
+            InspectableIcon.enabled = InspectableTarget;
         }
     }
 
