@@ -9,7 +9,8 @@ public class MoneyManager : MonoBehaviour
 
     public Canvas WorldSpaceCanvas;
     public int CurrentAmount;
-    public int Rent;
+    public int Rent { get => DailyRentAmounts[TimeManager.instance.CurrentDay]; }
+    public int[] DailyRentAmounts;
 
     public int LaunderedGarmentFee;
     public int PerfectGarmentTip;

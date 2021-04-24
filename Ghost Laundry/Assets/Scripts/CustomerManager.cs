@@ -70,7 +70,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void SpawnCustomer() {
-        if(customersInLaundromat.Count < 10) {
+        if(customersInLaundromat.Count < 9) {
             Customer customer = Instantiate(customerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
             customersInLaundromat.Add(customer);
             customerSpawningTimer = 0;
