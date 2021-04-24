@@ -37,7 +37,7 @@ public class DryerDoor : LaundryObject
     }
 
     public override void OnGrab() {
-        if (dryer.state == DryerState.DoorOpen) {
+        if (dryer.state == DryerState.DoorOpen && closedDoorCollider.bounds.Contains(LaundryTaskController.instance.cursor.position)) {
             Garment garment = dryer.RemoveTopGarment();
             if (garment != null && GarmentGrabbed != null) {
                 GarmentGrabbed(garment);
