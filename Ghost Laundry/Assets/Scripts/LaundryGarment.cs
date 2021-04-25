@@ -41,6 +41,7 @@ public class LaundryGarment : LaundryObject, ITrackable
     private bool inspected;
     private Vector2 lastPosition;
     private bool initialized;
+    private Animator animator;
     
     private void Start() {
         if(garment == null) {
@@ -48,6 +49,7 @@ public class LaundryGarment : LaundryObject, ITrackable
         }
 
         sortingGroup = GetComponent<SortingGroup>();
+        animator = GetComponentInChildren<Animator>();
 
         rb = GetComponent<Rigidbody2D>();
         laundryTag = GetComponentInChildren<LaundryTag>();
@@ -98,6 +100,11 @@ public class LaundryGarment : LaundryObject, ITrackable
                                 break;
                             }
                         }
+                    }
+                    //If the folding failed, trigger the FoldFailed animation and play a sound
+                    if(garment.currentFoldingStep != 1) {
+                        if (animator != null) animator.SetTrigger("FoldFailed");
+                        //AudioManager.instance.PlaySound(SoundName.TODO);
                     }
                 }
                 else if(garment.currentFoldingStep == 1) {
@@ -257,9 +264,5 @@ public class LaundryGarment : LaundryObject, ITrackable
 
     public void ReturnToPool() {
         LaundryGarmentPoolManager.instance.ReturnToPool(this);
-    }
-
-    private void OnDestroy() {
-        Debug.LogWarning("LaudryGarment destroyed");
     }
 }

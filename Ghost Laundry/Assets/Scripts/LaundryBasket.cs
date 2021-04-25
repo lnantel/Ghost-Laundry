@@ -41,7 +41,7 @@ public class LaundryBasket : LaundryObject, ITrackable {
     }
 
     private void OnDisable() {
-        if (basketView.activeSelf) DisableBasketView();
+        //if (basketView.activeSelf) DisableBasketView();
         WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
         OpenBasketView -= OnOtherOpenBasketView;
         PlacedInBasketView -= OnPlacedInBasketView;
@@ -189,11 +189,11 @@ public class LaundryBasket : LaundryObject, ITrackable {
         }
     }
 
-    private void DisableBasketView() {
+    public void DisableBasketView() {
         StartCoroutine(DisableBasketViewCoroutine());
     }
 
-    private IEnumerator DisableBasketViewCoroutine() {
+    public IEnumerator DisableBasketViewCoroutine() {
         basket.contents = new List<Garment>();
         basket.positions = new List<Vector3>();
         for (int i = 0; i < laundryGarments.Count; i++) {

@@ -229,11 +229,29 @@ public class LaundryTaskController : MonoBehaviour
     }
 
     public void BackOut() {
+        StartCoroutine(BackOutCoroutine());
+    }
+
+    private IEnumerator BackOutCoroutine() {
+        Locked = true;
+
+        for(int i = 0; i < activeWorkStation.basketSlots.Length; i++) {
+            if(activeWorkStation.basketSlots[i].laundryBasket != null && activeWorkStation.basketSlots[i].laundryBasket.basketView.activeSelf) {
+                IEnumerator closingBasketView = activeWorkStation.basketSlots[i].laundryBasket.DisableBasketViewCoroutine();
+                StartCoroutine(closingBasketView);
+                while (activeWorkStation.basketSlots[i].laundryBasket.basketView.activeSelf)
+                    yield return null;
+            }
+        }
+
         if (grabbedObject != null) Release();
         activeWorkStation = null;
-        gameObject.SetActive(false);
         if (exitedTask != null)
             exitedTask();
+
+        Locked = false;
+
+        gameObject.SetActive(false);
     }
 
     private void GrabGarmentFromContainer(Garment garment) {

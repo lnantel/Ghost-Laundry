@@ -11,6 +11,8 @@ public class LaundromatLightingController : MonoBehaviour
     public Light2D ambientLight;
     public Light2D openSignLight;
     public Light2D signFrameLight;
+    public Light2D taskCeilingLight;
+    public Light2D taskAmbientLight;
 
     public Gradient daylightColor;
     public Gradient windowLightColor;
@@ -39,6 +41,9 @@ public class LaundromatLightingController : MonoBehaviour
         windowLight.color = currentWindowLightColor;
         windowLight.intensity = windowLightIntensity.Evaluate(time) * windowLightFactor;
         ambientLight.color = currentDaylightColor;
+
+        taskCeilingLight.intensity = laundromatLight.intensity;
+        taskAmbientLight.color = ambientLight.color;
     }
 
     public void Dim() {
