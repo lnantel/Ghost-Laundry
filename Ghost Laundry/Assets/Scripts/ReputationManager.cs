@@ -95,7 +95,7 @@ public class ReputationManager : MonoBehaviour {
 
     private void OnStarReachedReputationBar(bool sign) {
         displayedAmount += sign ? 1 : -1;
-        SoundName sound = sign ? SoundName.MoneyTallyGain : SoundName.MoneyTallyLoss;
+        SoundName sound = sign ? SoundName.ReputationGain : SoundName.ReputationLoss;
         AudioManager.instance.PlaySound(sound);
     }
 
@@ -103,7 +103,7 @@ public class ReputationManager : MonoBehaviour {
         for(int i = 0; i < starData.amount; i++) {
             FlyingStar star = starPool.SpawnObject(starData.position).GetComponent<FlyingStar>();
             star.SetSign(starData.positive);
-            yield return new WaitForLaundromatSeconds(0.05f);
+            yield return new WaitForLaundromatSeconds(0.1f);
         }
 
         spawnStarCoroutine = null;

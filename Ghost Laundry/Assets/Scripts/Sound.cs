@@ -119,5 +119,8 @@ public enum SoundName {
 
     DryerShake,
     WashingMachineShake,
-    MachineStart
+    MachineStart,
+
+    ReputationGain,
+    ReputationLoss
 }

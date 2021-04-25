@@ -87,7 +87,7 @@ public class ContainedBasketIndicator : Carryable, ITrackable
             base.ShowPopUp(instanceID);
         }
         else if (isBasketPile && basketSprite.enabled) {
-            if (popUpInstance != null) {
+            if (popUpInstance != null && workStation.basketSlots[basketSlotIndex].laundryBasket != null) {
                 if (!locked && instanceID == gameObject.GetInstanceID() && ((PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count == 0) || (!PlayerStateManager.instance.Carrying && workStation.basketSlots[basketSlotIndex].laundryBasket.basket.contents.Count > 0))) {
                     popUpInstance.SetActive(true);
                     OutlineRenderer.enabled = true;
