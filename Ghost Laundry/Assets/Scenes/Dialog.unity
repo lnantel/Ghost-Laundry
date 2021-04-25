@@ -37380,25 +37380,19 @@ GameObject:
   - component: {fileID: 1531134643}
   - component: {fileID: 1531134642}
   - component: {fileID: 1531134641}
-  - component: {fileID: 1531134640}
-  - component: {fileID: 1531134639}
-  - component: {fileID: 1531134638}
-  - component: {fileID: 1531134637}
-  - component: {fileID: 1531134636}
-  - component: {fileID: 1531134635}
-  - component: {fileID: 1531134633}
-  - component: {fileID: 1531134634}
-  - component: {fileID: 1531134632}
-  - component: {fileID: 1531134631}
-  - component: {fileID: 1531134630}
-  - component: {fileID: 1531134629}
-  - component: {fileID: 1531134628}
-  - component: {fileID: 1531134627}
-  - component: {fileID: 1531134626}
   - component: {fileID: 1531134625}
   - component: {fileID: 1531134624}
   - component: {fileID: 1531134623}
+  - component: {fileID: 1531134634}
+  - component: {fileID: 1531134633}
+  - component: {fileID: 1531134632}
+  - component: {fileID: 1531134630}
+  - component: {fileID: 1531134628}
+  - component: {fileID: 1531134631}
+  - component: {fileID: 1531134629}
+  - component: {fileID: 1531134627}
   - component: {fileID: 1531134622}
+  - component: {fileID: 1531134626}
   m_Layer: 0
   m_Name: Day8
   m_TagString: Untagged
@@ -37430,8 +37424,7 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1531134620}
+  selectedBlocks: []
   selectedCommands: []
   variables: []
   description: 
@@ -37458,8 +37451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
-    y: 70
+    x: 66
+    y: 69
     width: 80.8
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -37469,34 +37462,28 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1531134634}
   - {fileID: 1531134649}
   - {fileID: 1531134648}
-  - {fileID: 1531134647}
-  - {fileID: 1531134646}
-  - {fileID: 1531134645}
-  - {fileID: 1531134644}
-  - {fileID: 1531134643}
-  - {fileID: 1531134642}
-  - {fileID: 1531134641}
-  - {fileID: 1531134640}
-  - {fileID: 1531134639}
-  - {fileID: 1531134638}
-  - {fileID: 1531134637}
-  - {fileID: 1531134636}
-  - {fileID: 1531134635}
-  - {fileID: 1531134634}
   - {fileID: 1531134633}
   - {fileID: 1531134632}
   - {fileID: 1531134631}
+  - {fileID: 1531134646}
   - {fileID: 1531134630}
   - {fileID: 1531134629}
+  - {fileID: 1531134647}
   - {fileID: 1531134628}
   - {fileID: 1531134627}
+  - {fileID: 1531134645}
+  - {fileID: 1531134644}
   - {fileID: 1531134626}
+  - {fileID: 1531134642}
+  - {fileID: 1531134622}
+  - {fileID: 1531134641}
+  - {fileID: 1531134643}
   - {fileID: 1531134625}
   - {fileID: 1531134624}
   - {fileID: 1531134623}
-  - {fileID: 1531134622}
   - {fileID: 1531134621}
   suppressAllAutoSelections: 0
 --- !u!114 &1531134621
@@ -37528,11 +37515,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 29
+  itemId: 38
   indentLevel: 0
-  storyText: '{i}Good luck!{/i}'
+  storyText: I'm a genius.
   description: 
-  character: {fileID: 164480228}
+  character: {fileID: 626984432}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -37557,8 +37544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  storyText: '{i}Check the posters behind the WASHING MACHINE, the DRYER and the
-    IRONING BOARD if you need to make sure what each icon means!{/i}'
+  storyText: '{i}Then CLICK and HOLD the PEDAL for a certain amount of time to sew
+    the garment.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -37585,8 +37572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  storyText: '{i}The tag will say what FABRIC each piece of clothing is made of,
-    and LAUNDRY ICONS will tell you how to wash the clothes without damaging them.{/i}'
+  storyText: '{i}You can use the sewing machine by DRAGGING the clothes on the under
+    the needle.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -37613,7 +37600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 0
-  storyText: '{i}You can INSPECT clothes with RIGHT CLICK to view their LAUNDRY TAG.{/i}'
+  storyText: '{i}The SEWING MACHINE is used to fix RIPPED clothes.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -37638,22 +37625,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 25
+  itemId: 39
   indentLevel: 0
-  display: 2
+  display: 1
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
-  toPosition: {fileID: 915239209}
+  toPosition: {fileID: 0}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
-  move: 1
+  move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 0
 --- !u!114 &1531134627
@@ -37668,12 +37655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 24
+  itemId: 37
   indentLevel: 0
-  storyText: Alright, time to open! Get ready!
+  storyText: Yeah, sure is boss!
   description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37692,27 +37679,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531134618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 23
+  itemId: 34
   indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
+  storyText: Huh...
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1531134629
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -37725,12 +37709,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 22
+  itemId: 36
   indentLevel: 0
-  storyText: 'Oh, is that what those are? Gotcha. '
+  storyText: Wait, it looks ancient.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37752,13 +37736,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 21
+  itemId: 33
   indentLevel: 0
-  storyText: Didn't ya see the posters all over the place? We got 'em up near every
-    machine, they'll tell you what the icons mean.
+  storyText: ...
   description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37780,12 +37763,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 20
+  itemId: 35
   indentLevel: 0
-  storyText: How can anyone tell what those mean, anyway?
+  storyText: A sewing machine!
   description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37807,12 +37790,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 19
+  itemId: 32
   indentLevel: 0
-  storyText: Oh yeah, laundry tags, with all the little icons on them!
+  storyText: Huh hi. What is it?
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37834,9 +37817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 17
+  itemId: 31
   indentLevel: 0
-  storyText: Once you get good, maybe you won't even have to check the tags at all.
+  storyText: You won't believe what I got today.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -37858,197 +37841,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531134618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 18
+  itemId: 30
   indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1531134635
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531134618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 16
-  indentLevel: 0
-  storyText: That's right! Clothes've got TAGS that'll tell you what fabric they
-    are and HOW TO WASH 'EM properly.
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1531134636
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531134618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1531134637
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531134618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 14
-  indentLevel: 0
-  storyText: Oh... so, MORE sorting.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1531134638
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531134618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 13
-  indentLevel: 0
-  storyText: Since we've got temperature control, we can wash MORE FABRICS than just
-    COTTON now!
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1531134639
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531134618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 12
-  indentLevel: 0
-  storyText: Think again, kid.
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1531134640
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531134618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 11
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
+  sayDialog: {fileID: 1603958713}
 --- !u!114 &1531134641
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -38063,10 +37861,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: Great! No more sorting!
+  storyText: You sure are boss...
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -38090,8 +37888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: The washing machine's fixed! You can change the TEMPERATURE SETTING
-    now!
+  storyText: Which means I'll get money.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -38124,14 +37921,14 @@ MonoBehaviour:
   replacedCharacter: {fileID: 0}
   portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
   offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
+  fromPosition: {fileID: 1194153116}
+  toPosition: {fileID: 915239209}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
-  move: 0
+  move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
 --- !u!114 &1531134644
@@ -38148,7 +37945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: Good job yesterday, kid. I've got good news!
+  storyText: Now if you mess up, you can fix it.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -38205,7 +38002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Good morning!
+  storyText: Great!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
@@ -38232,7 +38029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: Good mornin'!
+  storyText: Isn't it great, kid?
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -38535,8 +38332,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1586153972}
-  selectedCommands:
-  - {fileID: 1586153995}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -38610,7 +38406,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1586153974
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38640,7 +38436,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1586153975
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38667,7 +38463,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1586153976
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38694,7 +38490,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1586153977
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38721,7 +38517,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1586153978
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38748,7 +38544,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1586153979
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38778,7 +38574,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1586153980
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38805,7 +38601,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1586153981
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -44990,7 +44786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1586153971}
+  selectedFlowchart: {fileID: 1531134619}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
