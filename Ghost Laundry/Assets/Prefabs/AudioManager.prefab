@@ -24750,6 +24750,10 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 7ff9b9af5e5102d45b99b105925827b7, type: 3}
     Volume: 1
     Pitch: 0.5
+  - Name: 81
+    Clip: {fileID: 8300000, guid: 2cf7d5e5250a5d744b2ec27575749ccf, type: 3}
+    Volume: 0.7
+    Pitch: 1
   EffectsPool: {fileID: 937444826290302071}
   musicController: {fileID: 7392348833349182636}
 --- !u!81 &7348011576969667191
