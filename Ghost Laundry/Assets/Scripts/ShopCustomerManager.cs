@@ -32,8 +32,12 @@ public class ShopCustomerManager : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++) {
             if (!transform.GetChild(i).gameObject.activeSelf) shopCustomers.Add(transform.GetChild(i).GetComponent<ShopCustomer>());
         }
-        ShopCustomer shopCustomer = shopCustomers[UnityEngine.Random.Range(0, shopCustomers.Count)];
-        shopCustomer.gameObject.SetActive(true);
-        shopCustomer.lifetime = UnityEngine.Random.Range(MinVisitTime, MaxVisitTime);
+        if(shopCustomers.Count > 0) {
+            ShopCustomer shopCustomer = shopCustomers[UnityEngine.Random.Range(0, shopCustomers.Count)];
+            if (shopCustomer != null) {
+                shopCustomer.gameObject.SetActive(true);
+                shopCustomer.lifetime = UnityEngine.Random.Range(MinVisitTime, MaxVisitTime);
+            }
+        }
     }
 }
