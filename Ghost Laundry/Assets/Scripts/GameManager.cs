@@ -444,7 +444,7 @@ public class GameManager : MonoBehaviour {
 
     public void OnRetry() {
         if (stateTransition == null) {
-            SaveManager.LoadDay(TimeManager.instance.CurrentDay - 1);
+            SaveManager.LoadDay(TimeManager.instance.CurrentDay);
             stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
