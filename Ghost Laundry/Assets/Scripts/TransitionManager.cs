@@ -74,6 +74,7 @@ public class TransitionManager : MonoBehaviour
 
         //Color the level
         Levels[CurrentDay].gameObject.GetComponent<LevelTileAnimator>().Flip();
+        AudioManager.instance.PlaySound(SoundName.LevelTileActivation);
 
         yield return new WaitForSecondsRealtime(1.0f);
 

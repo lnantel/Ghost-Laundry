@@ -122,5 +122,6 @@ public enum SoundName {
     MachineStart,
 
     ReputationGain,
-    ReputationLoss
+    ReputationLoss,
+    LevelTileActivation
 }
