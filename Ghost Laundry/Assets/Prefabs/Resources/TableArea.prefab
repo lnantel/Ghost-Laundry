@@ -2704,6 +2704,7 @@ Transform:
   - {fileID: 7477442601952089056}
   - {fileID: 7635435441077319863}
   - {fileID: 607445042443191140}
+  - {fileID: 7514719696426690061}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3715,4 +3716,42 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4249374155597497260, guid: bb08104aa25e88b4b8a230cfa7429551, type: 3}
   m_PrefabInstance: {fileID: 560413046675543046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4019549654646014736
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1037721697902524373}
+    m_Modifications:
+    - target: {fileID: 2209478311681886854, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451446819622601280, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+      propertyPath: m_Name
+      value: ReturnSprite_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882039689354454301, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882039689354454301, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882039689354454301, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882039689354454301, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+--- !u!4 &7514719696426690061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6882039689354454301, guid: ba6b968d96d8c734899356aa669557c1, type: 3}
+  m_PrefabInstance: {fileID: 4019549654646014736}
   m_PrefabAsset: {fileID: 0}
