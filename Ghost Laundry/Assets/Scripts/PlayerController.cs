@@ -107,14 +107,22 @@ public class PlayerController : MonoBehaviour
             moveDir = Vector2.SmoothDamp(moveDir, input.Move.normalized, ref zero, m_RotationDampeningFactor * m_AccelerationCurve.Evaluate(accelerationFactor));
         }
         else {
+            Vector2 zero = Vector2.zero;
             state.EndWalk();
             //Decrease acceleration factor
             accelerationFactor = Mathf.Max(accelerationFactor - Time.deltaTime / m_AccelerationTime, 0.0f);
+
+            Vector2 defaultDir = moveDir.x > 0.01f ? Vector2.right : Vector2.left;
+            moveDir = Vector2.SmoothDamp(moveDir, defaultDir, ref zero, m_RotationDampeningFactor * m_AccelerationCurve.Evaluate(accelerationFactor));
         }
 
         //Facing
-        if (moveDir.x > 0.01f) facingRight = true;
-        else if (moveDir.x < -0.01f) facingRight = false;
+        if (moveDir.x > 0.01f) {
+            facingRight = true;
+        }
+        else if (moveDir.x < -0.01f) {
+            facingRight = false;
+        }
 
         rb.velocity = moveDir * m_Speed * m_AccelerationCurve.Evaluate(accelerationFactor);
     }
