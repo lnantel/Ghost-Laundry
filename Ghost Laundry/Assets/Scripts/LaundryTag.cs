@@ -19,26 +19,34 @@ public class LaundryTag : MonoBehaviour
     public Sprite[] DrySprites;
     public Sprite[] PressSprites;
 
-    private Garment garment;
+    public Garment garment;
     private Canvas canvas;
 
     private void Start() {
-        garment = GetComponentInParent<LaundryGarment>().garment;
+        //garment = GetComponentInParent<LaundryGarment>().garment;
         canvas = GetComponent<Canvas>();
         Hide();
-        Initialize();
+        //Initialize();
     }
 
-    private void Initialize() {
-        TXT_Fabric.text = "100% " + garment.fabric.name;
-        TXT_Owner.text = "Owner: #" + garment.customerID.ToString("D3");
-        WashIcon.sprite = WashSprites[(int)garment.fabric.washingRestrictions];
-        DryIcon.sprite = DrySprites[(int)garment.fabric.dryingRestrictions];
-        PressIcon.sprite = PressSprites[(int)garment.fabric.pressingRestrictions];
+    //private void Initialize() {
+
+    //}
+
+    private void UpdateAppearance() {
+        garment = GetComponentInParent<LaundryGarment>().garment;
+        if (garment != null) {
+            TXT_Fabric.text = "100% " + garment.fabric.name;
+            TXT_Owner.text = "Owner: #" + garment.customerID.ToString("D3");
+            WashIcon.sprite = WashSprites[(int)garment.fabric.washingRestrictions];
+            DryIcon.sprite = DrySprites[(int)garment.fabric.dryingRestrictions];
+            PressIcon.sprite = PressSprites[(int)garment.fabric.pressingRestrictions];
+        }
     }
 
     public void Show() {
         if (!visible) {
+            UpdateAppearance();
             visible = true;
             canvas.enabled = true;
         }

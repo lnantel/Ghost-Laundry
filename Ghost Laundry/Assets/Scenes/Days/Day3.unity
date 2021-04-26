@@ -169,13 +169,13 @@ MonoBehaviour:
   MinimumNumberOfGarments: 5
   MaximumNumberOfGarments: 9
   LaundryGenerationParameters:
-  - ratio: 33
+  - ratio: 50
     fabric: 0
     garmentType: 00000000010000000200000003000000040000000500000006000000
-  - ratio: 33
+  - ratio: 25
     fabric: 2
     garmentType: 00000000010000000200000003000000040000000500000006000000
-  - ratio: 33
+  - ratio: 25
     fabric: 1
     garmentType: 00000000010000000200000003000000040000000500000006000000
   WeightedFabricIndices: 

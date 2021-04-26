@@ -228,14 +228,19 @@ public class LaundryTaskController : MonoBehaviour
         grabbedObject = null;
     }
 
+    private IEnumerator backOutCoroutine;
+
     public void BackOut() {
-        StartCoroutine(BackOutCoroutine());
+        if(backOutCoroutine == null) {
+            backOutCoroutine = BackOutCoroutine();
+            StartCoroutine(backOutCoroutine);
+        }
     }
 
     private IEnumerator BackOutCoroutine() {
         Locked = true;
 
-        for(int i = 0; i < activeWorkStation.basketSlots.Length; i++) {
+        for (int i = 0; i < activeWorkStation.basketSlots.Length; i++) {
             if(activeWorkStation.basketSlots[i].laundryBasket != null && activeWorkStation.basketSlots[i].laundryBasket.basketView.activeSelf) {
                 IEnumerator closingBasketView = activeWorkStation.basketSlots[i].laundryBasket.DisableBasketViewCoroutine();
                 StartCoroutine(closingBasketView);
@@ -251,6 +256,7 @@ public class LaundryTaskController : MonoBehaviour
 
         Locked = false;
 
+        backOutCoroutine = null;
         gameObject.SetActive(false);
     }
 

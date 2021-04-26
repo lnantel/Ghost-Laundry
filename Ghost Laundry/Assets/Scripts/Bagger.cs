@@ -149,7 +149,7 @@ public class Bagger : WorkStation
                 ruinedGarments++;
             else if (garment.Dry && garment.Clean && garment.Folded) {
                 launderedGarments++;
-                if (garment.Pressed)
+                if (garment.Pressed || garment.fabric.pressingRestrictions == PressingRestrictions.NoIroning)
                     perfectGarments++;
             }
             contents.Remove(garment);
