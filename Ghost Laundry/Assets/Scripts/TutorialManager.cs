@@ -157,6 +157,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public void StartTutorial() {
+        skipCanvas.gameObject.SetActive(false);
         GameManager.instance.HideCursor();
         skipCanvas.gameObject.SetActive(false);
         StartCoroutine(StartTutorialCoroutine());
@@ -840,6 +841,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public void OnReady() {
+        skipCanvas.sortingOrder = 99;
         MoneyManager.instance.CurrentAmount = 0;
         TimeManager.instance.EndDay();
     }
