@@ -80,7 +80,7 @@ public class MoneyManager : MonoBehaviour
         int tip = 0;
 
         fee += bag.launderedGarments * LaunderedGarmentFee;
-        tip += bag.perfectGarments * PerfectGarmentTip;
+        tip += bag.perfectIronedGarments * PerfectGarmentTip;
 
         fee -= bag.ruinedGarments * RuinedGarmentPenalty;
 

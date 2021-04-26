@@ -11,6 +11,7 @@ public class LaundromatBag : MonoBehaviour
     public int totalGarments;
     public int launderedGarments;
     public int perfectGarments;
+    public int perfectIronedGarments;
     public int ruinedGarments;
 
     public bool ReadyForPickUp;

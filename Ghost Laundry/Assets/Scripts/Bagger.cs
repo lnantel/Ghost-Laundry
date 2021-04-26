@@ -142,6 +142,7 @@ public class Bagger : WorkStation
         //Remove all of this customer's garments from the bagger
         int launderedGarments = 0;
         int perfectGarments = 0;
+        int perfectIronedGarments = 0;
         int ruinedGarments = 0;
 
         foreach (Garment garment in customersGarments) {
@@ -149,8 +150,10 @@ public class Bagger : WorkStation
                 ruinedGarments++;
             else if (garment.Dry && garment.Clean && garment.Folded) {
                 launderedGarments++;
-                if (garment.Pressed || garment.fabric.pressingRestrictions == PressingRestrictions.NoIroning)
+                if (garment.Pressed || garment.fabric.pressingRestrictions == PressingRestrictions.NoIroning) {
                     perfectGarments++;
+                    if (garment.Pressed) perfectIronedGarments++;
+                }
             }
             contents.Remove(garment);
         }
