@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
     public static Action FadeIn;
     public static Action FadeOut;
+    public static Action WhiteIn;
+    public static Action WhiteOut;
 
     public static Action ShowEvaluation;
     public static Action HideEvaluation;
@@ -227,7 +229,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToEpilogue() {
         if (SceneManager.sceneCount > 1) {
-            if (FadeOut != null) FadeOut();
+            if (WhiteOut != null) WhiteOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
             while (scenesLoading != null) yield return null;
@@ -241,7 +243,8 @@ public class GameManager : MonoBehaviour {
         if (HideHUD != null) HideHUD();
         if (HideSettings != null) HideSettings();
         if (ResumeGame != null) ResumeGame();
-        if (FadeIn != null) FadeIn();
+        if (WhiteIn != null) WhiteIn();
+        else if (FadeIn != null) FadeIn();
 
         state = GameStates.Laundromat;
 
@@ -249,8 +252,10 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator GoToCredits() {
+        bool endOfGame = SceneManager.GetSceneByName("Epilogue").isLoaded;
         if (SceneManager.sceneCount > 1) {
-            if (FadeOut != null) FadeOut();
+            if (endOfGame && WhiteOut != null) WhiteOut();
+            else if (FadeOut != null) FadeOut();
             yield return new WaitForSecondsRealtime(2.0f);
             UnloadAllScenes();
             while (scenesLoading != null) yield return null;
@@ -264,7 +269,8 @@ public class GameManager : MonoBehaviour {
         if (HideHUD != null) HideHUD();
         if (HideSettings != null) HideSettings();
         if (ResumeGame != null) ResumeGame();
-        if (FadeIn != null) FadeIn();
+        if (endOfGame && WhiteIn != null) WhiteIn();
+        else if (FadeIn != null) FadeIn();
 
         ShowCursor();
 
@@ -471,6 +477,7 @@ public class GameManager : MonoBehaviour {
 
     public void OnEpilogueEnd() {
         if (stateTransition == null) {
+            SaveManager.Save();
             stateTransition = GoToCredits();
             StartCoroutine(stateTransition);
         }
