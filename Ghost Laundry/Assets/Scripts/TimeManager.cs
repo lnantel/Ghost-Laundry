@@ -52,7 +52,6 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(TimeIsPassing);
         deltaTime = Time.deltaTime * timeScale;
         if (TimeIsPassing) {
             if(CurrentDay != 0) {
