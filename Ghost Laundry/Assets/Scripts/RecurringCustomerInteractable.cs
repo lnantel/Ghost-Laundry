@@ -6,12 +6,13 @@ using System;
 public class RecurringCustomerInteractable : Interactable
 {
     public static Action<int> StartDialog;
+    public Transform popUpPos;
 
     private RecurringCustomer recurringCustomer;
 
     protected override void Start() {
         popUpPrefab = (GameObject)Resources.Load("DialogPopUp");
-        popUpInstance = Instantiate(popUpPrefab, transform.position, transform.rotation, transform);
+        popUpInstance = Instantiate(popUpPrefab, popUpPos.position, popUpPos.rotation, transform);
         popUpInstance.SetActive(false);
         popUpAnimator = popUpInstance.GetComponentInChildren<Animator>();
         Locked = true;
