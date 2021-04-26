@@ -14,11 +14,15 @@ public class Fade : MonoBehaviour
     private void OnEnable() {
         GameManager.FadeIn += FadeIn;
         GameManager.FadeOut += FadeOut;
+        GameManager.WhiteIn += WhiteIn;
+        GameManager.WhiteOut += WhiteOut;
     }
 
     private void OnDisable() {
         GameManager.FadeIn -= FadeIn;
         GameManager.FadeOut -= FadeOut;
+        GameManager.WhiteIn -= WhiteIn;
+        GameManager.WhiteOut -= WhiteOut;
     }
 
     private void FadeIn() {
@@ -27,5 +31,13 @@ public class Fade : MonoBehaviour
 
     private void FadeOut() {
         animator.SetTrigger("FadeOut");
+    }
+
+    private void WhiteIn() {
+        animator.SetTrigger("WhiteIn");
+    }
+
+    private void WhiteOut() {
+        animator.SetTrigger("WhiteOut");
     }
 }

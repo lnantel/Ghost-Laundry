@@ -42,7 +42,7 @@ public class LaundromatLightingController : MonoBehaviour
         windowLight.intensity = windowLightIntensity.Evaluate(time) * windowLightFactor;
         ambientLight.color = currentDaylightColor;
 
-        taskCeilingLight.intensity = laundromatLight.intensity;
+        taskCeilingLight.intensity = Mathf.Clamp(laundromatLight.intensity - 0.2f, 0.0f, laundromatLight.intensity);
         taskAmbientLight.color = ambientLight.color;
     }
 
