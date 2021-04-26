@@ -11,10 +11,12 @@ public class SettingsManager : MonoBehaviour {
     public float MouseSensitivity { get => m_MouseSensitivity; set => SetMouseSensitivity(value); }
     public float MusicVolume { get => m_MusicVolume; set => SetMusicVolume(value); }
     public float SFXVolume { get => m_SFXVolume; set => SetSFXVolume(value); }
+    public bool NoFailMode { get => m_NoFailMode; set => SetNoFailMode(value); }
 
     private float m_MouseSensitivity;
     private float m_MusicVolume;
     private float m_SFXVolume;
+    private bool m_NoFailMode;
 
     private void Awake() {
         if (instance != null) Destroy(gameObject);
@@ -36,12 +38,18 @@ public class SettingsManager : MonoBehaviour {
             SFXVolume = PlayerPrefs.GetFloat(Settings.SFXVolume.ToString());
         else
             SFXVolume = 0.5f;
+
+        if (PlayerPrefs.HasKey(Settings.NoFailMode.ToString()))
+            NoFailMode = PlayerPrefs.GetInt(Settings.NoFailMode.ToString()) == 1;
+        else
+            NoFailMode = false;
     }
 
     private void OnDisable() {
         PlayerPrefs.SetFloat(Settings.MouseSensitivity.ToString(), MouseSensitivity);
         PlayerPrefs.SetFloat(Settings.MusicVolume.ToString(), MusicVolume);
         PlayerPrefs.SetFloat(Settings.SFXVolume.ToString(), SFXVolume);
+        PlayerPrefs.SetInt(Settings.NoFailMode.ToString(), NoFailMode ? 1 : 0);
         PlayerPrefs.Save();
     }
 
@@ -58,10 +66,15 @@ public class SettingsManager : MonoBehaviour {
         m_SFXVolume = value;
         audioMixer.SetFloat("EffectsVol", Mathf.Log10(value) * 20);
     }
+
+    public void SetNoFailMode(bool value) {
+        m_NoFailMode = value;
+    }
 }
 
 public enum Settings {
     MouseSensitivity,
     MusicVolume,
-    SFXVolume
+    SFXVolume,
+    NoFailMode
 }

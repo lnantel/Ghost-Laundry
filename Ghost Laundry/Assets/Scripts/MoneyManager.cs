@@ -116,6 +116,8 @@ public class MoneyManager : MonoBehaviour
     private IEnumerator displayCoroutine;
 
     public void ModifyCurrentAmount(int amount) {
+        if (amount < 0 && SettingsManager.instance.NoFailMode)
+            return;
         updateDisplayedAmount = false;
         displayedChangeAmount += amount;
         CurrentAmount += amount;
