@@ -32,7 +32,7 @@ public class PlayerInputManager : MonoBehaviour
 
     void Update()
     {
-        if (TimeManager.instance.timeScale != 0 && Time.timeScale != 0) {
+        if (TimeManager.instance.TimeIsPassing) {
             xInput = Input.GetAxisRaw("Horizontal");
             yInput = Input.GetAxisRaw("Vertical");
 

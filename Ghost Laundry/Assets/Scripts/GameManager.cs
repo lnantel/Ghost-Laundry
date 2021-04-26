@@ -194,13 +194,14 @@ public class GameManager : MonoBehaviour {
 
         state = GameStates.StartOfDay;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Laundromat"));
-        TimeManager.instance.ResetTimeManager();
 
         if (ShowHUD != null) ShowHUD();
         if (HideSettings != null) HideSettings();
         if (ResumeGame != null) ResumeGame();
 
-        if(TimeManager.instance.CurrentDay != 0) {
+        TimeManager.instance.ResetTimeManager();
+
+        if (TimeManager.instance.CurrentDay != 0) {
             AudioManager.instance.PlayMusic(MusicTrackType.GameplayTrack);
 
             HideCursor();
