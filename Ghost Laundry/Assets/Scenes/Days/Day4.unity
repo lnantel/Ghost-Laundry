@@ -169,17 +169,20 @@ MonoBehaviour:
   MinimumNumberOfGarments: 5
   MaximumNumberOfGarments: 9
   LaundryGenerationParameters:
-  - ratio: 25
+  - ratio: 20
     fabric: 0
     garmentType: 00000000010000000200000003000000040000000500000006000000
-  - ratio: 25
+  - ratio: 20
     fabric: 2
     garmentType: 00000000010000000200000003000000040000000500000006000000
-  - ratio: 25
+  - ratio: 20
     fabric: 1
     garmentType: 00000000010000000200000003000000040000000500000006000000
-  - ratio: 25
+  - ratio: 20
     fabric: 3
+    garmentType: 00000000010000000200000003000000040000000500000006000000
+  - ratio: 20
+    fabric: 5
     garmentType: 00000000010000000200000003000000040000000500000006000000
   WeightedFabricIndices: 
 --- !u!1001 &341444333
@@ -350,15 +353,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5748218137804147326, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.819103
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.03239906
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 7502809973228414755, guid: 2571a284ee40c6d48b620416209a6570, type: 3}
       propertyPath: m_LocalPosition.z
