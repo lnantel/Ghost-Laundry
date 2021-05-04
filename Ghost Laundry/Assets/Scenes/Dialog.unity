@@ -44590,7 +44590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1732610272}
+  selectedFlowchart: {fileID: 2126506892}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
@@ -44628,7 +44628,6 @@ GameObject:
   - component: {fileID: 2126506912}
   - component: {fileID: 2126506911}
   - component: {fileID: 2126506910}
-  - component: {fileID: 2126506909}
   - component: {fileID: 2126506908}
   - component: {fileID: 2126506907}
   - component: {fileID: 2126506906}
@@ -44645,6 +44644,7 @@ GameObject:
   - component: {fileID: 2126506895}
   - component: {fileID: 2126506894}
   - component: {fileID: 2126506893}
+  - component: {fileID: 2126506909}
   m_Layer: 0
   m_Name: Day2
   m_TagString: Untagged
@@ -44766,7 +44766,6 @@ MonoBehaviour:
   - {fileID: 2126506912}
   - {fileID: 2126506911}
   - {fileID: 2126506910}
-  - {fileID: 2126506909}
   - {fileID: 2126506908}
   - {fileID: 2126506907}
   - {fileID: 2126506906}
@@ -44774,8 +44773,9 @@ MonoBehaviour:
   - {fileID: 2126506904}
   - {fileID: 2126506903}
   - {fileID: 2126506902}
-  - {fileID: 2126506901}
+  - {fileID: 2126506909}
   - {fileID: 2126506900}
+  - {fileID: 2126506901}
   - {fileID: 2126506899}
   - {fileID: 2126506898}
   - {fileID: 2126506897}
@@ -44811,7 +44811,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 2126506891}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 2126506898}
   variables: []
   description: 
   stepPause: 0
@@ -45061,8 +45062,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 21
   indentLevel: 0
-  storyText: Didn't ya see the posters all over the place? We got 'em up near every
-    machine, they'll tell you what the icons mean.
+  storyText: Don't forget to seperate white clothes from colored ones if you plan
+    on doing a hot wash.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -45258,7 +45259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: Oh... so, MORE sorting.
+  storyText: Oh... so I need to sort the clothes now...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
@@ -45273,7 +45274,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &2126506909
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -45283,10 +45284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 13
+  itemId: 30
   indentLevel: 0
-  storyText: Since we've got temperature control, we can wash MORE FABRICS than just
-    COTTON now!
+  storyText: Didn't ya see the posters all over the place? We got 'em up near every
+    machine, they'll tell you what the icons mean.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -45313,7 +45314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: Think again, kid.
+  storyText: Since we've got temperature control, we can wash MORE FABRICS than just
+    COTTON now!
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -45370,7 +45372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: Great! No more sorting!
+  storyText: Great! But what does that do?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
