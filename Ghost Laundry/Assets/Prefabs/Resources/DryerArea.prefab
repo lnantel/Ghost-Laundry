@@ -2335,8 +2335,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7689877630098104655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0976, y: 3.239, z: 0}
-  m_LocalScale: {x: 0.39691347, y: 0.3806933, z: 0.1707367}
+  m_LocalPosition: {x: 2.0958, y: 3.239, z: 0}
+  m_LocalScale: {x: 0.4432035, y: 0.466152, z: 0.1707367}
   m_Children: []
   m_Father: {fileID: 4733833796288162031}
   m_RootOrder: 6
@@ -2972,6 +2972,18 @@ PrefabInstance:
     - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7435610130690900882, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
