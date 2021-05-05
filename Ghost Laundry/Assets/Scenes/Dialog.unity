@@ -4050,6 +4050,8 @@ GameObject:
   - component: {fileID: 279368117}
   - component: {fileID: 279368116}
   - component: {fileID: 279368115}
+  - component: {fileID: 279368120}
+  - component: {fileID: 279368121}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -4085,7 +4087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: '{$Line} {w=3}'
+  storyText: '{$Line} {w={$Duration}}'
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
@@ -4153,6 +4155,7 @@ MonoBehaviour:
   eventHandler: {fileID: 279368116}
   commandList:
   - {fileID: 279368115}
+  - {fileID: 279368120}
   suppressAllAutoSelections: 0
 --- !u!114 &279368119
 MonoBehaviour:
@@ -4184,6 +4187,7 @@ MonoBehaviour:
   - {fileID: 279368115}
   variables:
   - {fileID: 279368117}
+  - {fileID: 279368121}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -4194,6 +4198,38 @@ MonoBehaviour:
   hideCommands: []
   luaEnvironment: {fileID: 0}
   luaBindingName: flowchart
+--- !u!114 &279368120
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279368113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 2
+  indentLevel: 0
+  targetObject: {fileID: 526769963}
+  methodName: EndToast
+  delay: 0
+--- !u!114 &279368121
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279368113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705fa1ac97df74e3a84ff952ffd923f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 1
+  key: Duration
+  value: 1
 --- !u!1 &304047178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,7 +4398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1457, y: 192}
+  m_AnchoredPosition: {x: -1457, y: 99}
   m_SizeDelta: {x: 357, y: 435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &319517096
@@ -11974,7 +12010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a3f4aa83e6a4742b1e047776b39dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flowchart: {fileID: 0}
+  flowchart: {fileID: 279368119}
 --- !u!4 &526769965
 Transform:
   m_ObjectHideFlags: 0
@@ -37935,7 +37971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1452669046
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37943,7 +37979,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452669045}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -203357344487581329, guid: 5bc2af6eee7563a468a7d43e7acab7a6, type: 2}
   m_audioClip: {fileID: 0}
@@ -38039,7 +38075,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452669045}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -203357344487581329, guid: 5bc2af6eee7563a468a7d43e7acab7a6, type: 2}
   m_audioClip: {fileID: 0}
@@ -38151,7 +38187,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452669045}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4782cf42f2644447b9631f6e522160b, type: 3}
   m_Name: 
@@ -46794,7 +46830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -700, y: -374}
+  m_AnchoredPosition: {x: -700, y: -291}
   m_SizeDelta: {x: 1400, y: 482.95996}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &2053497922

@@ -12,11 +12,11 @@ public class DebugTools : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.H)) {
-            ToastManager.instance.SayLine("Test line");
+            ToastManager.instance.SayLine("Test line", 1.0f);
         }
 
         if (Input.GetKeyDown(KeyCode.G)) {
-            ToastManager.instance.SayLine("Second test line");
+            ToastManager.instance.SayLine("Second test line", 1.0f);
         }
 
         //Press M to gain 10$
