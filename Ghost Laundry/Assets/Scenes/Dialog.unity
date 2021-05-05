@@ -11808,21 +11808,21 @@ GameObject:
   - component: {fileID: 542937663}
   - component: {fileID: 542937664}
   - component: {fileID: 542937662}
-  - component: {fileID: 542937660}
   - component: {fileID: 542937659}
-  - component: {fileID: 542937658}
   - component: {fileID: 542937657}
-  - component: {fileID: 542937656}
   - component: {fileID: 542937642}
   - component: {fileID: 542937641}
   - component: {fileID: 542937640}
   - component: {fileID: 542937649}
-  - component: {fileID: 542937648}
   - component: {fileID: 542937646}
-  - component: {fileID: 542937643}
   - component: {fileID: 542937647}
   - component: {fileID: 542937644}
   - component: {fileID: 542937645}
+  - component: {fileID: 542937652}
+  - component: {fileID: 542937650}
+  - component: {fileID: 542937651}
+  - component: {fileID: 542937648}
+  - component: {fileID: 542937643}
   - component: {fileID: 542937639}
   m_Layer: 0
   m_Name: Day4
@@ -11857,7 +11857,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 542937637}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 542937657}
   variables: []
   description: 
   stepPause: 0
@@ -11883,7 +11884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 66
+    x: 65
     y: 70
     width: 81.6
     height: 40
@@ -11896,24 +11897,24 @@ MonoBehaviour:
   commandList:
   - {fileID: 542937649}
   - {fileID: 542937666}
-  - {fileID: 542937648}
   - {fileID: 542937662}
+  - {fileID: 542937652}
+  - {fileID: 542937651}
   - {fileID: 542937664}
+  - {fileID: 542937650}
   - {fileID: 542937663}
-  - {fileID: 542937647}
+  - {fileID: 542937648}
   - {fileID: 542937646}
-  - {fileID: 542937645}
-  - {fileID: 542937659}
-  - {fileID: 542937644}
-  - {fileID: 542937660}
   - {fileID: 542937643}
-  - {fileID: 542937658}
-  - {fileID: 542937639}
-  - {fileID: 542937656}
+  - {fileID: 542937659}
+  - {fileID: 542937647}
+  - {fileID: 542937644}
+  - {fileID: 542937645}
   - {fileID: 542937657}
   - {fileID: 542937642}
   - {fileID: 542937641}
   - {fileID: 542937640}
+  - {fileID: 542937639}
   - {fileID: 542937638}
   suppressAllAutoSelections: 0
 --- !u!114 &542937638
@@ -11935,34 +11936,31 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &542937639
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542937635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 37
+  itemId: 43
   indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
+  storyText: '{i}You can then DRAG them up and down on the BOARD until they are clean.{/i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &542937640
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -11977,7 +11975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  storyText: '{i}Clothes will dry up after some time.{/i}'
+  storyText: '{i}DRAG the clothes inside the tub to make them wet.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -12004,7 +12002,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  storyText: '{i}Some type of clothes will take more clips than other.{/i}'
+  storyText: '{i}Click on the BOTTLE OF DETERGENT on the shelf to add SOAP to the
+    water.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -12031,8 +12030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 0
-  storyText: '{i}You can hang dry any type of clothes by dragging them on the clips
-    that are placed along the CLOTHESLINE.{/i}'
+  storyText: '{i}The WASH TUB is an extra way to wash clothes.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -12047,32 +12045,34 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &542937643
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542937635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 33
+  itemId: 42
   indentLevel: 0
-  storyText: Put linen in a dryer and its done for. We can't get money from ripping
-    customers garments, now can we.
-  description: 
+  display: 1
+  stage: {fileID: 0}
   character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!114 &542937644
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -12087,8 +12087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 35
   indentLevel: 0
-  storyText: With that, we can serve customers with LINEN clothes. Linen can only
-    be HANG DRIED.
+  storyText: Anyway, keep doing what you're doing kid.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -12115,10 +12114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 36
   indentLevel: 0
-  storyText: Clothesline? So I can hang dry now?
+  storyText: Will do.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -12142,7 +12141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  storyText: We got a CLOTHESLINE now.
+  storyText: Efficiency. I like the sound of that.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -12187,31 +12186,34 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &542937648
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542937635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 31
+  itemId: 41
   indentLevel: 0
-  storyText: Another day of hard work.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!114 &542937649
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -12227,9 +12229,9 @@ MonoBehaviour:
   itemId: 30
   indentLevel: 0
   sayDialog: {fileID: 1603958713}
---- !u!114 &542937656
+--- !u!114 &542937650
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12239,9 +12241,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 12
+  itemId: 39
   indentLevel: 0
-  storyText: Music to my ears. Keep up the good work.
+  storyText: Meaning you can wash some clothes BY HAND.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &542937651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542937635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 40
+  indentLevel: 0
+  storyText: Good morning.
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &542937652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542937635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 38
+  indentLevel: 0
+  storyText: Hey kid, good mornin'.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -12272,7 +12328,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
@@ -12284,33 +12340,6 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &542937658
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542937635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 10
-  indentLevel: 0
-  storyText: I'll be careful.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &542937659
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -12325,7 +12354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: That's right kid.
+  storyText: There might be denim stuff from now on. Probably some fashion fad or
+    somethin'...
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -12338,36 +12368,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &542937660
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542937635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 8
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
 --- !u!114 &542937662
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -12386,7 +12386,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
@@ -12412,10 +12412,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Oh hey boss.
+  storyText: Alright! Maybe I could wash some extra clothes whenever the washing
+    machines are being used.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -12439,7 +12440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: That's what I like to hear.
+  storyText: Listen, we got a WASH TUB today.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27100,7 +27101,6 @@ GameObject:
   - component: {fileID: 1146054664}
   - component: {fileID: 1146054663}
   - component: {fileID: 1146054662}
-  - component: {fileID: 1146054661}
   - component: {fileID: 1146054660}
   - component: {fileID: 1146054647}
   - component: {fileID: 1146054646}
@@ -27108,6 +27108,14 @@ GameObject:
   - component: {fileID: 1146054645}
   - component: {fileID: 1146054643}
   - component: {fileID: 1146054648}
+  - component: {fileID: 1146054656}
+  - component: {fileID: 1146054655}
+  - component: {fileID: 1146054654}
+  - component: {fileID: 1146054651}
+  - component: {fileID: 1146054653}
+  - component: {fileID: 1146054652}
+  - component: {fileID: 1146054650}
+  - component: {fileID: 1146054649}
   m_Layer: 0
   m_Name: Day3
   m_TagString: Untagged
@@ -27142,7 +27150,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1146054641}
   selectedCommands:
-  - {fileID: 1146054661}
+  - {fileID: 1146054651}
   variables: []
   description: 
   stepPause: 0
@@ -27181,20 +27189,27 @@ MonoBehaviour:
   commandList:
   - {fileID: 1146054647}
   - {fileID: 1146054670}
+  - {fileID: 1146054656}
   - {fileID: 1146054669}
   - {fileID: 1146054668}
   - {fileID: 1146054646}
-  - {fileID: 1146054665}
   - {fileID: 1146054645}
+  - {fileID: 1146054665}
+  - {fileID: 1146054655}
   - {fileID: 1146054644}
-  - {fileID: 1146054667}
   - {fileID: 1146054643}
   - {fileID: 1146054664}
   - {fileID: 1146054663}
+  - {fileID: 1146054667}
   - {fileID: 1146054648}
-  - {fileID: 1146054660}
-  - {fileID: 1146054661}
+  - {fileID: 1146054654}
   - {fileID: 1146054662}
+  - {fileID: 1146054653}
+  - {fileID: 1146054652}
+  - {fileID: 1146054651}
+  - {fileID: 1146054660}
+  - {fileID: 1146054650}
+  - {fileID: 1146054649}
   - {fileID: 1146054642}
   suppressAllAutoSelections: 0
 --- !u!114 &1146054642
@@ -27228,7 +27243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 34
   indentLevel: 0
-  storyText: Haha! Good one kid.
+  storyText: With that, we can serve customers with LINEN clothes. Linen can only
+    be HANG DRIED.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27255,7 +27271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  storyText: I got an extra washing machine and a dryer as well!
+  storyText: That's right kid.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27286,7 +27302,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
@@ -27312,10 +27328,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 31
   indentLevel: 0
-  storyText: Hello boss.
+  storyText: Oh hey boss.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -27358,7 +27374,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
@@ -27370,9 +27386,9 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1146054660
+--- !u!114 &1146054649
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27382,11 +27398,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 12
+  itemId: 44
   indentLevel: 0
-  storyText: I expect even more sales from you.
+  storyText: '{i}Clothes will dry up after some time.{i}'
   description: 
-  character: {fileID: 626984432}
+  character: {fileID: 164480228}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -27397,9 +27413,36 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1146054661
+--- !u!114 &1146054650
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 43
+  indentLevel: 0
+  storyText: '{i}Some type of clothes will take more clips than other.{i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1146054651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27409,7 +27452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 11
+  itemId: 40
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
@@ -27427,6 +27470,173 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
+--- !u!114 &1146054652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 42
+  indentLevel: 0
+  storyText: Music to my ears. Keep up the good work.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1146054653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 41
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &1146054654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 38
+  indentLevel: 0
+  storyText: There might be some synthetic clothes as well. So keep an eye out for
+    those tags.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1146054655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 37
+  indentLevel: 0
+  storyText: Clothesline? So I can hang dry now?
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1146054656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 36
+  indentLevel: 0
+  storyText: Another day of hard work.
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1146054660
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146054639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 12
+  indentLevel: 0
+  storyText: '{i}You can hang dry any type of clothes by dragging them on the clips
+    that are placed along the CLOTHESLINE.{i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1146054662
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -27441,10 +27651,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: Oh great...
+  storyText: I'll be careful.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -27468,7 +27678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: It means you can work twice as fast.
+  storyText: Put linen in a dryer and its done for. We can't get money from ripping
+    customers garments, now can we.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27499,7 +27710,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
+  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
@@ -27525,7 +27736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: I got some good news for ya.
+  storyText: We got a CLOTHESLINE now.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27552,10 +27763,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Great! I can take it easy now!
+  storyText: That's true.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -27579,7 +27790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: Hey kid.
+  storyText: That's what I like to hear.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27610,7 +27821,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
   offset: 0
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
@@ -36670,16 +36881,31 @@ GameObject:
   - component: {fileID: 1468756591}
   - component: {fileID: 1468756590}
   - component: {fileID: 1468756589}
-  - component: {fileID: 1468756573}
-  - component: {fileID: 1468756572}
-  - component: {fileID: 1468756571}
-  - component: {fileID: 1468756570}
   - component: {fileID: 1468756579}
   - component: {fileID: 1468756577}
   - component: {fileID: 1468756578}
   - component: {fileID: 1468756576}
   - component: {fileID: 1468756575}
   - component: {fileID: 1468756574}
+  - component: {fileID: 1468756603}
+  - component: {fileID: 1468756601}
+  - component: {fileID: 1468756602}
+  - component: {fileID: 1468756600}
+  - component: {fileID: 1468756599}
+  - component: {fileID: 1468756593}
+  - component: {fileID: 1468756586}
+  - component: {fileID: 1468756570}
+  - component: {fileID: 1468756588}
+  - component: {fileID: 1468756587}
+  - component: {fileID: 1468756585}
+  - component: {fileID: 1468756584}
+  - component: {fileID: 1468756583}
+  - component: {fileID: 1468756582}
+  - component: {fileID: 1468756581}
+  - component: {fileID: 1468756580}
+  - component: {fileID: 1468756573}
+  - component: {fileID: 1468756572}
+  - component: {fileID: 1468756571}
   m_Layer: 0
   m_Name: Day5
   m_TagString: Untagged
@@ -36756,19 +36982,34 @@ MonoBehaviour:
   - {fileID: 1468756596}
   - {fileID: 1468756595}
   - {fileID: 1468756578}
+  - {fileID: 1468756603}
   - {fileID: 1468756592}
-  - {fileID: 1468756577}
-  - {fileID: 1468756594}
+  - {fileID: 1468756602}
   - {fileID: 1468756576}
+  - {fileID: 1468756577}
   - {fileID: 1468756575}
+  - {fileID: 1468756601}
+  - {fileID: 1468756594}
+  - {fileID: 1468756600}
+  - {fileID: 1468756599}
   - {fileID: 1468756574}
+  - {fileID: 1468756593}
+  - {fileID: 1468756588}
+  - {fileID: 1468756587}
   - {fileID: 1468756590}
-  - {fileID: 1468756591}
-  - {fileID: 1468756589}
+  - {fileID: 1468756586}
+  - {fileID: 1468756585}
+  - {fileID: 1468756584}
+  - {fileID: 1468756583}
+  - {fileID: 1468756582}
+  - {fileID: 1468756581}
+  - {fileID: 1468756580}
   - {fileID: 1468756573}
   - {fileID: 1468756572}
   - {fileID: 1468756571}
   - {fileID: 1468756570}
+  - {fileID: 1468756589}
+  - {fileID: 1468756591}
   - {fileID: 1468756569}
   suppressAllAutoSelections: 0
 --- !u!114 &1468756569
@@ -36800,11 +37041,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 29
+  itemId: 43
   indentLevel: 0
-  storyText: '{i}You can then DRAG them up and down on the BOARD until they are clean.{/i}'
+  storyText: I'm gonna need to find another ghost that works as hard as you now.
   description: 
-  character: {fileID: 164480228}
+  character: {fileID: 626984432}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -36824,24 +37065,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1468756566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 28
+  itemId: 54
   indentLevel: 0
-  storyText: '{i}DRAG the clothes inside the tub to make them wet.{/i}'
-  description: 
-  character: {fileID: 164480228}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!114 &1468756572
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -36854,13 +37098,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 27
+  itemId: 53
   indentLevel: 0
-  storyText: '{i}Click on the BOTTLE OF DETERGENT on the shelf to add SOAP to the
-    water.{/i}'
+  storyText: Thanks boss! Same here.
   description: 
-  character: {fileID: 164480228}
-  portrait: {fileID: 0}
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -36882,11 +37125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 26
+  itemId: 52
   indentLevel: 0
-  storyText: '{i}The WASH TUB is an extra way to wash clothes.{/i}'
+  storyText: Anyway, just know I enjoyed your presence here.
   description: 
-  character: {fileID: 164480228}
+  character: {fileID: 626984432}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -36941,7 +37184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 34
   indentLevel: 0
-  storyText: Efficiency. I like the sound of that.
+  storyText: You will need to use the WASH TUB to clean it.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -36972,7 +37215,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
@@ -36998,7 +37241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 31
   indentLevel: 0
-  storyText: Meaning you can wash some clothes BY HAND.
+  storyText: You see, kid. Silk is a bit of a pain.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -37025,10 +37268,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  storyText: Good morning.
+  storyText: Oh great... and why is that?
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37053,6 +37296,259 @@ MonoBehaviour:
   itemId: 30
   indentLevel: 0
   sayDialog: {fileID: 1603958713}
+--- !u!114 &1468756580
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 51
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &1468756581
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 50
+  indentLevel: 0
+  storyText: Oh right...
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756582
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 49
+  indentLevel: 0
+  storyText: It hasn't even been a week kid.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756583
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 48
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &1468756584
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 47
+  indentLevel: 0
+  storyText: Wow already... It feels like it was yesterday when I got here for the
+    first time.
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756585
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 46
+  indentLevel: 0
+  storyText: Pretty sure you're close to done with your job here.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756586
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 42
+  indentLevel: 0
+  storyText: By the way...
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756587
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 45
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &1468756588
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 44
+  indentLevel: 0
+  storyText: Oh cool!
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1468756589
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -37067,10 +37563,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: Will do.
+  storyText: Of course...
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37094,7 +37590,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: Anyway, keep doing what you're doing kid.
+  storyText: So you can fix some clothes... even the ones you rip by accident or
+    somethin'.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -37125,7 +37622,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
   offset: 0
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
@@ -37151,7 +37648,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: Listen, we got a WASH TUB today.
+  storyText: I advertised that we could wash SILK.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756593
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 41
+  indentLevel: 0
+  storyText: Oh and I got us a sewing machine.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -37178,11 +37702,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Alright! Maybe I could wash some extra clothes whenever the washing
-    machines are being used.
+  storyText: That's alot of work for a single garment.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -37206,7 +37729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: Hey kid, good mornin'.
+  storyText: You might have a busy ol' day today, kid.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -37283,6 +37806,147 @@ Transform:
   m_Father: {fileID: 212023242}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1468756599
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 40
+  indentLevel: 0
+  storyText: I told you it'd be a busy day.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756600
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 39
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &1468756601
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 37
+  indentLevel: 0
+  storyText: And then you have to HANG DRY it.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756602
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 38
+  indentLevel: 0
+  storyText: Okay? What's so special about that?
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1468756603
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468756566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 36
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!1 &1528367407
 GameObject:
   m_ObjectHideFlags: 0
@@ -44590,7 +45254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1732610272}
+  selectedFlowchart: {fileID: 1468756567}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
@@ -44628,7 +45292,6 @@ GameObject:
   - component: {fileID: 2126506912}
   - component: {fileID: 2126506911}
   - component: {fileID: 2126506910}
-  - component: {fileID: 2126506909}
   - component: {fileID: 2126506908}
   - component: {fileID: 2126506907}
   - component: {fileID: 2126506906}
@@ -44645,6 +45308,7 @@ GameObject:
   - component: {fileID: 2126506895}
   - component: {fileID: 2126506894}
   - component: {fileID: 2126506893}
+  - component: {fileID: 2126506909}
   m_Layer: 0
   m_Name: Day2
   m_TagString: Untagged
@@ -44766,7 +45430,6 @@ MonoBehaviour:
   - {fileID: 2126506912}
   - {fileID: 2126506911}
   - {fileID: 2126506910}
-  - {fileID: 2126506909}
   - {fileID: 2126506908}
   - {fileID: 2126506907}
   - {fileID: 2126506906}
@@ -44774,8 +45437,9 @@ MonoBehaviour:
   - {fileID: 2126506904}
   - {fileID: 2126506903}
   - {fileID: 2126506902}
-  - {fileID: 2126506901}
+  - {fileID: 2126506909}
   - {fileID: 2126506900}
+  - {fileID: 2126506901}
   - {fileID: 2126506899}
   - {fileID: 2126506898}
   - {fileID: 2126506897}
@@ -44811,7 +45475,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 2126506891}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 2126506898}
   variables: []
   description: 
   stepPause: 0
@@ -45061,8 +45726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 21
   indentLevel: 0
-  storyText: Didn't ya see the posters all over the place? We got 'em up near every
-    machine, they'll tell you what the icons mean.
+  storyText: Don't forget to seperate white clothes from colored ones if you plan
+    on doing a hot wash.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -45258,7 +45923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: Oh... so, MORE sorting.
+  storyText: Oh... so I need to sort the clothes now...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
@@ -45273,7 +45938,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &2126506909
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -45283,10 +45948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 13
+  itemId: 30
   indentLevel: 0
-  storyText: Since we've got temperature control, we can wash MORE FABRICS than just
-    COTTON now!
+  storyText: Didn't ya see the posters all over the place? We got 'em up near every
+    machine, they'll tell you what the icons mean.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -45313,7 +45978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: Think again, kid.
+  storyText: Since we've got temperature control, we can wash MORE FABRICS than just
+    COTTON now!
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -45370,7 +46036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: Great! No more sorting!
+  storyText: Great! But what does that do?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
