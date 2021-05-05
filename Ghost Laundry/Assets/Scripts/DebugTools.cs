@@ -11,8 +11,16 @@ public class DebugTools : MonoBehaviour
     }
 
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.H)) {
+            ToastManager.instance.SayLine("Test line");
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) {
+            ToastManager.instance.SayLine("Second test line");
+        }
+
         //Press M to gain 10$
-        if(Input.GetKeyDown(KeyCode.M) && MoneyManager.instance != null) {
+        if (Input.GetKeyDown(KeyCode.M) && MoneyManager.instance != null) {
             MoneyManager.instance.ModifyCurrentAmount(1000);
         }
 
