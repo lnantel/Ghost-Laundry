@@ -41,6 +41,7 @@ public class TutorialFlowchartManager : MonoBehaviour
     }
 
     public void OnDialogEnd() {
+        introduction.gameObject.SetActive(false);
         for(int i = 0; i < transitions.Length; i++) {
             transitions[i].gameObject.SetActive(false);
         }
@@ -57,7 +58,9 @@ public class TutorialFlowchartManager : MonoBehaviour
     }
 
     public void NextStep() {
-        TutorialManager.instance.NextStep();
+        ToastManager.instance.SayLine("Move with WASD. Dash with SHIFT.", 2.0f, true);
+        TutorialManager.instance.delayedNextStep = TutorialManager.instance.DelayedNextStep(10.0f);
+        StartCoroutine(TutorialManager.instance.delayedNextStep);
     }
 
     public void StartStep0() {

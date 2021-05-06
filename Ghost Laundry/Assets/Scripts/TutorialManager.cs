@@ -48,7 +48,7 @@ public class TutorialManager : MonoBehaviour
     [HideInInspector]
     public ShopInteractable shop;
 
-    private IEnumerator delayedNextStep;
+    public IEnumerator delayedNextStep;
 
     void Start()
     {
@@ -111,7 +111,7 @@ public class TutorialManager : MonoBehaviour
         TutorialFlowchartManager.instance.StartDialog(step);
     }
 
-    private IEnumerator DelayedNextStep(float delay) {
+    public IEnumerator DelayedNextStep(float delay) {
         if(arrow != null) arrow.Deactivate();
         yield return new WaitForLaundromatSeconds(delay);
         NextStep();
