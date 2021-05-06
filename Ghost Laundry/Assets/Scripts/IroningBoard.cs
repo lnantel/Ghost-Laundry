@@ -14,7 +14,9 @@ public class IroningBoard : WorkStation
 
     protected override List<Garment> GetCustomContainerGarments() {
         List<Garment> result = new List<Garment>();
-        result.Add(garmentOnBoard);
+        if(garmentOnBoard != null) {
+            result.Add(garmentOnBoard);
+        }
         return result;
     }
 }

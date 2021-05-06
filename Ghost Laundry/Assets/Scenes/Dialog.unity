@@ -3685,7 +3685,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 162476143}
   selectedCommands:
-  - {fileID: 162476144}
+  - {fileID: 162476139}
   variables: []
   description: 
   stepPause: 0
@@ -3824,7 +3824,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &162476144
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4120,7 +4120,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &179794490
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -16966,7 +16966,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 60.617023
     y: 70
-    width: 98.93617
+    width: 88.29787
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -17009,7 +17009,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 823566173}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 823566195}
   variables: []
   description: 
   stepPause: 0
@@ -22063,7 +22064,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &1028958315
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -22247,7 +22248,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1051380140}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1051380164}
   variables: []
   description: 
   stepPause: 0
@@ -30717,6 +30719,7 @@ MonoBehaviour:
   - {fileID: 1367893195}
   - {fileID: 1743775931}
   - {fileID: 1392920236}
+  - {fileID: 1123111036}
   detailedExplanations:
   - {fileID: 162476138}
   - {fileID: 179794484}
@@ -30838,8 +30841,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 1367893194}
+  selectedCommands:
+  - {fileID: 1367893220}
   variables: []
   description: 
   stepPause: 0
@@ -33260,7 +33265,7 @@ MonoBehaviour:
   hiddenTextColor: {r: 1, g: 1, b: 1, a: 0}
   writeWholeWords: 0
   forceRichText: 1
-  instantComplete: 1
+  instantComplete: 0
   doReadAheadText: 1
 --- !u!114 &1452669051
 MonoBehaviour:
@@ -37351,7 +37356,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &1609805611
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
