@@ -130,6 +130,8 @@ public class TutorialManager : MonoBehaviour
     private void UnlockAllWorkstations() {
         table.Unlock();
         washingMachine.Unlock();
+        washingMachine.washSetting = WashSetting.Cold;
+        washingMachine.SettingsLocked = true;
         dryer.Unlock();
         ironingBoard.Unlock();
         bagger.Unlock();
@@ -198,6 +200,8 @@ public class TutorialManager : MonoBehaviour
     public void StartStep1() {
         step = 1;
         washingMachine.Unlock();
+        washingMachine.washSetting = WashSetting.Cold;
+        washingMachine.SettingsLocked = true;
         firstBasket = SpawnFirstBasket();
         SpawnBoss(bossWMLocation);
     }

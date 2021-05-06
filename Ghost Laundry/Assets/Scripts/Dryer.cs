@@ -36,7 +36,7 @@ public class Dryer : WorkStation
 
         contents = new List<Garment>();
         state = DryerState.DoorClosed;
-        dryerSetting = DryerSetting.Low;
+        dryerSetting = DryerSetting.High;
         lintTrapClean = true;
     }
 
