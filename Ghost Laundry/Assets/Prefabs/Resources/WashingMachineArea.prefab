@@ -556,7 +556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969245200164647333}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.410552, y: 2.6991615, z: 4.436012}
+  m_LocalPosition: {x: -0.410552, y: 2.6991615, z: 0}
   m_LocalScale: {x: 0.26205453, y: 0.26205453, z: 0.26205453}
   m_Children: []
   m_Father: {fileID: 7566844115296435671}
@@ -599,8 +599,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f0bd16c39f458e34caf9e6500a12618a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -639,7 +639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231858376173818821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.035448194, y: 1.7284523, z: 4.9435506}
+  m_LocalPosition: {x: 0.035448194, y: 1.7284523, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3981517043000608394}
@@ -867,6 +867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566844115296435671}
   - component: {fileID: 8696232008020995618}
+  - component: {fileID: 5821593256304790975}
   m_Layer: 0
   m_Name: WM_OBJECT
   m_TagString: Untagged
@@ -882,7 +883,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884022867828571293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.58, y: 0.23, z: -5.078346}
+  m_LocalPosition: {x: -1.58, y: 0.23, z: 0}
   m_LocalScale: {x: 1.1448, y: 1.1448, z: 1.1448}
   m_Children:
   - {fileID: 4177138871818547832}
@@ -903,7 +904,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884022867828571293}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5aedc5e1f915509439f7594553ba0a13, type: 2}
   m_CullingMode: 0
@@ -914,6 +915,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5821593256304790975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884022867828571293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d1ace623801a54eaa5ed5b1645be21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redLight: {fileID: 969245200164647333}
+  greenLight: {fileID: 7179316258258005326}
 --- !u!1 &2875229696054901030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1898,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6412306288502156135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.43, y: -0.35, z: -0.9867515}
+  m_LocalPosition: {x: 1.43, y: -0.35, z: 0}
   m_LocalScale: {x: 0.8085464, y: 0.80454695, z: 0.7593188}
   m_Children: []
   m_Father: {fileID: 7566844115296435671}
@@ -1926,8 +1941,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
   m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 4ed45e0f5ac2aa6428951e4f66b7baaa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2008,9 +2023,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 41108b72cc9c95445ace430bc8f95fce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2049,7 +2064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6488742918306134947}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4454482, y: -0.2415477, z: 4.9435506}
+  m_LocalPosition: {x: 1.4454482, y: -0.2415477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3725370591102585833}
@@ -2269,7 +2284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7179316258258005326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.410552, y: 2.6991615, z: 8.310935}
+  m_LocalPosition: {x: -0.410552, y: 2.6991615, z: 0}
   m_LocalScale: {x: 0.26205453, y: 0.26205453, z: 0.26205453}
   m_Children: []
   m_Father: {fileID: 7566844115296435671}
@@ -2312,8 +2327,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f1b636ac9ff89ca43ab2b55e5de23a51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2917,8 +2932,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1498004205
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f829415fe359ea54c813e7479a8d9834, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3024,7 +3039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.9435506
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 67916cb092b0f334d92afbf102d6767f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3135,7 +3150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 6186e92a6d2c6844b9b1f0bb63fb8c26, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.9435506
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073940774672756900, guid: 6186e92a6d2c6844b9b1f0bb63fb8c26, type: 3}
       propertyPath: m_LocalRotation.x

@@ -19,12 +19,20 @@ public class TutorialManager : MonoBehaviour
     public Transform firstBasketSpawn;
 
     private GameObject laundromatBasketPrefab;
-    private bool tutorialStarted;
     public int step;
 
     public List<List<Garment>> tutorialCustomers;
 
     public Transform pickUpCounter;
+
+    public TutorialBoss boss;
+    public Transform bossShopLocation;
+    public Transform bossWMLocation;
+    public Transform bossDryerLocation;
+    public Transform bossIronLocation;
+    public Transform bossTableLocation;
+    public Transform bossBaggerLocation;
+    public Transform bossFreePracticeLocation;
 
     //Workstations
     public TableWorkstation table;
@@ -34,6 +42,8 @@ public class TutorialManager : MonoBehaviour
     public Bagger bagger;
     [HideInInspector]
     public ShopInteractable shop;
+
+    private IEnumerator delayedNextStep;
 
     void Start()
     {
@@ -59,10 +69,21 @@ public class TutorialManager : MonoBehaviour
         
     }
 
+    private void SpawnBoss(Transform location) {
+        boss.gameObject.SetActive(true);
+        boss.transform.position = location.position;
+    }
+
     public void NextStep() {
         //Start the appropriate step transition
         step++;
         TutorialFlowchartManager.instance.StartDialog(step);
+    }
+
+    private IEnumerator DelayedNextStep(float delay) {
+        yield return new WaitForLaundromatSeconds(delay);
+        NextStep();
+        delayedNextStep = null;
     }
 
     //Each step transition flowchart should end with a call to the appropriate "StartStepX" function
@@ -82,7 +103,6 @@ public class TutorialManager : MonoBehaviour
         DetergentManager.instance.CurrentAmount = 0;
 
         PlayerController.instance.transform.position = playerSpawnPoint.position;
-        tutorialStarted = true;
 
         shop = FindObjectOfType<ShopInteractable>();
         LockAllWorkstations();
@@ -96,10 +116,14 @@ public class TutorialManager : MonoBehaviour
     public void StartStep0() {
         step = 0;
         shop.Unlock();
+        SpawnBoss(bossShopLocation);
     }
 
     private void OnDetergentBought(int i) {
-        if (step == 0) NextStep();
+        if (step == 0 && delayedNextStep == null) {
+            delayedNextStep = DelayedNextStep(3.0f);
+            StartCoroutine(delayedNextStep);
+        }
     }
 
     //Step 1: Washing Machine
@@ -107,42 +131,51 @@ public class TutorialManager : MonoBehaviour
         step = 1;
         washingMachine.Unlock();
         SpawnFirstBasket();
+        SpawnBoss(bossWMLocation);
     }
 
     //Step 2: Dryer
     public void StartStep2() {
         step = 2;
         dryer.Unlock();
+        SpawnBoss(bossDryerLocation);
     }
 
     //Step 3: Ironing Board
     public void StartStep3() {
         step = 3;
         ironingBoard.Unlock();
+        SpawnBoss(bossIronLocation);
     }
 
     //Step 4: Folding
     public void StartStep4() {
         step = 4;
         table.Unlock();
+        SpawnBoss(bossTableLocation);
     }
 
     private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
+        bool progress = false;
         switch (step) {
             case 1:
-                if (laundryGarment.garment.Clean) NextStep();
+                if (laundryGarment.garment.Clean) progress = true;
                 break;
             case 2:
-                if (laundryGarment.garment.Dry) NextStep();
+                if (laundryGarment.garment.Clean && laundryGarment.garment.Dry) progress = true;
                 break;
             case 3:
-                if (laundryGarment.garment.Pressed) NextStep();
+                if (laundryGarment.garment.Pressed) progress = true;
                 break;
             case 4:
-                if (laundryGarment.garment.Folded) NextStep();
+                if (laundryGarment.garment.Folded) progress = true;
                 break;
             default:
                 break;
+        }
+        if (progress && delayedNextStep == null) {
+            delayedNextStep = DelayedNextStep(1.0f);
+            StartCoroutine(delayedNextStep);
         }
     }
 
@@ -150,6 +183,7 @@ public class TutorialManager : MonoBehaviour
     public void StartStep5() {
         step = 5;
         bagger.Unlock();
+        SpawnBoss(bossBaggerLocation);
     }
 
     private void OnBagReadyForPickUp() {
@@ -160,6 +194,7 @@ public class TutorialManager : MonoBehaviour
     public void StartFreePractice() {
         step = 6;
         UnlockAllWorkstations();
+        SpawnBoss(bossFreePracticeLocation);
     }
 
     private void LockAllWorkstations() {
@@ -239,16 +274,15 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void OnBagReadyForPickUp(LaundromatBag bag) {
-        //if(step == 10 && tutorialSubStep == 1) {
-        //    arrow.Deactivate();
-        //    tutorialSubStep = 2;
-        //    TutorialFlowchartManager.instance.StartDialog(step, tutorialSubStep);
-        //}
+        if (step == 5 && delayedNextStep == null) {
+            delayedNextStep = DelayedNextStep(1.0f);
+            StartCoroutine(delayedNextStep);
+        }
 
         //Make baskets appear at the counter whenever a bag is produced during Step 10B
-        //if (step == 10 && tutorialSubStep == 2) {
-        //    SpawnRandomBasket();
-        //}
+        if (step == 6) {
+            SpawnRandomBasket();
+        }
 
         StartCoroutine(DestroyBagAfterDelay(bag));
     }
@@ -256,13 +290,6 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator DestroyBagAfterDelay(LaundromatBag bag) {
         yield return new WaitForLaundromatSeconds(3.0f);
         Destroy(bag.gameObject);
-    }
-
-    private void Step10B() {
-        //Free practice
-        //Spawn the Boss
-        //Talking to him ends the tutorial
-        //tutorialBoss.gameObject.SetActive(true);
     }
 
     public void OnReady() {

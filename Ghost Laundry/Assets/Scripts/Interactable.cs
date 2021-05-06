@@ -54,7 +54,8 @@ public abstract class Interactable : MonoBehaviour
                 popUpInstance.SetActive(true);
             }
             else {
-                popUpInstance.SetActive(false);
+                //popUpInstance.SetActive(false);
+                HidePopUp();
             }
         }
     }

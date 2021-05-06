@@ -24,7 +24,7 @@ public class Dryer : WorkStation
     public DryerState state;
 
     private List<Garment> contents;
-    private Animator animator;
+    public Animator animator;
 
     private bool autoCompleteFlag;
 
@@ -35,7 +35,6 @@ public class Dryer : WorkStation
         base.Start();
 
         contents = new List<Garment>();
-        animator = GetComponentInChildren<Animator>();
         state = DryerState.DoorClosed;
         dryerSetting = DryerSetting.Low;
         lintTrapClean = true;
