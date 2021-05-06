@@ -14,6 +14,6 @@ public class TutorialBoss : Interactable
     }
 
     protected override void Interaction() {
-        tutorialManager.OnReady();
+        tutorialManager.BossDialog();
     }
 }

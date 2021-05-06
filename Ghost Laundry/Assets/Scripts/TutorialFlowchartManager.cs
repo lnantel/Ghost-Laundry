@@ -8,10 +8,10 @@ public class TutorialFlowchartManager : MonoBehaviour
 {
     public static TutorialFlowchartManager instance;
 
-    public Flowchart[] flowcharts;
+    public Flowchart introduction;
+    public Flowchart[] transitions;
+    public Flowchart[] detailedExplanations;
     public Canvas dialogCanvas;
-
-    private string[] letters = { "", " A", " B", " C", " D", " E", " F" };
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -19,22 +19,33 @@ public class TutorialFlowchartManager : MonoBehaviour
     }
 
     public void StartIntroduction() {
-        flowcharts[0].gameObject.SetActive(true);
-        flowcharts[0].ExecuteBlock("Introduction");
+        introduction.gameObject.SetActive(true);
         dialogCanvas.gameObject.SetActive(true);
         GameManager.instance.OnDialogStart();
     }
 
-    public void StartDialog(int step, int substep = 0) {
-        flowcharts[step - 1].gameObject.SetActive(true);
-        flowcharts[step - 1].ExecuteBlock("Step " + step + letters[substep]);
+    public void OnIntroductionEnd() {
+        OnDialogEnd();
+    }
+
+    public void StartDialog(int step) {
+        transitions[step].gameObject.SetActive(true);
+        dialogCanvas.gameObject.SetActive(true);
+        GameManager.instance.OnDialogStart();
+    }
+
+    public void StartDetailedExplanation(int step) {
+        detailedExplanations[step].gameObject.SetActive(true);
         dialogCanvas.gameObject.SetActive(true);
         GameManager.instance.OnDialogStart();
     }
 
     public void OnDialogEnd() {
-        for(int i = 0; i < flowcharts.Length; i++) {
-            flowcharts[i].gameObject.SetActive(false);
+        for(int i = 0; i < transitions.Length; i++) {
+            transitions[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < detailedExplanations.Length; i++) {
+            detailedExplanations[i].gameObject.SetActive(false);
         }
         StartCoroutine(DisableDialogCanvas());
         GameManager.instance.OnDialogEnd(0);
@@ -43,5 +54,37 @@ public class TutorialFlowchartManager : MonoBehaviour
     private IEnumerator DisableDialogCanvas() {
         yield return null;
         dialogCanvas.gameObject.SetActive(false);
+    }
+
+    public void NextStep() {
+        TutorialManager.instance.NextStep();
+    }
+
+    public void StartStep0() {
+        TutorialManager.instance.StartStep0();
+    }
+
+    public void StartStep1() {
+        TutorialManager.instance.StartStep1();
+    }
+
+    public void StartStep2() {
+        TutorialManager.instance.StartStep2();
+    }
+
+    public void StartStep3() {
+        TutorialManager.instance.StartStep3();
+    }
+
+    public void StartStep4() {
+        TutorialManager.instance.StartStep4();
+    }
+
+    public void StartStep5() {
+        TutorialManager.instance.StartStep5();
+    }
+
+    public void StartFreePractice() {
+        TutorialManager.instance.StartFreePractice();
     }
 }
