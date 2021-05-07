@@ -10,9 +10,7 @@ public class ToastManager : MonoBehaviour
     public Flowchart bossFlowchart;
     public Flowchart narratorFlowchart;
 
-    public GameObject image;
-
-    private bool DisplayingToast { get => bossFlowchart.gameObject.activeSelf; }
+    private bool DisplayingToast { get => bossFlowchart.gameObject.activeSelf || narratorFlowchart.gameObject.activeSelf; }
     private List<Toast> Queue;
 
     private struct Toast {
@@ -47,15 +45,22 @@ public class ToastManager : MonoBehaviour
         if(!DisplayingToast && Queue.Count > 0) {
             Toast nextToast = Queue[0];
             Queue.RemoveAt(0);
-            bossFlowchart.SetStringVariable("Line", nextToast.line);
-            bossFlowchart.SetFloatVariable("Duration", nextToast.duration);
-            image.SetActive(!nextToast.narrator);
-            bossFlowchart.gameObject.SetActive(true);
+            if (nextToast.narrator) {
+                narratorFlowchart.SetStringVariable("Line", nextToast.line);
+                narratorFlowchart.SetFloatVariable("Duration", nextToast.duration);
+                narratorFlowchart.gameObject.SetActive(true);
+            }
+            else {
+                bossFlowchart.SetStringVariable("Line", nextToast.line);
+                bossFlowchart.SetFloatVariable("Duration", nextToast.duration);
+                bossFlowchart.gameObject.SetActive(true);
+            }
         }
     }
 
     public void EndToast() {
         bossFlowchart.gameObject.SetActive(false);
+        narratorFlowchart.gameObject.SetActive(false);
         StartNextToast();
     }
 }
