@@ -63,10 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (state.CanMove())
-            Move();
-        else
-            state.EndWalk();
+        Move();
 
         if (input.GetDashInput() && state.CanDash())
             StartCoroutine(Dash());
@@ -98,7 +95,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Move() {
-        if (input.Move.magnitude != 0.0f) {
+        if (state.CanMove() && input.Move.magnitude != 0.0f) {
             state.StartWalk();
             //Increase acceleration factor
             accelerationFactor = Mathf.Min(accelerationFactor + Time.deltaTime / m_AccelerationTime, input.Move.magnitude);
