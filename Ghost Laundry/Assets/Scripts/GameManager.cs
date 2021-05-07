@@ -389,6 +389,10 @@ public class GameManager : MonoBehaviour {
                 break;
             case GameStates.SelectionScreen:
                 break;
+            case GameStates.TitleScreenSettings:
+                if (Input.GetButtonDown("Pause"))
+                    Resume();
+                break;
             default:
                 break;
         }
@@ -432,7 +436,8 @@ public class GameManager : MonoBehaviour {
         if (inSettings && HideSettings != null) HideSettings();
         else if (!inSettings) {
             if (ResumeGame != null) ResumeGame();
-            state = GameStates.Laundromat;
+            if (state == GameStates.TitleScreenSettings) state = GameStates.TitleScreen;
+            else state = GameStates.Laundromat;
             if(!(EventManager.instance != null && EventManager.instance.dialogCanvas.gameObject.activeSelf)) HideCursor();
             AudioManager.instance.PlaySound(SoundName.MenuClose);
         }
@@ -489,11 +494,13 @@ public class GameManager : MonoBehaviour {
     private void OnShowSettings() {
         if(!inSettings) AudioManager.instance.PlaySound(SoundName.MenuOpen);
         inSettings = true;
+        if (state == GameStates.TitleScreen) state = GameStates.TitleScreenSettings;
     }
 
     private void OnHideSettings() {
         if(inSettings) AudioManager.instance.PlaySound(SoundName.MenuClose);
         inSettings = false;
+        if (state == GameStates.TitleScreenSettings) state = GameStates.TitleScreen;
     }
 
     public void ShowCursor() {
