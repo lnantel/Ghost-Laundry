@@ -27346,25 +27346,24 @@ GameObject:
   - component: {fileID: 1123111035}
   - component: {fileID: 1123111059}
   - component: {fileID: 1123111058}
-  - component: {fileID: 1123111057}
   - component: {fileID: 1123111056}
   - component: {fileID: 1123111055}
   - component: {fileID: 1123111054}
   - component: {fileID: 1123111052}
   - component: {fileID: 1123111051}
-  - component: {fileID: 1123111050}
-  - component: {fileID: 1123111048}
   - component: {fileID: 1123111047}
-  - component: {fileID: 1123111046}
-  - component: {fileID: 1123111045}
-  - component: {fileID: 1123111043}
-  - component: {fileID: 1123111042}
-  - component: {fileID: 1123111040}
   - component: {fileID: 1123111038}
-  - component: {fileID: 1123111041}
-  - component: {fileID: 1123111039}
   - component: {fileID: 1123111037}
   - component: {fileID: 1123111034}
+  - component: {fileID: 1123111041}
+  - component: {fileID: 1123111048}
+  - component: {fileID: 1123111046}
+  - component: {fileID: 1123111045}
+  - component: {fileID: 1123111044}
+  - component: {fileID: 1123111043}
+  - component: {fileID: 1123111040}
+  - component: {fileID: 1123111039}
+  - component: {fileID: 1123111042}
   m_Layer: 0
   m_Name: Step 6
   m_TagString: Untagged
@@ -27416,7 +27415,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 86
+    width: 86.8
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -27427,22 +27426,21 @@ MonoBehaviour:
   commandList:
   - {fileID: 1123111059}
   - {fileID: 1123111058}
-  - {fileID: 1123111052}
-  - {fileID: 1123111056}
   - {fileID: 1123111054}
-  - {fileID: 1123111047}
-  - {fileID: 1123111051}
-  - {fileID: 1123111045}
-  - {fileID: 1123111055}
-  - {fileID: 1123111050}
-  - {fileID: 1123111046}
-  - {fileID: 1123111041}
   - {fileID: 1123111048}
-  - {fileID: 1123111040}
-  - {fileID: 1123111042}
-  - {fileID: 1123111039}
+  - {fileID: 1123111052}
+  - {fileID: 1123111046}
+  - {fileID: 1123111045}
+  - {fileID: 1123111056}
+  - {fileID: 1123111044}
+  - {fileID: 1123111051}
   - {fileID: 1123111043}
-  - {fileID: 1123111057}
+  - {fileID: 1123111042}
+  - {fileID: 1123111055}
+  - {fileID: 1123111047}
+  - {fileID: 1123111041}
+  - {fileID: 1123111040}
+  - {fileID: 1123111039}
   - {fileID: 1123111037}
   - {fileID: 1123111038}
   suppressAllAutoSelections: 0
@@ -27473,7 +27471,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1123111035}
   selectedCommands:
-  - {fileID: 1123111037}
+  - {fileID: 1123111047}
   variables: []
   description: 
   stepPause: 0
@@ -27521,37 +27519,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1123111039
 MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123111032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 52
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1123111040
-MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27561,11 +27529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 22
+  itemId: 61
   indentLevel: 0
-  storyText: And don't over-iron, either! If you see BLACK SMOKE, take the iron away!
+  storyText: '{i}As your boss said, feel free to practice as much as you want. Whenever
+    you''re ready, go up to him and press E to start the FIRST DAY!{/i}'
   description: 
-  character: {fileID: 626984432}
+  character: {fileID: 164480228}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -27575,40 +27544,10 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1123111041
+  setSayDialog: {fileID: 672183749}
+--- !u!114 &1123111040
 MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123111032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 51
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1123111042
-MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27618,9 +27557,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 20
+  itemId: 60
   indentLevel: 0
-  storyText: It sounds a lot more stressful when you put it that way...
+  storyText: '{i}Congratulations! You have completed the tutorial!{/i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 672183749}
+--- !u!114 &1123111041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123111032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 54
+  indentLevel: 0
+  storyText: ...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -27633,36 +27599,9 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 1603958713}
---- !u!114 &1123111043
+--- !u!114 &1123111042
 MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123111032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 19
-  indentLevel: 0
-  storyText: Alright, now yer ready! Iron these clothes!
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1123111045
-MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27672,7 +27611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 17
+  itemId: 62
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
@@ -27681,7 +27620,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0.5
@@ -27690,9 +27629,9 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1123111046
+--- !u!114 &1123111043
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27702,9 +27641,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 16
+  itemId: 59
   indentLevel: 0
-  storyText: And if you burn somethin', it's RUINED! Obviously!
+  storyText: ...
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 1603958713}
+--- !u!114 &1123111044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123111032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 58
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 626984432}
+  replacedCharacter: {fileID: 626984432}
+  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0.5
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &1123111045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123111032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 57
+  indentLevel: 0
+  storyText: You mean you'll be there to help me?
+  description: 
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 1603958713}
+--- !u!114 &1123111046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123111032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 56
+  indentLevel: 0
+  storyText: Don't worry about it, kid. That's why we're a team!
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27735,21 +27758,21 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
+  fromPosition: {fileID: 1194153116}
+  toPosition: {fileID: 915239209}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0.5
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
-  move: 0
+  move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
 --- !u!114 &1123111048
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27759,13 +27782,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 14
+  itemId: 55
   indentLevel: 0
-  storyText: 'So don''t keep that iron in the same place too long, got it? Keep it
-    movin''. '
+  storyText: Whew, that's a lot of work for a single customer...
   description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -27774,37 +27796,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1123111050
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123111032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 12
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
+  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1123111051
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -27819,7 +27811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: Hold on, kid. I'm not sure yer ready for this.
+  storyText: 'Remember: if you don''t make me enough money, you don''t get to go
+    to the afterlife!'
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27876,10 +27869,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: Alright, here I go!
+  storyText: All done!
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -27903,8 +27896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: If you don't pay attention to what yer doin', you could BURN the clothes
-    yer tryin' to iron.
+  storyText: We still got some time before openin', so feel free to practice as much
+    as you want. I'll just stand over there and watch you, alright?
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27931,8 +27924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: Ironin's pretty easy. Whip a piece of clothing onto the board, grab
-    the iron, move it back and forth a few times...
+  storyText: What? No, of course not. I'm just here to encourage and motivate you.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -27945,36 +27937,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1123111057
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123111032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 5
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 1194153116}
-  toPosition: {fileID: 915239209}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 1
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
 --- !u!114 &1123111058
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -46465,7 +46427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1785651426}
+  selectedFlowchart: {fileID: 1123111036}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
