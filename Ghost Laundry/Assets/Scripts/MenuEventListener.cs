@@ -35,6 +35,14 @@ public class MenuEventListener : MonoBehaviour
         if (GameManager.HideSettings != null) GameManager.HideSettings();
     }
 
+    public void OnShowLog() {
+        if (GameManager.ShowLog != null) GameManager.ShowLog();
+    }
+
+    public void OnHideLog() {
+        if (GameManager.HideLog != null) GameManager.HideLog();
+    }
+
     public void OnMainMenu() {
         GameManager.instance.GoToMainMenu();
     }

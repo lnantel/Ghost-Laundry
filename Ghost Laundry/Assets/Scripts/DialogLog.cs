@@ -6,13 +6,14 @@ using System.Text.RegularExpressions;
 
 public class DialogLog : MonoBehaviour
 {
-    public GameObject dialogLog;
-    public Scrollbar scrollbar;
-    public Text logText;
-    public Fungus.DialogInput dialogInput;
-    public Fungus.DialogInput dialogInput2;
+    public static DialogLog instance;
 
-    private bool LogVisible;
+    private void Awake() {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
+
+    public string LogString { get => logString; }
 
     private string logString;
 
@@ -22,39 +23,35 @@ public class DialogLog : MonoBehaviour
 
     private void OnEnable() {
         Fungus.BlockSignals.OnCommandExecute += LogText;
+        Fungus.BlockSignals.OnBlockEnd += LogBlockEnd;
     }
 
     private void OnDisable() {
         Fungus.BlockSignals.OnCommandExecute -= LogText;
-    }
-
-    public void ToggleLog() {
-        if (Input.GetMouseButtonDown(0)) {
-            LogVisible = !LogVisible;
-            dialogLog.SetActive(LogVisible);
-            if (LogVisible) {
-                scrollbar.value = 0;
-                dialogInput.SetIgnoreClicksFlag();
-                dialogInput2.SetIgnoreClicksFlag();
-            }
-            else {
-                dialogInput.ResetIgnoreClicksFlag();
-                dialogInput2.ResetIgnoreClicksFlag();
-            }
-        }
+        Fungus.BlockSignals.OnBlockEnd -= LogBlockEnd;
     }
 
     private void LogText(Fungus.Block block, Fungus.Command command, int commandIndex, int maxCommandIndex) {
-        if (command is Fungus.Say sayCommand) {
+        if (block.BlockName.Equals("Toast")) {
+            if(command is Fungus.Say sayCommand) {
+                logString += "\n\n" + block.GetFlowchart().GetStringVariable("Line");
+            }
+        }
+        else if (command is Fungus.Say sayCommand) {
             string standardText = sayCommand.GetStandardText();
             standardText = standardText.Trim();
             standardText = RemoveBetween(standardText, '{', '}');
             if (standardText.Length > 0) {
-                string line = sayCommand._Character.NameText + ": " + standardText;
+                string characterName = sayCommand._Character.NameText;
+                if (characterName.Length > 0) characterName += ": ";
+                string line = characterName + standardText;
                 logString += "\n\n" + line;
-                logText.text = logString;
             }
         }
+    }
+
+    private void LogBlockEnd(Fungus.Block block) {
+        logString += "\n\n" + "* * *";
     }
 
     private string RemoveBetween(string s, char begin, char end) {

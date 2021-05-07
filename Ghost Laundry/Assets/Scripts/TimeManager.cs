@@ -120,8 +120,14 @@ public class TimeManager : MonoBehaviour
     }
 
     private void OnResume() {
-        TimeIsPassing = true;
-        timeScale = 1;
+        if(EventManager.instance != null && EventManager.instance.dialogCanvas.gameObject.activeSelf) {
+            TimeIsPassing = false;
+            timeScale = 0;
+        }
+        else {
+            TimeIsPassing = true;
+            timeScale = 1;
+        }
         Time.timeScale = 1;
     }
 
