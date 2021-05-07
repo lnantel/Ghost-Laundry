@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour {
         EventManager.StartDialog += OnDialogStart;
         ShowSettings += OnShowSettings;
         HideSettings += OnHideSettings;
-        ShowDialog += OnShowDialog;
-        HideDialog += OnHideDialog;
     }
 
     private void OnDisable() {
@@ -72,8 +70,6 @@ public class GameManager : MonoBehaviour {
         EventManager.StartDialog -= OnDialogStart;
         ShowSettings -= OnShowSettings;
         HideSettings -= OnHideSettings;
-        ShowDialog -= OnShowDialog;
-        HideDialog -= OnHideDialog;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
@@ -437,7 +433,7 @@ public class GameManager : MonoBehaviour {
         else if (!inSettings) {
             if (ResumeGame != null) ResumeGame();
             state = GameStates.Laundromat;
-            if(!inDialog) HideCursor();
+            if(!(EventManager.instance != null && EventManager.instance.dialogCanvas.gameObject.activeSelf)) HideCursor();
             AudioManager.instance.PlaySound(SoundName.MenuClose);
         }
     }
@@ -498,14 +494,6 @@ public class GameManager : MonoBehaviour {
     private void OnHideSettings() {
         if(inSettings) AudioManager.instance.PlaySound(SoundName.MenuClose);
         inSettings = false;
-    }
-
-    private void OnShowDialog() {
-        inDialog = true;
-    }
-
-    private void OnHideDialog() {
-        inDialog = false;
     }
 
     public void ShowCursor() {
