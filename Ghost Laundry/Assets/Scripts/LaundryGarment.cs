@@ -67,6 +67,7 @@ public class LaundryGarment : LaundryObject, ITrackable
         if (!hovering) {
             if(laundryTag != null) laundryTag.Hide();
             inspected = false;
+            UpdateAppearance();
         }
         else hovering = false;
     }
@@ -126,11 +127,12 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     public override void OnHover(Vector2 position) {
-        if(laundryTag != null && inspected) {
+        hovering = true;
+        if (laundryTag != null && inspected) {
             laundryTag.Show();
             laundryTag.transform.position = position;
-            hovering = true;
         }
+        UpdateAppearance();
     }
 
     public override void OnGrab() {
@@ -235,9 +237,11 @@ public class LaundryGarment : LaundryObject, ITrackable
 
             if (garment.Shrunk) {
                 spriteRenderer.transform.localScale = new Vector3(0.9f, 0.9f, 1.0f);
+                if(hovering) spriteRenderer.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             }
             else {
                 spriteRenderer.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                if(hovering) spriteRenderer.transform.localScale = new Vector3(1.1f, 1.1f, 1.0f);
             }
 
             if(ruin != null) {
@@ -252,7 +256,8 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        AudioManager.instance.PlaySound(garment.fabric.dropSound);
+        if(garment != null)
+            AudioManager.instance.PlaySound(garment.fabric.dropSound);
     }
 
     public bool ContainsTrackedGarment() {

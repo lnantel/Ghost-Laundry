@@ -425,6 +425,7 @@ MonoBehaviour:
   lintTrapClean: 0
   dryerSetting: 0
   state: 0
+  animator: {fileID: 8266804777226854333}
 --- !u!114 &5050714936823143563
 MonoBehaviour:
   m_ObjectHideFlags: 0

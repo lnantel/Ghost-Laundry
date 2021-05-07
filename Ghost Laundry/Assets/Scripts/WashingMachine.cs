@@ -40,7 +40,7 @@ public class WashingMachine : WorkStation
 
         contents = new List<Garment>();
         state = WashingMachineState.DoorClosed;
-        washSetting = WashSetting.Hot;
+        washSetting = WashSetting.Cold;
     }
 
     private IEnumerator WMCoroutine;

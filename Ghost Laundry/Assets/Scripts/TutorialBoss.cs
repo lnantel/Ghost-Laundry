@@ -10,10 +10,11 @@ public class TutorialBoss : Interactable
     protected override void Start() {
         popUpPrefab = (GameObject)Resources.Load("DialogPopUp");
         popUpInstance = Instantiate(popUpPrefab, popUpPos.position, popUpPos.rotation, transform);
+        popUpAnimator = popUpInstance.GetComponentInChildren<Animator>();
         popUpInstance.SetActive(false);
     }
 
     protected override void Interaction() {
-        tutorialManager.OnReady();
+        tutorialManager.BossDialog();
     }
 }
