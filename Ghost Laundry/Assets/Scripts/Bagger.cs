@@ -170,6 +170,7 @@ public class Bagger : WorkStation
         bag.launderedGarments = launderedGarments;
         bag.perfectGarments = perfectGarments;
         bag.ruinedGarments = ruinedGarments;
+        bag.perfectIronedGarments = perfectIronedGarments;
 
         if (BagOutput != null) BagOutput();
 

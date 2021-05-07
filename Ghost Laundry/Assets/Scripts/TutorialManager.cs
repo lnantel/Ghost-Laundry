@@ -28,6 +28,7 @@ public class TutorialManager : MonoBehaviour
     //Arrow locations
     public Transform CrackedWallLocation;
     public Transform ShopCounterLocation;
+    public Transform ShopWallLocation;
 
     //Boss & Spawn locations
     public TutorialBoss boss;
@@ -59,7 +60,7 @@ public class TutorialManager : MonoBehaviour
 
     private void OnEnable() {
         PickUpCounter.BagReadyForPickUp += OnBagReadyForPickUp;
-        ShopInteractable.BoughtItem += OnDetergentBought;
+        //ShopInteractable.BoughtItem += OnDetergentBought;
         WorkStation.LaundryGarmentReleased += OnLaundryGarmentReleased;
         Bagger.BagOutput += OnBagOutput;
         BaggerAnimator.PlayerNearby += OnPlayerNearBagger;
@@ -67,7 +68,7 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDisable() {
         PickUpCounter.BagReadyForPickUp -= OnBagReadyForPickUp;
-        ShopInteractable.BoughtItem -= OnDetergentBought;
+        //ShopInteractable.BoughtItem -= OnDetergentBought;
         WorkStation.LaundryGarmentReleased -= OnLaundryGarmentReleased;
         Bagger.BagOutput -= OnBagOutput;
         BaggerAnimator.PlayerNearby -= OnPlayerNearBagger;
@@ -168,6 +169,7 @@ public class TutorialManager : MonoBehaviour
         step = 0;
         shop.Unlock();
         SpawnBoss(bossShopLocation);
+        ToastManager.instance.SayLine("During the tutorial, talk to your boss with E if you need more detailed explanations.", 2.0f, true);
     }
 
     //Step 0 Update
@@ -180,14 +182,22 @@ public class TutorialManager : MonoBehaviour
         else {
             arrow.SetTarget(ShopCounterLocation);
         }
-    }
 
-    private void OnDetergentBought(int i) {
-        if (step == 0 && delayedNextStep == null) {
-            delayedNextStep = DelayedNextStep(3.0f);
-            StartCoroutine(delayedNextStep);
+        if(DetergentManager.instance.CurrentAmount != 0) {
+            arrow.SetTarget(ShopWallLocation);
+            if(PlayerStateManager.instance.CurrentRoomIndex == 0 && delayedNextStep == null) {
+                delayedNextStep = DelayedNextStep(0.5f);
+                StartCoroutine(delayedNextStep);
+            }
         }
     }
+
+    //private void OnDetergentBought(int i) {
+    //    if (step == 0 && delayedNextStep == null) {
+    //        delayedNextStep = DelayedNextStep(3.0f);
+    //        StartCoroutine(delayedNextStep);
+    //    }
+    //}
 
     //Step 1: Washing Machine
     LaundromatBasket firstBasket;
@@ -376,6 +386,7 @@ public class TutorialManager : MonoBehaviour
         else if (table.laundryTaskArea.activeSelf) {
             if (!tableTooltips) {
                 ToastManager.instance.SayLine("Put somethin' on the table, then click it 'til it's folded. Easy peasy.", 2.0f);
+                ToastManager.instance.SayLine("Socks have to be folded two at a time, by the way.", 2.0f);
                 ToastManager.instance.SayLine("Put 'em back in a basket when yer done.", 2.0f);
                 tableTooltips = true;
             }
