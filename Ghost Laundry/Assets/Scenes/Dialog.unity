@@ -34783,7 +34783,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 66
     y: 69
-    width: 86
+    width: 86.8
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -40549,7 +40549,13 @@ GameObject:
   - component: {fileID: 1609805607}
   - component: {fileID: 1609805606}
   - component: {fileID: 1609805604}
-  - component: {fileID: 1609805611}
+  - component: {fileID: 1609805618}
+  - component: {fileID: 1609805617}
+  - component: {fileID: 1609805616}
+  - component: {fileID: 1609805615}
+  - component: {fileID: 1609805614}
+  - component: {fileID: 1609805613}
+  - component: {fileID: 1609805612}
   m_Layer: 0
   m_Name: Detailed Step 4
   m_TagString: Untagged
@@ -40598,7 +40604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 0, y: 0}
+  scrollPos: {x: -148, y: -51}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -40612,7 +40618,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1609805610}
   selectedCommands:
-  - {fileID: 1609805607}
+  - {fileID: 1609805606}
   variables: []
   description: 
   stepPause: 0
@@ -40655,7 +40661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: Detailed Explanation 4
+  storyText: Nothin' much to say about FOLDING.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -40688,8 +40694,8 @@ MonoBehaviour:
   replacedCharacter: {fileID: 0}
   portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
-  fromPosition: {fileID: 915239209}
-  toPosition: {fileID: 1194153116}
+  fromPosition: {fileID: 1194153116}
+  toPosition: {fileID: 915239209}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0
@@ -40732,9 +40738,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 429
-    y: 211
-    width: 152
+    x: 428
+    y: 209
+    width: 154.4
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -40743,15 +40749,21 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 1609805604}
   commandList:
+  - {fileID: 1609805618}
   - {fileID: 1609805609}
-  - {fileID: 1609805608}
+  - {fileID: 1609805612}
   - {fileID: 1609805607}
-  - {fileID: 1609805611}
+  - {fileID: 1609805617}
+  - {fileID: 1609805616}
+  - {fileID: 1609805608}
+  - {fileID: 1609805615}
+  - {fileID: 1609805614}
+  - {fileID: 1609805613}
   - {fileID: 1609805606}
   suppressAllAutoSelections: 0
---- !u!114 &1609805611
+--- !u!114 &1609805612
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -40761,16 +40773,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 7
+  itemId: 14
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 915239209}
+  fromPosition: {fileID: 915239209}
+  toPosition: {fileID: 1194153116}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0
@@ -40779,6 +40791,156 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
+--- !u!114 &1609805613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609805602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 13
+  indentLevel: 0
+  storyText: '{i}If that happens, don''t panic! You can just fold them again.{/i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 672183749}
+--- !u!114 &1609805614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609805602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 12
+  indentLevel: 0
+  storyText: '{i}If you fold them too much, they''ll go back to being unfolded.{/i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 672183749}
+--- !u!114 &1609805615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609805602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 11
+  indentLevel: 0
+  storyText: '{i}Put clothes on the table and LEFT CLICK them until they are folded.{/i}'
+  description: 
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 672183749}
+--- !u!114 &1609805616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609805602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 10
+  indentLevel: 0
+  storyText: Can't really go wrong here.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1609805617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609805602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 9
+  indentLevel: 0
+  storyText: Just put yer clothes on the TABLE, and FOLD 'em. Easy as that.
+  description: 
+  character: {fileID: 626984432}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1609805618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609805602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 8
+  indentLevel: 0
+  sayDialog: {fileID: 1603958713}
 --- !u!1 &1647386828
 GameObject:
   m_ObjectHideFlags: 0
@@ -41905,25 +42067,16 @@ GameObject:
   - component: {fileID: 1743775950}
   - component: {fileID: 1743775949}
   - component: {fileID: 1743775948}
-  - component: {fileID: 1743775947}
-  - component: {fileID: 1743775946}
-  - component: {fileID: 1743775945}
-  - component: {fileID: 1743775944}
   - component: {fileID: 1743775943}
-  - component: {fileID: 1743775942}
-  - component: {fileID: 1743775941}
-  - component: {fileID: 1743775940}
-  - component: {fileID: 1743775939}
-  - component: {fileID: 1743775938}
-  - component: {fileID: 1743775937}
-  - component: {fileID: 1743775936}
-  - component: {fileID: 1743775935}
-  - component: {fileID: 1743775934}
   - component: {fileID: 1743775933}
-  - component: {fileID: 1743775932}
   - component: {fileID: 1743775929}
   - component: {fileID: 1743775951}
   - component: {fileID: 1743775952}
+  - component: {fileID: 1743775935}
+  - component: {fileID: 1743775936}
+  - component: {fileID: 1743775934}
+  - component: {fileID: 1743775932}
+  - component: {fileID: 1743775937}
   m_Layer: 0
   m_Name: Step 4
   m_TagString: Untagged
@@ -41976,9 +42129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
-    y: 68
-    width: 87
+    x: 65
+    y: 65
+    width: 87.6
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -41989,23 +42142,14 @@ MonoBehaviour:
   commandList:
   - {fileID: 1743775950}
   - {fileID: 1743775949}
-  - {fileID: 1743775948}
-  - {fileID: 1743775945}
-  - {fileID: 1743775933}
-  - {fileID: 1743775943}
-  - {fileID: 1743775947}
-  - {fileID: 1743775946}
-  - {fileID: 1743775942}
-  - {fileID: 1743775941}
-  - {fileID: 1743775938}
-  - {fileID: 1743775935}
   - {fileID: 1743775936}
-  - {fileID: 1743775944}
+  - {fileID: 1743775935}
+  - {fileID: 1743775948}
   - {fileID: 1743775934}
   - {fileID: 1743775937}
+  - {fileID: 1743775943}
   - {fileID: 1743775932}
-  - {fileID: 1743775939}
-  - {fileID: 1743775940}
+  - {fileID: 1743775933}
   - {fileID: 1743775951}
   - {fileID: 1743775929}
   suppressAllAutoSelections: 0
@@ -42036,7 +42180,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1743775930}
   selectedCommands:
-  - {fileID: 1743775951}
+  - {fileID: 1743775933}
   variables: []
   description: 
   stepPause: 0
@@ -42050,7 +42194,7 @@ MonoBehaviour:
   luaBindingName: flowchart
 --- !u!114 &1743775932
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -42060,9 +42204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 20
+  itemId: 26
   indentLevel: 0
-  storyText: To the DRYER!
+  storyText: I'll be at the TABLE when yer done ironin'.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -42095,8 +42239,8 @@ MonoBehaviour:
   replacedCharacter: {fileID: 0}
   portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
   offset: 0
-  fromPosition: {fileID: 915239209}
-  toPosition: {fileID: 1194153116}
+  fromPosition: {fileID: 1194153116}
+  toPosition: {fileID: 915239209}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0.5
@@ -42104,10 +42248,10 @@ MonoBehaviour:
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
-  waitUntilFinished: 0
+  waitUntilFinished: 1
 --- !u!114 &1743775934
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -42117,9 +42261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 18
+  itemId: 25
   indentLevel: 0
-  storyText: Now your clothes are all WET, which means we gotta proceed to DRYING.
+  storyText: Who knows? Probably not, though. I got it at a yard sale.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -42134,64 +42278,34 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1743775935
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743775927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 17
+  itemId: 23
   indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
+  storyText: Nice. That's what I like to see! Look at it SHINE!
+  description: 
   character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1743775936
 MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 16
-  indentLevel: 0
-  storyText: Anyway! That's it for WASHING!
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1743775937
-MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -42201,65 +42315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1743775938
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 14
-  indentLevel: 0
-  storyText: But that ain't true of most clothes. So yer gonne have to do some sorting,
-    whether you like it or not.
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1743775939
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 13
+  itemId: 24
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
@@ -42267,8 +42323,8 @@ MonoBehaviour:
   replacedCharacter: {fileID: 0}
   portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
   offset: 0
-  fromPosition: {fileID: 1194153116}
-  toPosition: {fileID: 915239209}
+  fromPosition: {fileID: 915239209}
+  toPosition: {fileID: 1194153116}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0.5
@@ -42277,89 +42333,36 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1743775940
+--- !u!114 &1743775937
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743775927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 12
+  itemId: 27
   indentLevel: 0
-  storyText: '{i}Bring the basket over to the DRYER.{/i}'
-  description: 
-  character: {fileID: 164480228}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 672183749}
---- !u!114 &1743775941
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 11
-  indentLevel: 0
-  storyText: You can do anything with cotton. You can wash it cold, hot, whatever,
-    it won't get damaged.
-  description: 
+  display: 1
+  stage: {fileID: 0}
   character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1743775942
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 10
-  indentLevel: 0
-  storyText: Right now, all these clothes are COTTON - that's the easiest fabric
-    to work with.
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0.5
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!114 &1743775943
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -42374,7 +42377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: We could have, but the dial is busted. It's stuck on HOT.
+  storyText: All that's left to do is FOLD these clothes, and we'll be done with
+    this batch.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -42387,119 +42391,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1743775944
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 8
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: 9bedd8c0e18abb048a49372a73df716c, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1743775945
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 7
-  indentLevel: 0
-  storyText: But wait, couldn't we have just done a COLD WASH instead? Why go through
-    the trouble of sorting stuff?
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
---- !u!114 &1743775946
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 6
-  indentLevel: 0
-  storyText: Yup. Gonna have it fixed in a couple of days. Anyway, yer gonna want
-    to know how to sort clothes later on.
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1743775947
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743775927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 4
-  indentLevel: 0
-  storyText: Really?!
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1743775948
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -42514,10 +42405,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Done!
+  storyText: Okay, there's no way that's normal. That iron has GOT to be magical.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -45891,7 +45782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1001650899}
+  selectedFlowchart: {fileID: 1609805605}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
