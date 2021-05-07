@@ -75,6 +75,9 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void Update() {
+        if (washingMachine != null) washingMachine.SetAutoCompleteFlag();
+        if (dryer != null) dryer.SetAutoCompleteFlag();
+
         if (TimeManager.instance.TimeIsPassing && delayedNextStep == null) {
             switch (step) {
                 case 0:

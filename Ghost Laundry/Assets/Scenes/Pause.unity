@@ -510,7 +510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1259130739}
         m_TargetAssemblyTypeName: MenuEventListener, Assembly-CSharp
-        m_MethodName: OnResume
+        m_MethodName: OnShowLog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -153,7 +153,7 @@ public class LaundryTaskController : MonoBehaviour
         //Attempts to find a LaundryObject or Basket under the cursor
         //Priority is given to LaundryObjects
         int layerMask = LayerMask.GetMask("LaundryGarment");
-        Collider2D[] cols = Physics2D.OverlapCircleAll(cursor.position, 0.01f, layerMask);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(cursor.position, 0.05f, layerMask);
         Collider2D col = null;
         if (cols.Length > 0) {
             int maxSortingOrder = -10000; //arbitrarily large value

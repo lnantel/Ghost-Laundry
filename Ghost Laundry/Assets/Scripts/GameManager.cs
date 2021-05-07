@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
     public static Action ShowSettings;
     public static Action HideSettings;
 
+    public static Action ShowLog;
+    public static Action HideLog;
+
     public static Action PauseGame;
     public static Action ResumeGame;
 
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator scenesLoading;
 
     private bool inSettings;
+    private bool inLog;
     private bool inDialog;
 
     private void Awake() {
@@ -60,8 +64,8 @@ public class GameManager : MonoBehaviour {
         EventManager.StartDialog += OnDialogStart;
         ShowSettings += OnShowSettings;
         HideSettings += OnHideSettings;
-        ShowDialog += OnShowDialog;
-        HideDialog += OnHideDialog;
+        ShowLog += OnShowLog;
+        HideLog += OnHideLog;
     }
 
     private void OnDisable() {
@@ -72,8 +76,8 @@ public class GameManager : MonoBehaviour {
         EventManager.StartDialog -= OnDialogStart;
         ShowSettings -= OnShowSettings;
         HideSettings -= OnHideSettings;
-        ShowDialog -= OnShowDialog;
-        HideDialog -= OnHideDialog;
+        ShowLog -= OnShowLog;
+        HideLog -= OnHideLog;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
@@ -163,7 +167,7 @@ public class GameManager : MonoBehaviour {
             while (scenesLoading != null) yield return null;
         }
 
-        LoadScenes("Title", "Options", "HUD", "Dialog");
+        LoadScenes("Title", "Options", "HUD", "Dialog", "DialogLog");
         while (scenesLoading != null) yield return null;
 
         AudioManager.instance.PlayMusic(MusicTrackType.MenuTrack);
@@ -189,7 +193,7 @@ public class GameManager : MonoBehaviour {
             while (scenesLoading != null) yield return null;
         }
 
-        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
+        LoadScenes("HUD", "Laundromat", "Customers", "LaundryTasks", "Pause", "Options", "Shop", "Dialog", "DialogLog", "Evaluation", "Day"+TimeManager.instance.CurrentDay);
         while (scenesLoading != null) yield return null;
 
         SaveManager.LoadSaveData();
@@ -235,7 +239,7 @@ public class GameManager : MonoBehaviour {
             while (scenesLoading != null) yield return null;
         }
 
-        LoadScenes( "Epilogue", "Pause", "Options", "Dialog");
+        LoadScenes( "Epilogue", "Pause", "Options", "Dialog", "DialogLog");
         while (scenesLoading != null) yield return null;
 
         SaveManager.LoadSaveData();
@@ -261,7 +265,7 @@ public class GameManager : MonoBehaviour {
             while (scenesLoading != null) yield return null;
         }
 
-        LoadScenes("Credits", "HUD", "Dialog");
+        LoadScenes("Credits", "HUD", "Dialog", "DialogLog");
         while (scenesLoading != null) yield return null;
 
         SaveManager.LoadSaveData();
@@ -328,7 +332,7 @@ public class GameManager : MonoBehaviour {
                 while (scenesLoading != null) yield return null;
             }
 
-            LoadScenes("NextDay", "Options", "HUD", "Dialog");
+            LoadScenes("NextDay", "Options", "HUD", "Dialog", "DialogLog");
             while (scenesLoading != null) yield return null;
 
             SaveManager.LoadDay(dayToLoad);
@@ -359,7 +363,7 @@ public class GameManager : MonoBehaviour {
             while (scenesLoading != null) yield return null;
         }
 
-        LoadScenes("SelectionScreen", "Options", "HUD", "Dialog");
+        LoadScenes("SelectionScreen", "Options", "HUD", "Dialog", "DialogLog");
         while (scenesLoading != null) yield return null;
 
         SaveManager.LoadSaveData();
@@ -392,6 +396,10 @@ public class GameManager : MonoBehaviour {
             case GameStates.Evaluation:
                 break;
             case GameStates.SelectionScreen:
+                break;
+            case GameStates.TitleScreenSettings:
+                if (Input.GetButtonDown("Pause"))
+                    Resume();
                 break;
             default:
                 break;
@@ -433,11 +441,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Resume() {
-        if (inSettings && HideSettings != null) HideSettings();
-        else if (!inSettings) {
+        if (inSettings) {
+            if(HideSettings != null) HideSettings();
+        }
+        else if (inLog) {
+            if (HideLog != null) HideLog();
+        }
+        else {
             if (ResumeGame != null) ResumeGame();
-            state = GameStates.Laundromat;
-            if(!inDialog) HideCursor();
+            if (state == GameStates.TitleScreenSettings) state = GameStates.TitleScreen;
+            else state = GameStates.Laundromat;
+            if (!(EventManager.instance != null && EventManager.instance.dialogCanvas.gameObject.activeSelf)) HideCursor();
             AudioManager.instance.PlaySound(SoundName.MenuClose);
         }
     }
@@ -493,19 +507,25 @@ public class GameManager : MonoBehaviour {
     private void OnShowSettings() {
         if(!inSettings) AudioManager.instance.PlaySound(SoundName.MenuOpen);
         inSettings = true;
+        if (state == GameStates.TitleScreen) state = GameStates.TitleScreenSettings;
     }
 
     private void OnHideSettings() {
         if(inSettings) AudioManager.instance.PlaySound(SoundName.MenuClose);
         inSettings = false;
+        if (state == GameStates.TitleScreenSettings) state = GameStates.TitleScreen;
     }
 
-    private void OnShowDialog() {
-        inDialog = true;
+    private void OnShowLog() {
+        if (!inLog) AudioManager.instance.PlaySound(SoundName.MenuOpen);
+        inLog = true;
+        if (state == GameStates.TitleScreen) state = GameStates.TitleScreenSettings;
     }
 
-    private void OnHideDialog() {
-        inDialog = false;
+    private void OnHideLog() {
+        if (inLog) AudioManager.instance.PlaySound(SoundName.MenuClose);
+        inLog = false;
+        if (state == GameStates.TitleScreenSettings) state = GameStates.TitleScreen;
     }
 
     public void ShowCursor() {

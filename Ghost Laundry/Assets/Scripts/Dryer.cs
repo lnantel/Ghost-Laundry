@@ -122,6 +122,8 @@ public class Dryer : WorkStation
         if (dryerSetting == DryerSetting.High) cycleTime = 10.0f;
         else if (dryerSetting == DryerSetting.Low) cycleTime = 20.0f;
 
+        if (!lintTrapClean) cycleTime += 10.0f;
+
         AudioManager.instance.PlaySound(SoundName.MachineStart);
 
         List<Garment> garmentsToBeAdded = new List<Garment>();
@@ -140,8 +142,8 @@ public class Dryer : WorkStation
             contents.Add(garment);
 
         if (autoCompleteFlag) {
-            AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, 2.0f);
-            yield return new WaitForLaundromatSeconds(2.0f);
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningDryer, 6.0f);
+            yield return new WaitForLaundromatSeconds(6.0f);
             autoCompleteFlag = false;
         }
         else {
@@ -155,9 +157,7 @@ public class Dryer : WorkStation
                 garment.fabric.dryingRestrictions == DryingRestrictions.HangDryOnly)
                 garment.Torn = true;
 
-            if (lintTrapClean) {
-                garment.Dry = true;
-            }
+            garment.Dry = true;
         }
 
         if(contents.Count > 0)

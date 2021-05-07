@@ -5930,8 +5930,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 279368118}
-  selectedCommands:
-  - {fileID: 279368115}
+  selectedCommands: []
   variables:
   - {fileID: 279368117}
   - {fileID: 279368121}
@@ -13488,7 +13487,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 357675155}
-        m_TargetAssemblyTypeName: DialogLog, Assembly-CSharp
+        m_TargetAssemblyTypeName: DialogLogButton, Assembly-CSharp
         m_MethodName: ToggleLog
         m_Mode: 1
         m_Arguments:
@@ -13546,14 +13545,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 357675150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550dfc88f91355342857b452b0f8460e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5906e35e73dcba24c9279fbf289faa45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogLog: {fileID: 891469376}
   scrollbar: {fileID: 1415898900}
-  logText: {fileID: 2039809091}
-  dialogInput: {fileID: 1603958710}
-  dialogInput2: {fileID: 672183746}
+  dialogInput: {fileID: 672183746}
+  dialogInput2: {fileID: 1603958710}
 --- !u!1 &364047487
 GameObject:
   m_ObjectHideFlags: 0
@@ -15309,7 +15307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Story Text
+  m_Text: "Story Text \nStory Text"
 --- !u!222 &657126579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37752,7 +37750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -624.9, y: -80}
+  m_AnchoredPosition: {x: -638, y: -80}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1468783280
@@ -43682,11 +43680,9 @@ GameObject:
   - component: {fileID: 1795419487}
   - component: {fileID: 1795419486}
   - component: {fileID: 1795419485}
-  - component: {fileID: 1795419484}
   - component: {fileID: 1795419483}
   - component: {fileID: 1795419482}
   - component: {fileID: 1795419525}
-  - component: {fileID: 1795419524}
   - component: {fileID: 1795419528}
   - component: {fileID: 1795419526}
   - component: {fileID: 1795419527}
@@ -43742,24 +43738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 1795419522}
   suppressBlockAutoSelect: 0
---- !u!114 &1795419484
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795419480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 39
-  indentLevel: 0
-  _duration:
-    floatRef: {fileID: 0}
-    floatVal: 1
-  durationOLD: 0
 --- !u!114 &1795419485
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -44759,9 +44737,7 @@ MonoBehaviour:
   - {fileID: 1795419528}
   - {fileID: 1795419526}
   - {fileID: 1795419527}
-  - {fileID: 1795419484}
   - {fileID: 1795419482}
-  - {fileID: 1795419524}
   - {fileID: 1795419525}
   suppressAllAutoSelections: 0
 --- !u!114 &1795419523
@@ -44791,7 +44767,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1795419522}
   selectedCommands:
-  - {fileID: 1795419526}
+  - {fileID: 1795419525}
   variables: []
   description: 
   stepPause: 0
@@ -44803,23 +44779,6 @@ MonoBehaviour:
   hideCommands: []
   luaEnvironment: {fileID: 0}
   luaBindingName: flowchart
---- !u!114 &1795419524
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795419480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9232e9295ed476a8cfb707b5c242b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 53
-  indentLevel: 0
-  frameCount:
-    integerRef: {fileID: 0}
-    integerVal: 1
 --- !u!114 &1795419525
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -44839,7 +44798,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1795419526
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -44866,7 +44825,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419527
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -44893,7 +44852,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419528
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -45293,7 +45252,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 81.058815
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -46224,6 +46183,7 @@ GameObject:
   - component: {fileID: 2039809091}
   - component: {fileID: 2039809093}
   - component: {fileID: 2039809090}
+  - component: {fileID: 2039809094}
   m_Layer: 5
   m_Name: LogText
   m_TagString: Untagged
@@ -46291,7 +46251,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1b0a84e353b05624488101122abee67a, type: 3}
+    m_Font: {fileID: 12800000, guid: 677c5f3c3c5b1494caa15659d697324e, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -46326,6 +46286,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &2039809094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039809088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587a2cbe03a28b343b0006abc96777f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2045774182
 GameObject:
   m_ObjectHideFlags: 0
@@ -46634,7 +46606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1392920236}
+  selectedFlowchart: {fileID: 1795419523}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
