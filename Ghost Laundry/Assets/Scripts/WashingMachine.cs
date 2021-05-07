@@ -137,8 +137,8 @@ public class WashingMachine : WorkStation
             contents.Add(garment);
 
         if (autoCompleteFlag) {
-            AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, 2.0f);
-            yield return new WaitForLaundromatSeconds(2.0f);
+            AudioManager.instance.PlaySoundLoop(SoundName.RunningWM, 6.0f);
+            yield return new WaitForLaundromatSeconds(6.0f);
             autoCompleteFlag = false;
         }
         else {
