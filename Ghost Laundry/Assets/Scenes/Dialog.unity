@@ -3804,7 +3804,6 @@ GameObject:
   - component: {fileID: 162476149}
   - component: {fileID: 162476148}
   - component: {fileID: 162476147}
-  - component: {fileID: 162476146}
   - component: {fileID: 162476145}
   - component: {fileID: 162476141}
   m_Layer: 0
@@ -3868,7 +3867,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 162476143}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 162476156}
   variables: []
   description: 
   stepPause: 0
@@ -3988,9 +3988,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 429
+    x: 428
     y: 211
-    width: 152
+    width: 154.4
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4001,7 +4001,6 @@ MonoBehaviour:
   commandList:
   - {fileID: 162476161}
   - {fileID: 162476142}
-  - {fileID: 162476146}
   - {fileID: 162476156}
   - {fileID: 162476158}
   - {fileID: 162476157}
@@ -4068,34 +4067,6 @@ MonoBehaviour:
   indentLevel: 0
   storyText: '{i}Walk up to the cash register and press E to fill your DETERGENT
     BOTTLE for $10.{/i}'
-  description: 
-  character: {fileID: 164480228}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 672183749}
---- !u!114 &162476146
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162476135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 22
-  indentLevel: 0
-  storyText: '{i}During the tutorial, talk to your boss to get more detailed information
-    about your current task.{/i}'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -18478,9 +18449,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 61.680855
+    x: 60.617023
     y: 70
-    width: 60
+    width: 85.319145
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -34772,9 +34743,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 66
-    y: 69
-    width: 86
+    x: 67
+    y: 70
+    width: 86.8
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -34823,7 +34794,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1392920235}
   selectedCommands:
-  - {fileID: 1392920249}
+  - {fileID: 1392920239}
   variables: []
   description: 
   stepPause: 0
@@ -34887,7 +34858,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: aa12b65a3074eb546b0780d2b84970b6, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
-  toPosition: {fileID: 915239209}
+  toPosition: {fileID: 1194153116}
   facing: 0
   useDefaultSettings: 0
   fadeDuration: 0.5
@@ -46663,7 +46634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 823566174}
+  selectedFlowchart: {fileID: 1392920236}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
