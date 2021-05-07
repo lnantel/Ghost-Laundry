@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     //Pick up / Drop
     private CarryableDetector carryableDetector;
-    private GameObject carriedObject;
+    public GameObject carriedObject;
     private SortingGroup carriedObjectSortingGroup;
     private SortingGroup playerSortingGroup;
     public Transform carriedPos;
