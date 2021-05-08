@@ -83,7 +83,7 @@ Transform:
   m_GameObject: {fileID: 2118707420359026592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 8682779000148993897}
   m_RootOrder: 4
@@ -454,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 7815615253492164941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 8682779000148993897}
   m_RootOrder: 3
@@ -499,7 +499,7 @@ SpriteRenderer:
   m_SortingLayerID: -1498004205
   m_SortingLayer: 2
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: fe15bf210815b764ebd10d990a73883d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7e851c36c2fb7d4783dbee505f556b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.64705884}
   m_FlipX: 0
   m_FlipY: 0
@@ -733,6 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1201a9b100140624391614b446d7a2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HoveredOver: 0
   foldingSprites:
   - {fileID: 21300000, guid: 97cdf9f21cd5cf64d8d1ef7610ed2cd6, type: 3}
   - {fileID: 21300000, guid: 285cf3d6ec473e94facdfc3f157a576c, type: 3}
