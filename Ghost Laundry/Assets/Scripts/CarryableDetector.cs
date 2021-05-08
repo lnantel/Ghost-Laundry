@@ -38,7 +38,10 @@ public class CarryableDetector : MonoBehaviour
         float facingOffset = PlayerController.instance.facingRight ? OffsetX : -OffsetX;
         transform.localPosition = new Vector3(facingOffset, transform.localPosition.y, transform.localPosition.z);
 
-        if (carryablesInRange.Count > 0) {
+        if (!PlayerController.instance.enabled) {
+            if (NoCarryablesInRange != null) NoCarryablesInRange();
+        }
+        else if (carryablesInRange.Count > 0) {
             carryablesInRange.Sort((x, y) => Vector2.Distance(x.transform.position, transform.position).CompareTo(Vector2.Distance(y.transform.position, transform.position)));
             if (NearestCarryable != null) NearestCarryable(carryablesInRange[0].GetInstanceID());
         }
