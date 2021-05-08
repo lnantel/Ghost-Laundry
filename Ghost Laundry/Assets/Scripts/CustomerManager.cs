@@ -114,7 +114,7 @@ public class CustomerManager : MonoBehaviour
     private void Update() {
         customerSpawningTimer += TimeManager.instance.deltaTime;
         if (customerSpawningTimer >= CustomerSpawnRate() && TimeManager.instance.CurrentTime()[0] < 22) {
-            if (TimeManager.instance.CurrentDay != 0)
+            if (TimeManager.instance.CurrentDay > 0)
                 SpawnCustomer();
         }
 

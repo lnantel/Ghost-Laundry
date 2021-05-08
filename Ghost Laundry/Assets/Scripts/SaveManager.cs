@@ -27,6 +27,8 @@ public class SaveManager : MonoBehaviour
     }
 
     public static void Save() {
+        if (TimeManager.instance.CurrentDay > 5) return;
+
         //Populate DayData
         SaveData.DayData day = new SaveData.DayData();
         day.CurrentDay = TimeManager.instance.CurrentDay;
@@ -79,12 +81,12 @@ public class SaveManager : MonoBehaviour
             SaveData loadedData = new SaveData();
             loadedData.LoadFromJson(json);
             Data = loadedData;
-            int latestDay = 0;
+            int latestDay = -1;
             for (int i = 0; i < Data.Days.Count; i++) {
                 if (Data.Days[i].CurrentDay > latestDay)
                     latestDay = Data.Days[i].CurrentDay;
             }
-            LoadDay(latestDay);
+            LoadDay(latestDay + 1);
         }
         else {
             CreateNewSave();
@@ -92,11 +94,11 @@ public class SaveManager : MonoBehaviour
     }
 
     public static void LoadDay(int dayToLoad) {
-        PurgeDaysFollowing(dayToLoad);
+        PurgeDaysFollowing(dayToLoad - 1);
         SaveData.DayData dayData = Data.Days[0];
-        //Find the DayData of the day to load, or the latest one before that
+        //Find the latest DayData preceding the day to load
         for(int i = 1; i < Data.Days.Count; i++) {
-            if(Data.Days[i].CurrentDay <= dayToLoad && Data.Days[i].CurrentDay >= dayData.CurrentDay) {
+            if(Data.Days[i].CurrentDay < dayToLoad && Data.Days[i].CurrentDay >= dayData.CurrentDay) {
                 dayData = Data.Days[i];
             }
         }
@@ -117,7 +119,7 @@ public class SaveManager : MonoBehaviour
         //    }
         //}
         if (LoadingComplete != null) LoadingComplete();
-        Save();
+        //Save();
     }
 
     public static SaveData.DayData GetDayData(int day) {
@@ -138,7 +140,7 @@ public class SaveManager : MonoBehaviour
     private void OnEventsReset() {
         Data = new SaveData();
         SaveData.DayData day = new SaveData.DayData();
-        day.CurrentDay = 0;
+        day.CurrentDay = -1;
         day.Money = 0;
         day.ReputationHighScore = 0;
         day.Detergent = DetergentManager.instance.MaxAmount;
@@ -169,5 +171,11 @@ public class SaveManager : MonoBehaviour
 
     public static void PurgeDaysFollowing(int day) {
         Data.Days.RemoveAll(d => d.CurrentDay > day);
+        if (FileManager.WriteToFile("SaveData.dat", Data.ToJson())) {
+            //Debug.Log("Save successful");
+        }
+        else {
+            Debug.LogError("Failed to save!");
+        }
     }
 }

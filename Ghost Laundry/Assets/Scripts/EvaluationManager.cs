@@ -28,8 +28,7 @@ public class EvaluationManager : MonoBehaviour
     public TextMeshProUGUI TXT_F_GarmentsLaundered;
     private int garmentsLaundered;
 
-    public TextMeshProUGUI TXT_S_Rep;
-    public TextMeshProUGUI TXT_F_Rep;
+    public ShowStarRating StarRating;
 
     private void OnEnable() {
         GameManager.ShowEvaluation += OnShowEvaluation;
@@ -61,6 +60,7 @@ public class EvaluationManager : MonoBehaviour
         if(MoneyManager.instance.CurrentAmount >= 0 || SettingsManager.instance.NoFailMode) {
             UpdateSuccessText();
             success.SetActive(true);
+            SaveManager.Save();
         }
         else {
             UpdateFailureText();
@@ -92,7 +92,7 @@ public class EvaluationManager : MonoBehaviour
         TXT_S_SpentOnDetergent.text = "Detergent : -$" + (moneySpentOnDetergent / 100.0f).ToString("N2");
         TXT_S_CustomersServed.text = "Customers served : " + customersServed;
         TXT_S_GarmentsLaundered.text = "Garments laundered : " + garmentsLaundered;
-        TXT_S_Rep.text = (ReputationManager.instance.CurrentAmount / ReputationManager.instance.AmountPerStar).ToString("N0");
+        StarRating.StarRating = (int)(ReputationManager.instance.CurrentAmount / ReputationManager.instance.AmountPerStar);
     }
 
     private void UpdateFailureText() {
@@ -101,6 +101,5 @@ public class EvaluationManager : MonoBehaviour
         TXT_F_SpentOnDetergent.text = "Detergent : -$" + (moneySpentOnDetergent / 100.0f).ToString("N2");
         TXT_F_CustomersServed.text = "Customers served : " + customersServed;
         TXT_F_GarmentsLaundered.text = "Garments laundered : " + garmentsLaundered;
-        TXT_F_Rep.text = (ReputationManager.instance.CurrentAmount / ReputationManager.instance.AmountPerStar).ToString("N0");
     }
 }
