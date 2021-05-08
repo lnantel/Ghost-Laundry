@@ -222,15 +222,15 @@ public class LaundryGarment : LaundryObject, ITrackable
             }
 
             if (waterDrops != null) {
-                if (!garment.Dry && !waterDrops.isPlaying) waterDrops.Play();
-                if (garment.Dry && waterDrops.isEmitting) waterDrops.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                if (!garment.Dry && !waterDrops.isPlaying && rb != null && rb.simulated) waterDrops.Play();
+                if ((garment.Dry || (rb != null && !rb.simulated)) && waterDrops.isEmitting) waterDrops.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                 ParticleSystem.EmissionModule emission = waterDrops.emission;
                 emission.rateOverTime = 8.0f * garment.Humidity;
             }
 
             if (sparkles != null) {
-                if (garment.Pressed && !sparkles.isPlaying){
-                sparkles.Play();
+                if (garment.Pressed && !sparkles.isPlaying) {
+                    sparkles.Play();
                 } 
                 if (!garment.Pressed && sparkles.isEmitting) sparkles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
