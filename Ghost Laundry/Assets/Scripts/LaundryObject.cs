@@ -7,6 +7,10 @@ public class LaundryObject : MonoBehaviour
     public virtual void OnInteract() {
     }
 
+    public virtual InteractionType GetInteractionType() {
+        return InteractionType.None;
+    }
+
     public virtual void OnGrab() {
     }
 
@@ -21,4 +25,13 @@ public class LaundryObject : MonoBehaviour
 
     public virtual void OnHover(Vector2 cursorPosition) {
     }
+}
+
+public enum InteractionType {
+    None,
+    Button,
+    Open,
+    Close,
+    Clean,
+    Detergent
 }

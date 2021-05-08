@@ -65,4 +65,17 @@ public class DryerLintTrap : LaundryObject
         AudioManager.instance.PlaySound(SoundName.CloseLintTrap);
 
     }
+
+    public override InteractionType GetInteractionType() {
+        if (!open)
+            return InteractionType.Open;
+
+        if (open && !dryer.lintTrapClean)
+            return InteractionType.Clean;
+
+        if (open && dryer.lintTrapClean)
+            return InteractionType.Close;
+
+        return InteractionType.None;
+    }
 }

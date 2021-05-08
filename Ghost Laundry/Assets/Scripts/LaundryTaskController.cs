@@ -42,6 +42,10 @@ public class LaundryTaskController : MonoBehaviour
     public bool InspectableTarget;
     public SpriteRenderer InspectableIcon;
 
+    private InteractionType interactionType;
+    public SpriteRenderer InteractionIcon;
+    public Sprite[] InteractionIconSprites;
+
     private IEnumerator DelayGrabCoroutine;
 
     private void Awake() {
@@ -130,14 +134,18 @@ public class LaundryTaskController : MonoBehaviour
             }
 
             //Hover
+            interactionType = InteractionType.None;
+
             target = GetTarget();
             if (target != null) {
                 InspectableTarget = target.gameObject.layer == LayerMask.NameToLayer("LaundryGarment") || target.gameObject.layer == LayerMask.NameToLayer("Basket");
                 target.OnHover(cursor.position);
                 if(interactInputHeld || inspectInputHeld)
                     cursorSpriteRenderer.sprite = defaultCursorSprite;
-                else
+                else {
                     cursorSpriteRenderer.sprite = targetCursorSprite;
+                    interactionType = target.GetInteractionType();
+                }
             }
             else {
                 InspectableTarget = false;
@@ -146,6 +154,15 @@ public class LaundryTaskController : MonoBehaviour
 
             //If the target is inspectable, show the magnifying glass icon
             InspectableIcon.enabled = InspectableTarget;
+
+            //Show a contextual interaction icon
+            if(interactionType == InteractionType.None) {
+                InteractionIcon.enabled = false;
+            }
+            else {
+                InteractionIcon.sprite = InteractionIconSprites[(int)interactionType];
+                InteractionIcon.enabled = true;
+            }
         }
     }
 
