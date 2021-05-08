@@ -26,12 +26,12 @@ public class DebugTools : MonoBehaviour
 
         //Press R to gain 200 Rep
         if(Input.GetKeyDown(KeyCode.R) && ReputationManager.instance != null) {
-            ReputationManager.instance.ModifyCurrentAmount((int) ReputationManager.instance.AmountPerStar, PlayerStateManager.instance.transform.position);
+            ReputationManager.instance.ModifyCurrentAmount((int) ReputationManager.instance.AmountPerStar, PlayerStateManager.instance.transform);
         }
 
         //Press T to lose 200 Rep
         if(Input.GetKeyDown(KeyCode.T) && ReputationManager.instance != null) {
-            ReputationManager.instance.ModifyCurrentAmount(-(int)ReputationManager.instance.AmountPerStar, PlayerStateManager.instance.transform.position);
+            ReputationManager.instance.ModifyCurrentAmount(-(int)ReputationManager.instance.AmountPerStar, PlayerStateManager.instance.transform);
         }
 
         //Press Backspace to skip to the next day

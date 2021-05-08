@@ -52,7 +52,7 @@ public class ReputationManager : MonoBehaviour {
     }
 
     private struct StarData{
-        public Vector3 position;
+        public Transform position;
         public bool positive;
         public int amount;
     }
@@ -63,7 +63,13 @@ public class ReputationManager : MonoBehaviour {
         value += (bag.launderedGarments - bag.perfectGarments) * LaunderedGarmentRep;
         value += bag.ruinedGarments * RuinedGarmentRep;
         value += (bag.totalGarments - bag.launderedGarments - bag.ruinedGarments) * NotDoneRep;
-        ModifyCurrentAmount(value, bag.transform.position);
+        Customer customer = null;
+        for (int i = 0; i < CustomerManager.instance.customersInLaundromat.Count; i++)
+            if (CustomerManager.instance.customersInLaundromat[i].ticketNumber == bag.customerID) customer = CustomerManager.instance.customersInLaundromat[i];
+        if (customer != null)
+            ModifyCurrentAmount(value, customer.transform);
+        else
+            ModifyCurrentAmount(value, null);
     }
 
     private void OnRagequit() {
@@ -74,7 +80,7 @@ public class ReputationManager : MonoBehaviour {
         CurrentAmount = Mathf.Clamp(CurrentAmount + amount, 0, MaxAmount);
     }
 
-    public void ModifyCurrentAmount(int amount, Vector3 position) {
+    public void ModifyCurrentAmount(int amount, Transform position) {
         ModifyCurrentAmount(amount);
         StarData starData = new StarData();
         starData.amount = Mathf.Abs(amount);
@@ -101,8 +107,10 @@ public class ReputationManager : MonoBehaviour {
 
     private IEnumerator SpawnFlyingStars(StarData starData) {
         for(int i = 0; i < starData.amount; i++) {
-            FlyingStar star = starPool.SpawnObject(starData.position).GetComponent<FlyingStar>();
-            star.SetSign(starData.positive);
+            if(starData.position != null) {
+                FlyingStar star = starPool.SpawnObject(starData.position.position).GetComponent<FlyingStar>();
+                star.SetSignAndTarget(starData.positive, starData.position);
+            }
             yield return new WaitForLaundromatSeconds(0.1f);
         }
 

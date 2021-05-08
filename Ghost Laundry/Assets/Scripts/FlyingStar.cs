@@ -21,9 +21,11 @@ public class FlyingStar : MonoBehaviour
     public Color NegativeColor;
 
     private Vector2 maxOffset;
-    private Vector2 initialPos;
+    private Transform target;
+    private Vector3 initialPos { get => GetInitialPos(); }
+    private Vector3 startingPos;
     private float totalDistance;
-    private Vector3 destination;
+    private Vector3 destination { get => GetDestination(); }
 
     private Vector2 velocity;
     private Vector2 dir;
@@ -34,23 +36,39 @@ public class FlyingStar : MonoBehaviour
     private bool sign;
 
     private void OnEnable() {
-        if(Camera.main != null)
-            SetStartingValues();
+        //if(Camera.main != null)
+        //    SetStartingValues();
     }
 
-    public void SetSign(bool value) {
+    private Vector3 GetInitialPos() {
+        if (sign) return target.position;
+        else return Camera.main.ScreenToWorldPoint(reputationBar.transform.position);
+    }
+
+    private Vector3 GetDestination() {
+        if (sign) return Camera.main.ScreenToWorldPoint(reputationBar.transform.position); 
+        else return target.position;
+    }
+
+    public void SetSignAndTarget(bool value, Transform target) {
         sign = value;
+
+        this.target = target;
+        if (!sign) {
+            if (ReachedDestination != null) ReachedDestination(sign);
+        }
+        transform.position = initialPos;
         GetComponent<SpriteRenderer>().color = value ? PositiveColor : NegativeColor;
         PositiveTrail.emitting = value;
         NegativeTrail.emitting = !value;
+        SetStartingValues();
     }
 
     private void SetStartingValues() {
-        initialPos = transform.position;
-        currentPos = initialPos;
+        startingPos = initialPos;
+        currentPos = startingPos;
         velocity = Vector2.zero;
-        destination = Camera.main.ScreenToWorldPoint(reputationBar.transform.position);
-        totalDistance = Vector2.Distance(initialPos, destination);
+        totalDistance = Vector2.Distance(startingPos, destination);
 
         dir = (destination - transform.position).normalized;
         float randomSign = UnityEngine.Random.Range(0, 2);
@@ -59,7 +77,7 @@ public class FlyingStar : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector3 relativeDestination = Camera.main.ScreenToWorldPoint(reputationBar.transform.position);
+        //Vector3 relativeDestination = Camera.main.ScreenToWorldPoint(reputationBar.transform.position);
 
         Vector2 acceleration = dir * force * Time.fixedDeltaTime;
         velocity += acceleration;
@@ -67,10 +85,11 @@ public class FlyingStar : MonoBehaviour
         currentDistance = Vector2.Distance(currentPos, destination);
         float ratio = (totalDistance - currentDistance) / totalDistance;
         offset = maxOffset * offsetCurve.Evaluate(ratio);
-        transform.position = new Vector3(initialPos.x, initialPos.y, 0.0f) + (relativeDestination - new Vector3(initialPos.x, initialPos.y, 0.0f)) * ratio + new Vector3(offset.x, offset.y, 0.0f);
 
-        if(currentDistance < 0.2f) {
-            if (ReachedDestination != null) ReachedDestination(sign);
+        transform.position = new Vector3(startingPos.x, startingPos.y, 0.0f) + (destination - new Vector3(startingPos.x, startingPos.y, 0.0f)) * ratio + new Vector3(offset.x, offset.y, 0.0f);
+
+        if (currentDistance < 0.2f) {
+            if (sign && ReachedDestination != null) ReachedDestination(sign);
             PositiveTrail.Clear();
             NegativeTrail.Clear();
             gameObject.SetActive(false);
