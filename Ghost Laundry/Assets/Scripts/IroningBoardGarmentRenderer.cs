@@ -13,6 +13,7 @@ public class IroningBoardGarmentRenderer : MonoBehaviour
     public ClotheslineGarmentRenderer Dress;
     public ClotheslineGarmentRenderer Shirt;
     public ClotheslineGarmentRenderer Skirt;
+    public ClotheslineGarmentRenderer Bone;
 
     private void Start() {
         ironingBoard = GetComponentInParent<IroningBoard>();
@@ -35,6 +36,8 @@ public class IroningBoardGarmentRenderer : MonoBehaviour
             Shirt.gameObject.SetActive(false);
             Skirt.garment = null;
             Skirt.gameObject.SetActive(false);
+            Bone.garment = null;
+            Bone.gameObject.SetActive(false);
         }
         else if (garment is GarmentTop) {
             Top.gameObject.SetActive(true);
@@ -70,6 +73,11 @@ public class IroningBoardGarmentRenderer : MonoBehaviour
             Skirt.gameObject.SetActive(true);
             Skirt.garment = garment;
             Skirt.UpdateAppearance();
+        }
+        else if(garment is OllieFemur) {
+            Bone.gameObject.SetActive(true);
+            Bone.garment = garment;
+            Bone.UpdateAppearance();
         }
     }
 }
