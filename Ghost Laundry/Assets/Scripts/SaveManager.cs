@@ -94,7 +94,7 @@ public class SaveManager : MonoBehaviour
     }
 
     public static void LoadDay(int dayToLoad) {
-        PurgeDaysFollowing(dayToLoad - 1);
+        PrepareSaveFileForLoad(dayToLoad - 1);
         SaveData.DayData dayData = Data.Days[0];
         //Find the latest DayData preceding the day to load
         for(int i = 1; i < Data.Days.Count; i++) {
@@ -102,9 +102,6 @@ public class SaveManager : MonoBehaviour
                 dayData = Data.Days[i];
             }
         }
-        //for(int i = 0; i < Data.Days.Count; i++) {
-        //    if(Data.Days[i].CurrentDay == dayToLoad) {
-        //      SaveData.DayData day = Data.Days[i];
         TimeManager.instance.CurrentDay = dayToLoad;
         DetergentManager.instance.CurrentAmount = dayData.Detergent;
         MoneyManager.instance.SetCurrentAmount(dayData.Money);
@@ -115,11 +112,7 @@ public class SaveManager : MonoBehaviour
             EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].Completed = eventData.Completed;
             EventManager.instance.EventTrees[eventData.TreeIndex].tree[eventData.Index].NextEventIndex = eventData.NextIndex;
         }
-        //      break;
-        //    }
-        //}
         if (LoadingComplete != null) LoadingComplete();
-        //Save();
     }
 
     public static SaveData.DayData GetDayData(int day) {
@@ -169,8 +162,28 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public static void PurgeDaysFollowing(int day) {
+    public static void PrepareSaveFileForLoad(int day) {
+        //Remove all days following the day to load
         Data.Days.RemoveAll(d => d.CurrentDay > day);
+
+        //Make sure a DayData exists for 'day'; if not, create it by duplicating the closest days
+        bool dayDataExists = false;
+        SaveData.DayData closestExistingDay = Data.Days[0];
+        for (int i = 0; i < Data.Days.Count; i++) {
+            int currentDay = Data.Days[i].CurrentDay;
+            if (currentDay == day) dayDataExists = true;
+            if (currentDay > closestExistingDay.CurrentDay) closestExistingDay = Data.Days[i];
+        }
+
+        if (!dayDataExists) {
+            //Clone closestExistingDay for skipped days
+            for(int i = closestExistingDay.CurrentDay; i < day; i++) {
+                SaveData.DayData clone = SaveData.CloneDayData(closestExistingDay);
+                clone.CurrentDay = i + 1;
+                Data.Days.Add(clone);
+            }
+        }
+
         if (FileManager.WriteToFile("SaveData.dat", Data.ToJson())) {
             //Debug.Log("Save successful");
         }
