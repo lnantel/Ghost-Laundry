@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour {
 
         TimeManager.instance.ResetTimeManager();
 
-        if (TimeManager.instance.CurrentDay != 0) {
+        if (TimeManager.instance.CurrentDay > 0) {
             AudioManager.instance.PlayMusic(MusicTrackType.GameplayTrack);
 
             HideCursor();
@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator EndOfDay() {
-        if(TimeManager.instance.CurrentDay != 0) {
+        if(TimeManager.instance.CurrentDay > 0) {
             //Announce End of Day
             AudioManager.instance.PlaySound(SoundName.LaundromatClosing);
             state = GameStates.EndOfDay;
@@ -299,12 +299,12 @@ public class GameManager : MonoBehaviour {
 
         //If tutorial, go straight to next day
         if (TimeManager.instance.CurrentDay == 0) {
+            SaveManager.Save();
             stateTransition = null;
             OnNextDay();
         }
         //Otherwise, show Eval screen first
         else if(TimeManager.instance.CurrentDay > 0) {
-            SaveManager.Save();
 
             //Wait a couple seconds
             yield return new WaitForSecondsRealtime(2.0f);
@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GoToTransition() {
         int dayToLoad = TimeManager.instance.CurrentDay;
-        if(TimeManager.instance.CurrentDay > 12) {
+        if(TimeManager.instance.CurrentDay > 5) {
             stateTransition = GoToEpilogue();
             StartCoroutine(stateTransition);
         }
@@ -465,7 +465,7 @@ public class GameManager : MonoBehaviour {
 
     public void OnRetry() {
         if (stateTransition == null) {
-            SaveManager.LoadDay(TimeManager.instance.CurrentDay);
+            //SaveManager.LoadDay(TimeManager.instance.CurrentDay);
             stateTransition = GoToTransition();
             StartCoroutine(stateTransition);
         }
@@ -491,7 +491,6 @@ public class GameManager : MonoBehaviour {
 
     public void OnEpilogueEnd() {
         if (stateTransition == null) {
-            SaveManager.Save();
             stateTransition = GoToCredits();
             StartCoroutine(stateTransition);
         }

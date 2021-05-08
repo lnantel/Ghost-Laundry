@@ -43,11 +43,18 @@ public class SelectionManager : MonoBehaviour
             yield return null;
         yield return new WaitForSecondsRealtime(0.1f);
 
-        int CurrentDay = TimeManager.instance.CurrentDay;
+        int CurrentDay = 0;
 
-        for (int i = 0; i < Levels.Length; i++) {
-            if (i <= CurrentDay) Levels[i].gameObject.GetComponent<LevelTileAnimator>().Flip();
+        for (int i = 0; i < SaveManager.Data.Days.Count; i++) {
+            int day = SaveManager.Data.Days[i].CurrentDay;
+            if(day >= 0 && day < Levels.Length)
+                Levels[day].gameObject.GetComponent<LevelTileAnimator>().Flip();
+            if (day > CurrentDay) CurrentDay = day;
         }
+
+        CurrentDay++;
+        if(CurrentDay < Levels.Length)
+            Levels[CurrentDay].gameObject.GetComponent<LevelTileAnimator>().Flip();
 
         selectedDay = CurrentDay;
         ghostDestination = CurrentDay;

@@ -40,35 +40,32 @@ public class LevelTileSelector : MonoBehaviour
             yield return null;
         yield return new WaitForSecondsRealtime(0.1f);
 
-        selectable = TimeManager.instance.CurrentDay >= index;
-        if (selectable) {
-            SaveData.DayData day = SaveManager.GetDayData(index);
-            bool lastDay = SaveManager.Data.Days.Count - 1 == index;
+        int latestDay = 0;
 
-            if (lastDay) {
-                TXT_Day.text = "Day " + index;
-                TXT_Money.text = ("?");
-                TXT_Rep.text = ("?");
+        for(int i = 0; i < SaveManager.Data.Days.Count; i++) {
+            int day = SaveManager.Data.Days[i].CurrentDay;
+            if (day > latestDay) latestDay = day;
+            if (day == index) {
+                selectable = true;
             }
-            else {
+        }
+
+        if (latestDay == index - 1) selectable = true;
+
+        if (selectable) {
+            bool lastDay = latestDay < index;
+
+            if (!lastDay) {
+                SaveData.DayData day = SaveManager.GetDayData(index);
                 TXT_Day.text = "Day " + index;
                 TXT_Money.text = (day.Money / 100.0f).ToString("N2");
                 TXT_Rep.text = (day.ReputationHighScore / ReputationManager.instance.AmountPerStar).ToString("N0");
             }
-
-            //bool nextDayExists = false;
-            //SaveData.DayData nextDay;
-            //int repHighScore = 0;
-            //if (index + 1 >= 0 && index + 1 < SaveManager.Data.Days.Count) {
-            //    nextDay = SaveManager.Data.Days[index + 1];
-            //    repHighScore = nextDay.ReputationHighScore;
-            //    nextDayExists = true;
-            //}
-
-            //if(!nextDayExists)
-            //    TXT_Rep.text = ("?");
-            //else
-            //TXT_Rep.text = (day.ReputationHighScore / ReputationManager.instance.AmountPerStar).ToString("N0");
+            else {
+                TXT_Day.text = "Day " + index;
+                TXT_Money.text = ("?");
+                TXT_Rep.text = ("?");
+            }
 
             //Event Icons
             int[] characters = EventManager.instance.CharactersWithEventsOnDay(index);
