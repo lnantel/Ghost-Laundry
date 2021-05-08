@@ -59,6 +59,13 @@ public class LaundryButton : LaundryObject
         }
     }
 
+    public override InteractionType GetInteractionType() {
+        if(ToggleSwitch || !pressed)
+            return InteractionType.Button;
+
+        return InteractionType.None;
+    }
+
     private void Update() {
         if(!ToggleSwitch && pressed && springsBack && springBackCoroutine == null) {
             springBackCoroutine = springBack();

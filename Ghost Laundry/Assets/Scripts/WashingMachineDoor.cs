@@ -53,6 +53,16 @@ public class WashingMachineDoor : LaundryObject
         washingMachine.ToggleDoor();
     }
 
+    public override InteractionType GetInteractionType() {
+        if(washingMachine.state == WashingMachineState.DoorClosed || washingMachine.state == WashingMachineState.Done)
+            return InteractionType.Open;
+
+        if (washingMachine.state == WashingMachineState.DoorOpen)
+            return InteractionType.Close;
+
+        return InteractionType.None;
+    }
+
     private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
         //If released within open door bounds, add garment to machine
         if (washingMachine.state == WashingMachineState.DoorOpen && GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {

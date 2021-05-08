@@ -52,6 +52,16 @@ public class DryerDoor : LaundryObject
         dryer.ToggleDoor();
     }
 
+    public override InteractionType GetInteractionType() {
+        if (dryer.state == DryerState.DoorClosed || dryer.state == DryerState.Done)
+            return InteractionType.Open;
+
+        if (dryer.state == DryerState.DoorOpen)
+            return InteractionType.Close;
+
+        return InteractionType.None;
+    }
+
     private void OnLaundryGarmentReleased(LaundryGarment laundryGarment) {
         //If released within open door bounds, add garment to machine
         if (dryer.state == DryerState.DoorOpen && GetComponent<Collider2D>().bounds.Contains(laundryGarment.transform.position)) {

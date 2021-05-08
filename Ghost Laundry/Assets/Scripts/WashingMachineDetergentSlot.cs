@@ -34,6 +34,21 @@ public class WashingMachineDetergentSlot : LaundryObject
         }
     }
 
+    public override InteractionType GetInteractionType() {
+        if(washingMachine.state != WashingMachineState.Running) {
+            if (!open)
+                return InteractionType.Open;
+
+            if (open && !washingMachine.Detergent && DetergentManager.instance.CurrentAmount > 0)
+                return InteractionType.Detergent;
+
+            return InteractionType.Close;
+        }
+
+        return InteractionType.None;
+    }
+
+
     private void Open() {
         if (washingMachine.Detergent)
             spriteRenderer.sprite = filledSprite;
