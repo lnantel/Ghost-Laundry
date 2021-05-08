@@ -3405,6 +3405,10 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2222758170940162577, guid: 639c51669ad90314f869e0e2c21608ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3278295036437894783, guid: 639c51669ad90314f869e0e2c21608ea, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.7062675
