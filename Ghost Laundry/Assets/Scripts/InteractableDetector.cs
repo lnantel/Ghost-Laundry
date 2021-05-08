@@ -28,17 +28,20 @@ public class InteractableDetector : MonoBehaviour
     }
 
     private void Update() {
-        if(interactablesInRange.Count > 0) {
+        if (!player.enabled) {
+            if (NoInteractablesInRange != null) NoInteractablesInRange();
+        }
+        else if (interactablesInRange.Count > 0) {
             interactablesInRange.Sort((x, y) => Vector2.Distance(x.transform.position, transform.position).CompareTo(Vector2.Distance(y.transform.position, transform.position)));
-            for(int i = 0; i < interactablesInRange.Count; i++) {
+            for (int i = 0; i < interactablesInRange.Count; i++) {
                 if (!interactablesInRange[i].Locked) {
                     if (NearestInteractable != null) NearestInteractable(interactablesInRange[i].GetInstanceID());
                     break;
                 }
             }
         }
-        else if(lastCount > 0) {
-            if(NoInteractablesInRange != null) NoInteractablesInRange();
+        else if (lastCount > 0) {
+            if (NoInteractablesInRange != null) NoInteractablesInRange();
         }
         lastCount = interactablesInRange.Count;
     }

@@ -10,6 +10,7 @@ public class DryerLintTrap : LaundryObject
 
     public GameObject OpenLintTrap;
     public GameObject ClosedLintTrap;
+    public GameObject FullLintTrap;
 
     public LaundryButton startButton;
 
@@ -57,13 +58,16 @@ public class DryerLintTrap : LaundryObject
     }
 
     private void Close() {
-        //lintTrapSpriteRenderer.sprite = closedSprite;
         OpenLintTrap.SetActive(false);
         ClosedLintTrap.SetActive(true);
         open = false;
         startButton.locked = false;
         AudioManager.instance.PlaySound(SoundName.CloseLintTrap);
+    }
 
+    private void Update() {
+        if (!open) FullLintTrap.SetActive(!dryer.lintTrapClean);
+        else FullLintTrap.SetActive(false);
     }
 
     public override InteractionType GetInteractionType() {
