@@ -32,7 +32,7 @@ public class SettingsManager : MonoBehaviour {
         if (PlayerPrefs.HasKey(Settings.MusicVolume.ToString()))
             MusicVolume = PlayerPrefs.GetFloat(Settings.MusicVolume.ToString());
         else
-            MusicVolume = 0.5f;
+            MusicVolume = 0.25f;
 
         if (PlayerPrefs.HasKey(Settings.SFXVolume.ToString()))
             SFXVolume = PlayerPrefs.GetFloat(Settings.SFXVolume.ToString());
