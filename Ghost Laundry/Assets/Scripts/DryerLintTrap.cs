@@ -37,6 +37,10 @@ public class DryerLintTrap : LaundryObject
         }
     }
 
+    public override void OnRelease() {
+        OnInteract();
+    }
+
     private void Open() {
         ClosedLintTrap.SetActive(false);
         OpenLintTrap.SetActive(true);

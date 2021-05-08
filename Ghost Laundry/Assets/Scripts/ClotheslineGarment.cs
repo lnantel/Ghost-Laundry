@@ -13,6 +13,7 @@ public class ClotheslineGarment : MonoBehaviour
     public ClotheslineGarmentRenderer Dress;
     public ClotheslineGarmentRenderer Shirt;
     public ClotheslineGarmentRenderer Skirt;
+    public ClotheslineGarmentRenderer Bone;
 
     private Clothesline clothesline;
 
@@ -70,6 +71,11 @@ public class ClotheslineGarment : MonoBehaviour
                 Skirt.garment = garment;
                 Skirt.UpdateAppearance();
             }
+            else if (garment is OllieFemur) {
+                Bone.gameObject.SetActive(true);
+                Bone.garment = garment;
+                Bone.UpdateAppearance();
+            }
         }
     }
 
@@ -84,6 +90,7 @@ public class ClotheslineGarment : MonoBehaviour
             Dress.gameObject.SetActive(false);
             Shirt.gameObject.SetActive(false);
             Skirt.gameObject.SetActive(false);
+            Bone.gameObject.SetActive(false);
 
             Top.garment = null;
             Pants.garment = null;
@@ -92,6 +99,7 @@ public class ClotheslineGarment : MonoBehaviour
             Dress.garment = null;
             Shirt.garment = null;
             Skirt.garment = null;
+            Bone.garment = null;
         }
     }
 }

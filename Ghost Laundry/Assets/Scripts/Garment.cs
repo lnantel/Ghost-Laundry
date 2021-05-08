@@ -77,6 +77,7 @@ public class Garment
     }
 
     protected virtual bool GetPressed() {
+        if (fabric.name.Equals("Silk")) return Clean && Dry && !Ruined;
         return pressed;
     }
 

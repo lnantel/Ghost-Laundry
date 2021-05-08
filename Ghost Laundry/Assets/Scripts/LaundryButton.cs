@@ -33,8 +33,11 @@ public class LaundryButton : LaundryObject
 
     private SpriteRenderer spriteRenderer;
 
+    private Collider2D col;
+
     protected virtual void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
     }
 
     private void OnDisable() {
@@ -100,5 +103,9 @@ public class LaundryButton : LaundryObject
         yield return new WaitForLaundromatSeconds(springBackDelay);
         Unpress();
         springBackCoroutine = null;
+    }
+
+    public override void OnRelease() {
+        if (HoveredOver) OnInteract();
     }
 }

@@ -29191,8 +29191,8 @@ MonoBehaviour:
       NextEventIndex: 3
       Completed: 0
     - Day: 5
-      hour: 20
-      minute: 0
+      hour: 12
+      minute: 1
       EventTreeIndex: 0
       EventObject: {fileID: 733188717}
       NextEventIndex: 4

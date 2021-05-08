@@ -84,7 +84,7 @@ public class MoneyManager : MonoBehaviour
 
         fee -= bag.ruinedGarments * RuinedGarmentPenalty;
 
-        if (bag.ruinedGarments > 0) tip = 0;
+        //if (bag.ruinedGarments > 0) tip = 0;
 
         //Spawn a pop-up
         GameObject popUp = Instantiate(moneyPopUpPrefab, bag.transform.position + Vector3.up, bag.transform.rotation, WorldSpaceCanvas.transform);

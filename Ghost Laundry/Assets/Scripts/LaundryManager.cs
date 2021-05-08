@@ -43,7 +43,7 @@ public class LaundryManager : MonoBehaviour
         List<Garment> garments = new List<Garment>();
 
         //Generate the garments
-        for(int i = 0; i < numberOfGarments; i++) {
+        for(int i = 0; i < numberOfGarments; ) {
             //Determine fabricType
             int fabricIndex = instance.WeightedFabricIndices[UnityEngine.Random.Range(0, instance.WeightedFabricIndices.Length)];
             FabricType fabricType = instance.LaundryGenerationParameters[fabricIndex].fabric;
@@ -81,11 +81,12 @@ public class LaundryManager : MonoBehaviour
                     break;
             }
 
+            i += garment.size;
             garments.Add(garment);
             if (garment is GarmentSock) {
                 Garment otherSock = new GarmentSock((GarmentSock)garment);
                 garments.Add(otherSock);
-                i++;
+                i += otherSock.size;
             }
 
         }

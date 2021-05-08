@@ -53,6 +53,10 @@ public class WashingMachineDoor : LaundryObject
         washingMachine.ToggleDoor();
     }
 
+    public override void OnRelease() {
+        OnInteract();
+    }
+
     public override InteractionType GetInteractionType() {
         if(washingMachine.state == WashingMachineState.DoorClosed || washingMachine.state == WashingMachineState.Done)
             return InteractionType.Open;
