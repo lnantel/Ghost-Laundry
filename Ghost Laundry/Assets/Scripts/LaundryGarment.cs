@@ -63,7 +63,7 @@ public class LaundryGarment : LaundryObject, ITrackable
         lastPosition = rb.position;
     }
 
-    private void LateUpdate() {
+    protected override void LateUpdate() {
         if (!hovering) {
             if(laundryTag != null) laundryTag.Hide();
             inspected = false;

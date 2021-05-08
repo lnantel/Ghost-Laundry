@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class LaundryObject : MonoBehaviour
 {
+    public bool HoveredOver;
+    protected bool onHoverCalled;
+    protected bool lastOnHoverCalled;
+
     public virtual void OnInteract() {
     }
 
@@ -24,6 +28,18 @@ public class LaundryObject : MonoBehaviour
     }
 
     public virtual void OnHover(Vector2 cursorPosition) {
+        onHoverCalled = true;
+    }
+
+    protected virtual void LateUpdate() {
+        if (onHoverCalled) {
+            HoveredOver = true;
+        }
+        else if(!lastOnHoverCalled){
+            HoveredOver = false;
+        }
+        lastOnHoverCalled = onHoverCalled;
+        onHoverCalled = false;
     }
 }
 

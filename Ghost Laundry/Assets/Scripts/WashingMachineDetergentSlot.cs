@@ -34,6 +34,10 @@ public class WashingMachineDetergentSlot : LaundryObject
         }
     }
 
+    public override void OnRelease() {
+        OnInteract();
+    }
+
     public override InteractionType GetInteractionType() {
         if(washingMachine.state != WashingMachineState.Running) {
             if (!open)

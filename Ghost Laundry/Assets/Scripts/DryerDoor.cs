@@ -52,6 +52,10 @@ public class DryerDoor : LaundryObject
         dryer.ToggleDoor();
     }
 
+    public override void OnRelease() {
+        OnInteract();
+    }
+
     public override InteractionType GetInteractionType() {
         if (dryer.state == DryerState.DoorClosed || dryer.state == DryerState.Done)
             return InteractionType.Open;
