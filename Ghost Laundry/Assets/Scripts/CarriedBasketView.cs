@@ -64,6 +64,8 @@ public class CarriedBasketView : MonoBehaviour
         for (int i = GarmentContainer.transform.childCount - 1; i >= 0; i--) {
             LaundryGarment laundryGarment = GarmentContainer.transform.GetChild(i).GetComponent<LaundryGarment>();
             laundryGarment.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            Rigidbody2D rb = laundryGarment.GetComponent<Rigidbody2D>();
+            rb.simulated = true;
             laundryGarment.ReturnToPool();
         }
     }
