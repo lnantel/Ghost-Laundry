@@ -20163,14 +20163,10 @@ GameObject:
   - component: {fileID: 964384168}
   - component: {fileID: 964384214}
   - component: {fileID: 964384213}
-  - component: {fileID: 964384212}
   - component: {fileID: 964384211}
   - component: {fileID: 964384210}
   - component: {fileID: 964384209}
-  - component: {fileID: 964384208}
-  - component: {fileID: 964384207}
   - component: {fileID: 964384206}
-  - component: {fileID: 964384205}
   - component: {fileID: 964384204}
   - component: {fileID: 964384203}
   - component: {fileID: 964384202}
@@ -20194,11 +20190,9 @@ GameObject:
   - component: {fileID: 964384182}
   - component: {fileID: 964384181}
   - component: {fileID: 964384180}
-  - component: {fileID: 964384179}
   - component: {fileID: 964384178}
   - component: {fileID: 964384177}
   - component: {fileID: 964384176}
-  - component: {fileID: 964384175}
   - component: {fileID: 964384183}
   - component: {fileID: 964384244}
   - component: {fileID: 964384243}
@@ -20231,7 +20225,6 @@ GameObject:
   - component: {fileID: 964384216}
   - component: {fileID: 964384215}
   - component: {fileID: 964384184}
-  - component: {fileID: 964384167}
   - component: {fileID: 964384276}
   - component: {fileID: 964384275}
   - component: {fileID: 964384274}
@@ -20248,7 +20241,6 @@ GameObject:
   - component: {fileID: 964384263}
   - component: {fileID: 964384262}
   - component: {fileID: 964384261}
-  - component: {fileID: 964384260}
   - component: {fileID: 964384259}
   - component: {fileID: 964384258}
   - component: {fileID: 964384257}
@@ -20258,12 +20250,10 @@ GameObject:
   - component: {fileID: 964384253}
   - component: {fileID: 964384252}
   - component: {fileID: 964384251}
-  - component: {fileID: 964384250}
-  - component: {fileID: 964384249}
-  - component: {fileID: 964384248}
   - component: {fileID: 964384247}
-  - component: {fileID: 964384246}
   - component: {fileID: 964384245}
+  - component: {fileID: 964384175}
+  - component: {fileID: 964384167}
   m_Layer: 0
   m_Name: Event 3 Flowchart
   m_TagString: Untagged
@@ -20287,31 +20277,34 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &964384167
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964384165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 79
+  itemId: 113
   indentLevel: 0
-  storyText: Alright, see you tomorrow then.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 1747701563}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 1194153116}
+  facing: 0
+  useDefaultSettings: 0
+  fadeDuration: 0
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!114 &964384168
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -20411,13 +20404,8 @@ MonoBehaviour:
   - {fileID: 964384253}
   - {fileID: 964384274}
   - {fileID: 964384252}
-  - {fileID: 964384249}
-  - {fileID: 964384250}
-  - {fileID: 964384248}
   - {fileID: 964384247}
   - {fileID: 964384245}
-  - {fileID: 964384246}
-  - {fileID: 964384260}
   - {fileID: 964384268}
   - {fileID: 964384256}
   - {fileID: 964384168}
@@ -20470,13 +20458,14 @@ MonoBehaviour:
   - {fileID: 964384222}
   - {fileID: 964384219}
   - {fileID: 964384220}
+  - {fileID: 964384175}
   - {fileID: 964384218}
   - {fileID: 964384217}
   - {fileID: 964384215}
   - {fileID: 964384184}
   - {fileID: 964384224}
-  - {fileID: 964384216}
   - {fileID: 964384167}
+  - {fileID: 964384216}
   - {fileID: 964384241}
   - {fileID: 964384235}
   - {fileID: 964384169}
@@ -20496,7 +20485,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 65
-    y: 79
+    y: 78
     width: 93
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -20509,9 +20498,6 @@ MonoBehaviour:
   - {fileID: 964384214}
   - {fileID: 964384213}
   - {fileID: 964384180}
-  - {fileID: 964384208}
-  - {fileID: 964384207}
-  - {fileID: 964384205}
   - {fileID: 964384206}
   - {fileID: 964384203}
   - {fileID: 964384204}
@@ -20532,19 +20518,16 @@ MonoBehaviour:
   - {fileID: 964384183}
   - {fileID: 964384192}
   - {fileID: 964384189}
-  - {fileID: 964384212}
   - {fileID: 964384185}
   - {fileID: 964384182}
   - {fileID: 964384181}
   - {fileID: 964384210}
   - {fileID: 964384198}
-  - {fileID: 964384179}
   - {fileID: 964384209}
   - {fileID: 964384187}
   - {fileID: 964384178}
   - {fileID: 964384177}
   - {fileID: 964384176}
-  - {fileID: 964384175}
   - {fileID: 964384170}
   suppressAllAutoSelections: 0
 --- !u!114 &964384174
@@ -20574,7 +20557,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 964384171}
   selectedCommands:
-  - {fileID: 964384168}
+  - {fileID: 964384268}
   variables: []
   description: 
   stepPause: 0
@@ -20588,7 +20571,7 @@ MonoBehaviour:
   luaBindingName: flowchart
 --- !u!114 &964384175
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -20598,12 +20581,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 46
+  itemId: 112
   indentLevel: 0
-  storyText: Give him a helmet or not? What should I do...
+  storyText: Oh, I know! Instead of "The Final Destination," I'm gonna call this
+    stunt "Just the Beginning."
   description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  character: {fileID: 1747701563}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -20612,7 +20596,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
+  setSayDialog: {fileID: 0}
 --- !u!114 &964384176
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -20627,7 +20611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 45
   indentLevel: 0
-  storyText: Then again, it wouldn't be as ``radical`` as he would say.
+  storyText: Then again, it wouldn't be as "radical," as he would say...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
@@ -20654,7 +20638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 44
   indentLevel: 0
-  storyText: Maybe I could purchase that {b}helmet{/b} as a {b}gift{/b} for Ollie.
+  storyText: Maybe I could purchase that HELMET as a GIFT for Ollie.
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
@@ -20681,37 +20665,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 43
   indentLevel: 0
-  storyText: I remember seeing a {b}helmet{/b} on sale in the {b}shop{/b} next door.
+  storyText: I remember seeing a HELMET on sale in the SHOP next door.
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
---- !u!114 &964384179
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 42
-  indentLevel: 0
-  storyText: Alright, see ya.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -20739,18 +20696,18 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 1747701563}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
+  portrait: {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
   offset: 0
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384181
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -20801,13 +20758,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384183
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -20822,7 +20779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 47
   indentLevel: 0
-  storyText: Haha, not this time my friend.
+  storyText: Haha, not this time!
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -20853,18 +20810,18 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 1747701563}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
+  portrait: {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384185
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -20879,7 +20836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 36
   indentLevel: 0
-  storyText: So a regular wash? Feels so strange...
+  storyText: A regular wash? Feels so strange...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -20915,13 +20872,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384187
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21026,13 +20983,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384191
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21047,7 +21004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 30
   indentLevel: 0
-  storyText: Gotta make it interesting. I'm trying to break records out here.
+  storyText: Gotta make it interesting. I'm trying to change the world out here.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21083,13 +21040,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384193
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21131,7 +21088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  storyText: So yeah I'm calling this stunt ``The Final Destination``.
+  storyText: So yeah I'm calling this stunt "The Final Destination."
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21158,10 +21115,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 0
-  storyText: Why am I not surprised...
+  storyText: Why am I not surprised?
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -21185,7 +21142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 25
   indentLevel: 0
-  storyText: But I don't have any of those so whatever.
+  storyText: But I don't even have one, so whatever.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21212,7 +21169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 24
   indentLevel: 0
-  storyText: I mean, some protection would assure that you could keep skating after
+  storyText: I mean, some protection would ensure that you could keep skating after
     the show...
   description: 
   character: {fileID: 1084785472}
@@ -21267,7 +21224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 22
   indentLevel: 0
-  storyText: Going out with a boom sounds cool though.
+  storyText: Going out with a bang sounds cool though.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21303,13 +21260,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384201
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21324,7 +21281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 20
   indentLevel: 0
-  storyText: Wouldn't look as radical, dude. We're gonna write history tonight!
+  storyText: Wouldn't look as radical, Ghostie. We're gonna write history tonight!
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21360,13 +21317,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384203
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21421,36 +21378,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &964384205
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 16
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 1747701563}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 1
 --- !u!114 &964384206
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21466,60 +21393,6 @@ MonoBehaviour:
   itemId: 15
   indentLevel: 0
   storyText: Listen to this, I've got a sick stunt I'm planning to do tonight!
-  description: 
-  character: {fileID: 1747701563}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &964384207
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 14
-  indentLevel: 0
-  storyText: Oh, you know, the usual.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
---- !u!114 &964384208
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 13
-  indentLevel: 0
-  storyText: Hey buddy, still working hard?
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21555,8 +21428,8 @@ MonoBehaviour:
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
@@ -21585,13 +21458,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384211
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21619,33 +21492,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &964384212
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 9
-  indentLevel: 0
-  storyText: Oh, alright.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &964384213
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -21749,7 +21595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 75
   indentLevel: 0
-  storyText: Yeah! That sounds rad my dude!
+  storyText: Yeah! That sounds rad Ghostie!
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21806,7 +21652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 73
   indentLevel: 0
-  storyText: Maybe not but now you can be sure to pull a ton more crazy stunts.
+  storyText: Maybe not, but now you can be sure to pull a ton more crazy stunts.
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
@@ -21833,7 +21679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 72
   indentLevel: 0
-  storyText: Oh I know, I'll change ``The Final Destination`` to ``Just the Beginning``.
+  storyText: You know, maybe you're right.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -21869,13 +21715,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384222
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22007,13 +21853,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384227
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22119,13 +21965,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384231
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22176,13 +22022,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384233
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22368,13 +22214,13 @@ MonoBehaviour:
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384240
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22425,8 +22271,8 @@ MonoBehaviour:
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
@@ -22521,36 +22367,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 1603958713}
---- !u!114 &964384246
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 110
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 1747701563}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: 18fabc396e43fcf4f905e7672a5e440b, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 1
 --- !u!114 &964384247
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22566,90 +22382,6 @@ MonoBehaviour:
   itemId: 109
   indentLevel: 0
   storyText: Alrighty then. I'll see you tomorrow to tell you how it went.
-  description: 
-  character: {fileID: 1747701563}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &964384248
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 108
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 1747701563}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 21300000, guid: ab424f6c36be81c42a60ed50be743540, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 1
---- !u!114 &964384249
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 107
-  indentLevel: 0
-  storyText: Huh yeah.. radical.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
---- !u!114 &964384250
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 106
-  indentLevel: 0
-  storyText: That's what I like to hear.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -22685,13 +22417,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384252
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22706,7 +22438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 104
   indentLevel: 0
-  storyText: Thanks! ``The Final Destination`` will be radical my dude.
+  storyText: Thanks! "The Final Destination" will be radical, Ghostie.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -22797,13 +22529,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384256
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -22821,7 +22553,7 @@ MonoBehaviour:
   storyText: Hopefully everything goes well.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -22899,7 +22631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 97
   indentLevel: 0
-  storyText: I guess some people are more wild then others...
+  storyText: I guess some people are just naturally more wild than others...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -22912,33 +22644,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 1603958713}
---- !u!114 &964384260
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964384165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 96
-  indentLevel: 0
-  storyText: Cya!
-  description: 
-  character: {fileID: 1747701563}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &964384261
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -23097,13 +22802,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384267
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -23154,8 +22859,8 @@ MonoBehaviour:
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
@@ -23238,13 +22943,13 @@ MonoBehaviour:
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384272
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -23286,7 +22991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 83
   indentLevel: 0
-  storyText: My whole life revolves around skateboarding! Or is it my afterlife...
+  storyText: My whole life revolves around skateboarding!
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -23322,13 +23027,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &964384275
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -46387,7 +46092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 326744752}
+  selectedFlowchart: {fileID: 964384174}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
