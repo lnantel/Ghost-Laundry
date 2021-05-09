@@ -27,6 +27,8 @@ public class ShopInteractable : Interactable
         //Spend $price to buy a refill of detergent
         if(DetergentManager.instance.CurrentAmount < DetergentManager.instance.MaxAmount) {
             DetergentManager.instance.Refill();
+            AudioManager.instance.PlaySound(SoundName.MoneyGain);
+            AudioManager.instance.PlaySound(SoundName.PourDetergent);
             if (BoughtItem != null) BoughtItem(DetergentRefillPrice);
         }
         else {
