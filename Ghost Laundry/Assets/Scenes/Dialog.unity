@@ -789,24 +789,19 @@ GameObject:
   - component: {fileID: 52313296}
   - component: {fileID: 52313295}
   - component: {fileID: 52313294}
-  - component: {fileID: 52313293}
   - component: {fileID: 52313292}
   - component: {fileID: 52313291}
   - component: {fileID: 52313290}
   - component: {fileID: 52313289}
-  - component: {fileID: 52313288}
   - component: {fileID: 52313287}
   - component: {fileID: 52313286}
   - component: {fileID: 52313285}
   - component: {fileID: 52313284}
-  - component: {fileID: 52313283}
   - component: {fileID: 52313313}
   - component: {fileID: 52313312}
-  - component: {fileID: 52313311}
   - component: {fileID: 52313310}
   - component: {fileID: 52313309}
   - component: {fileID: 52313308}
-  - component: {fileID: 52313307}
   - component: {fileID: 52313306}
   - component: {fileID: 52313305}
   - component: {fileID: 52313304}
@@ -814,7 +809,6 @@ GameObject:
   - component: {fileID: 52313302}
   - component: {fileID: 52313301}
   - component: {fileID: 52313300}
-  - component: {fileID: 52313299}
   - component: {fileID: 52313317}
   - component: {fileID: 52313316}
   - component: {fileID: 52313315}
@@ -823,11 +817,17 @@ GameObject:
   - component: {fileID: 52313321}
   - component: {fileID: 52313320}
   - component: {fileID: 52313319}
-  - component: {fileID: 52313318}
   - component: {fileID: 52313326}
   - component: {fileID: 52313325}
   - component: {fileID: 52313324}
   - component: {fileID: 52313323}
+  - component: {fileID: 52313318}
+  - component: {fileID: 52313311}
+  - component: {fileID: 52313307}
+  - component: {fileID: 52313299}
+  - component: {fileID: 52313293}
+  - component: {fileID: 52313288}
+  - component: {fileID: 52313283}
   m_Layer: 0
   m_Name: Epilogue
   m_TagString: Untagged
@@ -921,8 +921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 21
   indentLevel: 0
-  storyText: 'After spending days on the counter of the laundromat as a mere skull,
-    Ollie found his body in the hospital. '
+  storyText: 'While Ollie''s body was eventually put back together, it never moved
+    the same. '
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -987,8 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 18
   indentLevel: 0
-  storyText: 'After the long discussion he had with the little ghost and after giving
-    his skateboard to the laundromat, Ollie took a moment to think about his future. '
+  storyText: After giving up skateboarding, Ollie was no longer the Skateboard Reaper.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -1032,7 +1031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 16
   indentLevel: 0
-  storyText: Wow! It's good to see him one last time.
+  storyText: It's good to see him one last time.
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
@@ -1080,9 +1079,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 465
+    x: 464
     y: 174
-    width: 71.6
+    width: 71
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1096,20 +1095,22 @@ MonoBehaviour:
   - {fileID: 52313312}
   - {fileID: 52313313}
   - {fileID: 52313255}
-  - {fileID: 52313307}
   - {fileID: 52313306}
   - {fileID: 52313309}
-  - {fileID: 52313308}
+  - {fileID: 52313307}
+  - {fileID: 52313299}
   - {fileID: 52313305}
   - {fileID: 52313304}
+  - {fileID: 52313308}
   - {fileID: 52313300}
   - {fileID: 52313310}
+  - {fileID: 52313288}
   - {fileID: 52313303}
+  - {fileID: 52313283}
   - {fileID: 52313302}
-  - {fileID: 52313301}
-  - {fileID: 52313311}
-  - {fileID: 52313299}
   - {fileID: 52313280}
+  - {fileID: 52313301}
+  - {fileID: 52313293}
   - {fileID: 52313278}
   suppressAllAutoSelections: 0
 --- !u!114 &52313258
@@ -1126,8 +1127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: "A few days after giving the little ghost his hat, Ollie wondered what
-    he was going to do, now that safety became his priority. \t"
+  storyText: Ollie kept on skateboarding.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -1826,7 +1826,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 278
     y: 174
-    width: 118.8
+    width: 117
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1841,7 +1841,6 @@ MonoBehaviour:
   - {fileID: 52313321}
   - {fileID: 52313320}
   - {fileID: 52313319}
-  - {fileID: 52313318}
   - {fileID: 52313247}
   - {fileID: 52313252}
   suppressAllAutoSelections: 0
@@ -1861,7 +1860,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 283
     y: 244
-    width: 110.8
+    width: 109
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1895,7 +1894,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 277
     y: 99
-    width: 110.8
+    width: 109
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1929,7 +1928,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 138
     y: 171
-    width: 77.2
+    width: 77
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1943,18 +1942,17 @@ MonoBehaviour:
   - {fileID: 52313298}
   - {fileID: 52313297}
   - {fileID: 52313270}
-  - {fileID: 52313293}
-  - {fileID: 52313288}
-  - {fileID: 52313296}
   - {fileID: 52313295}
-  - {fileID: 52313283}
+  - {fileID: 52313296}
+  - {fileID: 52313318}
   - {fileID: 52313287}
   - {fileID: 52313286}
   - {fileID: 52313285}
+  - {fileID: 52313311}
   - {fileID: 52313284}
   - {fileID: 52313291}
-  - {fileID: 52313290}
   - {fileID: 52313289}
+  - {fileID: 52313290}
   - {fileID: 52313294}
   - {fileID: 52313292}
   - {fileID: 52313268}
@@ -1992,7 +1990,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 52313257}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 52313293}
   variables:
   - {fileID: 52313269}
   description: 
@@ -2120,7 +2119,7 @@ MonoBehaviour:
     integerVal: 1
 --- !u!114 &52313283
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2130,12 +2129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 48
+  itemId: 84
   indentLevel: 0
-  storyText: It seems like you have achieved your goal.
+  storyText: I'll see you all on the other side...
   description: 
-  character: {fileID: 10769702}
-  portrait: {fileID: 0}
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2186,7 +2185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 46
   indentLevel: 0
-  storyText: Therefore we will give you access to the afterlife.
+  storyText: Like a good little pet! Ohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -2213,7 +2212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 45
   indentLevel: 0
-  storyText: You did what we asked.
+  storyText: You did as we asked.
   description: 
   character: {fileID: 225473490}
   portrait: {fileID: 0}
@@ -2255,7 +2254,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &52313288
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2265,9 +2264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 43
+  itemId: 83
   indentLevel: 0
-  storyText: Hello. Anyone here?
+  storyText: Goodbye everyone! Goodbye Ollie!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -2294,7 +2293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 42
   indentLevel: 0
-  storyText: It seems like your good work also changed his life.
+  storyText: Did you notice? Whatever you did down there, it changed someone's life!
+    Ohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 41
   indentLevel: 0
-  storyText: But first, we noticed how you helped a soul back in the living world.
+  storyText: You weren't working just for yourself.
   description: 
   character: {fileID: 225473490}
   portrait: {fileID: 0}
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 40
   indentLevel: 0
-  storyText: That's right! No more washing clothes for you. Unlike us...
+  storyText: Yes! No more laundry! Except for us...
   description: 
   character: {fileID: 1602373318}
   portrait: {fileID: 0}
@@ -2390,7 +2390,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &52313293
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2400,12 +2400,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 38
+  itemId: 82
   indentLevel: 0
-  storyText: Hello. Anyone here?
+  storyText: 'Thank you for playing Ghost Laundry: Full Service!'
   description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  character: {fileID: 164480228}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2456,7 +2456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 36
   indentLevel: 0
-  storyText: Welcome back, young one.
+  storyText: Welcome back, lost and wary soul...
   description: 
   character: {fileID: 10769702}
   portrait: {fileID: 0}
@@ -2523,7 +2523,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &52313299
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2533,12 +2533,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 63
+  itemId: 81
   indentLevel: 0
-  storyText: See you on the other side.
+  storyText: All that remains is for us to cleanse you of sin.
   description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
+  character: {fileID: 225473490}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2562,7 +2562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 62
   indentLevel: 0
-  storyText: Of course...
+  storyText: Wait! I'm not ready!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 60
   indentLevel: 0
-  storyText: You will therefore gain access to the afterlife.
+  storyText: You life washes away in the stream of time...
   description: 
   character: {fileID: 10769702}
   portrait: {fileID: 0}
@@ -2643,7 +2643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 59
   indentLevel: 0
-  storyText: You have proven to be a kind and helpful soul.
+  storyText: You are granted passage.
   description: 
   character: {fileID: 10769702}
   portrait: {fileID: 0}
@@ -2739,7 +2739,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &52313307
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2749,12 +2749,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 55
+  itemId: 80
   indentLevel: 0
-  storyText: I wish only the best for my friend.
+  storyText: I'm ready.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2778,7 +2778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 54
   indentLevel: 0
-  storyText: We will now wash away your sins so you may access the afterlife.
+  storyText: Get in this washtub! Ohohohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 53
   indentLevel: 0
-  storyText: Now that your part of the deal is completed...
+  storyText: The time has come to say goodbye. The afterlife awaits.
   description: 
   character: {fileID: 225473490}
   portrait: {fileID: 0}
@@ -2832,7 +2832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 52
   indentLevel: 0
-  storyText: You will now be washed of your sins.
+  storyText: You have proven your worth.
   description: 
   character: {fileID: 10769702}
   portrait: {fileID: 0}
@@ -2847,7 +2847,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &52313311
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2857,12 +2857,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 51
+  itemId: 79
   indentLevel: 0
-  storyText: Thank you all and thank you Ollie...
+  storyText: Now you get to move on to the afterlife.
   description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  character: {fileID: 225473490}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2921,7 +2921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 68
   indentLevel: 0
-  storyText: Maybe the reapers mean no harm after all.
+  storyText: PROTECT YOUR SKULL!
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -2948,8 +2948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 67
   indentLevel: 0
-  storyText: Who would have thought that Ollie could one day become such a reasonable
-    person?
+  storyText: A good stunt is a stunt you can walk away from. As Ollie would say...
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -2976,9 +2975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 66
   indentLevel: 0
-  storyText: He goes to skateparks with his helmet to give it to people who are not
-    aware of riding without protection and more particularly to young people full
-    of spirit and a little stubborn.
+  storyText: Even now, he can be found in skateparks all around the world, handing
+    out helmets and elbow pads to young riders with more courage than sense.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3005,9 +3003,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 64
   indentLevel: 0
-  storyText: 'All of this was against his nature, however, soon after, he decided
-    to use all of his skateboarding experience to protect the generations of riders
-    to come. '
+  storyText: The culture had evolved, and he, finally, had adapted. Safety and enjoying
+    life were his new priorities, and he worked hard to share them with as many skaters
+    as he could.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3022,7 +3020,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &52313318
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3032,14 +3030,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 73
+  itemId: 78
   indentLevel: 0
-  storyText: Since that day, Ollie has been living in a routine and he's not very
-    happy, but until he gets a job he really likes, and to eat his favorite pizzas,
-    this galley is certainly better than nothing...
+  storyText: Oh! I'm here again.
   description: 
-  character: {fileID: 164480228}
-  portrait: {fileID: 0}
+  character: {fileID: 1084785472}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -3063,8 +3059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 72
   indentLevel: 0
-  storyText: However, the store's witch gave him a chance and now he's working with
-    her.
+  storyText: And that is where he remains, daydreaming about the glory days of skateboarding
+    and searching for deeper meaning in his daily routine...
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3091,8 +3087,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 71
   indentLevel: 0
-  storyText: 'He applied in several shops, but having never really worked in his
-    life, no one wanted him, especially an unemployed reaper. '
+  storyText: He ended up working for the store next to the laundromat. It's wasn't
+    very exciting, and his boss was an old hag, but she was happy to have help around.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3119,8 +3115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 70
   indentLevel: 0
-  storyText: He didn't know, but in order to live and continue to pay all his daily
-    expenses, he needed another job.
+  storyText: Of course, that question had to wait. No more job meant no more income,
+    and Ollie, like everyone else, had bills to pay.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3147,7 +3143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 69
   indentLevel: 0
-  storyText: What was going to drive him as much as his lifelong passion?
+  storyText: What else could provide him with as much excitement as filming reckless,
+    dangerous stunts?
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3174,8 +3171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 77
   indentLevel: 0
-  storyText: Since that day, the skeleton appreciates even more the delicious taste
-    of souls of his favorite place and lives happy days.
+  storyText: Beware the Grim Skater, and his alluring promise of glory and fame...
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3202,9 +3198,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 76
   indentLevel: 0
-  storyText: 'His current situation didn''t matter to him. Indeed, as long as he
-    could continue to go to the skatepark to film death with his camera, it was fine
-    for him. '
+  storyText: To this day, Ollie can be found at skateparks around the world, goading
+    skaters into pushing their limits and recording the most reckless moments of
+    their lives.
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3231,8 +3227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 75
   indentLevel: 0
-  storyText: Ollie was not at all affected by what he was told, for him the fact
-    of having realized his incredible figure was a much more important thing.
+  storyText: 'But to Ollie, that didn''t matter. He had already gotten what he wanted:
+    an incredible, once-in-a-lifetime stunt that inspired a generation.'
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -3259,9 +3255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 74
   indentLevel: 0
-  storyText: 'However, he didn''t expect to see him in that condition. The doctors
-    told him that he could no longer skateboard, and that he would have to walk with
-    crutches. '
+  storyText: 'The doctors told him that he could no longer skateboard, and that even
+    walking around would be a challenge. '
   description: 
   character: {fileID: 164480228}
   portrait: {fileID: 0}
@@ -44309,7 +44304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 323640079}
+  selectedFlowchart: {fileID: 52313275}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
