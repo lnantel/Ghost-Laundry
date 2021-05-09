@@ -4553,7 +4553,6 @@ GameObject:
   - component: {fileID: 179794507}
   - component: {fileID: 179794506}
   - component: {fileID: 179794505}
-  - component: {fileID: 179794504}
   - component: {fileID: 179794503}
   - component: {fileID: 179794502}
   - component: {fileID: 179794501}
@@ -4629,7 +4628,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 179794489}
   selectedCommands:
-  - {fileID: 179794490}
+  - {fileID: 179794485}
   variables: []
   description: 
   stepPause: 0
@@ -4782,7 +4781,6 @@ MonoBehaviour:
   - {fileID: 179794498}
   - {fileID: 179794502}
   - {fileID: 179794490}
-  - {fileID: 179794504}
   - {fileID: 179794485}
   suppressAllAutoSelections: 0
 --- !u!114 &179794490
@@ -5173,33 +5171,6 @@ MonoBehaviour:
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &179794504
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179794481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 12
-  indentLevel: 0
-  storyText: If you say so...
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -22412,7 +22383,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1001650904}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1001650910}
   variables: []
   description: 
   stepPause: 0
@@ -22670,7 +22642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 25
   indentLevel: 0
-  storyText: Good luck, kid.
+  storyText: Got it?
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -25131,7 +25103,6 @@ GameObject:
   - component: {fileID: 1123111058}
   - component: {fileID: 1123111056}
   - component: {fileID: 1123111055}
-  - component: {fileID: 1123111054}
   - component: {fileID: 1123111052}
   - component: {fileID: 1123111051}
   - component: {fileID: 1123111047}
@@ -25197,8 +25168,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 67
-    y: 70
-    width: 60
+    y: 69
+    width: 86
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -25209,7 +25180,6 @@ MonoBehaviour:
   commandList:
   - {fileID: 1123111059}
   - {fileID: 1123111058}
-  - {fileID: 1123111054}
   - {fileID: 1123111048}
   - {fileID: 1123111052}
   - {fileID: 1123111046}
@@ -25254,7 +25224,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1123111035}
   selectedCommands:
-  - {fileID: 1123111047}
+  - {fileID: 1123111048}
   variables: []
   description: 
   stepPause: 0
@@ -25638,33 +25608,6 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1123111054
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123111032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 8
-  indentLevel: 0
-  storyText: All done!
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 7f581fb867e06294a9b23a635f4dd570, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1123111055
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -31140,16 +31083,13 @@ GameObject:
   - component: {fileID: 1309999573}
   - component: {fileID: 1309999572}
   - component: {fileID: 1309999625}
-  - component: {fileID: 1309999624}
   - component: {fileID: 1309999620}
   - component: {fileID: 1309999568}
   - component: {fileID: 1309999561}
   - component: {fileID: 1309999564}
-  - component: {fileID: 1309999566}
   - component: {fileID: 1309999570}
   - component: {fileID: 1309999569}
   - component: {fileID: 1309999567}
-  - component: {fileID: 1309999565}
   m_Layer: 0
   m_Name: Step 2
   m_TagString: Untagged
@@ -31220,9 +31160,6 @@ MonoBehaviour:
   - {fileID: 1309999570}
   - {fileID: 1309999569}
   - {fileID: 1309999567}
-  - {fileID: 1309999566}
-  - {fileID: 1309999565}
-  - {fileID: 1309999624}
   - {fileID: 1309999620}
   - {fileID: 1309999561}
   - {fileID: 1309999568}
@@ -31254,7 +31191,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1309999562}
   selectedCommands:
-  - {fileID: 1309999620}
+  - {fileID: 1309999625}
   variables: []
   description: 
   stepPause: 0
@@ -31280,63 +31217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 1309999562}
   suppressBlockAutoSelect: 0
---- !u!114 &1309999565
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309999559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 79
-  indentLevel: 0
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 626984432}
-  replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1194153116}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1309999566
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309999559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 75
-  indentLevel: 0
-  storyText: I'm good, thanks. I don't want to find out if I can still puke.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &1309999567
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -31516,45 +31396,18 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 626984432}
   replacedCharacter: {fileID: 626984432}
-  portrait: {fileID: 21300000, guid: bb99fdcc26251854f84ea2ce79d75a02, type: 3}
+  portrait: {fileID: 0}
   offset: 0
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
   facing: 0
   useDefaultSettings: 0
-  fadeDuration: 0.5
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1309999624
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309999559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  storyText: If ya break anything, yer gonna have to pay for it, alright? No pukin'.
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &1309999625
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -31892,7 +31745,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1367893194}
   selectedCommands:
-  - {fileID: 1367893209}
+  - {fileID: 1367893214}
   variables: []
   description: 
   stepPause: 0
@@ -31962,7 +31815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  storyText: Eh, trust me, it gets old after a while.
+  storyText: Yer gonna be over it by the end of yer first day.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -32130,7 +31983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: Wow... that's kind of sad.
+  storyText: Oh.
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
@@ -32441,7 +32294,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 86.8
+    width: 86
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -32490,7 +32343,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1392920235}
   selectedCommands:
-  - {fileID: 1392920239}
+  - {fileID: 1392920258}
   variables: []
   description: 
   stepPause: 0
@@ -32745,7 +32598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: Looks like ya got the hang of it. When yer done, meet me at the BAGGER.
+  storyText: Bit sloppy, kid, but ya got there in the end. When yer done, meet me
+    at the BAGGER.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -38265,7 +38119,6 @@ GameObject:
   - component: {fileID: 1609805610}
   - component: {fileID: 1609805609}
   - component: {fileID: 1609805608}
-  - component: {fileID: 1609805607}
   - component: {fileID: 1609805606}
   - component: {fileID: 1609805604}
   - component: {fileID: 1609805618}
@@ -38275,7 +38128,7 @@ GameObject:
   - component: {fileID: 1609805614}
   - component: {fileID: 1609805613}
   - component: {fileID: 1609805612}
-  - component: {fileID: 1609805611}
+  - component: {fileID: 1609805607}
   m_Layer: 0
   m_Name: Detailed Step 4
   m_TagString: Untagged
@@ -38338,7 +38191,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1609805610}
   selectedCommands:
-  - {fileID: 1609805611}
+  - {fileID: 1609805613}
   variables: []
   description: 
   stepPause: 0
@@ -38369,7 +38222,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1609805607
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -38379,9 +38232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 4
+  itemId: 16
   indentLevel: 0
-  storyText: Nothin' much to say about FOLDING.
+  storyText: Make sure to PAIR socks together. Just lay 'em one on top of another.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -38472,43 +38325,15 @@ MonoBehaviour:
   - {fileID: 1609805618}
   - {fileID: 1609805609}
   - {fileID: 1609805612}
-  - {fileID: 1609805607}
   - {fileID: 1609805617}
+  - {fileID: 1609805607}
   - {fileID: 1609805616}
-  - {fileID: 1609805611}
   - {fileID: 1609805608}
   - {fileID: 1609805615}
   - {fileID: 1609805614}
   - {fileID: 1609805613}
   - {fileID: 1609805606}
   suppressAllAutoSelections: 0
---- !u!114 &1609805611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609805602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  storyText: 'Oh yeah, there is one thing: make sure to PAIR SOCKS TOGETHER properly!'
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &1609805612
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -39927,7 +39752,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1743775930}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1743775936}
   variables: []
   description: 
   stepPause: 0
@@ -40037,7 +39863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 23
   indentLevel: 0
-  storyText: Nice. That's what I like to see! Look at it SHINE!
+  storyText: There we go! Look at it SHINE!
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -40152,7 +39978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Okay, there's no way that's normal. That iron has GOT to be magical.
+  storyText: Okay, there's no way that's normal. That iron has GOT to be magic.
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
@@ -40391,20 +40217,16 @@ GameObject:
   - component: {fileID: 1785651428}
   - component: {fileID: 1785651452}
   - component: {fileID: 1785651447}
-  - component: {fileID: 1785651439}
   - component: {fileID: 1785651450}
   - component: {fileID: 1785651449}
   - component: {fileID: 1785651444}
   - component: {fileID: 1785651448}
-  - component: {fileID: 1785651446}
   - component: {fileID: 1785651436}
   - component: {fileID: 1785651451}
   - component: {fileID: 1785651445}
   - component: {fileID: 1785651443}
   - component: {fileID: 1785651442}
-  - component: {fileID: 1785651429}
   - component: {fileID: 1785651441}
-  - component: {fileID: 1785651440}
   - component: {fileID: 1785651430}
   - component: {fileID: 1785651437}
   - component: {fileID: 1785651435}
@@ -40558,14 +40380,11 @@ MonoBehaviour:
   - {fileID: 1785651449}
   - {fileID: 1785651448}
   - {fileID: 1785651447}
-  - {fileID: 1785651446}
   - {fileID: 1785651445}
   - {fileID: 1785651444}
   - {fileID: 1785651443}
   - {fileID: 1785651442}
   - {fileID: 1785651441}
-  - {fileID: 1785651440}
-  - {fileID: 1785651439}
   - {fileID: 1785651438}
   - {fileID: 1785651437}
   - {fileID: 1785651436}
@@ -40577,7 +40396,6 @@ MonoBehaviour:
   - {fileID: 1785651421}
   - {fileID: 1785651430}
   - {fileID: 1785651428}
-  - {fileID: 1785651429}
   - {fileID: 1785651427}
   suppressAllAutoSelections: 0
 --- !u!114 &1785651426
@@ -40666,33 +40484,6 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1785651429
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785651419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 21
-  indentLevel: 0
-  storyText: Right... I'll do my best.
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 20f2a6e8cf39f47428bb192746660056, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1785651430
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -40877,8 +40668,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 16
   indentLevel: 0
-  storyText: That's right. After that, all ya gotta do is GRAB the bag and put it
-    down on the COUNTER, to the LEFT of the cash register.
+  storyText: GRAB the bag and put it down on the COUNTER, to the LEFT of the cash
+    register.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -40935,65 +40726,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 31
   indentLevel: 0
-  storyText: Once I dump ALL the clothes belonging to a customer into it, the BAGGER
-    makes a BAG with them, right?
+  storyText: What do I do with the bag?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
---- !u!114 &1785651439
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785651419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 10
-  indentLevel: 0
-  storyText: Aaanyway...
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
---- !u!114 &1785651440
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785651419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 23
-  indentLevel: 0
-  storyText: Yer gonna love it soon enough. They all end up lovin' it!
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -41146,33 +40882,6 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1785651446
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785651419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  storyText: It might not look like much... but it's amazingly convenient!
-  description: 
-  character: {fileID: 626984432}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1785651447
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -41187,7 +40896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: The BAGGER is a mechanical marvel at the very forefront of laundry technology.
+  storyText: The BAGGER is a mechanical marvel at the cuttin' edge of laundry technology.
   description: 
   character: {fileID: 626984432}
   portrait: {fileID: 0}
@@ -41357,7 +41066,6 @@ GameObject:
   - component: {fileID: 1795419508}
   - component: {fileID: 1795419507}
   - component: {fileID: 1795419506}
-  - component: {fileID: 1795419505}
   - component: {fileID: 1795419504}
   - component: {fileID: 1795419503}
   - component: {fileID: 1795419502}
@@ -41373,7 +41081,6 @@ GameObject:
   - component: {fileID: 1795419492}
   - component: {fileID: 1795419491}
   - component: {fileID: 1795419490}
-  - component: {fileID: 1795419489}
   - component: {fileID: 1795419488}
   - component: {fileID: 1795419487}
   - component: {fileID: 1795419486}
@@ -41382,9 +41089,10 @@ GameObject:
   - component: {fileID: 1795419482}
   - component: {fileID: 1795419525}
   - component: {fileID: 1795419528}
-  - component: {fileID: 1795419526}
   - component: {fileID: 1795419527}
   - component: {fileID: 1795419484}
+  - component: {fileID: 1795419505}
+  - component: {fileID: 1795419489}
   m_Layer: 0
   m_Name: Introduction
   m_TagString: Untagged
@@ -41478,7 +41186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 38
   indentLevel: 0
-  storyText: Oh oh...
+  storyText: Woah! Where am I?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -41523,7 +41231,7 @@ MonoBehaviour:
   itemId: 36
   indentLevel: 0
   targetObject: {fileID: 666600293}
-  methodName: HideCG
+  methodName: FadeOutCG
   delay: 0
 --- !u!114 &1795419488
 MonoBehaviour:
@@ -41539,7 +41247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 35
   indentLevel: 0
-  storyText: Good luck young one
+  storyText: Good luck, lost soul!
   description: 
   character: {fileID: 10769702}
   portrait: {fileID: 0}
@@ -41554,7 +41262,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419489
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -41564,11 +41272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 34
+  itemId: 59
   indentLevel: 0
-  storyText: We will now send you to the living world.
+  storyText: Do the work, and you will be able to move on. Otherwise, you will remain
+    here, and wash clothes for eternity...
   description: 
-  character: {fileID: 10769702}
+  character: {fileID: 225473490}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -41593,10 +41302,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 33
   indentLevel: 0
-  storyText: Sorry to hear that...
+  storyText: Wait! None of this makes any sense!
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  portrait: {fileID: 21300000, guid: 4d88399a116825e408ba8a8a91370481, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -41620,7 +41329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  storyText: That's all I can remember doing...
+  storyText: It's all I can remember doing! Ohohohohohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -41647,7 +41356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 31
   indentLevel: 0
-  storyText: Like we have...
+  storyText: A long time!
   description: 
   character: {fileID: 1602373318}
   portrait: {fileID: 0}
@@ -41674,8 +41383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 30
   indentLevel: 0
-  storyText: Do your job and you will be able to move on. Otherwise be ready to be
-    stuck washing clothes for a while.
+  storyText: There are many mysterious beings the living never truly see with their
+    eyes and minds.
   description: 
   character: {fileID: 225473490}
   portrait: {fileID: 0}
@@ -41729,8 +41438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  storyText: The world is a mysterious thing with hidden facets you would never see
-    with your mortal eyes.
+  storyText: But they have seen you! Ohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -41757,8 +41465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  storyText: Will I be a ghost in the living world? I don't remember seeing ghosts
-    in my life.
+  storyText: Will I be a ghost in the living world? I've never seen a ghost!
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
@@ -41812,7 +41519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 25
   indentLevel: 0
-  storyText: Not hell! Heaven!
+  storyText: Not Hell! Not Heaven!
   description: 
   character: {fileID: 1602373318}
   portrait: {fileID: 0}
@@ -41839,7 +41546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 24
   indentLevel: 0
-  storyText: Sins? Washing clothes? What the hell?
+  storyText: My sins? What the hell?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -41866,8 +41573,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 23
   indentLevel: 0
-  storyText: As is tradition, you will clean the clothes of others to clean yourself
-    of your sins.
+  storyText: As is tradition, you will wash the clothes of others to wash yourself
+    of your sins... you naughty little ghost! Ohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -41921,7 +41628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 21
   indentLevel: 0
-  storyText: Work? There's work here?
+  storyText: You mean... I have to help you with your laundry?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -41948,7 +41655,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 20
   indentLevel: 0
-  storyText: Somewhat. You will have to work to access the afterlife.
+  storyText: Not quite. This is our domain. To get to the afterlife, you must first
+    work.
   description: 
   character: {fileID: 225473490}
   portrait: {fileID: 0}
@@ -41975,10 +41683,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 19
   indentLevel: 0
-  storyText: And I'm a ghost? So this is the afterlife then?
+  storyText: So this... is the afterlife?!
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -41990,7 +41698,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419505
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -42000,12 +41708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 18
+  itemId: 58
   indentLevel: 0
-  storyText: What?! I'm dead?
+  storyText: Like us! Ohoho!
   description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  character: {fileID: 1193162897}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -42056,7 +41764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 16
   indentLevel: 0
-  storyText: That means you died.
+  storyText: That means you're dead.
   description: 
   character: {fileID: 225473490}
   portrait: {fileID: 0}
@@ -42083,7 +41791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 15
   indentLevel: 0
-  storyText: That's right, you have perished.
+  storyText: That's right, you have perished! Ohoho!
   description: 
   character: {fileID: 1193162897}
   portrait: {fileID: 0}
@@ -42440,7 +42148,6 @@ MonoBehaviour:
   - {fileID: 1795419508}
   - {fileID: 1795419507}
   - {fileID: 1795419506}
-  - {fileID: 1795419505}
   - {fileID: 1795419504}
   - {fileID: 1795419503}
   - {fileID: 1795419502}
@@ -42451,18 +42158,18 @@ MonoBehaviour:
   - {fileID: 1795419497}
   - {fileID: 1795419496}
   - {fileID: 1795419495}
-  - {fileID: 1795419494}
   - {fileID: 1795419493}
+  - {fileID: 1795419494}
+  - {fileID: 1795419505}
+  - {fileID: 1795419489}
   - {fileID: 1795419492}
   - {fileID: 1795419491}
   - {fileID: 1795419490}
-  - {fileID: 1795419489}
+  - {fileID: 1795419486}
   - {fileID: 1795419488}
   - {fileID: 1795419487}
-  - {fileID: 1795419486}
   - {fileID: 1795419485}
   - {fileID: 1795419528}
-  - {fileID: 1795419526}
   - {fileID: 1795419527}
   - {fileID: 1795419482}
   - {fileID: 1795419525}
@@ -42494,7 +42201,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1795419522}
   selectedCommands:
-  - {fileID: 1795419509}
+  - {fileID: 1795419527}
   variables: []
   description: 
   stepPause: 0
@@ -42523,33 +42230,6 @@ MonoBehaviour:
   targetObject: {fileID: 1339160277}
   methodName: OnDialogEnd
   delay: 0
---- !u!114 &1795419526
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795419480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 55
-  indentLevel: 0
-  storyText: Wait, where am I? What is this place?
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419527
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -42567,7 +42247,7 @@ MonoBehaviour:
   storyText: I better look around.
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
+  portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -42591,10 +42271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 54
   indentLevel: 0
-  storyText: What a weird dream...
+  storyText: This looks like... a laundromat?
   description: 
   character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
+  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -44333,7 +44013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1795419523}
+  selectedFlowchart: {fileID: 1123111036}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
