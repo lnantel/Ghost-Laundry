@@ -29370,7 +29370,6 @@ GameObject:
   - component: {fileID: 1263988448}
   - component: {fileID: 1263988447}
   - component: {fileID: 1263988446}
-  - component: {fileID: 1263988445}
   - component: {fileID: 1263988444}
   - component: {fileID: 1263988443}
   - component: {fileID: 1263988442}
@@ -29414,7 +29413,6 @@ GameObject:
   - component: {fileID: 1263988452}
   - component: {fileID: 1263988451}
   - component: {fileID: 1263988450}
-  - component: {fileID: 1263988449}
   - component: {fileID: 1263988501}
   - component: {fileID: 1263988500}
   - component: {fileID: 1263988499}
@@ -29453,7 +29451,6 @@ GameObject:
   - component: {fileID: 1263988507}
   - component: {fileID: 1263988506}
   - component: {fileID: 1263988505}
-  - component: {fileID: 1263988504}
   - component: {fileID: 1263988503}
   m_Layer: 0
   m_Name: Event 1 Flowchart
@@ -29571,7 +29568,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 319
     y: 80
-    width: 62
+    width: 102
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -29610,7 +29607,6 @@ MonoBehaviour:
   - {fileID: 1263988512}
   - {fileID: 1263988508}
   - {fileID: 1263988510}
-  - {fileID: 1263988504}
   - {fileID: 1263988499}
   - {fileID: 1263988482}
   - {fileID: 1263988507}
@@ -29638,7 +29634,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 182
     y: 79
-    width: 62
+    width: 102
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -29677,7 +29673,6 @@ MonoBehaviour:
   - {fileID: 1263988451}
   - {fileID: 1263988462}
   - {fileID: 1263988467}
-  - {fileID: 1263988449}
   - {fileID: 1263988477}
   - {fileID: 1263988456}
   - {fileID: 1263988389}
@@ -29698,7 +29693,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 59
     y: 78
-    width: 60
+    width: 91
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -29753,7 +29748,6 @@ MonoBehaviour:
   - {fileID: 1263988439}
   - {fileID: 1263988441}
   - {fileID: 1263988444}
-  - {fileID: 1263988445}
   - {fileID: 1263988438}
   - {fileID: 1263988413}
   - {fileID: 1263988440}
@@ -29789,7 +29783,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1263988391}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1263988509}
   variables: []
   description: 
   stepPause: 0
@@ -30913,7 +30908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 58
   indentLevel: 0
-  storyText: But do I really want to go along with this? I could just NOT DO IT...
+  storyText: But do I really want to encourage him? I could just NOT DO IT...
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -31139,8 +31134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 50
   indentLevel: 0
-  storyText: Look. I don't need you to agree. But trust me, this is what true skateboarding
-    is all about.
+  storyText: Look, this is what true skateboarding is all about.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -31183,33 +31177,6 @@ MonoBehaviour:
   move: 0
   shiftIntoPlace: 0
   waitUntilFinished: 1
---- !u!114 &1263988445
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263988385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 48
-  indentLevel: 0
-  storyText: It's all about the glory, you know?
-  description: 
-  character: {fileID: 1747701563}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &1263988446
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -31295,33 +31262,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 1603958713}
---- !u!114 &1263988449
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263988385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 95
-  indentLevel: 0
-  storyText: Oh, okay. See you!
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 6d000215526047a429c449d30e0d6c70, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1263988450
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -31366,7 +31306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 93
   indentLevel: 0
-  storyText: ... That just raises MORE questions...
+  storyText: Right, like... skateboarding deaths?
   description: 
   character: {fileID: 1084785472}
   portrait: {fileID: 21300000, guid: 9147721dfd2c8c64c9df9c69eb75d59c, type: 3}
@@ -31814,8 +31754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 76
   indentLevel: 0
-  storyText: Maybe I'll answer them some other time, then! I've got to go. No hard
-    feelings about the pants! I'll figure something out.
+  storyText: Yup, exactly! Alright Ghostie, I've got to run. No hard feelings about
+    the pants! I'll figure something out.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -31842,7 +31782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 75
   indentLevel: 0
-  storyText: Uh, yeah, that's kind of the point, actually.
+  storyText: Uh, yeah, that's kind of the point, actually. Why else would you even
+    get on a board in the first place?
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -31923,7 +31864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 71
   indentLevel: 0
-  storyText: Yeah... about that. I'm not super comfortable about that whole... "recording
+  storyText: Yeah... about that. I'm not super comfortable with the whole... "recording
     people doing dangerous stunts" thing.
   description: 
   character: {fileID: 1084785472}
@@ -32766,33 +32707,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 1603958713}
---- !u!114 &1263988504
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263988385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 135
-  indentLevel: 0
-  storyText: '*... Did Death just say "wink" at me, again?*'
-  description: 
-  character: {fileID: 1084785472}
-  portrait: {fileID: 21300000, guid: 192584437b5ab2d47b1551afc8b4431a, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 1603958713}
 --- !u!114 &1263988505
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -32923,7 +32837,7 @@ MonoBehaviour:
   itemId: 130
   indentLevel: 0
   storyText: If I don't celebrate the absolutely RADICAL things people try to do,
-    who will? It's not ALL gloom and tragedy!
+    who will? It's not ALL doom and gloom!
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -32950,7 +32864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 129
   indentLevel: 0
-  storyText: Kind of! Wink!
+  storyText: Kind of! But just for radical skaters.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -33034,7 +32948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 126
   indentLevel: 0
-  storyText: And it's also just what HAS to happen. The camera is how I capture souls.
+  storyText: You see, the camera is how I capture souls.
   description: 
   character: {fileID: 1747701563}
   portrait: {fileID: 0}
@@ -46606,7 +46520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1795419523}
+  selectedFlowchart: {fileID: 1263988394}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1
