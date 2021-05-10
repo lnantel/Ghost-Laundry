@@ -219,7 +219,7 @@ public class LaundryBasket : LaundryObject, ITrackable {
             DisableBasketView();
     }
 
-    public override void OnInteract() {
+    public void CycleTag() {
         //Cycle through tags
         basket.tag = (basket.tag + 1) % tags.Length;
         tagSprite.sprite = tags[basket.tag];

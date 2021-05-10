@@ -405,9 +405,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.03, y: 1.67}
+  m_Offset: {x: 0.677433, y: 1.6699991}
   serializedVersion: 2
-  m_Radius: 2.4597578
+  m_Radius: 2.1071906
 --- !u!114 &6719572107641398354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Open: {fileID: 21300000, guid: e9afdc072bb24f342bf6767df568220a, type: 3}
   Closed: {fileID: 21300000, guid: 1edccda4120e90c429a8a2a99c1a17ca, type: 3}
+  CarryableOutline: {fileID: 2463816966834224660}
 --- !u!210 &4356220065575178358
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -627,5 +628,10 @@ PrefabInstance:
 --- !u!4 &1013027682066492956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4618077861524966387, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
+  m_PrefabInstance: {fileID: 5627329200005277167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2463816966834224660 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7793890843009784827, guid: 51bcb5303950c9c4db09dd5dcbbcdf8f, type: 3}
   m_PrefabInstance: {fileID: 5627329200005277167}
   m_PrefabAsset: {fileID: 0}
