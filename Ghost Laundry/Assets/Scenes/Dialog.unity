@@ -16456,13 +16456,13 @@ MonoBehaviour:
   fromPosition: {fileID: 1194153116}
   toPosition: {fileID: 915239209}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566173
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16479,7 +16479,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 60.617023
     y: 70
-    width: 85.319145
+    width: 88.29787
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -16549,7 +16549,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 823566173}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 823566172}
   variables: []
   description: 
   stepPause: 0
@@ -16584,13 +16585,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566176
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16641,13 +16642,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566178
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16725,13 +16726,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566181
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16810,13 +16811,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566184
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16868,13 +16869,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566186
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16980,13 +16981,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566190
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -17064,13 +17065,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566193
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -17152,13 +17153,13 @@ MonoBehaviour:
   fromPosition: {fileID: 0}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 0
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566197
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -17290,13 +17291,13 @@ MonoBehaviour:
   fromPosition: {fileID: 915239209}
   toPosition: {fileID: 1194153116}
   facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
+  useDefaultSettings: 0
+  fadeDuration: 0
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
   move: 1
   shiftIntoPlace: 0
-  waitUntilFinished: 1
+  waitUntilFinished: 0
 --- !u!114 &823566202
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -33717,6 +33718,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 672183746}
+        m_TargetAssemblyTypeName: Fungus.DialogInput, Fungus
+        m_MethodName: SetCustomButtonClickedFlag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 672183746}
+        m_TargetAssemblyTypeName: Fungus.DialogInput, Fungus
+        m_MethodName: ToggleFastForwarding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1443497139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33768,6 +33793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogInput: {fileID: 1603958710}
+  dialogInput2: {fileID: 672183746}
 --- !u!1 &1452669045
 GameObject:
   m_ObjectHideFlags: 0
@@ -41127,7 +41153,7 @@ MonoBehaviour:
   suppressBlockAutoSelect: 0
 --- !u!114 &1795419484
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -41242,7 +41268,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419489
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -41678,7 +41704,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1603958713}
 --- !u!114 &1795419505
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -43993,7 +44019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 52313275}
+  selectedFlowchart: {fileID: 823566174}
 --- !u!4 &2118520641
 Transform:
   m_ObjectHideFlags: 1

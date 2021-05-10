@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
         Vector2 collisionPoint = Vector2.zero;
 
         int layerMask = LayerMask.GetMask("Impassable");
-        RaycastHit2D hit = Physics2D.BoxCast(dashStartPos, new Vector2(1.0f, 1.0f), 0.0f, dashDir, m_DashDistance, layerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(dashStartPos, new Vector2(0.60f, 0.20f), 0.0f, dashDir, m_DashDistance, layerMask);
         if(hit.collider != null) {
             collision = true;
             collisionPoint = hit.point - dashDir * 0.5f;
