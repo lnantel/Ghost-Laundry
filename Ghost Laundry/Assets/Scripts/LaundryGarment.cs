@@ -123,6 +123,7 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     public override void OnInspect() {
+        base.OnInspect();
         inspected = !inspected;
     }
 
@@ -136,6 +137,7 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     public override void OnGrab() {
+        base.OnGrab();
         AudioManager.instance.PlaySound(garment.fabric.grabSound);
         if (sortingGroup != null) sortingGroup.sortingOrder = 1;
         else StartCoroutine(DelayedOnGrab());

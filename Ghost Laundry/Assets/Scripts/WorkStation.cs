@@ -54,12 +54,13 @@ public class WorkStation : Interactable, ITrackable
     protected override void Interaction() {
         //if player is carrying a basket, attempt to input it to the workstation
         //if input fails, cancel interaction
-        if(RequestCarriedBasket != null) RequestCarriedBasket();
+        LaundryTaskController.instance.activeWorkStation = this;
+
+        if (RequestCarriedBasket != null) RequestCarriedBasket();
 
         PlayerController.instance.enabled = false;
         laundryTaskArea.SetActive(true);
         LaundryTaskController.instance.gameObject.SetActive(true);
-        LaundryTaskController.instance.activeWorkStation = this;
         TaskView.instance.PopUp(transform.position);
         LaundryTaskController.exitedTask += OnTaskExit;
         LaundryGarment.Released += OnLaundryGarmentReleased;
