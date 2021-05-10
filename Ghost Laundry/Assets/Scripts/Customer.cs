@@ -8,6 +8,7 @@ public class Customer : MonoBehaviour
     public static Action<int, int, Customer> Pay;
     public static Action Ragequit;
     public static Action<LaundromatBag> BagPickedUp;
+    public static Action CustomerServed;
 
     public int ticketNumber;
     public List<Garment> garments;
@@ -29,6 +30,8 @@ public class Customer : MonoBehaviour
     public float speed;
 
     public ParticleSystem steam;
+
+    private bool basketPlaced;
 
     protected GameObject laundromatBasketPrefab;
     protected LaundromatBasket basketOnCounter;
@@ -133,7 +136,7 @@ public class Customer : MonoBehaviour
     protected virtual void Arriving() {
         if (MoveTowards(spot.position)) {
             animator.SetBool("Walking", false);
-            PlaceBasketOnCounter();
+            //PlaceBasketOnCounter();
             state = CustomerState.WaitingForService;
         }
         else {
@@ -142,16 +145,14 @@ public class Customer : MonoBehaviour
     }
 
     protected virtual void WaitingForService() {
-        waitTimer += TimeManager.instance.deltaTime;
-        if (waitTimer > 0.7f * MaximumWaitingTime) {
-            impatient = true;
-            steam.gameObject.SetActive(true);
-            animator.SetBool("Impatient", impatient);
+        if (CustomerManager.instance.CustomersServed < 4 && !basketPlaced) {
+            PlaceBasketOnCounter();
+            if (CustomerServed != null) CustomerServed();
+            basketPlaced = true;
         }
-        if (waitTimer >= MaximumWaitingTime) {
-            RemoveBasketFromCounter();
-            spot.Free();
-            state = CustomerState.Ragequitting;
+
+        if(TimeManager.instance.CurrentTime()[0] >= 22 && !basketPlaced) {
+            state = CustomerState.Leaving;
         }
     }
 

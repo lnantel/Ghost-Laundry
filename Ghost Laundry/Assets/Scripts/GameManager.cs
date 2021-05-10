@@ -155,7 +155,6 @@ public class GameManager : MonoBehaviour {
         foreach(AsyncOperation op in ops) {
             while (!op.isDone) yield return null;
         }
-
         scenesLoading = null;
     }
 

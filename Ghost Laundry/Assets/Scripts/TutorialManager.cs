@@ -245,7 +245,7 @@ public class TutorialManager : MonoBehaviour
             }
             else if(washingMachine.state != WashingMachineState.Running) {
                 if (!WMDoorTooltip) {
-                    ToastManager.instance.SayLine("Then, open the door and drag your dirty clothes inside.", 3.0f);
+                    ToastManager.instance.SayLine("Then, open the door and click & drag your dirty clothes inside.", 3.0f);
                     ToastManager.instance.SayLine("When you're done, close the door and hit the ON button!", 3.0f);
                     WMDoorTooltip = true;
                 }

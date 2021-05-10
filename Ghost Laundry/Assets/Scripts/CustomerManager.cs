@@ -24,6 +24,8 @@ public class CustomerManager : MonoBehaviour
 
     public List<Customer> customersInLaundromat;
 
+    public int CustomersServed;
+
     //TODO: One for each specific customer
     private GameObject recurringCustomerPrefab;
 
@@ -57,12 +59,24 @@ public class CustomerManager : MonoBehaviour
         CustomerLeft += OnCustomerLeft;
         CustomerSpot.Freed += OnCustomerSpotFreed;
         TimeManager.StartOfDay += OnStartOfDay;
+        Customer.CustomerServed += OnCustomerServed;
+        Customer.BagPickedUp += OnBagPickedUp;
     }
 
     private void OnDisable() {
         CustomerLeft -= OnCustomerLeft;
         CustomerSpot.Freed -= OnCustomerSpotFreed;
         TimeManager.StartOfDay -= OnStartOfDay;
+        Customer.CustomerServed += OnCustomerServed;
+        Customer.BagPickedUp -= OnBagPickedUp;
+    }
+
+    private void OnCustomerServed() {
+        CustomersServed++;
+    }
+
+    private void OnBagPickedUp(LaundromatBag bag) {
+        CustomersServed--;
     }
 
     public int GetTicketNumber() {
