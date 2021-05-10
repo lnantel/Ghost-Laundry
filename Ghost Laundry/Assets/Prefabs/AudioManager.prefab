@@ -24459,33 +24459,33 @@ MonoBehaviour:
     Volume: 1
     Pitch: 1
   - Name: 8
-    Clip: {fileID: 8300000, guid: 56c10bde75aed194b8614a4d1952cec3, type: 3}
+    Clip: {fileID: 8300000, guid: b1204e9a2f8f411458cdbe6b565c0f34, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 9
     Clip: {fileID: 8300000, guid: 329f31bfbe871d44b93d08fe6cda7a27, type: 3}
     Volume: 1
     Pitch: 1
   - Name: 10
-    Clip: {fileID: 8300000, guid: 5beef698c50f16c479eff645bd6d89b9, type: 3}
+    Clip: {fileID: 8300000, guid: 329f31bfbe871d44b93d08fe6cda7a27, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 11
     Clip: {fileID: 8300000, guid: b2769d8dc827b0944a9d0be2d7c83236, type: 3}
     Volume: 1
     Pitch: 1
   - Name: 12
-    Clip: {fileID: 8300000, guid: 97db88508021f72448f816f0b81f8dce, type: 3}
+    Clip: {fileID: 8300000, guid: b2769d8dc827b0944a9d0be2d7c83236, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 13
     Clip: {fileID: 8300000, guid: 0bd3a87a34630a8409f2625bcf31fd22, type: 3}
     Volume: 1
     Pitch: 1
   - Name: 14
-    Clip: {fileID: 8300000, guid: 762382d46683c5a49ba8e4e79ba91dc0, type: 3}
+    Clip: {fileID: 8300000, guid: 0bd3a87a34630a8409f2625bcf31fd22, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 15
     Clip: {fileID: 8300000, guid: 1a7af1703d6bdaf44aafe3c0f782f40e, type: 3}
     Volume: 1
@@ -24517,15 +24517,15 @@ MonoBehaviour:
   - Name: 22
     Clip: {fileID: 8300000, guid: 7963e447e1f3c7046ba8e9adde8daea0, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 23
     Clip: {fileID: 8300000, guid: db17904098835d44b98a6df27ae8c859, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.9
   - Name: 24
     Clip: {fileID: 8300000, guid: 74861120fdbff344489dda4d2ab3e638, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.95
   - Name: 25
     Clip: {fileID: 8300000, guid: eed40161af798a7489a7e3a5a10ff8f1, type: 3}
     Volume: 1
@@ -24533,35 +24533,35 @@ MonoBehaviour:
   - Name: 26
     Clip: {fileID: 8300000, guid: fe05402896210ab42800f048a522c27d, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 1.05
   - Name: 27
     Clip: {fileID: 8300000, guid: 9593fed5f960f9a46a16fb4a8a4c982d, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 1.1
   - Name: 28
     Clip: {fileID: 8300000, guid: 3e7762c658acf9e43845ca2fd7115603, type: 3}
     Volume: 1
     Pitch: 1
   - Name: 29
-    Clip: {fileID: 8300000, guid: 71ef0c37245663a4a89d7d2a5a4fd8dc, type: 3}
+    Clip: {fileID: 8300000, guid: 3e7762c658acf9e43845ca2fd7115603, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 30
     Clip: {fileID: 8300000, guid: 02f3d8e9909265d448b5eeada11a4c29, type: 3}
     Volume: 1
     Pitch: 1
   - Name: 31
-    Clip: {fileID: 8300000, guid: 14a2ee093e73699478f397d5bd815f52, type: 3}
+    Clip: {fileID: 8300000, guid: 02f3d8e9909265d448b5eeada11a4c29, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 32
     Clip: {fileID: 8300000, guid: 08c8194270d2ba14fb946b79d38bc772, type: 3}
     Volume: 1
     Pitch: 1
   - Name: 33
-    Clip: {fileID: 8300000, guid: dd6393d56cd65db43bc3259da88b00d0, type: 3}
+    Clip: {fileID: 8300000, guid: 08c8194270d2ba14fb946b79d38bc772, type: 3}
     Volume: 1
-    Pitch: 1
+    Pitch: 0.85
   - Name: 34
     Clip: {fileID: 8300000, guid: 2d12452af58ac4a4c9f8bbe23ae1c709, type: 3}
     Volume: 1
