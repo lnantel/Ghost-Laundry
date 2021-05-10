@@ -50,7 +50,7 @@ public class DetergentManager : MonoBehaviour
 
     private void OnGUI() {
         //fillImage.fillAmount = (float)CurrentAmount / MaxAmount;
-        displayedAmount = Mathf.MoveTowards(displayedAmount, (float)CurrentAmount / MaxAmount, 0.001f);
+        displayedAmount = Mathf.MoveTowards(displayedAmount, (float)CurrentAmount / MaxAmount, 1.0f * Time.deltaTime);
         fillImage.fillAmount = displayedAmount;
     }
 }
