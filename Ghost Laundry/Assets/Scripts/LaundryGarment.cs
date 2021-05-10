@@ -123,6 +123,7 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     public override void OnInspect() {
+        base.OnInspect();
         inspected = !inspected;
     }
 
@@ -136,6 +137,7 @@ public class LaundryGarment : LaundryObject, ITrackable
     }
 
     public override void OnGrab() {
+        base.OnGrab();
         AudioManager.instance.PlaySound(garment.fabric.grabSound);
         if (sortingGroup != null) sortingGroup.sortingOrder = 1;
         else StartCoroutine(DelayedOnGrab());
@@ -236,8 +238,8 @@ public class LaundryGarment : LaundryObject, ITrackable
             }
 
             if (garment.Shrunk) {
-                spriteRenderer.transform.localScale = new Vector3(0.9f, 0.9f, 1.0f);
-                if(hovering) spriteRenderer.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                spriteRenderer.transform.localScale = new Vector3(0.75f, 0.75f, 1.0f);
+                if(hovering) spriteRenderer.transform.localScale = new Vector3(0.85f, 0.85f, 1.0f);
             }
             else {
                 spriteRenderer.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
