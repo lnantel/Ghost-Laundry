@@ -103,7 +103,61 @@ public class LaundryManager : MonoBehaviour
 
         foreach (Garment garment in garments)
             basket.AddGarment(garment);
-
+        
         return basket;
+    }
+
+    private bool WoolShrunk;
+    private bool WhiteDyed;
+    private bool LowOnlyTorn;
+    private bool HangOnlyTorn;
+    private bool SynthMelted;
+    private bool GarmentBurned;
+
+    private void OnEnable() {
+        LaundryObject.Grabbed += DisplayMistakeToast;
+    }
+
+    private void OnDisable() {
+        LaundryObject.Grabbed -= DisplayMistakeToast;
+    }
+
+    private void DisplayMistakeToast(LaundryObject laundryObject) {
+        if(laundryObject is LaundryGarment laundryGarment) {
+            Garment garment = laundryGarment.garment;
+            if (garment.Ruined) {
+                if (!GarmentBurned && garment.Burned) {
+                    //Garment burned
+                    GarmentBurned = true;
+                    ToastManager.instance.SayLine("Watch out with that iron! Keep it movin', and don't overdo it!", 1.0f);
+                }
+                if(!SynthMelted && garment.Melted) {
+                    //Synth melted
+                    SynthMelted = true;
+                    ToastManager.instance.SayLine("Did ya melt some synthetic fabric? Smells like burnt hair in there!", 1.0f);
+                }
+                if(!LowOnlyTorn && garment.Torn && garment.fabric.dryingRestrictions == DryingRestrictions.LowOnly) {
+                    //LowOnlyTorn
+                    LowOnlyTorn = true;
+                    ToastManager.instance.SayLine("Wow, those are messed up. Maybe use a lower TUMBLE setting next time!", 1.0f);
+                }
+                if(!HangOnlyTorn && garment.Torn && garment.fabric.dryingRestrictions == DryingRestrictions.HangDryOnly) {
+                    //HangOnlyTorn
+                    HangOnlyTorn = true;
+                    ToastManager.instance.SayLine("Hey, that's delicate! Don't put it in the dryer, or it'll get shredded!", 1.0f);
+                }
+                if(!WhiteDyed && garment.Dyed) {
+                    //WhiteDyed
+                    WhiteDyed = true;
+                    ToastManager.instance.SayLine("Say... that was white before you washed it, wasn't it?", 1.0f);
+                    ToastManager.instance.SayLine("When doin' a HOT WASH, don't forget to separate the WHITE clothes the COLORED ones!", 1.0f);
+                }
+                if(!WoolShrunk && garment.Shrunk) {
+                    //WoolShrunk
+                    WoolShrunk = true;
+                    ToastManager.instance.SayLine("Whoops, looks like the COLD water shrunk the WOOL... Be careful!", 1.0f);
+                }
+            }
+        }
     }
 }

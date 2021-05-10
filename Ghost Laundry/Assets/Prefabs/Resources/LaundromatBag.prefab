@@ -267,12 +267,13 @@ MonoBehaviour:
   totalGarments: 0
   launderedGarments: 0
   perfectGarments: 0
+  perfectIronedGarments: 0
   ruinedGarments: 0
   ReadyForPickUp: 0
   PopUp: {fileID: 492807194835879563}
-  TXT_NotLaundered: {fileID: 492807195070304498}
+  TXT_NotLaundered: {fileID: 492807194937648360}
   TXT_Laundered: {fileID: 492807193488933622}
-  TXT_PerfectlyLaundered: {fileID: 492807194937648360}
+  TXT_PerfectlyLaundered: {fileID: 492807195070304498}
   TXT_Ruined: {fileID: 492807194031990679}
 --- !u!210 &1307573139175319059
 SortingGroup:
@@ -511,9 +512,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5599162959127731331, guid: 8f57d6436551c6e498acb68068b69284, type: 3}
   m_PrefabInstance: {fileID: 5432172948010457609}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &492807195070304498 stripped
+--- !u!114 &492807194937648360 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5599162958288145147, guid: 8f57d6436551c6e498acb68068b69284, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5599162958445133537, guid: 8f57d6436551c6e498acb68068b69284, type: 3}
   m_PrefabInstance: {fileID: 5432172948010457609}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -533,9 +534,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &492807194937648360 stripped
+--- !u!114 &492807195070304498 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5599162958445133537, guid: 8f57d6436551c6e498acb68068b69284, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5599162958288145147, guid: 8f57d6436551c6e498acb68068b69284, type: 3}
   m_PrefabInstance: {fileID: 5432172948010457609}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
