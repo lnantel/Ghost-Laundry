@@ -25,6 +25,7 @@ public class WashTub : WorkStation
         if(SoapLevel <= MaxSoapLevel) {
             if (DetergentManager.instance.UseDetergent()) {
                 SoapLevel = MaxSoapLevel;
+                AudioManager.instance.PlaySound(SoundName.PourSoap);
                 if (SoapLevelChanged != null) SoapLevelChanged();
             }
         }
