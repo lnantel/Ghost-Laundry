@@ -105,7 +105,7 @@ namespace Fungus
             case ClickMode.Disabled:
                 break;
             case ClickMode.ClickAnywhere:
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("PickUp") || Input.GetButtonDown("Interact"))
                 {
                     SetNextLineFlag();
                 }
