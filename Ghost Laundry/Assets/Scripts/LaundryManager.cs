@@ -150,7 +150,7 @@ public class LaundryManager : MonoBehaviour
                     //WhiteDyed
                     WhiteDyed = true;
                     ToastManager.instance.SayLine("Say... that was white before you washed it, wasn't it?", 1.0f);
-                    ToastManager.instance.SayLine("When doin' a HOT WASH, don't forget to separate the WHITE clothes the COLORED ones!", 1.0f);
+                    ToastManager.instance.SayLine("When doin' a HOT WASH, don't forget to separate the WHITE clothes from the COLORED ones!", 1.0f);
                 }
                 if(!WoolShrunk && garment.Shrunk) {
                     //WoolShrunk
